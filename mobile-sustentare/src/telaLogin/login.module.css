@@ -1,0 +1,49 @@
+body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to right,#22333B, #254A5B, #22333B); 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+
+
+h1{
+  font-size: 48px;
+}
+
+h2{
+  font-size: 32px;
+  margin: 0;
+}
+.campoEmail{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+}
+
+.campoSenha{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+}
+
+.infos{
+  display: flex;
+  flex-direction: column;
+  width: 262PX;
+  gap: 24px;
+}
+
+input{
+  background: linear-gradient(to right,#22333B, #254A5B, #22333B); 
+  border-color: white;
+  border-width: 0.5px;
+  height: 47px;
+  border-radius: 8px;
+}
