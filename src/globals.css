@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
+/*
+O :root define variáveis em CSS. As usamos para mudar um valor em todo o site
+alterando-o apenas aqui, assim como com as variáveis do Figma!!!
+*/
 :root {
     --branco: #F5FBEF;
     --preto: #0A0908;
