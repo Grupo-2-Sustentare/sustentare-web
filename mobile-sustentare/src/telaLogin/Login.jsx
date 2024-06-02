@@ -14,6 +14,9 @@ const Login = () => {
           <h2>Senha:</h2>
           <input />
         </div>
+        <div className={styles["containerBotao"]}>
+        <button type="button">Entrar</button>
+        </div>
       </div>
     </div>
   );

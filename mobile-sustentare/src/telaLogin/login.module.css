@@ -1,3 +1,6 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 body {
   height: 100vh;
   margin: 0;
@@ -7,12 +10,15 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  font-family: "DM Sans"
 }
 
 
-
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
 h1{
+  
   font-size: 48px;
+  font-family: "UnifrakturCook";
 }
 
 h2{
@@ -36,6 +42,7 @@ h2{
 .infos{
   display: flex;
   flex-direction: column;
+  
   width: 262PX;
   gap: 24px;
 }
@@ -46,4 +53,20 @@ input{
   border-width: 0.5px;
   height: 47px;
   border-radius: 8px;
+}
+
+.containerBotao{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+button{
+  background-color: #254A5B;
+  border-radius: 8px;
+  border-color: #C9C9C9;
+  height: 65px;
+  width: 190px;
+  color: white;
+  font-family: "DM Sans"
 }
