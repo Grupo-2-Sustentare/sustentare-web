@@ -53,6 +53,8 @@ input{
   border-width: 0.5px;
   height: 47px;
   border-radius: 8px;
+  color: white;
+  font-family: "DM Sans"
 }
 
 .containerBotao{
