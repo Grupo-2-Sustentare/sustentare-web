@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./login.module.css";
 
+import Button from "../../components/Button/Button";
+
 const Login = () => {
   return (
     <div className={styles["App"]}>
@@ -15,7 +17,7 @@ const Login = () => {
           <input />
         </div>
         <div className={styles["containerBotao"]}>
-        <button type="button">Entrar</button>
+        <Button insideText="Entrar"/>
         </div>
       </div>
     </div>

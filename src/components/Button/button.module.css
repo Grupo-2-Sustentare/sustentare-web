@@ -1,0 +1,9 @@
+.customButton{
+    background-color: #254A5B;
+    border-radius: 8px;
+    border-color: #C9C9C9;
+    height: 65px;
+    width: 190px;
+    color: white;
+    font-family: "DM Sans"
+}

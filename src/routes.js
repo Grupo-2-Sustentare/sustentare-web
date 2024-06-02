@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./telaLogin/Login"
+import Login from "./pages/Login/Login";
 
 function Rotas() {
     return (
