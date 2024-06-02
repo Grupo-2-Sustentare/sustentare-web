@@ -1,30 +1,3 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-body {
-  height: 100vh;
-  margin: 0;
-  background: linear-gradient(to right,#22333B, #254A5B, #22333B); 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-family: "DM Sans"
-}
-
-
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
-h1{
-  
-  font-size: 48px;
-  font-family: "UnifrakturCook";
-}
-
-h2{
-  font-size: 32px;
-  margin: 0;
-}
 .campoEmail{
   display: flex;
   flex-direction: column;
@@ -48,13 +21,12 @@ h2{
 }
 
 input{
-  background: linear-gradient(to right,#22333B, #254A5B, #22333B); 
-  border-color: white;
+  background: var(--gradiente); 
+  border-color: var(--branco);
   border-width: 0.5px;
   height: 47px;
   border-radius: 8px;
-  color: white;
-  font-family: "DM Sans"
+  color: var(--branco);
 }
 
 .containerBotao{

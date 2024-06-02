@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+    --branco: #F5FBEF;
+    --preto: #0A0908;
+    --gunmetal: #22333B;
+    --carvao: #254A5B;
+    --cinza-transparate: #C9C9C9;
+    --gradiente: linear-gradient(
+        to right, 
+        var(--gunmetal), 
+        var(--carvao), 
+        var(--gunmetal)
+    ); 
+}
+
+*{
+    color: var(--branco);
+    font-family: "DM Sans";
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    /*
+    O "em" representa n vezes o font-size base (definido acima)
+    É usado para caso desejemos aumentar o tamanho da fonte, mudamos
+    só o base e todo o resto do site é mudado junto.
+
+    Tamanhos em "em":
+    • 12px: 0.6em
+    • 18px: 1em
+    • 24px: 1.3em
+    • 32px: 1.7em
+    • 48px: 2.6
+    */
+}
+body {
+    background: var(--gradiente);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+h1{
+    font-size: 2.6em;
+    font-family: "UnifrakturCook";
+}
+h2{
+    font-size: 1.7em;
+    margin: 0;
+}

@@ -1,4 +1,5 @@
 import Rotas from "./routes";
+import "./globals.css"
 
 function App() {
   return (
