@@ -19,6 +19,13 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     ); 
 }
 
+/* Tamanho de um celular, definido de forma temporária */
+html{
+    height: 812px;
+    width: 375px;
+    outline: 2px solid white;
+}
+
 *{
     color: var(--branco);
     font-family: "DM Sans";
