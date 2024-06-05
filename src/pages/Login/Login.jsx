@@ -5,19 +5,19 @@ import Button from "../../components/Button/Button";
 
 const Login = () => {
   return (
-    <div className={styles["App"]}>
+    <div className={styles["login"]}>
       <h1>Paralelo 19</h1>
-      <div className={styles["infos"]}>
-        <div className={styles["campoEmail"]}>
+      <div>
+        <div className={styles["campo"]}>
           <h2>Email:</h2>
           <input />
         </div>
-        <div className={styles["campoSenha"]}>
+        <div className={styles["campo"]}>
           <h2>Senha:</h2>
           <input />
         </div>
         <div className={styles["containerBotao"]}>
-        <Button insideText="Entrar"/>
+          <Button insideText="Entrar"/>
         </div>
       </div>
     </div>

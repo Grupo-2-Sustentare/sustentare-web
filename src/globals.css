@@ -11,16 +11,20 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --gunmetal: #22333B;
     --carvao: #254A5B;
     --cinza-transparate: #C9C9C9;
+    --vermelho: #CC334E;
     --gradiente: linear-gradient(
         to right, 
         var(--gunmetal), 
         var(--carvao), 
         var(--gunmetal)
-    ); 
+    );
+    
+    --sombra-vermelha: 0 0 5px var(--vermelho);
+    --sombra-interna: 0 0 15px 3px var(--preto) inset;
 }
 
 /* Tamanho de um celular, definido de forma temporária */
-html{
+body{
     height: 812px;
     width: 375px;
     outline: 2px solid white;
