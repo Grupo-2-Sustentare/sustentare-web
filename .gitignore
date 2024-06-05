@@ -12,13 +12,13 @@ jspm_packages/
 
 # Distribution directories
 dist/
-
+.idea/
 # Typescript v1 declaration files
 typings/
 
 # Optional npm cache directory
 .npm
-
+.lock
 # Optional eslint cache
 .eslintcache
 
