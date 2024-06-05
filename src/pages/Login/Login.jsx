@@ -10,7 +10,7 @@ const Login = () => {
       <div>
         <div className={styles["campo"]}>
           <h2>Email:</h2>
-          <input />
+          <input placeholder="Digite aqui..."/>
         </div>
         <div className={styles["campo"]}>
           <h2>Senha:</h2>

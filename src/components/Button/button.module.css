@@ -1,8 +1,9 @@
 .customButton{
-    background-color: var(--gunmetal);
+    background-color: var(--carvao);
     border-radius: 8px;
-    border-color: var(--branco);
+    border: solid 1px var(--branco);
     height: 65px;
     width: 190px;
     color: var(--branco);
+    box-shadow: 1px 1px 1px 1px var(--branco), 3px 3px 3px 1px var(--vermelho);
 }

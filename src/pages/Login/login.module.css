@@ -25,7 +25,7 @@
 }
 
 input{
-  background: var(--gradiente); 
+  background: var(--gunmetal); 
   border-color: var(--branco);
   border-width: 0.5px;
   height: 47px;
