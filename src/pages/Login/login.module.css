@@ -24,17 +24,6 @@
   gap: 8px;
 }
 
-input{
-  background: var(--gunmetal); 
-  border-color: var(--branco);
-  border-width: 0.5px;
-  height: 47px;
-  border-radius: 8px;
-  color: var(--branco);
-  padding-left: 10px;
-  box-shadow: var(--sombra-interna);
-}
-
 .containerBotao{
   width: 100%;
   display: flex;

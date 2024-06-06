@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./login.module.css";
 
 import Button from "../../components/Button/Button";
+import Input from "../../components/TextInput/TextInput";
+
 
 const Login = () => {
   return (
@@ -10,11 +12,11 @@ const Login = () => {
       <div>
         <div className={styles["campo"]}>
           <h2>Email:</h2>
-          <input placeholder="Digite aqui..."/>
+          <Input type="text" />
         </div>
         <div className={styles["campo"]}>
           <h2>Senha:</h2>
-          <input />
+          <Input type="text" />
         </div>
         <div className={styles["containerBotao"]}>
           <Button insideText="Entrar"/>
