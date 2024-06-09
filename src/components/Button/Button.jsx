@@ -1,9 +1,9 @@
 import styles from "./button.module.css"
 
-export default function Button({insideText}){
+export default function Button({insideText,onClick}){
     return (
         <>
-            <button className={styles.customButton}>{insideText}</button>
+            <button onClick={onClick} className={styles.customButton}>{insideText}</button>
         </>
     )
 }
