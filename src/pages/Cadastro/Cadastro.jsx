@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import React, { useState } from "react";
 import Button from "../../components/Button/Button";
 import Input from "../../components/TextInput/TextInput";
+import inputTextStyle from "../../components/TextInput/textInput.module.css";
 import api from "../../api";
 import VectorIcon from "../../components/VectorIcon/VectorIcon";
 import NavBar from "../../components/NavBar/NavBar";
@@ -16,6 +17,7 @@ const Cadastro = () => {
     const [senha, setSenha] = useState("")
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(null);
+    const [imagem, setImagem] = useState(null);
 
     const handleSave = () => {
         const objetoAdicionado = {
@@ -35,41 +37,60 @@ const Cadastro = () => {
         })
     };
 
-    const handleInputChange = (event, setStateFunction) => {
+    const handleTextInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value);
     }
+    const handleCheckboxInputChange = (event) => {
+        setAcesso(event.target.checked ? 1 : 0);
+    };
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setImagem(file);
+        }
+    };
 
     return (
-            <div className={styles["navBar"]}>
-                < NavBar Icon={VectorIcon} InsideText={"TESTEEEEEE"} />
+        <div>
+            < NavBar Icon={VectorIcon} InsideText={"ADICIONAR NOVO COLABORADOR"}/>
+            <div className={styles["form"]}>
+                <div className={styles["campo"]}>
+                    <h2>Nome:</h2>
+                    <Input value={nome} type="text" onChange={(e) => handleTextInputChange(e, setNome)}
+                           className={inputTextStyle["whiteInput"]}/>
+                </div>
+                <div className={styles["campo"]}>
+                    <h2>Email:</h2>
+                    <Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}
+                           className={inputTextStyle["whiteInput"]}/>
+                </div>
+                <div className={styles["campo"]}>
+                    <h2>Senha:</h2>
+                    <Input value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)}
+                           className={inputTextStyle["whiteInput"]}/>
+                </div>
+                <div className={styles["campoCheckbox"]}>
+                    <h2>Administrador:</h2>
+                    <input
+                        type="checkbox"
+                        checked={acesso === 1}
+                        onChange={handleCheckboxInputChange}
+                        className={inputTextStyle["checkBox"]}
+                    />
+                </div>
+                <div className={styles["campo"]}>
+                    <h2>Adicionar uma imagem:</h2>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                </div>
             </div>
-        // <div className={styles["cadastro"]}>
-        //     <div className={styles["navBar"]}>
-        //     <VectorIcon />
-        //     </div>
-        //     <div>
-        //         <div className={styles["campo"]}>
-        //             <h2>Nome:</h2>
-        //             <Input value={nome} type="text" onChange={(e) => handleInputChange(e, setNome)}/>
-        //         </div>
-        //         <div className={styles["campo"]}>
-        //             <h2>Email:</h2>
-        //             <Input value={email} type="text" onChange={(e) => handleInputChange(e, setEmail)}/>
-        //         </div>
-        //         <div className={styles["campo"]}>
-        //             <h2>Senha:</h2>
-        //             <Input value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)}/>
-        //         </div>
-        //         <div className={styles["campo"]}>
-        //             <h2>Acesso:</h2>
-        //             <Input value={acesso} type="toggle" onChange={(e) => handleInputChange(e, setAcesso)}/>
-        //         </div>
-        //         <div className={styles["containerBotao"]}>
-        //             <Button insideText="Entrar" onClick={handleSave}/>
-        //         </div>
-        //     </div>
-        // </div>
-
+            <div className={styles["botao"]}>
+                <Button insideText="Confirmar" onClick={handleSave}/>
+            </div>
+        </div>
     );
 };
 

@@ -1,10 +1,36 @@
-.customInput{
-    background: var(--gunmetal); 
+.gunMetalInput{
+    background: var(--gunmetal);
     border-color: var(--branco);
     border-width: 0.5px;
     height: 47px;
     border-radius: 8px;
     color: var(--branco);
     padding-left: 10px;
-    box-shadow: var(--sombra-interna);      
+    box-shadow: var(--sombra-interna);
+}
+
+.whiteInput{
+    align-self: center;
+    background: var(--branco);
+    border-color: var(--gunmetal);
+    border-width: 0.5px;
+    height: 37px;
+    width: 95%;
+    border-radius: 8px;
+    color: var(--gunmetal);
+    box-shadow: var(--sombra-interna);
+    padding-left: 10px;
+}
+
+.checkBox{
+    background-color: var(--carvao);
+    border-color: var(--gunmetal);
+    border-width: 0.5px;
+    height: 37px;
+    width: 95%;
+    border-radius: 8px;
+    color: var(--gunmetal);
+    box-shadow: var(--sombra-interna);
+    padding-left: 10px;
+
 }

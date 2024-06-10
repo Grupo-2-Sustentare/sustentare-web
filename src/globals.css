@@ -13,12 +13,12 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --cinza-transparate: #C9C9C9;
     --vermelho: #CC334E;
     --gradiente: linear-gradient(
-        to right, 
-        var(--gunmetal), 
-        var(--carvao), 
+        to right,
+        var(--gunmetal),
+        var(--carvao),
         var(--gunmetal)
     );
-    
+
     --sombra-vermelha: 0 0 5px var(--vermelho);
     --sombra-interna: 0 0 15px 3px var(--preto) inset;
 }
@@ -39,9 +39,9 @@ body{
     width: 375px;
     outline: 2px solid white;
     background: var(--gradiente);
+    gap: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
