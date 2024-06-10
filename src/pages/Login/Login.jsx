@@ -21,7 +21,6 @@ const Login = () => {
 
       // Faz uma requisição POST para a API
       api.post(`/usuarios/login`, objetoAdicionado).then(() => {
-          console.log("Login feito")
           toast.success("Novo Card criado com sucesso!"); // Exibe uma mensagem de sucesso
           sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
           navigate("/"); // Redireciona para a página de músicas

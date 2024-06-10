@@ -1,0 +1,13 @@
+.NavBar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 375px;
+    height: 80px;
+    background-color: var(--preto);
+    color: var(--branco);
+}
+
+.Title{
+    font-size: 1em;
+}
