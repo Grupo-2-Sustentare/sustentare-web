@@ -11,13 +11,13 @@
 .campo {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
     gap: 8px;
 }
 .campoCheckbox {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 95%;
     justify-content: space-evenly;
     align-items: center;
 }

@@ -45,7 +45,7 @@ const Login = () => {
                     </div>
                     <div className={styles["campo"]}>
                         <h2>Senha:</h2>
-                        <Input value={senha} type="text" onChange={(e) => handleInputChange(e, setSenha)} className={inputTextStyle.gunMetalInput}/>
+                        <Input value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)} className={inputTextStyle.gunMetalInput}/>
                     </div>
                     <div className={styles["containerBotao"]}>
                         <Button insideText="Entrar" onClick={handleSave} />
