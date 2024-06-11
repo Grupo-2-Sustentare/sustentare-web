@@ -23,14 +23,10 @@
 }
 
 .checkBox{
-    background-color: var(--carvao);
-    border-color: var(--gunmetal);
-    border-width: 0.5px;
     height: 37px;
     width: 95%;
     border-radius: 8px;
     color: var(--gunmetal);
-    box-shadow: var(--sombra-interna);
     padding-left: 10px;
 
 }

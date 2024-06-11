@@ -18,6 +18,7 @@ const Cadastro = () => {
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(null);
     const [imagem, setImagem] = useState(null);
+    const idResponsavel = sessionStorage.getItem("idResponsavel") || 100;
 
     const handleSave = () => {
         const objetoAdicionado = {
@@ -28,7 +29,7 @@ const Cadastro = () => {
         };
 
         // Faz uma requisição POST para a API
-        api.post(`/usuarios`, objetoAdicionado).then(() => {
+        api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado).then(() => {
             toast.success("Cadastro realizado com sucesso!");
             sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
             navigate("/");
