@@ -58,17 +58,17 @@ const Cadastro = () => {
                 <div className={styles["campo"]}>
                     <h2>Nome:</h2>
                     <Input value={nome} type="text" onChange={(e) => handleTextInputChange(e, setNome)}
-                           className={inputTextStyle["whiteInput"]}/>
+                           className={inputTextStyle["gunMetalInput"]}/>
                 </div>
                 <div className={styles["campo"]}>
                     <h2>Email:</h2>
                     <Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}
-                           className={inputTextStyle["whiteInput"]}/>
+                           className={inputTextStyle["gunMetalInput"]}/>
                 </div>
                 <div className={styles["campo"]}>
                     <h2>Senha:</h2>
                     <Input value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)}
-                           className={inputTextStyle["whiteInput"]}/>
+                           className={inputTextStyle["gunMetalInput"]}/>
                 </div>
                 <div className={styles["campoCheckbox"]}>
                     <h2>Administrador:</h2>
