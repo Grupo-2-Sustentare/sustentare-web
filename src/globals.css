@@ -13,21 +13,36 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --cinza-transparate: #C9C9C9;
     --vermelho: #CC334E;
     --gradiente: linear-gradient(
-        to right, 
-        var(--gunmetal), 
-        var(--carvao), 
+        to right,
+        var(--gunmetal),
+        var(--carvao),
         var(--gunmetal)
     );
-    
+
     --sombra-vermelha: 0 0 5px var(--vermelho);
     --sombra-interna: 0 0 15px 3px var(--preto) inset;
 }
 
 /* Tamanho de um celular, definido de forma temporária */
+/* Mudança de body para #root, pois no react tudo que codamos é renderizado dentro de uma div com o id root, devemos focar na estilização dela.*/
+
 body{
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 812px;
+    width: 375px;
+}
+
+#root{
     height: 812px;
     width: 375px;
     outline: 2px solid white;
+    background: var(--gradiente);
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 *{
@@ -49,14 +64,7 @@ body{
     • 48px: 2.6
     */
 }
-body {
-    background: var(--gradiente);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-  
+
 h1{
     font-size: 2.6em;
     font-family: "UnifrakturCook";
