@@ -1,16 +1,24 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 812px;
+  width: 375px;
+}
+
 .login  {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 32px;
- }
+}
 
 .login > div{
   display: flex;
   flex-direction: column;
-  
-  width: 262PX;
+  width: 262px;
   gap: 24px;
 }
 

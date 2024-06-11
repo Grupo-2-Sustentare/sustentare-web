@@ -1,0 +1,12 @@
+.container{
+    width: 10%;
+    padding-left: 20px;
+}
+.root {
+    width: 35.9097px;
+    height: 35px;
+    cursor: pointer;
+}
+.icon {
+    fill: var(--branco);
+}

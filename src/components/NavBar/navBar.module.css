@@ -1,0 +1,15 @@
+.NavBar{
+    display: flex;
+    align-items: center;
+    width: 375px;
+    height: 80px;
+    background-color: var(--preto);
+    color: var(--branco);
+}
+
+.Title{
+    width: 80%;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: "Bebas Neue";
+}
