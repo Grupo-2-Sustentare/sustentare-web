@@ -37,7 +37,7 @@ const Login = () => {
         <div className={styles["login"]}>
             <h1>Paralelo 19</h1>
             <form>
-                <Input label={"Nome:"} value={nome} type="text" onChange={(e) => handleInputChange(e, setNome)}/>
+                <Input label={"Nome:"} value={nome} onChange={(e) => handleInputChange(e, setNome)}/>
                 <Input label={"Senha:"} value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)}/>
             </form>
             <Button insideText="Entrar" onClick={handleSave} />

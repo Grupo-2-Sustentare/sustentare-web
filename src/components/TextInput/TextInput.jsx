@@ -1,6 +1,6 @@
 const TIPOS_PERMITIDOS = ["text", "password"]
 
-export default function Input({ label, value, type, onChange}){
+export default function Input({ label, value, type="text", onChange}){
 
     // Se o tipo não for permitido, dá exception.
     if (!TIPOS_PERMITIDOS.includes(type)) throw new Error("Tipo não permitido ou não implementado. Medida de qualidade.")
