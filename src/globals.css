@@ -6,6 +6,11 @@ O :root define variáveis em CSS. As usamos para mudar um valor em todo o site
 alterando-o apenas aqui, assim como com as variáveis do Figma!!!
 */
 :root {
+    /* Fontes */
+    --fonte-artistica: UnifrakturCook, Georgia, serif;
+    --fonte-destaque: "Bebas Neue", Tahoma, sans-serif;
+    --fonte-corpo: "DM Sans", Tahoma, sans-serif;
+
     /* Paleta de cores */
     --branco: #F5FBEF;
     --preto: #0A0908;
@@ -57,7 +62,7 @@ body{
 
 *{
     color: var(--branco);
-    font-family: "DM Sans", sans-serif;
+    font-family: var(--fonte-corpo);
     margin: 0;
     padding: 0;
     font-size: 24px;
@@ -78,7 +83,7 @@ body{
 
 h1{
     font-size: 2.6em;
-    font-family: "UnifrakturCook";
+    font-family: var(--fonte-artistica)
 }
 h2{
     font-size: 1.7em;

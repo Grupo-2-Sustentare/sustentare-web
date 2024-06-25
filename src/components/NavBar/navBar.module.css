@@ -11,5 +11,5 @@
     width: 80%;
     text-align: center;
     font-size: 1.3em;
-    font-family: "Bebas Neue";
+    font-family: var(--fonte-destaque);
 }

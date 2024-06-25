@@ -18,9 +18,3 @@
 .login h1{
   text-shadow: var(--sombra-vermelha)
 }
-
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
