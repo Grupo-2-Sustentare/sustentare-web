@@ -1,32 +1,22 @@
-.gunMetalInput{
-    background: var(--gunmetal);
-    border-color: var(--branco);
-    border-width: 0.5px;
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+}
+
+input{
     height: 47px;
+    width: 262px;
+    padding: 8px;
+    background: var(--gunmetal);
+    border: var(--borda-branca);
     border-radius: 8px;
-    color: var(--branco);
-    padding-left: 10px;
-    box-shadow: var(--sombra-interna);
+    box-shadow: var(--sombra-in-escura);
 }
 
-.whiteInput{
-    align-self: center;
-    background: var(--branco);
-    border-color: var(--gunmetal);
-    border-width: 0.5px;
-    height: 37px;
-    width: 95%;
-    border-radius: 8px;
-    color: var(--gunmetal);
-    box-shadow: var(--sombra-interna);
-    padding-left: 10px;
-}
-
-.checkBox{
-    height: 37px;
-    width: 95%;
-    border-radius: 8px;
-    color: var(--gunmetal);
-    padding-left: 10px;
-
+label{
+    max-width: 262px;
+    font-size: 1.3em;
+    font-weight: 500;
 }
