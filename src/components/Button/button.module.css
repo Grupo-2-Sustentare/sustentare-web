@@ -1,9 +1,14 @@
-.customButton{
+button{
     background-color: var(--carvao);
+    border: var(--borda-branca);
     border-radius: 8px;
-    border: solid 1px var(--branco);
     height: 65px;
     width: 190px;
     color: var(--branco);
-    box-shadow: 1px 1px 1px 1px var(--branco), 3px 3px 3px 1px var(--vermelho);
+    box-shadow: var(--sombra-ex-vermelha);
+    font-weight: 600;
+}
+
+button:active{
+    box-shadow: var(--sombra-in-clara), var(--sombra-ex-vermelha);
 }

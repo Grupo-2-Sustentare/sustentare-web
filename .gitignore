@@ -27,3 +27,7 @@ typings/
 
 # Output of 'npm pack'
 *.tgz
+
+# Configurados manualmente
+yarn.lock
+package-lock.json

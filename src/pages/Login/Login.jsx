@@ -4,7 +4,6 @@ import { toast } from "react-toastify"; // Importa toast para exibir mensagens d
 import React, { useState } from "react"; // Importa React e o hook useState para gerenciamento de estado
 import Button from "../../components/Button/Button";
 import Input from "../../components/TextInput/TextInput";
-import inputTextStyle from "../../components/TextInput/textInput.module.css";
 import api from "../../api";
 
 
@@ -35,23 +34,13 @@ const Login = () => {
     }
 
     return (
-        <div className={styles["container"]}>
-            <div className={styles["login"]}>
-                <h1>Paralelo 19</h1>
-                <div>
-                    <div className={styles["campo"]}>
-                        <h2>Nome:</h2>
-                        <Input value={nome} type="text" onChange={(e) => handleInputChange(e, setNome)} className={inputTextStyle.gunMetalInput}/>
-                    </div>
-                    <div className={styles["campo"]}>
-                        <h2>Senha:</h2>
-                        <Input value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)} className={inputTextStyle.gunMetalInput}/>
-                    </div>
-                    <div className={styles["containerBotao"]}>
-                        <Button insideText="Entrar" onClick={handleSave} />
-                    </div>
-                </div>
-            </div>
+        <div className={styles["login"]}>
+            <h1>Paralelo 19</h1>
+            <form>
+                <Input label={"Nome:"} value={nome} onChange={(e) => handleInputChange(e, setNome)}/>
+                <Input label={"Senha:"} value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)}/>
+            </form>
+            <Button insideText="Entrar" onClick={handleSave} />
         </div>
 
     );
