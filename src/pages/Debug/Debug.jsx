@@ -5,8 +5,8 @@ export default function Debug(){
         <>
             <h3>MODO DEBUG</h3>
             <p>Teste de componentes...</p>
-            <hr/>
-            <IconButton/>
+            <br/>
+            <IconButton onClick={() => alert("Você clicou no botão com ícone.")}/>
         </>
     )
 }
