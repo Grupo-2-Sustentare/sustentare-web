@@ -31,3 +31,4 @@ typings/
 # Configurados manualmente
 yarn.lock
 package-lock.json
+.env
