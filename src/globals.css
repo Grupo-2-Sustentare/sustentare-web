@@ -32,6 +32,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
 
     /*  Sombras */
     /* IN = Interna; EX = Com espaçamento adicional, para acomodar bordas*/
+    --sombra-branca: 3px 3px 1px 2px var(--branco);
     --sombra-vermelha: 0 0 5px var(--vermelho);
     --sombra-in-escura: 0 0 15px 3px var(--preto) inset;
     --sombra-in-clara: 1px 1px 10px 3px var(--azul-claro) inset;
