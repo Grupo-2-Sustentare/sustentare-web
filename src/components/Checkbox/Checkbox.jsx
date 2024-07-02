@@ -1,21 +1,31 @@
 import styles from './Checkbox.module.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useState} from "react";
 
 export default function Checkbox({
         texto = "Texto da Checkbox",
-        ticada = false
+        ticadaPorPadrao = false
     }) {
-    let textoTicada
-    ticada ? textoTicada = "" : textoTicada = "checked"
+    const [visibilidade, setVisibilidade] = useState(
+        ticadaPorPadrao ? 1 : 0
+    )
 
     function ticarCheckbox(){
-
+        if (visibilidade === 1){
+            setVisibilidade(0)
+            console.log("nao esta ticada")
+        } else {
+            setVisibilidade(1)
+            console.log("esta ticada")
+        }
     }
 
     return(
         <>
-            <label className={styles.containerCheckbox}>
-                <input type="checkbox" checked={textoTicada}/>
-                <span className={styles.control_indicator} >✓</span>
+            <label className={styles.containerCheckbox} onClick={() => ticarCheckbox()}>
+                <span className={styles.checkbox}>
+                    <FontAwesomeIcon icon="fa-solid fa-check" style={{opacity: visibilidade}}/>
+                </span>
                 {texto}
             </label>
         </>
