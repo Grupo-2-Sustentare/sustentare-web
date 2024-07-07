@@ -1,0 +1,23 @@
+.iconButton{
+    width: 150px;
+    height: 120px;
+    border-radius: 16px;
+    background-color: var(--gunmetal);
+    box-shadow: var(--sombra-branca);
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px;
+
+    font-size: 1em;
+    font-weight: 600;
+}
+.iconButton:active{
+    box-shadow: var(--sombra-branca), var(--sombra-in-clara);
+}
+.iconButton svg {
+    font-size: 30px;
+}
