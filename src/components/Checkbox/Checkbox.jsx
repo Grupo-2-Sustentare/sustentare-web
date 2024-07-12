@@ -1,4 +1,4 @@
-import styles from './Checkbox.module.css';
+import styles from '../../../src/globals.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useState} from "react";
 
