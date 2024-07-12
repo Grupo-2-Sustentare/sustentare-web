@@ -2,11 +2,8 @@
 import React, { useState } from "react"; // Importa React e o hook useState para gerenciamento de estado
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from "../components/itemMenu/itemMenu.jsx";
-import I from "../components/TextInput/TextInput.jsx"
 
-
-
-const Teste = () => {
+const ItemDoMenu = () => {
     const [inputValue, setInputValue] = useState('');
     return (
         <div>
@@ -14,4 +11,4 @@ const Teste = () => {
         </div>
     );
 }
-export default Teste;
+export default ItemDoMenu;
