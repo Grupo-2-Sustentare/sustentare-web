@@ -2,9 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './itemMenu.module.css';
 
-const itemMenu = ({ icon = "question-circle", title = "Clique Aqui", onClick }) => {
+const itemMenu = ({icon, title}) => {
   return (
-    <div className={styles.itemMenu} onClick={onClick}>
+    <div className={styles.itemMenu}>
       <FontAwesomeIcon icon={icon} className={styles.icon}/>
       <span className={styles.title}>{title}</span>
     </div>
