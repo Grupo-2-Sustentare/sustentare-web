@@ -1,14 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './itemMenu.module.css';
+import styles from './toast.module.css';
 
-const ItemMenu = ({icon, title}) => {
+const ToastSucesso = ({icon, title}) => {
   return (
-    <div className={styles.itemMenu}>
+    <div className={styles.Toast}>
       <FontAwesomeIcon icon={icon} className={styles.icon}/>
       <span className={styles.title}>{title}</span>
     </div>
   );
 }
 
-export default ItemMenu;
+export default ToastSucesso;

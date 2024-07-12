@@ -32,3 +32,4 @@ typings/
 yarn.lock
 package-lock.json
 .env
+src/components/itemMenu/example.tsx
