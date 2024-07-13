@@ -2,13 +2,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './toast.module.css';
 
-const ToastSucesso = ({icon, title}) => {
+export default function ToastSucesso ({icon, title}){
   return (
     <div className={styles.Toast}>
-      <FontAwesomeIcon icon={icon} className={styles.icon}/>
+      <FontAwesomeIcon icon={icon} className={styles.icone}/>
       <span className={styles.title}>{title}</span>
     </div>
   );
 }
-
-export default ToastSucesso;

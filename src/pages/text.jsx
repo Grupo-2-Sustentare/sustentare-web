@@ -9,7 +9,7 @@ const ItemDoMenu = () => {
     return (
         <div>
             <Input icon={"question-circle"} title="Usuário" />
-            <T icon={"question-circle"} title="T" />
+            <T icon={"circle-check"} title="Entrada registrada com sucesso." />
         </div>
     );
 }

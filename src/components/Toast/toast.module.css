@@ -1,5 +1,17 @@
 .Toast{
-    background-color: blue;
-    height: 200px;
-    width: 100px;
+    background-color: #2DD36F;
+    height: 94px;
+    width: 334px;
+    border-radius: 10px;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px;
+}
+.Toast span{
+    color: var(--gunmetal) !important;
+}
+.Toast .icone{
+    background-color: var(--gunmetal) !important;
 }
