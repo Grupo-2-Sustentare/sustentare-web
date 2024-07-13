@@ -13,5 +13,10 @@
     color: var(--gunmetal) !important;
 }
 .Toast .icone{
-    background-color: var(--gunmetal) !important;
+    /* background-color: var(--gunmetal) !important; */
+    width: 30px;
+    height: 30px;
+}
+.fa-circle-check{
+    color: var(--gunmetal) !important;
 }
