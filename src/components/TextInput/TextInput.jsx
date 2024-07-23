@@ -18,3 +18,4 @@ export default function Input({ label, value, type="text", onChange}){
         </div>
     )
 }
+                    

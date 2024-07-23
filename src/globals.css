@@ -19,6 +19,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --cinza-transparate: #C9C9C9;
     --vermelho: #CC334E;
     --azul-claro: #65B5DA;
+    --verde:#2DD36F;
     --gradiente: linear-gradient(
         to right,
         var(--gunmetal),
@@ -94,3 +95,6 @@ h4{
     font-size: 1.3em;
     margin: 0;
 }
+path{
+    color: var(--branco);
+}   

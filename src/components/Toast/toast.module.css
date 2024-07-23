@@ -1,5 +1,5 @@
 .Toast{
-    background-color: #2DD36F;
+    background-color: var(--verde);
     height: 94px;
     width: 334px;
     border-radius: 10px;
@@ -12,11 +12,8 @@
 .Toast span{
     color: var(--gunmetal) !important;
 }
-.Toast .icone{
-    /* background-color: var(--gunmetal) !important; */
+.icone path{
     width: 30px;
     height: 30px;
-}
-.fa-circle-check{
     color: var(--gunmetal) !important;
 }
