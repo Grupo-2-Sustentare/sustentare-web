@@ -1,4 +1,6 @@
-.Toast,.ToastInvalido, .ToastErro{
+.Toast,
+.ToastInvalido,
+.ToastErro {
     background-color: var(--verde);
     height: auto;
     width: 330px;
@@ -10,24 +12,31 @@
     padding: 16px;
     font-size: 1.3em;
 }
-.Toast span, .ToastInvalido span{
+
+.Toast span,
+.ToastInvalido span {
     color: var(--gunmetal) !important;
 }
-.icone path{
+
+.icone path {
     width: 30px;
     height: 30px;
     color: var(--gunmetal) !important;
 }
-.ToastInvalido{
+
+.ToastInvalido {
     background-color: var(--amarelo);
 }
-.ToastErro{
+
+.ToastErro {
     background-color: var(--laranja);
 }
-.ToastErro span{
+
+.ToastErro span {
     color: var(--branco) !important;
 }
-.ToastErro .icone path{
+
+.ToastErro .icone path {
     width: 30px;
     height: 30px;
     color: var(--branco) !important;

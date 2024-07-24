@@ -1,0 +1,30 @@
+.MenuSuperior{
+    background-color: var(--preto);
+    width: 375px;
+    height: 53px;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.icone{
+    width: 31px;
+    height:25px;
+    padding-left: 20px;
+
+}
+
+.icone path{
+    color: #ff5f5f; /* Cor rosa */
+    filter: drop-shadow(0 0 5px rgba(255, 95, 95, 0.5)); /* Efeito de brilho */
+    background: radial-gradient(circle, rgba(255, 95, 95, 0.5), rgba(255, 95, 95, 0));
+    position: relative;
+}
+
+.MenuSuperior .title{
+    font-size: 1em;
+    color: var(--branco);
+}
+
