@@ -20,6 +20,8 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --vermelho: #CC334E;
     --azul-claro: #65B5DA;
     --verde:#2DD36F;
+    --amarelo: #FFCA3A;
+    --laranja:#EE6123;
     --gradiente: linear-gradient(
         to right,
         var(--gunmetal),
