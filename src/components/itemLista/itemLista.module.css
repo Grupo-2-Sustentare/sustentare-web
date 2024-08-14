@@ -1,4 +1,4 @@
-.itemListaImg {
+.itemLista{
     background: var(--gunmetal);
     display: flex;
     flex-direction: row;
@@ -31,4 +31,8 @@
 
 .desc {
     font-size: 16px;
+}
+
+.text {
+    font-size: 24px;
 }
