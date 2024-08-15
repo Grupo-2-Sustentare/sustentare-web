@@ -13,7 +13,8 @@ const ExibirComponentes = () => {
     return (
         <div>
             <MenuSuperior icon={"bars"} title="Entrada DE PRODUTOS"/>
-            <Switch initialState={false} onChange={handleSwitchChange} />
+            <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}
+/>
         </div>
     );
 }
