@@ -1,0 +1,76 @@
+.sidebar {
+    width: 250px;
+    background-color: var(--carvao);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--branco);
+    border-right: 0.5px solid var(--branco);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.sidebarHeader {
+    width: 100%;
+    height: 12%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: var(--fonte-artistica);
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid var(--branco); /* Uma linha de destaque inferior, por exemplo */
+}
+
+.sidebarMenu {
+    flex-grow: 1;
+}
+
+.sidebarFooter {
+    width: 100%;
+    justify-content: space-around;
+    padding: 20px;
+    align-items: center;
+    /* border-top: 1px solid rgba(255, 255, 255, 0.2); */
+    background-color:var(--carvao);
+    flex-direction: row;
+    align-items: center;
+}
+
+.userImage {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    border: 1px solid var(--branco);
+}
+
+.userInfo {
+    text-align: start;
+    font-family: var(--fonte-destaque);
+}
+
+.userName {
+    font-size: 30px;
+    /* font-weight: bold; */
+    color: var(--branco);
+    margin-bottom: 5px;
+}
+
+.logoutButton {
+    width: 100%;
+    background-color: transparent;
+    color: var(--vermelho);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.logoutButton:hover {
+    color: var(--vermelho);
+}
