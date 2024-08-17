@@ -26,17 +26,14 @@
 }
 
 .title {
-    font-size: 36px;
+    font-size: 24px;
 }
 
-.desc {
-    font-size: 16px;
+.acao {
+    font-size: 18px;
 }
 
-.text {
-    font-size: 23px;
-}
-.icone{
-    height: 35px;
-    width: 35px;
+.tempo{
+    font-size: 18px;
+    text-decoration: underline;
 }
