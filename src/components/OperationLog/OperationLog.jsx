@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './registroOperacao.module.css';
+import styles from './OperationLog.module.css';
 
 export default function ItemListaImg({ title, acao, adressImg, descImg,tempo }) {
     return (
