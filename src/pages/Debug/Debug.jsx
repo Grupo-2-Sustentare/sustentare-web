@@ -2,6 +2,7 @@ import IconButton from "../../components/IconButton/IconButton";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import StrechList from "../../components/StrechList/StrechList";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
+import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import IconTextInput from "../../components/IconTextInput/IconTextInput";
 import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput";
 
@@ -22,6 +23,7 @@ export default function Debug(){
                 type={"number"}
                 measurementUnit={"kilogramas"}
             />
+            <RedirectionList/>
         </>
     )
 }
