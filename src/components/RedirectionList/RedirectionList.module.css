@@ -1,0 +1,19 @@
+.container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label{
+    font-size: 1em;
+}
+
+input{
+    background-color: var(--gunmetal);
+    border: var(--borda-branca);
+    box-shadow: var(--sombra-in-escura);
+    border-radius: 8px;
+    padding: 8px;
+    width: 100%;
+}
