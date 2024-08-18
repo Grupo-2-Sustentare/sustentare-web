@@ -20,7 +20,7 @@
     color: var(--gunmetal) !important;
 }
 
-.icone path {
+.icon path {
     width: 30px;
     height: 30px;
     color: var(--gunmetal) !important;
@@ -38,7 +38,7 @@
     color: var(--white) !important;
 }
 
-.ToastErro .icone path {
+.ToastErro .icon path {
     width: 30px;
     height: 30px;
     color: var(--white) !important;

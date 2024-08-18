@@ -17,7 +17,7 @@ const ItemDoMenu = () => {
             {/* <ERRO icon={"triangle-exclamation"} title="Defina um tipo e quantidade para o ajuste do produto selecionado." /> */}
             <Img title="Antônio" desc="Usuário(a)" adressImg="https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1" descImg ="descrição da Imagem " />
             <SI icon={"circle-check"} desc="Uso no buffet ou vendas individuais (Regular)" />
-            <RI title="Alteração" acao="-0,5kg em sobrecoxa de frango" tempo="1 minuto atrás" adressImg="https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1" descImg ="descrição da Imagem " />
+            <RI title="Alteração" action="-0,5kg em sobrecoxa de frango" time="1 minuto atrás" adressImg="https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1" descImg ="descrição da Imagem " />
 
         </div>
     );

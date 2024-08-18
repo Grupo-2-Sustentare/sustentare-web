@@ -1,4 +1,4 @@
-.itemLista{
+.itemList{
     background: var(--gunmetal);
     display: flex;
     flex-direction: row;
@@ -29,11 +29,11 @@
     font-size: 24px;
 }
 
-.acao {
-    font-size: 18px;
+.act {
+    font-size: 16px;
 }
 
-.tempo{
+.time{
     font-size: 18px;
     text-decoration: underline;
 }
