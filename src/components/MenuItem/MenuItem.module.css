@@ -1,4 +1,4 @@
-.itemMenu{
+.MenuItem{
     background: var( --carvao);
     display: flex;
     flex-direction: row;
@@ -6,7 +6,7 @@
     width: 250px;
     justify-content:flex-start;
     align-items: center;
-    border-bottom: 1px solid var(--branco);
+    border-bottom: 1px solid var(--white);
     padding: 16px;
     border-right: 0.5px solid var(--branco);
 }

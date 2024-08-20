@@ -12,16 +12,16 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --fonte-corpo: "DM Sans", Tahoma, sans-serif;
 
     /* Paleta de cores */
-    --branco: #F5FBEF;
+    --white: #F5FBEF;
     --preto: #0A0908;
     --gunmetal: #22333B;
     --carvao: #254A5B;
     --cinza-transparate: #C9C9C9;
     --vermelho: #CC334E;
     --azul-claro: #65B5DA;
-    --verde:#2DD36F;
-    --amarelo: #FFCA3A;
-    --laranja:#EE6123;
+    --green:#2DD36F;
+    --yellow: #FFCA3A;
+    --orange:#EE6123;
     --gradiente: linear-gradient(
         to right,
         var(--gunmetal),
@@ -30,12 +30,12 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     );
 
     /* Bordas */
-    --borda-branca:  1px solid var(--branco);
-    --borda-fina-branca: 0.5px 8px solid var(--branco);
+    --borda-branca:  1px solid var(--white);
+    --borda-fina-branca: 0.5px 8px solid var(--white);
 
     /*  Sombras */
     /* IN = Interna; EX = Com espaçamento adicional, para acomodar bordas*/
-    --sombra-branca: 3px 3px 1px 2px var(--branco);
+    --sombra-branca: 3px 3px 1px 2px var(--white);
     --sombra-vermelha: 0 0 5px var(--vermelho);
     --sombra-in-escura: 0 0 15px 3px var(--preto) inset;
     --sombra-in-clara: 1px 1px 10px 3px var(--azul-claro) inset;
@@ -65,7 +65,7 @@ body{
 }
 
 *{
-    color: var(--branco);
+    color: var(--white);
     font-family: var(--fonte-corpo);
     margin: 0;
     padding: 0;
@@ -98,5 +98,5 @@ h4{
     margin: 0;
 }
 path{
-    color: var(--branco);
+    color: var(--white);
 }   

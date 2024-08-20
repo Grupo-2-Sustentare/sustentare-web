@@ -1,13 +1,13 @@
-.itemLista{
+.itemList{
     background: var(--gunmetal);
     display: flex;
     flex-direction: row;
-    height: 84px;
+    height: auto;
     width: 344px;
     justify-content: flex-start;
     align-items: center;
     padding: 16px;
-    border: 1px solid var(--branco);
+    border: 1px solid var(--white);
     border-radius: 4px;
 }
 
@@ -15,7 +15,7 @@
     width: 65px;
     height: 65px;
     border-radius: 100%;
-    border: 1px solid var(--branco);
+    border: 1px solid var(--white);
 }
 
 .text {
@@ -26,13 +26,14 @@
 }
 
 .title {
-    font-size: 36px;
+    font-size: 24px;
 }
 
-.desc {
+.act {
     font-size: 16px;
 }
 
-.text {
-    font-size: 24px;
+.time{
+    font-size: 18px;
+    text-decoration: underline;
 }
