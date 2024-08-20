@@ -1,0 +1,19 @@
+.MenuItem{
+    background: var( --carvao);
+    display: flex;
+    flex-direction: row;
+    height: 75px;
+    width: 250px;
+    justify-content:flex-start;
+    align-items: center;
+    border-bottom: 1px solid var(--white);
+    padding: 16px;
+}
+.icon{
+    width: 25px;
+    height: 25px;
+}
+.title{
+    padding: 10px;
+    font-family: var(--sombra-vermelha);
+}

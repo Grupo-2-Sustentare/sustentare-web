@@ -1,0 +1,45 @@
+.Toast,
+.ToastErro,
+.ToastSuccess,
+.ToastAlert {
+    background-color: var(--green);
+    height: auto;
+    width: 330px;
+    border-radius: 10px;
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px;
+    font-size: 1.3em;
+}
+
+.Toast span,
+.ToastSuccess span,
+.ToastAlert span {
+    color: var(--gunmetal) !important;
+}
+
+.icon path {
+    width: 30px;
+    height: 30px;
+    color: var(--gunmetal) !important;
+}
+
+.ToastAlert {
+    background-color: var(--yellow);
+}
+
+.ToastErro {
+    background-color: var(--orange);
+}
+
+.ToastErro span {
+    color: var(--white) !important;
+}
+
+.ToastErro .icon path {
+    width: 30px;
+    height: 30px;
+    color: var(--white) !important;
+}
