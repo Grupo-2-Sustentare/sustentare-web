@@ -42,6 +42,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --sombra-in-escura: 0 0 15px 3px var(--preto) inset;
     --sombra-in-clara: 1px 1px 10px 3px var(--azul-claro) inset;
     --sombra-ex-vermelha: 3px 3px 3px 1px var(--vermelho);
+    --sombra-vermelha-icone: drop-shadow(0px 0px 3px var(--vermelho));
 }
 
 /* Tamanho de um celular, definido de forma temporária */
