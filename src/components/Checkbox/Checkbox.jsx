@@ -9,15 +9,15 @@ export default function Checkbox({
         ticadaPorPadrao ? 1 : 0
     )
 
-//     function ticarCheckbox(){
-//         if (visibilidade === 1){
-//             setVisibilidade(0)
-//             console.log("nao esta ticada")
-//         } else {
-//             setVisibilidade(1)
-//             console.log("esta ticada")
-//         }
-//     }
+    function ticarCheckbox(){
+        if (visibilidade === 1){
+            setVisibilidade(0)
+            console.log("nao esta ticada")
+        } else {
+            setVisibilidade(1)
+            console.log("esta ticada")
+        }
+    }
 
     return(
         <>
