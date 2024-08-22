@@ -1,0 +1,37 @@
+.textInput{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+}
+
+.textInput label{
+    max-width: 262px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.textInput > div{
+    height: 47px;
+    width: 262px;
+    padding: 8px;
+    background: var(--gunmetal);
+    border: var(--borda-branca);
+    border-radius: 8px;
+    box-shadow: var(--sombra-in-escura);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.textInput > div > input{
+    background: none;
+    border: none;
+    width: 100%;
+}
+.textInput .icon > path{
+    fill: var(--cinza-transparente);
+}
+
