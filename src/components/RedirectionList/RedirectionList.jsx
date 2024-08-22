@@ -6,6 +6,9 @@ export default function RedirectionList({redirectUrl}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        if (redirectUrl == undefined){
+            alert("Defina uma URL para redirecionar!")
+        }
         navigate(redirectUrl);
     };
     
