@@ -5,6 +5,7 @@ import React, { useState } from "react"; // Importa React e o hook useState para
 import Button from "../../components/Button/Button";
 import Input from "../../components/TextInput/TextInput";
 import api from "../../api";
+import RedirectionList from "../../components/RedirectionList/RedirectionList"
 
 
 const Login = () => {
