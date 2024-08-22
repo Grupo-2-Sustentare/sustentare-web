@@ -31,7 +31,7 @@
     border: none;
     width: 100%;
 }
-.textInput .icon > pathIc{
+.textInput .icon > path{
     fill: var(--cinza-transparente);
 }
 
