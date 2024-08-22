@@ -14,11 +14,16 @@ export default function ItemCard({ imageUrl, title, weight, showButtons, checked
         <div className={styles.moldura}>
         <img src={imageUrl} alt={title} className={styles.image} />
         </div>
-        <div>
-         <span>{title}{weight}</span>
+
+        <div className={styles.textProductItem}>
+         <span className={styles.text1}>{title}</span>
+         <span className={styles.text2}>{weight}</span>
         </div>
-        <div className={styles.checkbox} onClick={handleCheck}>
-          {isChecked && <span>✔</span>}
+
+        <div className={styles.divCheckbox}>
+          <div className={styles.checkbox} onClick={handleCheck}>
+            {isChecked && <span>✔</span>}
+          </div>
         </div>
       </div>
       

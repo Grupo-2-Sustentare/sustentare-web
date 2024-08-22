@@ -20,7 +20,7 @@ const ExibirComponentes = () => {
             <MenuSuperior icon={"bars"} title="Entrada DE PRODUTOS"/>
             <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}/>
             {/* <MenuLateral userName={userName} userImage={userImage}/> */}
-            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" />
+            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioquinha" weight="25 kilogramas" />
             {/* <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" checked />
             <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" showButtons />
             <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" checked showButtons />
