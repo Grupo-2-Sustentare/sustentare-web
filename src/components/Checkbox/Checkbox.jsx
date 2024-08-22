@@ -1,9 +1,8 @@
-import styles from '../../../src/globals.css';
+import styles from "./checkbox.module.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useState} from "react";
 
 export default function Checkbox({
-        texto = "Texto da Checkbox",
         ticadaPorPadrao = false
     }) {
     const [visibilidade, setVisibilidade] = useState(
@@ -22,12 +21,9 @@ export default function Checkbox({
 
     return(
         <>
-            <label className={styles.containerCheckbox} onClick={() => ticarCheckbox()}>
-                <span className={styles.checkbox}>
-                    <FontAwesomeIcon icon="fa-solid fa-check" style={{opacity: visibilidade}}/>
-                </span>
-                {texto}
-            </label>
+            <span className={styles.checkbox} onClick={()=>ticarCheckbox()}>
+                <FontAwesomeIcon icon="fa-solid fa-check" style={{opacity: visibilidade}}/>
+            </span>
         </>
     )
 }

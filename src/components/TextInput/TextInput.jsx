@@ -1,3 +1,4 @@
+import styles from "./textInput.module.css"
 const TIPOS_PERMITIDOS = ["text", "password"]
 
 export default function Input({ label, value, type="text", onChange}){
@@ -12,7 +13,7 @@ export default function Input({ label, value, type="text", onChange}){
     }
 
     return (
-        <div>
+        <div className={styles.textInput}>
             {tagLabel}
             <input value={value} type={type} onChange={onChange}/>
         </div>

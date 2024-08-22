@@ -7,12 +7,12 @@ export default function StrechList({
     return(
         <div className={styles.container}>
             <label>{titulo}</label>
-            <select>
+            <select defaultValue={null}>
                 {/* Opção placeholder padrão e não-selecionável */}
-                <option value={null} disabled={true} selected={true}>
+                <option value={null} disabled={true}>
                     Selecione...
                 </option>
-                {itens.map(item => <option value={item}>{item}</option>)}
+                {itens.map(item => <option key={item} value={item}>{item}</option>)}
             </select>
         </div>
     )
