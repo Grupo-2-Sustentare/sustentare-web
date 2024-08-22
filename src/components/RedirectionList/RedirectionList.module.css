@@ -9,7 +9,7 @@ label{
     font-size: 1em;
 }
 
-input{
+select{
     background-color: var(--gunmetal);
     border: var(--borda-branca);
     box-shadow: var(--sombra-in-escura);

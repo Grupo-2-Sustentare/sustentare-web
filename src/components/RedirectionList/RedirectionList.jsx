@@ -1,19 +1,20 @@
+import { useState } from "react";
 import styles from "./RedirectionList.module.css";
 import { useNavigate } from 'react-router-dom';
 
-export default function RedirectionList({
-
-}) {
+export default function RedirectionList({redirectUrl}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/outra-pagina');
+        navigate(redirectUrl);
     };
     
     return (
-        <select className={styles.button} onClick={handleClick}>
-            <option value="">Selecione...</option>
-        </select>
+        <div className={styles.container}>
+            <select className={styles.button} onClick={handleClick}>
+                <option value="">Selecione...</option>
+            </select>
+        </div>
     );
 }
 
