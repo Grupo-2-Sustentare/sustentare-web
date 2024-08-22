@@ -1,0 +1,33 @@
+.measurementInput{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+}
+
+.measurementInput label{
+    max-width: 262px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.measurementInput input{
+    text-align: right;
+    font-size: 1.7em;
+    width: 60%;
+    padding: 8px;
+    background: var(--gunmetal);
+    border: var(--borda-branca);
+    border-radius: 8px;
+    box-shadow: var(--sombra-in-escura);
+}
+.measurementInput span{
+    display: flex;
+    width: 262px;
+    flex-direction: row;
+    gap: 8px;
+    align-items: end;
+}
+.measurementInput .unit{
+    font-size: 1em;
+}
