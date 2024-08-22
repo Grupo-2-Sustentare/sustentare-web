@@ -3,6 +3,7 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import StrechList from "../../components/StrechList/StrechList";
 import IconTextInput from "../../components/IconTextInput/IconTextInput";
 import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput";
+import RedirectionList from "../../components/RedirectionList/RedirectionList";
 
 export default function Debug(){
     return (
@@ -13,6 +14,7 @@ export default function Debug(){
             <IconButton onClick={() => alert("Você clicou no botão com ícone.")}/>
             <Checkbox/>
             <StrechList/>
+            <RedirectionList/>
             <IconTextInput/>
             <MeasurementTextInput
                 label={"Peso"}
@@ -20,6 +22,7 @@ export default function Debug(){
                 type={"number"}
                 measurementUnit={"kilogramas"}
             />
+            <RedirectionList/>
         </>
     )
 }
