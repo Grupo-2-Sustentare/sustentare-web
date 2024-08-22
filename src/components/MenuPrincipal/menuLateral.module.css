@@ -32,7 +32,7 @@
 .sidebarHeader {
     display: flex;
     width: 100%;
-    height: 12%;
+    height: 10%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -60,8 +60,8 @@
 
 .userImage {
     display: flex;
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
     border-radius: 100%;
     border: 1px solid var(--white);
 }
@@ -74,18 +74,17 @@
 }
 
 .userName {
-    font-size: 30px;
-    /* font-weight: bold; */
+    font-size: 1.6em;
+    font-weight: 100px;
+    font-family: var(--fonte-destaque);
     color: var(--branco);
-    margin-bottom: 5px;
 }
 
 .logoutButton {
     width: 100%;
     background-color: transparent;
-    /* color: (--sombra-vermelha); */
     border: none;
-    font-size: 28px;
+    font-size: 1.2em;
     cursor: pointer;
     padding: 0;
     text-decoration: underline;

@@ -9,17 +9,17 @@
   .switch {
     width: 57px;
     height: 29px;
-    background-color: #1c252f; /* Fundo escuro */
+    background-color: var(--gunmetal); /* Fundo escuro */
     border-radius: 20px;
     position: relative;
     transition: background-color 0.3s, box-shadow 0.3s;
-    border: 2px solid #fff;
+    border: 2px solid var(--white);
     box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.5);
     background: radial-gradient(circle 100px at center, #1c252f, #50637a); /* Gradiente de fundo */
   }
   
   .switch.on {
-    background-color: #1c252f;
+    background-color: var(--gunmetal);
     box-shadow: 0 0 5px 3px rgba(255, 0, 0, 0.8);
   }
   
@@ -36,13 +36,13 @@
   }
   
   .switch.on .switchHandle {
-    background-color: #ffffff;
+    background-color: var(--white);
     left: 27px; /* Movimenta a bolinha para a direita */
   }
   
   .switchLabel {
     margin-left: 8px;
-    color: white;
+    color: var(--white);
     font-family: 'DM Sans', cursive, sans-serif; /* Estilo da fonte */
   }
   

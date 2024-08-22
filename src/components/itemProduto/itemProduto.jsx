@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './itemProduto.module.css';
+import Checkbox from "../Checkbox/Checkbox.jsx";
 
 export default function ItemCard({ imageUrl, title, weight, showButtons, checked }) {
   const [isChecked, setIsChecked] = useState(checked);
@@ -21,8 +22,8 @@ export default function ItemCard({ imageUrl, title, weight, showButtons, checked
         </div>
 
         <div className={styles.divCheckbox}>
-          <div className={styles.checkbox} onClick={handleCheck}>
-            {isChecked && <span>✔</span>}
+          <div onClick={handleCheck}>
+            <Checkbox/>
           </div>
         </div>
       </div>
