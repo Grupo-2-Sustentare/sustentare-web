@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import ItemPage from './pages/item/ItemPage';
 
+import Debug from "./pages/Debug/Debug";
 function Rotas() {
     return (
         <>
@@ -13,6 +14,7 @@ function Rotas() {
                     <Route path={"/login"} element={<Login />} />
                     <Route path={"/cadastro"} element={<Cadastro />} />
                     <Route path="/item/:item" element={<ItemPage />} />
+                    <Route path={"/debug"} element={<Debug />} />
                 </Routes>
             </BrowserRouter>
         </>
