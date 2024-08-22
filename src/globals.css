@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 /*
@@ -59,7 +60,8 @@ body{
     width: 375px;
     outline: 2px solid white;
     background: var(--gradiente);
-    gap: 20px;
+    gap: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
