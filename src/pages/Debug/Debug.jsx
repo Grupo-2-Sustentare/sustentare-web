@@ -3,6 +3,7 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import StrechList from "../../components/StrechList/StrechList";
 import IconTextInput from "../../components/IconTextInput/IconTextInput";
 import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput";
+import TextSizeSlider from "../../components/TextSizeSlider/TextSizeSlider";
 
 export default function Debug(){
     return (
@@ -20,6 +21,7 @@ export default function Debug(){
                 type={"number"}
                 measurementUnit={"kilogramas"}
             />
+            <TextSizeSlider/>
         </>
     )
 }
