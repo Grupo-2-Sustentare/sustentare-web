@@ -55,7 +55,7 @@ body{
 }
 
 #root{
-    height: 812px;
+    min-height: 812px;
     width: 375px;
     outline: 2px solid white;
     background: var(--gradiente);
