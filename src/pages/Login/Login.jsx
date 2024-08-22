@@ -5,6 +5,7 @@ import React, { useState } from "react"; // Importa React e o hook useState para
 import Button from "../../components/Button/Button";
 import Input from "../../components/TextInput/TextInput";
 import api from "../../api";
+import RedirectionList from "../../components/RedirectionList/RedirectionList"
 
 
 const Login = () => {
@@ -40,6 +41,13 @@ const Login = () => {
                 <Input label={"Nome:"} value={nome} onChange={(e) => handleInputChange(e, setNome)}/>
                 <Input label={"Senha:"} value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)}/>
             </form>
+            <div>
+            <h1>Teste do Componente RedirectionList</h1>
+            <RedirectionList
+                titulo="Selecione um item:"
+                itens={["Item 1", "Item 2", "Item 3"]}
+            />
+            </div>
             <Button insideText="Entrar" onClick={handleSave} />
         </div>
 

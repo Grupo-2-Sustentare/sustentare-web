@@ -1,13 +1,20 @@
 import styles from "./RedirectionList.module.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function RedirectionList({
-        titulo = "Escolha uma opção:",
-        itens=["Adicione", "seus itens", "à lista"]
-    }){
-    return(
-        <div className={styles.container}>
-            <label>{titulo}</label>
-            <input disabled={true}>Selecione...</input>
-        </div>
-    )
+
+}) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/outra-pagina');
+    };
+    
+    return (
+        <select className={styles.button} onClick={handleClick}>
+            <option value="">Selecione...</option>
+        </select>
+    );
 }
+
+
