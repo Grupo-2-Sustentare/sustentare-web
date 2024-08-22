@@ -43,6 +43,7 @@
   .switchLabel {
     margin-left: 8px;
     color: var(--white);
-    font-family: 'DM Sans', cursive, sans-serif; /* Estilo da fonte */
+    font-size: 1em;
+    font-family: var(--fonte-corpo);
   }
   
