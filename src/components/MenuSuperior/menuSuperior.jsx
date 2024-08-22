@@ -6,8 +6,8 @@ export default function MenuSuperior ({title}) {
   return (
     <div className={styles.menuSuperior}>
       <div className={styles.iconDiv}>
-      <FontAwesomeIcon icon="fa-solid fa-arrow-left" className={styles.icon}  />
-      {/* <FontAwesomeIcon icon="fa-solid fa-arrow-left" className={styles.icon}  /> */}
+      {/* <FontAwesomeIcon className={styles.icon} icon="fa-solid fa-arrow-left"/> */}
+      <FontAwesomeIcon className={styles.icon} icon="fa-solid fa-bars"/>
       </div>
       <div className={styles.titleDiv}>
       <span className={styles.title}>{title}</span>
