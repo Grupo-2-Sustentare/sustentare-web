@@ -5,7 +5,7 @@
     color: white;
     height: 60px;
     width: 375px;
-    border-bottom: 2px solid #f0a0a0;
+    border-bottom: 2px solid var(--white);
     margin-bottom: 5px;
   }
   
@@ -29,8 +29,8 @@
   }
   .icon {
     font-size: 1.5em;
-    /* box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.5);   */
   }
+
   .title {
     font-size: 1.3em;
     font-family: var(--fonte-destaque);
