@@ -16,9 +16,12 @@ const Cadastro = () => {
     const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("")
     const [email, setEmail] = useState("");
-    const [acesso, setAcesso] = useState(null);
+    var [acesso, setAcesso] = useState(null);
     const [imagem, setImagem] = useState(null);
     const idResponsavel = sessionStorage.getItem("idResponsavel") || 100;
+    if (acesso == null) {
+        acesso = 2
+    }
 
     const handleSave = () => {
         const objetoAdicionado = {
