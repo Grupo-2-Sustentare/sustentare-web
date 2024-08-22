@@ -17,8 +17,9 @@ const ExibirComponentes = () => {
 
     return (
         <div>
-            <MenuSuperior icon={"bars"} title="Entrada DE PRODUTOS"/>
-            <MenuSuperior icon={"bars"} title="histórico de operações"/>
+            <MenuSuperior title="Entrada DE PRODUTOS"/>
+            <MenuSuperior title="histórico de operações"/>
+            <MenuSuperior title="AAAAAAAA"/>
             <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}/>
             {/* <MenuLateral userName={userName} userImage={userImage}/> */}
             <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioquinha" weight="25 kilogramas" />

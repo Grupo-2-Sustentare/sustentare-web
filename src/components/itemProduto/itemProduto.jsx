@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './itemProduto.module.css';
 import Checkbox from "../Checkbox/Checkbox.jsx";
 
@@ -31,7 +32,7 @@ export default function ItemCard({ imageUrl, title, weight, showButtons, checked
       <div className={styles.itemActions}>
         {showButtons && (
           <div className={styles.buttons}>
-            <button className={styles.editBtn}>✏️ Editar quantidade</button>
+            <button className={styles.editBtn}> Editar quantidade</button>
             <button className={styles.removeBtn}>🗑️ Remover</button>
           </div>
         )}
