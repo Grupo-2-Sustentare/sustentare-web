@@ -1,0 +1,18 @@
+.containerCheckbox{
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox{
+    border-radius: 8px;
+    border: var(--borda-grossa-branca);
+    width: 35px;
+    height: 35px;
+    background: var(--gradiente);
+    box-shadow: var(--sombra-in-escura);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

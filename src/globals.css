@@ -31,6 +31,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
 
     /* Bordas */
     --borda-branca:  1px solid var(--white);
+    --borda-grossa-branca:  2px solid var(--white);
     --borda-fina-branca: 0.5px 8px solid var(--white);
 
     /*  Sombras */

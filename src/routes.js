@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Cadastro from "./pages/Cadastro/Cadastro";
-import ItemDoMenu from "./pages/text"
+import Debug from "./pages/Debug/Debug";
 import ExibirComponentes from "./pages/teste";
 function Rotas() {
     return (
@@ -12,7 +12,7 @@ function Rotas() {
                     <Route path="/" element={<Login />} />
                     <Route path={"/login"} element={<Login />} />
                     <Route path={"/cadastro"} element={<Cadastro />} />
-                    <Route path={"/text"} element ={<ItemDoMenu />} />
+                    <Route path={"/debug"} element={<Debug />} />
                     <Route path={"/teste"} element={<ExibirComponentes/>} />
                 </Routes>
             </BrowserRouter>

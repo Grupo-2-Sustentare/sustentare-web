@@ -1,11 +1,11 @@
-div{
+.textInput{
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 8px;
 }
 
-input{
+.textInput input{
     height: 47px;
     width: 262px;
     padding: 8px;
@@ -15,7 +15,7 @@ input{
     box-shadow: var(--sombra-in-escura);
 }
 
-label{
+.textInput label{
     max-width: 262px;
     font-size: 1.3em;
     font-weight: 500;
