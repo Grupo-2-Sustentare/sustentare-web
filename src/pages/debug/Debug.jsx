@@ -4,6 +4,7 @@ import StrechList from "../../components/StrechList/StrechList";
 import IconTextInput from "../../components/IconTextInput/IconTextInput";
 import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
+import Placeholder from "../../components/Placeholder/Placeholder";
 
 export default function Debug(){
     return (
@@ -23,6 +24,7 @@ export default function Debug(){
                 measurementUnit={"kilogramas"}
             />
             <RedirectionList/>
+            <Placeholder onClick={() => alert("Droga, isso é só um placeholder!")}/>
         </>
     )
 }
