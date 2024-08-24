@@ -6,7 +6,7 @@ import Button from "../../../components/Button/Button";
 import Input from "../../../components/TextInput/TextInput";
 import api from "../../../api";
 import RedirectionList from "../../../components/RedirectionList/RedirectionList"
-
+import MainMenu from "../MainMenu/MainMenu"
 
 const Login = () => {
 
@@ -15,19 +15,21 @@ const Login = () => {
     const [senha, setSenha] = useState(""); // Estado para armazenar o gênero da música
 
     const handleSave = () => {
-        const objetoAdicionado = { // Cria um objeto com os dados do formulário
-            nome,
-            senha
-        };
-
-        // Faz uma requisição POST para a API
-        api.post(`/usuarios/login`, objetoAdicionado).then(() => {
-            toast.success("Novo Card criado com sucesso!"); // Exibe uma mensagem de sucesso
-            sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
-            navigate("/cadastro"); // Redireciona para a página de músicas
-        }).catch(() => {
-            toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente."); // Exibe uma mensagem de erro se a requisição falhar
-        })
+        // TODO - Desabilitado até conclusão do Front.
+        // const objetoAdicionado = { // Cria um objeto com os dados do formulário
+        //     nome,
+        //     senha
+        // };
+        //
+        // // Faz uma requisição POST para a API
+        // api.post(`/usuarios/login`, objetoAdicionado).then(() => {
+        //     toast.success("Novo Card criado com sucesso!"); // Exibe uma mensagem de sucesso
+        //     sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
+        //     navigate("/cadastro"); // Redireciona para a página de músicas
+        // }).catch(() => {
+        //     toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente."); // Exibe uma mensagem de erro se a requisição falhar
+        // })
+        navigate("/menu-inicial")
     };
 
     const handleInputChange = (event, setStateFunction) => { // Função para manipular as mudanças nos inputs
