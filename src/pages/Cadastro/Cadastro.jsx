@@ -1,13 +1,12 @@
-import styles from "./cadastro.module.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
-import Button from "../../components/Button/Button";
-import Input from "../../components/TextInput/TextInput";
-import inputTextStyle from "../../components/TextInput/textInput.module.css";
 import api from "../../api";
-import VectorIcon from "../../components/VectorIcon/VectorIcon";
-import NavBar from "../../components/NavBar/NavBar";
+import TextInput from "../../components/TextInput/TextInput"
+import  styles  from "../../pages/Cadastro/cadastro.module.css";
+import Button from "../../components/Button/Button";
+import Checkbox from "../../components/Checkbox/Checkbox"
+ 
 
 
 const Cadastro = () => {
@@ -16,10 +15,12 @@ const Cadastro = () => {
     const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("")
     const [email, setEmail] = useState("");
-    const [acesso, setAcesso] = useState(null);
+    var [acesso, setAcesso] = useState(null);
     const [imagem, setImagem] = useState(null);
     const idResponsavel = sessionStorage.getItem("idResponsavel") || 100;
 
+    
+    
     const handleSave = () => {
         const objetoAdicionado = {
             nome,
@@ -27,6 +28,12 @@ const Cadastro = () => {
             senha,
             acesso
         };
+
+        console.log(nome)
+        console.log(email)
+        console.log(senha)
+        console.log(acesso)
+
 
         // Faz uma requisição POST para a API
         api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado).then(() => {
@@ -42,7 +49,8 @@ const Cadastro = () => {
         setStateFunction(event.target.value);
     }
     const handleCheckboxInputChange = (event) => {
-        setAcesso(event.target.checked ? 1 : 0);
+        setAcesso( 1);
+        
     };
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -52,45 +60,40 @@ const Cadastro = () => {
     };
 
     return (
-        <div>
-            < NavBar Icon={VectorIcon} InsideText={"ADICIONAR NOVO COLABORADOR"}/>
-            <div className={styles["form"]}>
-                <div className={styles["campo"]}>
-                    <h2>Nome:</h2>
-                    <Input value={nome} type="text" onChange={(e) => handleTextInputChange(e, setNome)}
-                           className={inputTextStyle["gunMetalInput"]}/>
+        <div className={styles.divPrincipal}>
+                <div className={styles.header}></div>
+                <div className={styles.divTexInput}>
+                    <h1 className={styles.h1}>Email:</h1>
+                    <TextInput Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}/>
                 </div>
-                <div className={styles["campo"]}>
-                    <h2>Email:</h2>
-                    <Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}
-                           className={inputTextStyle["gunMetalInput"]}/>
+                <div className={styles.divTexInput}>
+                    <h1 className={styles.h1}>Nome:</h1>
+                    <TextInput value={nome} type="text" onChange={(e) => handleTextInputChange(e, setNome)}/>
                 </div>
-                <div className={styles["campo"]}>
-                    <h2>Senha:</h2>
-                    <Input value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)}
-                           className={inputTextStyle["gunMetalInput"]}/>
+                <div className={styles.divTexInput}>
+                    <h1 className={styles.h1}>Senha</h1>
+                    <TextInput value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)}/>
                 </div>
-                <div className={styles["campoCheckbox"]}>
-                    <h2>Administrador:</h2>
-                    <input
-                        type="checkbox"
-                        checked={acesso === 1}
-                        onChange={handleCheckboxInputChange}
-                        className={inputTextStyle["checkBox"]}
-                    />
+                <div className={styles.divAdministrador}>
+                    <h1 className={styles.h1}>Administrador:</h1>
+                    <Checkbox onClick={handleCheckboxInputChange}/>
                 </div>
-                <div className={styles["campo"]}>
-                    <h2>Adicionar uma imagem:</h2>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
+                <div className={styles.campo}>
+                    <h1 className={styles.h1}>Adicionar uma imagem:</h1>
+                    <div className={styles.devInput}>
+                        <input 
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
+
+                    </div>
                 </div>
-            </div>
-            <div className={styles["botao"]}>
-                <Button insideText="Confirmar" onClick={handleSave}/>
-            </div>
+
+                <div className={styles.divButton}>
+                    <Button insideText={"Confirmar"}  onClick={handleSave}/>
+                </div>
+
         </div>
     );
 };
