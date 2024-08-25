@@ -1,0 +1,93 @@
+.divSideBar{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.134);
+    height: 100%;
+    width: 500px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.sidebar {
+    width: 50%;
+    background-color: var(--carvao);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--branco);
+    /* transition-duration: 1s;
+    transition-timing-function: ease-in; */
+}
+
+/* .sideSideBar{
+    width: 50%;
+    height: 100%;
+} */
+
+.sidebarHeader {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: var(--fonte-artistica);
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid var(--white); /* Uma linha de destaque inferior, por exemplo */
+}
+
+.sidebarMenu {
+    flex-grow: 1;
+}
+
+.sidebarFooter {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 20px;
+    align-items: center;
+    /* border-top: 1px solid rgba(255, 255, 255, 0.2); */
+    background-color:var(--carvao);
+    flex-direction: row;
+    align-items: center;
+}
+
+.userImage {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: 1px solid var(--white);
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    font-family: var(--fonte-destaque);
+}
+
+.userName {
+    font-size: 1.6em;
+    font-weight: 100px;
+    font-family: var(--fonte-destaque);
+    color: var(--branco);
+}
+
+.logoutButton {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.logoutButton:hover {
+    color: var(--vermelho);
+}
