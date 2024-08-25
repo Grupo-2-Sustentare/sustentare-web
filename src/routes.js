@@ -6,6 +6,8 @@ import MainMenu from "./pages/login-e-entrada/MainMenu/MainMenu";
 import NewMovement from "./pages/cadastros-de-estoque/NewMovement/NewMovement"
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
+import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
+import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 
 function Rotas() {
     if (process.env.REACT_APP_MODO_DEBUG === "1"){
@@ -19,6 +21,8 @@ function Rotas() {
                 <Route path={"/cadastros-de-estoque"} element={<NewMovement />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
+                <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
+                <Route path={"/criando-novo-produto"} element={<CriandoProduto/>} />
             </Routes>
         </BrowserRouter>
         )
