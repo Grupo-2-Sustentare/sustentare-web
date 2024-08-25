@@ -30,7 +30,7 @@
   }
   .icon {
     font-size: 1.5em;
-    filter: drop-shadow(0 4px 3px rgba(255, 0.7, 0.7, 0.7));
+    filter: var(--sombra-vermelha-brilho);
     cursor: pointer;
     /* box-shadow: var(--sombra-vermelha-icone); */
   }

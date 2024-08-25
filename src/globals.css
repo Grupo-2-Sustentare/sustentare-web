@@ -42,7 +42,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --sombra-in-escura: 0 0 15px 3px var(--preto) inset;
     --sombra-in-clara: 1px 1px 10px 3px var(--azul-claro) inset;
     --sombra-ex-vermelha: 3px 3px 3px 1px var(--vermelho);
-    --sombra-vermelha-icone: drop-shadow(1px 1px 2px var(--vermelho));
+    --sombra-vermelha-brilho: drop-shadow(0 4px 3px rgba(255, 0.7, 0.7, 0.7));
 }
 
 /* Tamanho de um celular, definido de forma temporária */
@@ -63,6 +63,7 @@ body{
     background: var(--gradiente);
     gap: 24px;
     padding: 16px;
+    /* O padding a cima deixa um espaço em cima do menu superior */
     display: flex;
     flex-direction: column;
     align-items: center;

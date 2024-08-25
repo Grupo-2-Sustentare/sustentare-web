@@ -19,8 +19,8 @@ const ExibirComponentes = () => {
     return (
         <div>
             <MenuSuperior title="Entrada DE PRODUTOS" showBackArrow={false} />
-            <MenuSuperior title="histórico de operações" showBackArrow={false} />
-            <MenuSuperior title="AAAAAAAAaaaaaaaaaaaaaaaa" showBackArrow={true} />
+            {/* <MenuSuperior title="histórico de operações" showBackArrow={false} /> */}
+            {/* <MenuSuperior title="AAAAAAAAaaaaaaaaaaaaaaaa" showBackArrow={true} /> */}
             {/* <Botao/> */}
             <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}/>
             {/* <MenuLateral userName={userName} userImage={userImage}/> */}

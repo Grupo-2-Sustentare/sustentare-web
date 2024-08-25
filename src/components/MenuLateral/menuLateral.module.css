@@ -86,6 +86,7 @@
     cursor: pointer;
     padding: 0;
     text-decoration: underline;
+    filter: var(--sombra-vermelha-brilho);
 }
 
 .logoutButton:hover {
