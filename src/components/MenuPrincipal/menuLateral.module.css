@@ -22,11 +22,6 @@
     transition-timing-function: ease-in; */
 }
 
-/* .sideSideBar{
-    width: 50%;
-    height: 100%;
-} */
-
 .sidebarHeader {
     display: flex;
     width: 100%;

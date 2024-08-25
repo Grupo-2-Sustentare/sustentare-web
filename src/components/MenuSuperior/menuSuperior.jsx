@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './menuSuperior.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import MenuLateral from '../MenuLateral/menuLateral';
+import MenuLateral from '../MenuPrincipal/menuLateral';
 
 var userImage = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1";
 var userName = "Antônio";
