@@ -1,11 +1,13 @@
 .divSideBar{
     display: flex;
     flex-direction: row;
-    background-color: rgba(255, 255, 255, 0.247);
+    background-color: rgba(255, 255, 255, 0.134);
     height: 100%;
     width: 500px;
     position: fixed;
     top: 0;
+    left: 0;
+    z-index: 999;
 }
 
 .sidebar {
@@ -16,18 +18,12 @@
     flex-direction: column;
     justify-content: space-between;
     color: var(--branco);
-    /* border-right: 0.5px solid var(--white); */
-/* 
-    
-    left: 0;
-    z-index: 1000; */
 }
 
-.sideSideBar{
-    /* background-color: blueviolet; */
+/* .sideSideBar{
     width: 50%;
     height: 100%;
-}
+} */
 
 .sidebarHeader {
     display: flex;

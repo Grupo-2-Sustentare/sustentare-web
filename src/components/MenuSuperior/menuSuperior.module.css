@@ -26,17 +26,32 @@
     align-items: center;
     padding-right: 15%;
     padding-top: 5px;
+    text-align: center;
   }
   .icon {
     font-size: 1.5em;
     filter: drop-shadow(0 4px 3px rgba(255, 0.7, 0.7, 0.7));
+    cursor: pointer;
     /* box-shadow: var(--sombra-vermelha-icone); */
   }
 
   .title {
-    display: flex;
     font-size: 1.3em;
     width: 100%;
-    /* text-overflow: ellipsis; */
     font-family: var(--fonte-destaque);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8%;
+    margin-left: 15%;
+    height: 100%;
+    /* background: rgba(0, 0, 0, 0.5); */
+    z-index: 999; /* Para garantir que está acima do resto */
+  }
+  
