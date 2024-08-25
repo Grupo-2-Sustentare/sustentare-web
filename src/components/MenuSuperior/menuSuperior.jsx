@@ -39,7 +39,7 @@ export default function MenuSuperior({ title, showBackArrow }) {
       </div>
       {!showBackArrow && isMenuOpen && (
         <div>
-          <MenuLateral class="duration-1" userName={userName} userImage={userImage} />
+          <MenuLateral userName={userName} userImage={userImage} />
           <div className={styles.overlay} onClick={closeMenu}></div>
         </div>
       )}
