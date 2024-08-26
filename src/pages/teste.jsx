@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import MenuSuperior from "../components/MenuSuperior/menuSuperior.jsx";
 import Switch from '../components/Switch/switch.jsx';
-import MenuLateral from '../components/MenuPrincipal/menuLateral.jsx'
+import MenuLateral from '../components/MenuLateral/menuLateral.jsx'
 import ItemProduto from '../components/itemProduto/itemProduto.jsx'
 import Botao from '../components/IconButton/IconButton.jsx'
 
