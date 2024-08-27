@@ -9,13 +9,16 @@ import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ExibirComponentes from "./pages/teste";
 
 function Rotas() {
+    let rotaPadrao = null;
     if (process.env.REACT_APP_MODO_DEBUG === "1"){
-        return <BrowserRouter><Routes><Route path="/" element={<Debug />} /></Routes></BrowserRouter>
+        rotaPadrao = <Route path="/" element={<Debug />} />
+    } else{
+        rotaPadrao = <Route path="/" element={<Login />} />
     }
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
+                {rotaPadrao}
                 <Route path={"/menu-inicial"} element={<MainMenu />} />
                 <Route path={"/cadastros-de-estoque"} element={<NewMovement />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
