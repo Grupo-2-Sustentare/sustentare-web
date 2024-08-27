@@ -5,6 +5,7 @@ import IconTextInput from "../../components/IconTextInput/IconTextInput";
 import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput";
 import TextSizeSlider from "../../components/TextSizeSlider/TextSizeSlider";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
+import Placeholder from "../../components/Placeholder/Placeholder";
 
 export default function Debug(){
     return (
@@ -25,6 +26,7 @@ export default function Debug(){
             />
             <TextSizeSlider/>
             <RedirectionList/>
+            <Placeholder onClick={() => alert("Droga, isso é só um placeholder!")}/>
         </>
     )
 }
