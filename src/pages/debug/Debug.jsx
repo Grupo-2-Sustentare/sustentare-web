@@ -13,6 +13,7 @@ export default function Debug(){
             <h3>MODO DEBUG</h3>
             <p>Teste de componentes...</p>
             <br/>
+            <TextSizeSlider/>
             <IconButton onClick={() => alert("Você clicou no botão com ícone.")}/>
             <Checkbox/>
             <StrechList/>
@@ -24,7 +25,6 @@ export default function Debug(){
                 type={"number"}
                 measurementUnit={"kilogramas"}
             />
-            <TextSizeSlider/>
             <RedirectionList/>
             <Placeholder onClick={() => alert("Droga, isso é só um placeholder!")}/>
         </>

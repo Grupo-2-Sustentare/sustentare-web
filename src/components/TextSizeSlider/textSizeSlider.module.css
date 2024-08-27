@@ -14,6 +14,12 @@
     background-color: var(--carvao);
     padding: 8px;
     border-radius: 8px;
+    height: 300px;
+}
+
+.textSizeSlider p{
+    width: 100%;
+    height: 100%;
 }
 
 .barra {
@@ -76,7 +82,7 @@
 .barra::-ms-thumb {
     margin-top: 1px;
     border: var(--borda-branca);
-    height: 1842;
+    height: 42px;
     width: 42px;
     border-radius: 32px;
     background: var(--vermelho);
