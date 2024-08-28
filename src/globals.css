@@ -62,8 +62,6 @@ body{
     outline: 2px solid white;
     background: var(--gradiente);
     gap: 24px;
-    padding: 16px;
-    /* O padding a cima deixa um espaço em cima do menu superior */
     display: flex;
     flex-direction: column;
     align-items: center;

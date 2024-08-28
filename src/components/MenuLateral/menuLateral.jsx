@@ -1,8 +1,11 @@
 import React from 'react';
 import ItemMenu from "../MenuItem/MenuItem.jsx"
 import style from './menuLateral.module.css';
+import {useNavigate} from "react-router-dom";
 
 const MenuLateral = ({ userName, userImage }) => {
+    const navigate = useNavigate();
+
     return (
         <div className={style.divSideBar}>
             <div className={style.sidebar}>
@@ -10,7 +13,8 @@ const MenuLateral = ({ userName, userImage }) => {
                     <h1>Paralelo 19</h1>
                 </div>
                     <div className={style.sidebarMenu}>
-                <ItemMenu icon={"house"} title="Página inicial" />
+                <ItemMenu icon={"house"} title="Página inicial" onClick={() => {alert("Ajustar Rota para MainMenu !!!")}}/>
+                                                                                
                  {/* Aqui vai o seu componente de itens do menu */}
 
                 </div>

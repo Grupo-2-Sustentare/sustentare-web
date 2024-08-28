@@ -2,9 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './MenuItem.module.css';
 
-export default function ItemMenu({icon, title})  {
+export default function ItemMenu({icon, title, onClick})  {
   return (
-    <div className={styles.MenuItem}>
+    <div className={styles.MenuItem} onClick={onClick}>
       <FontAwesomeIcon icon={icon} className={styles.icon}/>
       <span className={styles.title}>{title}</span>
     </div>

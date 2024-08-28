@@ -6,7 +6,7 @@
     height: 60px;
     width: 375px;
     border-bottom: 2px solid var(--white);
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
   }
   
   .iconDiv{
@@ -36,7 +36,7 @@
   }
 
   .title {
-    font-size: 1.3em;
+    font-size: 1.1em;
     width: 100%;
     font-family: var(--fonte-destaque);
     white-space: nowrap;
@@ -48,8 +48,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 8%;
-    margin-left: 15%;
+    width: 200px;
+    margin-left: 250px;
     height: 100%;
     /* background: rgba(0, 0, 0, 0.5); */
     z-index: 999; /* Para garantir que está acima do resto */
