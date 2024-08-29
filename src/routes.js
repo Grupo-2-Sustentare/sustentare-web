@@ -23,7 +23,7 @@ function Rotas() {
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
-                <Route path={"/criando-novo-produto"} element={<CriandoProduto/>} />
+                <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
         </BrowserRouter>

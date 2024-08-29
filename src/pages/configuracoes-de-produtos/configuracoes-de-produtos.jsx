@@ -12,7 +12,7 @@ const ConfiguracoesProdutos = () => {
     };
 
     return (
-        <div id="root">
+        <div >
             <div className={styles.divBusca}>
                 <TextInput/>
                 <StreachList titulo=" "/>
