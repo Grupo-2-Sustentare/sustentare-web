@@ -3,6 +3,7 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import StrechList from "../../components/StrechList/StrechList";
 import IconTextInput from "../../components/IconTextInput/IconTextInput";
 import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput";
+import TextSizeSlider from "../../components/TextSizeSlider/TextSizeSlider";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import Placeholder from "../../components/Placeholder/Placeholder";
 
@@ -12,6 +13,7 @@ export default function Debug(){
             <h3>MODO DEBUG</h3>
             <p>Teste de componentes...</p>
             <br/>
+            <TextSizeSlider/>
             <IconButton onClick={() => alert("Você clicou no botão com ícone.")}/>
             <Checkbox/>
             <StrechList/>
