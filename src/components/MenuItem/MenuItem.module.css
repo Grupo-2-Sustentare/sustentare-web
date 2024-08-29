@@ -9,6 +9,7 @@
     border-bottom: 1px solid var(--white);
     padding: 16px;
     border-right: 0.5px solid var(--branco);
+    cursor: pointer;
 }
 .icon{
     width: 25px;

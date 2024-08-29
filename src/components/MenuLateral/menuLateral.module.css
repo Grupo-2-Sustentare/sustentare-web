@@ -1,7 +1,7 @@
 .divSideBar{
     display: flex;
     flex-direction: row;
-    background-color: rgba(255, 255, 255, 0.134);
+    /* background-color: rgba(6, 6, 6, 0.392); */
     height: 100%;
     width: 500px;
     position: fixed;
@@ -18,14 +18,11 @@
     flex-direction: column;
     justify-content: space-between;
     color: var(--branco);
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.508);
+
     /* transition-duration: 1s;
     transition-timing-function: ease-in; */
 }
-
-/* .sideSideBar{
-    width: 50%;
-    height: 100%;
-} */
 
 .sidebarHeader {
     display: flex;
