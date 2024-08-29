@@ -8,6 +8,7 @@ import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMen
 import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
+import ExibirComponentes from "./pages/teste";
 
 function Rotas() {
     if (process.env.REACT_APP_MODO_DEBUG === "1"){
@@ -23,6 +24,7 @@ function Rotas() {
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-novo-produto"} element={<CriandoProduto/>} />
+                <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
         </BrowserRouter>
         )
