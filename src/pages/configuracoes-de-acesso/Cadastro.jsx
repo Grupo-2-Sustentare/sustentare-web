@@ -3,9 +3,10 @@ import { toast } from "react-toastify";
 import React, { useState } from "react";
 import api from "../../api";
 import TextInput from "../../components/TextInput/TextInput"
-import  styles  from "../../pages/Cadastro/cadastro.module.css";
+import styles  from "../../pages/configuracoes-de-acesso/cadastro.module.css";
 import Button from "../../components/Button/Button";
 import Checkbox from "../../components/Checkbox/Checkbox"
+import MenuSuperior from "../../components/MenuSuperior/menuSuperior";
  
 
 
@@ -61,7 +62,7 @@ const Cadastro = () => {
 
     return (
         <div className={styles.divPrincipal}>
-                <div className={styles.header}></div>
+                <MenuSuperior/>
                 <div className={styles.divTexInput}>
                     <h1 className={styles.h1}>Email:</h1>
                     <TextInput Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}/>
