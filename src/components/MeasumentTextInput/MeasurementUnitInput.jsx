@@ -1,6 +1,6 @@
 import styles from "./measurementTextInput.module.css"
 
-export default function MeasurementTextInput({ label, measurementUnit, onChange}){
+export default function MeasurementUnitInput({ label, measurementUnit, onChange}){
     // Criando a label, caso tenha sido informada.
     let tagLabel = null;
     if (label !== undefined){

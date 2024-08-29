@@ -1,9 +1,9 @@
 import React from 'react';
-import ItemMenu from "../MenuItem/MenuItem.jsx"
-import style from './menuLateral.module.css';
+import MenuItem from "../MenuItem/MenuItem.jsx"
+import style from './sideMenu.module.css';
 import {useNavigate} from "react-router-dom";
 
-const MenuLateral = ({ userName, userImage }) => {
+const SideMenu = ({ userName, userImage }) => {
     const navigate = useNavigate();
 
     return (
@@ -13,7 +13,7 @@ const MenuLateral = ({ userName, userImage }) => {
                     <h1>Paralelo 19</h1>
                 </div>
                     <div className={style.sidebarMenu}>
-                <ItemMenu icon={"house"} title="Página inicial" onClick={() => {alert("Ajustar Rota para MainMenu !!!")}}/>
+                <MenuItem icon={"house"} title="Página inicial" onClick={() => {alert("Ajustar Rota para MainMenu !!!")}}/>
                                                                                 
                  {/* Aqui vai o seu componente de itens do menu */}
 
@@ -33,4 +33,4 @@ const MenuLateral = ({ userName, userImage }) => {
     );
 }
 
-export default MenuLateral;
+export default SideMenu;

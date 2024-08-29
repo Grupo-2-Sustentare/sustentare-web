@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ListItem.module.css';
 
-export default function ItemListaImg({ title, desc, adressImg, descImg }) {
+export default function ListItem({ title, desc, adressImg, descImg }) {
     return (
         <div className={styles.itemList}>
             <img src={adressImg} className={styles.img} alt={descImg} />

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import MenuSuperior from "../components/MenuSuperior/menuSuperior.jsx";
-import Switch from '../components/Switch/switch.jsx';
-import MenuLateral from '../components/MenuLateral/menuLateral.jsx'
+import TopBar from "../components/TopBar/TopBar.jsx";
+import Switch from '../components/Switch/Switch.jsx';
+import SideMenu from '../components/SideMenu/SideMenu.jsx'
 import ItemProduto from '../components/ProductItem/ProductItem.jsx'
 import Botao from '../components/IconButton/IconButton.jsx'
 
@@ -18,12 +18,12 @@ const ExibirComponentes = () => {
 
     return (
         <div>
-            <MenuSuperior title="Entrada DE PRODUTOS" showBackArrow={false} />
-            {/* <MenuSuperior title="histórico de operações" showBackArrow={false} /> */}
-            {/* <MenuSuperior title="AAAAAAAAaaaaaaaaaaaaaaaa" showBackArrow={true} /> */}
+            <TopBar title="Entrada DE PRODUTOS" showBackArrow={false} />
+            {/* <TopBar title="histórico de operações" showBackArrow={false} /> */}
+            {/* <TopBar title="AAAAAAAAaaaaaaaaaaaaaaaa" showBackArrow={true} /> */}
             {/* <Botao/> */}
             <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}/>
-            {/* <MenuLateral userName={userName} userImage={userImage}/> */}
+            {/* <SideMenu userName={userName} userImage={userImage}/> */}
             <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioquinha" weight="25 kilogramas" />
             {/* <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" checked />
             <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" showButtons />
