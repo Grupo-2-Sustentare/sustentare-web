@@ -4,7 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import MenuSuperior from "../components/MenuSuperior/menuSuperior.jsx";
 import Switch from '../components/Switch/switch.jsx';
 import MenuLateral from '../components/MenuLateral/menuLateral.jsx'
-import ItemProduto from '../components/ProductItem/itemProduto.jsx'
+import ItemProduto from '../components/ProductItem/ProductItem.jsx'
 import Botao from '../components/IconButton/IconButton.jsx'
 
 const handleSwitchChange = (newState) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './itemProduto.module.css';
+import styles from './productItem.module.css';
 import Checkbox from "../Checkbox/Checkbox.jsx";
 
 export default function ItemCard({ imageUrl, title, weight, showButtons, checked }) {
