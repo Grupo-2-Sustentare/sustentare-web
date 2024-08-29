@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './OperationLog.module.css';
 
-export default function ItemListaImg({ title, action, adressImg, descImg,time }) {
+export default function OperationLog({ title, action, adressImg, descImg,time }) {
     return (
         <div className={styles.itemList}>
             <img src={adressImg} className={styles.img} alt={descImg} />

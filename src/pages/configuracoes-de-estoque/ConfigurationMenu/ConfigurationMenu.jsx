@@ -1,5 +1,5 @@
 import IconButton from "../../../components/IconButton/IconButton";
-import MenuSuperior from "../../../components/MenuSuperior/menuSuperior";
+import TopBar from "../../../components/TopBar/TopBar";
 import style from "../ConfigurationMenu/configurationMenu.module.css";
 import {useNavigate} from "react-router-dom";
 
@@ -9,7 +9,7 @@ export default function ConfigurationMenu({}){
      return(
           <>
              <div className={style.menu}>
-               <MenuSuperior title="CONFIGURAÇÕES DE ESTOQUE" showBackArrow={false}/>
+               <TopBar title="CONFIGURAÇÕES DE ESTOQUE" showBackArrow={false}/>
              </div>
 
              <div className={style.containerButton}>

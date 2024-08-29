@@ -6,10 +6,11 @@
     width: 250px;
     justify-content:flex-start;
     align-items: center;
-    border-bottom: 1px solid var(--white);
+    border: solid var(--white);
+    border-width: 1px 0 1px 0;
     padding: 16px;
-    border-right: 0.5px solid var(--branco);
     cursor: pointer;
+    gap: 16px;
 }
 .icon{
     width: 25px;

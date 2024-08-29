@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate pa
 import { toast } from "react-toastify"; // Importa toast para exibir mensagens de sucesso ou erro
 import React, { useState } from "react"; // Importa React e o hook useState para gerenciamento de estado
 import Button from "../../../components/Button/Button";
-import Input from "../../../components/TextInput/TextInput";
+import TextInput from "../../../components/TextInput/TextInput";
 import api from "../../../api";
 import RedirectionList from "../../../components/RedirectionList/RedirectionList"
 import MainMenu from "../MainMenu/MainMenu"
@@ -40,8 +40,8 @@ const Login = () => {
         <div className={styles["login-e-entrada"]}>
             <h1>Paralelo 19</h1>
             <form>
-                <Input label={"Nome:"} value={nome} onChange={(e) => handleInputChange(e, setNome)}/>
-                <Input label={"Senha:"} value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)}/>
+                <TextInput label={"Nome:"} value={nome} onChange={(e) => handleInputChange(e, setNome)}/>
+                <TextInput label={"Senha:"} value={senha} type="password" onChange={(e) => handleInputChange(e, setSenha)}/>
             </form>
             <Button insideText="Entrar" onClick={handleSave} />
         </div>
