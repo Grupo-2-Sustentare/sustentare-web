@@ -37,7 +37,7 @@ const Cadastro = () => {
 
         // Faz uma requisição POST para a API
         api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado).then(() => {
-            toast.success("Cadastro realizado com sucesso!");
+            toast.success("configuracoes-de-acesso realizado com sucesso!");
             sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
             navigate("/");
         }).catch(() => {

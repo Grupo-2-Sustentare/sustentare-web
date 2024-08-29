@@ -1,0 +1,8 @@
+.placeholder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    text-align: center;
+    cursor: default;
+}
