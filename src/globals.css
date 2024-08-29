@@ -12,6 +12,8 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --fonte-destaque: "Bebas Neue", Tahoma, sans-serif;
     --fonte-corpo: "DM Sans", Tahoma, sans-serif;
 
+    --tamanho-padrao: 24px;
+
     /* Paleta de cores */
     --white: #F5FBEF;
     --preto: #0A0908;
@@ -72,7 +74,7 @@ body{
     font-family: var(--fonte-corpo);
     margin: 0;
     padding: 0;
-    font-size: 24px;
+    font-size: var(--tamanho-padrao);
     box-sizing: border-box;
     /*
     O "em" representa n vezes o font-size base (definido acima)
@@ -99,6 +101,12 @@ h2{
 h4{
     font-size: 1.3em;
     margin: 0;
+}
+button{
+    font-size: var(--tamanho-padrao);
+}
+p, button, h1, h2, h3, h4{
+    overflow: hidden;
 }
 path{
     color: var(--white);
