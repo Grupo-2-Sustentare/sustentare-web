@@ -1,8 +1,8 @@
-import styles from "./iconTextInput.module.css"
+import styles from "./iconInput.module.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const TIPOS_PERMITIDOS = ["text", "password"]
 
-export default function IconTextInput({ label, type="text", icon="magnifying-glass", onChange}){
+export default function IconInput({ label, type="text", icon="magnifying-glass", onChange}){
 
     // Se o tipo não for permitido, dá exception.
     if (!TIPOS_PERMITIDOS.includes(type)) throw new Error("Tipo não permitido ou não implementado. Medida de qualidade.")

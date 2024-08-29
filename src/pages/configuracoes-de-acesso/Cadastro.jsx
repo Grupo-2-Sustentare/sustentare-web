@@ -6,7 +6,7 @@ import TextInput from "../../components/TextInput/TextInput"
 import styles  from "../../pages/configuracoes-de-acesso/cadastro.module.css";
 import Button from "../../components/Button/Button";
 import Checkbox from "../../components/Checkbox/Checkbox"
-import MenuSuperior from "../../components/MenuSuperior/menuSuperior";
+import TopBar from "../../components/TopBar/TopBar";
  
 
 
@@ -62,7 +62,7 @@ const Cadastro = () => {
 
     return (
         <div className={styles.divPrincipal}>
-                <MenuSuperior/>
+                <TopBar/>
                 <div className={styles.divTexInput}>
                     <h1 className={styles.h1}>Email:</h1>
                     <TextInput Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}/>

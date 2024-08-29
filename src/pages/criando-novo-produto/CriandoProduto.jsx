@@ -4,15 +4,15 @@ import StreachList from "../../components/StrechList/StrechList"
 import TextInput from "../../components/TextInput/TextInput"
 import  styles from "./CriandoProduto.module.css";
 import Checkbox from "../../components/Checkbox/Checkbox";
-import MeasurementTextInput from "../../components/MeasumentTextInput/MeasurementTextInput"
-import MenuSuperior from "../../components/MenuSuperior/menuSuperior"
+import MeasurementUnitInput from "../../components/MeasumentTextInput/MeasurementUnitInput"
+import TopBar from "../../components/TopBar/TopBar"
 
 const CriandoProduto = () => {
 
    
     return (
         <div className={styles.divPrincipal}>
-            <MenuSuperior/>
+            <TopBar/>
             <div className={styles.TextInput}>
                 <h4>Nome:</h4>
                 <TextInput/>
@@ -31,7 +31,7 @@ const CriandoProduto = () => {
                     <Checkbox/>
                 </div>
 
-                <MeasurementTextInput/>
+                <MeasurementUnitInput/>
         </div>
     );
 };
