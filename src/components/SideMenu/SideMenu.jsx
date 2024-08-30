@@ -6,6 +6,11 @@ import {useNavigate} from "react-router-dom";
 const SideMenu = ({ userName, userImage }) => {
     const navigate = useNavigate();
 
+    function logout(){
+        sessionStorage.clear()
+        navigate("/login")
+    }
+
     return (
         <div className={style.divSideBar}>
             <div className={style.sidebar}>
@@ -23,7 +28,7 @@ const SideMenu = ({ userName, userImage }) => {
                     <img src={userImage} className={style.userImage} />
                     <div className={style.userInfo}>
                         <span className={style.userName}>{userName.toUpperCase()}</span>
-                        <span className={style.logoutButton}>Sair</span>
+                        <span className={style.logoutButton} onClick={()=>logout()}>Sair</span>
                     </div>
                 </div>
             </div>

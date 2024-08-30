@@ -11,13 +11,21 @@ import CriandoProduto from "../criando-novo-produto/CriandoProduto";
 import OperationLog from "../../components/OperationLog/OperationLog";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Switch from "../../components/Switch/Switch";
+import TopBar from "../../components/TopBar/TopBar";
+import SideMenu from "../../components/SideMenu/SideMenu";
 
 export default function Debug(){
+    sessionStorage.setItem("nome_usuario", "Antônio")
+    sessionStorage.setItem(
+        "icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
+    )
     return (
         <>
             <h3>MODO DEBUG</h3>
             <p>Teste de componentes...</p>
             <br/>
+            <TopBar/>
+
             <Button insideText={"teste!"} onClick={()=>alert("clicado!")}/>
             <IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>
             <MeasurementUnitInput
