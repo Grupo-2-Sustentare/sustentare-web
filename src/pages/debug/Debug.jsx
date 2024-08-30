@@ -36,11 +36,12 @@ export default function Debug(){
                 icon={"key"} title={"Chave"} onClick={()=>alert("A chave de muitos segredos.")}
             />
             <RedirectionList redirectUrl={"/menu-inicial"}/>
-            {/*<Switch initialState={"On"} onChange={*/}
-            {/*    (e) => alert("O Switch está:" + e.target.value)*/}
-            {/*}*/}
-            {/*labels={"Ligado", "Desligado"}*/}
-            {/*/>*/}
+            <Switch initialState={true}
+                    action={(v) => alert("O Switch está: " + v)}
+            labels={
+                {on: "Ligado", off: "Desligado"}
+            }
+            />
         </>
     )
 }
