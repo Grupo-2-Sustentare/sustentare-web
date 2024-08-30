@@ -6,14 +6,13 @@
 }
 
 .textInput label{
-    max-width: 262px;
     font-size: 1.3em;
     font-weight: 500;
 }
 
 .textInput > div{
     height: 47px;
-    width: 262px;
+    width: 100%;
     padding: 8px;
     background: var(--gunmetal);
     border: var(--borda-branca);
