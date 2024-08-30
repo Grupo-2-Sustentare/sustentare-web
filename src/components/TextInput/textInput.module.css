@@ -3,11 +3,12 @@
     flex-direction: column;
     align-items: start;
     gap: 8px;
+    
 }
 
 .textInput input{
     height: 47px;
-    width: 262px;
+    width: 100%;
     padding: 8px;
     background: var(--gunmetal);
     border: var(--borda-branca);

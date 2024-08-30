@@ -16,3 +16,9 @@
     gap: 24px;
     padding: 16px;
 }
+
+.divBotao{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
