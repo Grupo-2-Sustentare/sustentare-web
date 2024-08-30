@@ -3,9 +3,6 @@ import styles from './topBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SideMenu from '../SideMenu/SideMenu';
 
-var userImage = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1";
-var userName = "Antônio";
-
 export default function TopBar({ title, showBackArrow }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -26,6 +23,9 @@ export default function TopBar({ title, showBackArrow }) {
   } else {
     icon = "fa-solid fa-bars";
   }
+
+  const userName = sessionStorage.getItem("nome_usuario")
+  const userImage = sessionStorage.getItem("icone_usuario")
 
   return (
     <div>

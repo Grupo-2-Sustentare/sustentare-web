@@ -33,8 +33,13 @@ const Login = () => {
     };
 
     const handleInputChange = (event, setStateFunction) => { // Função para manipular as mudanças nos inputs
+        sessionStorage.setItem("nome_usuario", event.target.value)
         setStateFunction(event.target.value); // Atualiza o estado correspondente
     }
+
+    sessionStorage.setItem(
+        "icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
+    )
 
     return (
         <div className={styles["login-e-entrada"]}>
