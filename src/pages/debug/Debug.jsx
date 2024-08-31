@@ -38,9 +38,7 @@ export default function Debug(){
             <RedirectionList redirectUrl={"/menu-inicial"}/>
             <Switch initialState={true}
                     action={(v) => alert("O Switch está: " + v)}
-            labels={
-                {on: "Ligado", off: "Desligado"}
-            }
+                    labels={{on: "Ligado", off: "Desligado"}}
             />
         </>
     )
