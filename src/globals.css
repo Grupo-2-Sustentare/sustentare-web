@@ -36,7 +36,8 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
 
     /* Estilos de glassmorphism */
     --cor-vidro: #FFFFFF33;
-    --borda-vidro: 1px solid #FFFFFF4C;
+    --cor-borda-vidro: #FFFFFF4C;
+    --borda-vidro: 1px solid var(--cor-borda-vidro);
     --filtro-vidro: blur(5px);
 
     /* Bordas */

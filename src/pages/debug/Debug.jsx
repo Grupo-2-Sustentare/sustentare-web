@@ -40,8 +40,8 @@ export default function Debug(){
             <OperationLog
                 title={"Alteração"}
                 action={"Correção dos nomes dos componentes"}
+                authorName={"Fulano Silva Sauro"}
                 adressImg={"https://neweralive.na/wp-content/uploads/2024/06/lloyd-sikeba.jpg"}
-                descImg={"Fulano"}
                 time={"Ontem"}
             />
             {/*<MenuItem*/}
@@ -52,7 +52,7 @@ export default function Debug(){
             {/*        action={(v) => alert("O Switch está: " + v)}*/}
             {/*        labels={{on: "Ligado", off: "Desligado"}}*/}
             {/*/>*/}
-            <ImageUploader oldImage={IMG_PLACEHOLDER}/>
+            <ImageUploader />
         </>
     )
 }

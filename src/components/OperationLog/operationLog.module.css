@@ -11,6 +11,7 @@
     box-shadow: var(--sombra-branca), var(--sombra-ex-vermelha);
     border-radius: 4px;
     cursor: pointer;
+    position: relative;
 }
 
 .operationLog img {
@@ -47,25 +48,36 @@
     text-decoration: underline;
 }
 
-.expandedLog{
-    box-shadow: var(--sombra-branca), var(--sombra-in-clara);
-}
-.expandedLog .act{
-    white-space: normal;
-}
-
 .nameBubble{
     position: absolute;
     color: var(--preto);
-    z-index: 10;
     padding: 4px;
     border-radius: 16px;
     backdrop-filter: var(--filtro-vidro);
     -webkit-backdrop-filter: var(--filtro-vidro);
     background-color: var(--cor-vidro);
     border: var(--borda-vidro);
+    width: 105px;
+    text-align: center;
+    bottom: 90px;
+    left: -16px;
+    display: none;
 }
 .bubbleCaret{
     position: absolute;
-    bottom: 15px;
+    bottom: -14px;
+    left: 45%;
+}
+.bubbleCaret > path{
+    fill: var(--cor-borda-vidro);
+}
+
+.expandedLog{
+    box-shadow: var(--sombra-branca), var(--sombra-in-clara);
+}
+.expandedLog .act{
+    white-space: normal;
+}
+.expandedLog .nameBubble{
+    display: initial;
 }
