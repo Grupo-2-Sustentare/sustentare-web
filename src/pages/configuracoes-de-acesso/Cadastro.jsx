@@ -92,9 +92,9 @@ const Cadastro = () => {
                     </div>
                 </div>
 
+                </div>
                 <div className={styles.divButton}>
                     <Button insideText={"Confirmar"}  onClick={handleSave}/>
-                </div>
                 </div>
         </div>
     );

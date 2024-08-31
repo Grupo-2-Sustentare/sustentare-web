@@ -4,3 +4,16 @@
     gap: 24px;
     padding: 16px
 }
+
+.divBotao{
+    width: 100%;
+    height: 113px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: var(--borda-branca);
+}
+
+.divFiltroEBusca{
+    border-bottom: ;
+}

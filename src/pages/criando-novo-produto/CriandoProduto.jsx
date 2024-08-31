@@ -35,11 +35,11 @@ const CriandoProduto = () => {
                 </div>
 
                 <MeasurementUnitInput />
+                
+            </div>
                 <div className={styles.divBotao}>
                     <Button insideText={"Salvar produto"}/>
                 </div>
-                
-            </div>
         </div>
     );
 };

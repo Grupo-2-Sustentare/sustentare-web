@@ -19,6 +19,9 @@
 
 .divBotao{
     width: 100%;
+    height: 113px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    border-top: var(--borda-branca);
 }

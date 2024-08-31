@@ -18,15 +18,13 @@ const ConfiguracoesProdutos = () => {
         <div>
             <TopBar title={"configurações de produtos"}/>
             <div className={styles.divPrincipal}>
-                <div>
+                <div className={styles.divFiltroEBusca}>
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
 
-            <div className={styles.divBusca}>
-                <TextInput/>
-                <StreachList titulo=" "/>
             </div>
+            <div className={styles.divBotao}>
             <Button insideText="Cadastrar novo produto" onClick={handleSave}/>
             </div>
         </div>
