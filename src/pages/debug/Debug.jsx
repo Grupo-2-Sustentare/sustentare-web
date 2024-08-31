@@ -14,6 +14,8 @@ import Switch from "../../components/Switch/Switch";
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
+import {toast} from "react-hot-toast";
+import {alertToast, errorToast, successToast} from "../../components/Toast/Toast";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
 const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
@@ -23,6 +25,7 @@ export default function Debug(){
     sessionStorage.setItem(
         "icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
     )
+
     return (
         <>
             <h3>MODO DEBUG</h3>
@@ -30,7 +33,20 @@ export default function Debug(){
             <br/>
             <TopBar/>
 
-            <Button insideText={"teste!"} onClick={()=>alert("clicado!")}/>
+            <Button
+                insideText={"Toast de sucesso"}
+                onClick={()=>successToast("texto!")}
+            />
+            <Button
+                insideText={"Toast de alerta"}
+                onClick={()=>alertToast("texto!")}
+            />
+            <Button
+                insideText={"Toast de erro"}
+                onClick={()=>errorToast("texto!")}
+            />
+
+
             {/*<IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>*/}
             {/*<MeasurementUnitInput*/}
             {/*    label={"teste"}*/}
@@ -44,15 +60,20 @@ export default function Debug(){
                 adressImg={"https://neweralive.na/wp-content/uploads/2024/06/lloyd-sikeba.jpg"}
                 time={"Ontem"}
             />
-            {/*<MenuItem*/}
-            {/*    icon={"key"} title={"Chave"} onClick={()=>alert("A chave de muitos segredos.")}*/}
+            {/*<StrechList/>*/}
+            {/*<ImageUploader />*/}
+            {/*<Toast title={"Toast de sucesso!"} variant={"success"}/>*/}
+            {/*<Toast title={"Toast de alerta!"} variant={"alert"}/>*/}
+            {/*<Toast title={"Toast de erro!"} variant={"error"}/>*/}
+            {/*<Toast title={*/}
+            {/*    `Toast com um texto muitissísimo grande, além de um ícone */}
+            {/*    diferente.*/}
+            {/*    Por quê? Porque ele é único! (e nos ajuda a testar!!!)`*/}
+            {/*}*/}
+            {/*    customIcon={"wand-magic-sparkles"}*/}
             {/*/>*/}
-            {/*<RedirectionList redirectUrl={"/menu-inicial"}/>*/}
-            {/*<Switch initialState={true}*/}
-            {/*        action={(v) => alert("O Switch está: " + v)}*/}
-            {/*        labels={{on: "Ligado", off: "Desligado"}}*/}
-            {/*/>*/}
-            <ImageUploader />
+            <StrechList/>
+
         </>
     )
 }
