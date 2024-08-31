@@ -1,0 +1,71 @@
+.operationLog{
+    background: var(--gunmetal);
+    display: flex;
+    flex-direction: row;;
+    width: 90%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    border: var(--borda-branca);
+    box-shadow: var(--sombra-branca), var(--sombra-ex-vermelha);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.operationLog img {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    border: 1px solid var(--white);
+}
+
+.operationLog > div{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 80%;
+}
+.operationLog > div > * {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    width: 100%;
+}
+
+.title {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.act {
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.time{
+    text-decoration: underline;
+}
+
+.expandedLog{
+    box-shadow: var(--sombra-branca), var(--sombra-in-clara);
+}
+.expandedLog .act{
+    white-space: normal;
+}
+
+.nameBubble{
+    position: absolute;
+    color: var(--preto);
+    z-index: 10;
+    padding: 4px;
+    border-radius: 16px;
+    backdrop-filter: var(--filtro-vidro);
+    -webkit-backdrop-filter: var(--filtro-vidro);
+    background-color: var(--cor-vidro);
+    border: var(--borda-vidro);
+}
+.bubbleCaret{
+    position: absolute;
+    bottom: 15px;
+}

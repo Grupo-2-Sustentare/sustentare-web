@@ -21,16 +21,23 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --carvao: #254A5B;
     --cinza-transparente: #C9C9C9;
     --vermelho: #CC334E;
+    /* NAO USAR A PARTIR DAQUI */
     --azul-claro: #65B5DA;
     --green:#2DD36F;
     --yellow: #FFCA3A;
     --orange:#EE6123;
+    /* FIM DO NAO USAR */
     --gradiente: linear-gradient(
         to right,
         var(--gunmetal),
         var(--carvao),
         var(--gunmetal)
     );
+
+    /* Estilos de glassmorphism */
+    --cor-vidro: #FFFFFF33;
+    --borda-vidro: 1px solid #FFFFFF4C;
+    --filtro-vidro: blur(5px);
 
     /* Bordas */
     --borda-branca:  1px solid var(--white);
@@ -110,4 +117,4 @@ p, button, h1, h2, h3, h4{
 }
 path{
     color: var(--white);
-}   
+}

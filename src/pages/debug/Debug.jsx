@@ -30,7 +30,7 @@ export default function Debug(){
             <br/>
             <TopBar/>
 
-            {/*<Button insideText={"teste!"} onClick={()=>alert("clicado!")}/>*/}
+            <Button insideText={"teste!"} onClick={()=>alert("clicado!")}/>
             {/*<IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>*/}
             {/*<MeasurementUnitInput*/}
             {/*    label={"teste"}*/}
