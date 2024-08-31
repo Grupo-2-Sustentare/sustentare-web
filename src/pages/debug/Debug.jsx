@@ -13,6 +13,10 @@ import MenuItem from "../../components/MenuItem/MenuItem";
 import Switch from "../../components/Switch/Switch";
 import TopBar from "../../components/TopBar/TopBar";
 import SideMenu from "../../components/SideMenu/SideMenu";
+import ImageUploader from "../../components/ImageUploader/ImageUploader";
+
+const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
+const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
 
 export default function Debug(){
     sessionStorage.setItem("nome_usuario", "Antônio")
@@ -26,13 +30,13 @@ export default function Debug(){
             <br/>
             <TopBar/>
 
-            <Button insideText={"teste!"} onClick={()=>alert("clicado!")}/>
-            <IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>
-            <MeasurementUnitInput
-                label={"teste"}
-                measurementUnit={"Unidade de medida mega hiper grande"}
-                onChange={()=>console.log("Mexeram na unidade!!!")}
-            />
+            {/*<Button insideText={"teste!"} onClick={()=>alert("clicado!")}/>*/}
+            {/*<IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>*/}
+            {/*<MeasurementUnitInput*/}
+            {/*    label={"teste"}*/}
+            {/*    measurementUnit={"Unidade de medida mega hiper grande"}*/}
+            {/*    onChange={()=>console.log("Mexeram na unidade!!!")}*/}
+            {/*/>*/}
             <OperationLog
                 title={"Alteração"}
                 action={"Correção dos nomes dos componentes"}
@@ -40,14 +44,15 @@ export default function Debug(){
                 descImg={"Fulano"}
                 time={"Ontem"}
             />
-            <MenuItem
-                icon={"key"} title={"Chave"} onClick={()=>alert("A chave de muitos segredos.")}
-            />
-            <RedirectionList redirectUrl={"/menu-inicial"}/>
-            <Switch initialState={true}
-                    action={(v) => alert("O Switch está: " + v)}
-                    labels={{on: "Ligado", off: "Desligado"}}
-            />
+            {/*<MenuItem*/}
+            {/*    icon={"key"} title={"Chave"} onClick={()=>alert("A chave de muitos segredos.")}*/}
+            {/*/>*/}
+            {/*<RedirectionList redirectUrl={"/menu-inicial"}/>*/}
+            {/*<Switch initialState={true}*/}
+            {/*        action={(v) => alert("O Switch está: " + v)}*/}
+            {/*        labels={{on: "Ligado", off: "Desligado"}}*/}
+            {/*/>*/}
+            <ImageUploader oldImage={IMG_PLACEHOLDER}/>
         </>
     )
 }
