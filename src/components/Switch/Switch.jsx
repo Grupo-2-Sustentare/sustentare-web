@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import style from './switch.module.css';
 
-const Switch = ({ initialState, onChange, labels = { on: 'On', off: 'Off' } }) => {
+const Switch = ({ initialState, action, labels = { on: 'On', off: 'Off' } }) => {
   const [isOn, setIsOn] = useState(initialState);
 
-  const toggleSwitch = () => {
-    const newState = !isOn;
-    setIsOn(newState);
-    onChange(newState);
-  };
+  function toggleSwitch() {
+      const newState = !isOn;
+      setIsOn(newState)
+      action(newState)
+  }
 
   return (
     <div onClick={toggleSwitch} className={style.switchContainer}>
