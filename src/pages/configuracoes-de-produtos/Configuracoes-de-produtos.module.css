@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding: 16px
+   padding: 16px;
 }
 
 .divBotao{
@@ -15,5 +15,12 @@
 }
 
 .divFiltroEBusca{
-    border-bottom: ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-bottom: var(--borda-branca);
+    padding-top: 8px;
+    padding-bottom: 16px;
 }
