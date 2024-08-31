@@ -1,19 +1,40 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './toast.module.css';
+import {toast} from "react-hot-toast";
 
-const ToastVariants = {
-    success: styles.ToastSuccess,
-    error: styles.ToastErro,
-    alert: styles.ToastAlert
-}
 
-export default function Toast ({icon, title, variant = "success"}){
-const variantClass = ToastVariants[variant] || ToastVariants.success;
+export function Toast ({title, variant = "success"}){
     return (
-    <div className={variantClass}>
-      <FontAwesomeIcon icon={icon} className={styles.icon}/>
-      <span className={styles.title}>{title}</span>
+    <div className={styles[variant]}>
+      <span>{title}</span>
     </div>
   );
 }
+
+function renderToast(text, variant){
+    let cssVariables = getComputedStyle(document.body)
+    let white = cssVariables.getPropertyValue("--white")
+    let gunmetal = cssVariables.getPropertyValue("--gunmetal")
+
+    const TOAST_CONFIG = {
+        className: styles[variant], iconTheme: {primary: white, secondary: gunmetal}
+    }
+    let component = <Toast title={text} variant={variant}/>
+
+    switch (variant){
+        case "success":
+            toast.success(component, TOAST_CONFIG)
+            break
+        case "alert":
+            toast(component, TOAST_CONFIG)
+            break
+        case "error":
+            toast.error(component, TOAST_CONFIG)
+            break
+    }
+}
+
+export function successToast(text) {renderToast(text, "success")}
+export function alertToast(text) {renderToast(text, "alert")}
+export function errorToast(text) {renderToast(text, "error")}
