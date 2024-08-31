@@ -11,7 +11,7 @@ const Switch = ({ initialState, action, labels = { on: 'On', off: 'Off' } }) => 
   }
 
   return (
-    <div onClick={toggleSwitch} className={style.switchContainer} onMouseEnter={()=>console.log(isOn)}>
+    <div onClick={toggleSwitch} className={style.switchContainer}>
       <div className={`${style.switch} ${isOn ? style.on : ''}`}>
         <div className={style.switchHandle} />
       </div>
