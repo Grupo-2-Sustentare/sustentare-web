@@ -32,11 +32,13 @@ const ExibirComponentes = () => {
                 showCheckbox={false} 
                 showButtons={true} 
             />
-            {/* <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" checked />
-            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" showButtons />
-            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" checked showButtons />
-            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" showButtons checked={false} />
-            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioca" weight="25 kilogramos" showButtons checked /> */}
+            <ItemProduto 
+                imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
+                title="Feijão carioca" 
+                weight="25 kilogramos" 
+                showCheckbox={false} 
+                showButtons={true} 
+            />
         </div>
     );
 }

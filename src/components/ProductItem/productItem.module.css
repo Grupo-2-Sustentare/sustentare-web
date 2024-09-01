@@ -6,14 +6,13 @@
   width: 360px;
   border-radius: 8px;
   /* transition: all 0.2s ease; */
-  /* cursor: pointer; */
   flex-direction: column;
+  margin: 5px;
 }
 
 .expanded {
   height: 200px;
-  /* padding: 10px; */
-  /* background-color: #dc3545; */
+  box-shadow: var(--sombra-in-clara);
 }
   
   
