@@ -1,0 +1,28 @@
+.imageUploader > label {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 16px;
+    padding: 4px 8px;
+}
+.imageUploader > label > div{
+    width: 100px;
+    height: 100px;
+    border: dashed 3px var(--cinza-transparente);
+    border-radius: 8px;
+    box-shadow: var(--sombra-vermelha);
+    background-size: cover;
+}
+.imageUploader > label > p{
+    font-size: 1.1em;
+    font-weight: 600;
+    width: 50%;
+}
+
+.imageUploader > input{
+    display: none;
+}
+
+.bordaCompleta{
+    border-style: solid;
+}
