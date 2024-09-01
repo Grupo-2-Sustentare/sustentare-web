@@ -7,6 +7,7 @@ import Checkbox from "../../components/Checkbox/Checkbox";
 import MeasurementUnitInput from "../../components/MeasumentTextInput/MeasurementUnitInput"
 import TopBar from "../../components/TopBar/TopBar"
 import Button from "../../components/Button/Button";
+import ImageUploader from "../../components/ImageUploader/ImageUploader"
 
 const CriandoProduto = () => {
 
@@ -15,7 +16,7 @@ const CriandoProduto = () => {
         <div>
             <TopBar title={"Criando Novo Produto"} />
             <div className={styles.divPrincipal}>
-                
+                <ImageUploader/>
                 <div className={styles.TextInput}>
                     <h4>Nome:</h4>
                     <TextInput />
