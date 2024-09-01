@@ -1,13 +1,23 @@
 .itemCard {
-    display: flex;              
-    background-color: var(--gunmetal);
-    border: 1px solid var(--white);
-    height: 75px;
-    width: 360px;
-    border-radius: 8px;
-  }
+  display: flex;              
+  background-color: var(--gunmetal);
+  border: 1px solid var(--white);
+  height: 75px;
+  width: 360px;
+  border-radius: 8px;
+  /* transition: all 0.2s ease; */
+  /* cursor: pointer; */
+  flex-direction: column;
+}
+
+.expanded {
+  height: 200px;
+  /* padding: 10px; */
+  /* background-color: #dc3545; */
+}
   
- .textProductItem{
+  
+.textProductItem{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +41,7 @@
   align-items: center;
   justify-content: center;
   /* background-color: #dc3545; */
-  height: 100%;
+  height: 70px;
   width: 24%;
 }
   .image{
@@ -43,20 +53,22 @@
   
   .itemInfo {
     display: flex;
-    /* background-color: aqua; */
     flex-direction: row;
     flex: 1;
     align-items: center;
     justify-content: center;
     justify-content: space-evenly;
     width: 100%;
-    height: 100%;
-  }
-  
-  .itemActions {
+    height: 100%; /* Define uma altura mínima para manter os itens corretamente dispostos */
+}
+
+.itemActions {
     display: flex;
-    align-items: center;
-  }
+    /* align-items: center;
+    justify-content: center;
+    margin-top: 10px;  */
+}
+
   .checked {
     /* background-color: #ffc107; */
     border-color: var(--white);
@@ -73,11 +85,14 @@
   }
   
   .buttons {
-    display: none;
+    display: flex;
     flex-direction: column;
-    margin-left: 10px;
-    height: 50px;
-    width: 50px;
+    /* background-color:aqua; */
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    /* margin-left: 10px; */
   }
   
   .showButtons .buttons {
@@ -87,25 +102,43 @@
   }
   
   .editBtn {
-    background-color: #ffc107;
-    color: #000;
+    background-color: var(--yellow);
+    color: var(--preto);
     border: none;
-    padding: 5px 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
+    font-size: 1em;
+    /* padding: 5px 10px; */
+    margin-bottom: 10px;
+    border-radius: 10px;
+    /* cursor: pointer; */
+    height: 45px;
+    width: 70%;
   }
   
   .removeBtn {
-    background-color: #dc3545;
-    color: #fff;
+    background-color: var(--vermelho);
+    font-size: 1em;
+    color: var(--preto);
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
+    /* padding: 5px 10px; */
+    border-radius: 10px;
+    height: 45px;
+    width: 45%;
+  }
+
+  .icon {
+    /* filter: black !important; */
+    color: black;
+  }
+
+  #botaoEdt .FontAwesomeIcon{
+    color: black;
   }
   
+.divExtensao{
+  height: 100%;
+  width: 13%;
+}
+  
+.hidden {
+  display: none;
+}
