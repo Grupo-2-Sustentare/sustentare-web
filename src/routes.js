@@ -10,6 +10,7 @@ import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuraco
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
 import EditandoProduto from "./pages/editando-produto/EditandoProduto"
+import ConfiguracoesCategorias from "./pages/configuracoes-de-categorias/ConfiguracoeCategorias"
 
 function Rotas() {
     let rotaPadrao = null;
@@ -30,6 +31,7 @@ function Rotas() {
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
                 <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
+                <Route path={"/configuracoes-de-categorias"} element={<ConfiguracoesCategorias/>}/>
             </Routes>
         </BrowserRouter>
         )
