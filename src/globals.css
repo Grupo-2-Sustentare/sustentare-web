@@ -20,6 +20,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --gunmetal: #22333B;
     --carvao: #254A5B;
     --cinza-transparente: #C9C9C9;
+    --yellow: #FFCA3A;
     --vermelho: #CC334E;
     --gradiente: linear-gradient(
         to right,
@@ -41,7 +42,7 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
 
     /* Bordas */
     --borda-branca:  1px solid var(--white);
-    --borda-grossa-branca:  2px solid var(--white);
+    --borda-grossa-branca:  3px solid var(--white);
     --borda-fina-branca: 0.5px 8px solid var(--white);
 
     /*  Sombras */
@@ -50,9 +51,9 @@ alterando-o apenas aqui, assim como com as variáveis do Figma!!!
     --sombra-branca: 3px 3px 1px 2px var(--white);
     --sombra-vermelha: 0 0 5px var(--vermelho);
     --sombra-in-escura: 0 0 15px 3px var(--preto) inset;
-    --sombra-in-clara: 1px 1px 10px 3px var(--azul-claro) inset;
+    --sombra-in-clara: 1px 1px 10px 1px var(--azul-claro) inset;
     --sombra-ex-vermelha: 3px 3px 3px 1px var(--vermelho);
-    --sombra-vermelha-brilho: drop-shadow(0 4px 3px rgba(255, 0.7, 0.7, 0.7));
+    --sombra-vermelha-brilho: drop-shadow(0px 0px 8px rgba(255, 1, 1, 0.751));
 }
 
 /* Tamanho de um celular, definido de forma temporária */
