@@ -9,26 +9,57 @@
     padding: 16px;
     border: var(--borda-branca);
     border-radius: 4px;
+    cursor: pointer;
     gap: 8px;
 }
+.itemList:has(.icon){
+    gap: 16px;
+}
 
-.itemList img {
+.illustration{
+    width: fit-content;
+    height: 65px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.illustration > *{
+    display: none;
+}
+.image > img{
+    display: block;
+    border: 1px solid var(--white);
     width: 65px;
     height: 65px;
     border-radius: 100%;
-    border: 1px solid var(--white);
 }
-.itemList div {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    line-height: 1;
+.lessRadius > img{
+    border-radius: 8px;
+}
+.icon > svg{
+    display: block;
 }
 
-.itemList h4 {
+.itemInfo{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    width: 100%;
+    height: 100%;
+}
+.withSubheading{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.itemInfo h4 {
     font-size: 1em;
     font-weight: 500;
 }
-.itemList h5 {
+.itemInfo h5 {
     font-size: 16px;
+    font-weight: 500;
 }

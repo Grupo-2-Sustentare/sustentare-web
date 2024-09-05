@@ -19,13 +19,12 @@ import {alertToast, errorToast, successToast} from "../../components/Toast/Toast
 import ListItem from "../../components/ListItem/ListItem";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
+const ICON_USUARIO = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
 const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
 
 export default function Debug(){
     sessionStorage.setItem("nome_usuario", "Antônio")
-    sessionStorage.setItem(
-        "icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
-    )
+    sessionStorage.setItem("icone_usuario", ICON_USUARIO)
 
     return (
         <>
@@ -39,9 +38,18 @@ export default function Debug(){
                 onClick={()=>alertToast("texto!")}
             />
 
-            <ListItem heading={"Ingrediente de self-service"}/>
+            <ListItem heading={"Passou do prazo de validade"}/>
+            <ListItem
+                heading={"Antônio"} subheading={"Usuário"}
+                adressImg={ICON_USUARIO} fullBorderRadius={true}
+            />
+            <ListItem
+                heading={"Ingrediente de self-service"}
+                adressImg={"https://s2.glbimg.com/HICC8kDSGKuUVscyYbsx-CFi40c=/620x345/e.glbimg.com/og/ed/f/original/2015/05/26/higaten2.jpg"}
+            />
             <ListItem
                 heading={"Mililitro"} subheading={"Tipo: Volume"}
+                icon={"cube"}
             />
         </>
     )
