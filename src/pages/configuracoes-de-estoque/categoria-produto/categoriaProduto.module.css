@@ -1,0 +1,21 @@
+.menu{
+   height: 65px;
+}
+
+.conteudoInicioTela{
+    padding: 6px;
+    height: 120px;
+    gap: 6px;
+}
+
+hr{
+   width: 100%;
+}
+
+.conteudoTela{
+    padding: 6px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
