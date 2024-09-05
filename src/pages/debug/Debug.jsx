@@ -16,15 +16,15 @@ import SideMenu from "../../components/SideMenu/SideMenu";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import {toast} from "react-hot-toast";
 import {alertToast, errorToast, successToast} from "../../components/Toast/Toast";
+import ListItem from "../../components/ListItem/ListItem";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
+const ICON_USUARIO = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
 const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
 
 export default function Debug(){
     sessionStorage.setItem("nome_usuario", "Antônio")
-    sessionStorage.setItem(
-        "icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
-    )
+    sessionStorage.setItem("icone_usuario", ICON_USUARIO)
 
     return (
         <>
@@ -34,46 +34,23 @@ export default function Debug(){
             <TopBar/>
 
             <Button
-                insideText={"Toast de sucesso"}
-                onClick={()=>successToast("texto!")}
-            />
-            <Button
                 insideText={"Toast de alerta"}
                 onClick={()=>alertToast("texto!")}
             />
-            <Button
-                insideText={"Toast de erro"}
-                onClick={()=>errorToast("texto!")}
+
+            <ListItem heading={"Passou do prazo de validade"}/>
+            <ListItem
+                heading={"Antônio"} subheading={"Usuário"}
+                adressImg={ICON_USUARIO} fullBorderRadius={true}
             />
-
-
-            {/*<IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>*/}
-            {/*<MeasurementUnitInput*/}
-            {/*    label={"teste"}*/}
-            {/*    measurementUnit={"Unidade de medida mega hiper grande"}*/}
-            {/*    onChange={()=>console.log("Mexeram na unidade!!!")}*/}
-            {/*/>*/}
-            <OperationLog
-                title={"Alteração"}
-                action={"Correção dos nomes dos componentes"}
-                authorName={"Fulano Silva Sauro"}
-                adressImg={"https://neweralive.na/wp-content/uploads/2024/06/lloyd-sikeba.jpg"}
-                time={"Ontem"}
+            <ListItem
+                heading={"Ingrediente de self-service"}
+                adressImg={"https://s2.glbimg.com/HICC8kDSGKuUVscyYbsx-CFi40c=/620x345/e.glbimg.com/og/ed/f/original/2015/05/26/higaten2.jpg"}
             />
-            {/*<StrechList/>*/}
-            {/*<ImageUploader />*/}
-            {/*<Toast title={"Toast de sucesso!"} variant={"success"}/>*/}
-            {/*<Toast title={"Toast de alerta!"} variant={"alert"}/>*/}
-            {/*<Toast title={"Toast de erro!"} variant={"error"}/>*/}
-            {/*<Toast title={*/}
-            {/*    `Toast com um texto muitissísimo grande, além de um ícone */}
-            {/*    diferente.*/}
-            {/*    Por quê? Porque ele é único! (e nos ajuda a testar!!!)`*/}
-            {/*}*/}
-            {/*    customIcon={"wand-magic-sparkles"}*/}
-            {/*/>*/}
-            <StrechList/>
-
+            <ListItem
+                heading={"Mililitro"} subheading={"Tipo: Volume"}
+                icon={"cube"}
+            />
         </>
     )
 }
