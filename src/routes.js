@@ -6,6 +6,7 @@ import MainMenu from "./pages/login-e-entrada/MainMenu/MainMenu";
 import NewMovement from "./pages/cadastros-de-estoque/NewMovement/NewMovement"
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 import CategoriaProduto from "./pages/configuracoes-de-estoque/categoria-produto/CategoriaProduto"
+import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/unidade-de-medida-produto/UnidadeMedidaProduto"
 import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
@@ -28,6 +29,7 @@ function Rotas() {
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
+                <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
