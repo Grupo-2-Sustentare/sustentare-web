@@ -4,7 +4,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TopBar from "../components/TopBar/TopBar.jsx";
 import Switch from '../components/Switch/Switch.jsx';
 import SideMenu from '../components/SideMenu/SideMenu.jsx'
-import ItemProduto from '../components/ProductItem/ProductItem.jsx'
+import ItemProduto from '../components/ProductItem/Product.jsx'
 import Botao from '../components/IconButton/IconButton.jsx'
 
 const handleSwitchChange = (newState) => {
@@ -24,16 +24,16 @@ const ExibirComponentes = () => {
             {/* <Botao/> */}
             <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}/>
             {/* <SideMenu userName={userName} userImage={userImage}/> */}
-            <ItemProduto imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioquinha" weight="25 kilogramas" />
+            <ItemProduto addressImg="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioquinha" weight="25 kilogramas" />
             <ItemProduto 
-                imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
+                addressImg="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
                 title="Feijão carioca" 
                 weight="25 kilogramos" 
                 showCheckbox={false} 
                 showButtons={true} 
             />
             <ItemProduto 
-                imageUrl="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
+                addressImg="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
                 title="Feijão carioca" 
                 weight="25 kilogramos" 
                 showCheckbox={false} 

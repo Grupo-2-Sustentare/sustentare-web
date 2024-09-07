@@ -113,6 +113,7 @@ h4{
 }
 button{
     font-size: var(--tamanho-padrao);
+    cursor: pointer;
 }
 p, button, h1, h2, h3, h4{
     overflow: hidden;
