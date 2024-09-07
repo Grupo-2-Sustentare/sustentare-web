@@ -2,7 +2,6 @@
   display: flex;              
   background-color: var(--gunmetal);
   border: var(--borda-branca);
-  min-height: 75px;
   width: 100%;
   border-radius: 4px;
   flex-direction: column;
@@ -10,6 +9,7 @@
   padding: 4px 8px;
   cursor: pointer;
   gap: 16px;
+  height: fit-content;
 }
 
 .mainInfo {

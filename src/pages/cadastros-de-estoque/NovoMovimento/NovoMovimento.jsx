@@ -16,10 +16,10 @@ export default function NovoMovimento({}){
 
     // Mock, para testes
     movement = {"products": [
-            {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
-            {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
-            {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
-            {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
+            {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
+            {id: 1, "urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
+            {id: 2, "urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
+            {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
     ]}
 
     return (
@@ -30,7 +30,7 @@ export default function NovoMovimento({}){
                     <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
                 )}
                 {movement.products.map((p) => {
-                    return <Product addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}/>
+                    return <Product key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}/>
                 })}
             </div>
             <div className={styles.botoes}>
