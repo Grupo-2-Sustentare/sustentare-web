@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Debug from "./pages/debug/Debug";
 import Login from "./pages/login-e-entrada/Login/Login";
 import MainMenu from "./pages/login-e-entrada/MainMenu/MainMenu";
-import NewMovement from "./pages/cadastros-de-estoque/NewMovement/NewMovement"
+import NovoMovimento from "./pages/cadastros-de-estoque/NovoMovimento/NovoMovimento"
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
@@ -22,7 +22,7 @@ function Rotas() {
             <Routes>
                 {rotaPadrao}
                 <Route path={"/menu-inicial"} element={<MainMenu />} />
-                <Route path={"/cadastros-de-estoque"} element={<NewMovement />} />
+                <Route path={"/cadastros-de-estoque"} element={<NovoMovimento />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
