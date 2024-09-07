@@ -28,6 +28,11 @@ export default function Product(
         }
     }
 
+    // Imagem padrão quando nenhuma foi definida.
+    if (addressImg === undefined){
+        addressImg = "https://placehold.co/400/F5FBEF/22333B?text=Produto"
+    }
+
     let [checked, setChecked] = useState(checkedByDefault);
     let [expanded, setExpanded] = useState(false);
 
@@ -42,7 +47,7 @@ export default function Product(
     return (
       <div className={styles.product}>
         <div className={styles.mainInfo} onClick={handleClick}>
-          <img src={addressImg} alt={name} />
+          <img src={addressImg} alt={"Ícone do produto"}/>
 
           <span className={styles.info}>
             <h4>{name}</h4>
