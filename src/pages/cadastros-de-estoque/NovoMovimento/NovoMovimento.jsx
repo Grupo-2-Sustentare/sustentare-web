@@ -1,7 +1,7 @@
 import styles from "./novoMovimento.module.css"
 import Button from "../../../components/Button/Button";
 import TopBar from "../../../components/TopBar/TopBar";
-import Product from "../../../components/ProductItem/Product";
+import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
@@ -28,6 +28,11 @@ export default function NovoMovimento({}){
     //         {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
     // ]}
 
+    function editarProduto(p){
+        sessionStorage.setItem("productBeingEdited", JSON.stringify(p))
+        navigate("produto/tipo-movimento")
+    }
+
     return (
         <div className={styles.novoMovimento}>
             <TopBar title={"Nova Movimentação"} showBackArrow={false}/>
@@ -36,7 +41,13 @@ export default function NovoMovimento({}){
                     <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
                 )}
                 {movement.products.map((p) => {
-                    return <Product key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}/>
+                    let btnConfig = DEFAULT_BUTTON_CONFIG
+                    btnConfig.yellow.action = () => editarProduto(p)
+
+                    return <Product
+                        key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}
+                        buttonsConfig={btnConfig}
+                    />
                 })}
             </div>
             <div className={styles.botoes}>
