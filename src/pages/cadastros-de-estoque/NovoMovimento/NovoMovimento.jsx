@@ -1,21 +1,22 @@
 import styles from "./novoMovimento.module.css"
 import Button from "../../../components/Button/Button";
 import TopBar from "../../../components/TopBar/TopBar";
-import Product from "../../../components/ProductItem/Product";
+import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
 export default function NovoMovimento({}){
     const navigate = useNavigate()
 
-    let movement = sessionStorage.getItem("movement")
-    if (movement == null){
-        sessionStorage.setItem("movement", JSON.stringify({"products": []}))
-        movement = [{"products": []}]
-    } else {
-        movement = JSON.parse(movement)
+    let jsonMovs = JSON.parse(sessionStorage.getItem("movement"))
+    if (jsonMovs === null){
+        jsonMovs = {"products": []}
+        sessionStorage.setItem("movement", JSON.stringify(jsonMovs))
     }
+
+    let [movement, setMovement] = useState(jsonMovs)
 
     // Mock, para testes
     // movement = {"products": [
@@ -25,6 +26,11 @@ export default function NovoMovimento({}){
     //         {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
     // ]}
 
+    function editarProduto(p){
+        sessionStorage.setItem("productBeingEdited", JSON.stringify(p))
+        navigate("produto/tipo-movimento")
+    }
+
     return (
         <div className={styles.novoMovimento}>
             <TopBar title={"Nova Movimentação"} showBackArrow={false}/>
@@ -32,8 +38,14 @@ export default function NovoMovimento({}){
                 {movement.products.length === 0 && (
                     <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
                 )}
-                {movement.products.map((p) => {
-                    return <Product key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}/>
+                {movement.products.map((p, i) => {
+                    let btnConfig = DEFAULT_BUTTON_CONFIG
+                    btnConfig.yellow.action = () => editarProduto(movement.products[i])
+
+                    return <Product
+                        key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}
+                        buttonsConfig={btnConfig}
+                    />
                 })}
             </div>
             <div className={styles.botoes}>

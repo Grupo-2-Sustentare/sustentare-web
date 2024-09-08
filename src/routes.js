@@ -10,6 +10,7 @@ import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuraco
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
 import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/SelecaoProdutos";
+import TipoMovimento from "./pages/cadastros-de-estoque/TipoMovimento/TipoMovimento";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -25,6 +26,7 @@ function Rotas() {
                 <Route path={"/menu-inicial"} element={<MainMenu />} />
                 <Route path={"/cadastros-de-estoque"} element={<NovoMovimento />} />
                     <Route path={"/cadastros-de-estoque/selecao-produtos"} element={<SelecaoProdutos />} />
+                        <Route path={"/cadastros-de-estoque/produto/tipo-movimento"} element={<TipoMovimento />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
