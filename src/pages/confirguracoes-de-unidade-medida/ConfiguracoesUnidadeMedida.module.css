@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 24px;
    padding: 16px;
+   padding-bottom: 150px;
 }
 
 .divBotao{
@@ -12,6 +13,9 @@
     justify-content: center;
     align-items: center;
     border-top: var(--borda-branca);
+    position: fixed;
+    bottom: 0px; 
+    background-color: var(--gunmetal);
 }
 
 .divFiltroEBusca{
