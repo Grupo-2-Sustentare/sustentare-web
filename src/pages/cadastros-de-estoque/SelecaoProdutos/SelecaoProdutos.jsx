@@ -13,15 +13,14 @@ const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"
 export default function SelecaoProdutos(){
     // Mock, para testes
     const mock_produtos = [
-        {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
-        {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
-        {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
-        {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
+        {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 12, "unidade": "kilogramas"},
+        {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 32, "unidade": "unidades"},
+        {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 75, "unidade": "unidades"},
+        {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": 4, "unidade": "sacos"}
     ]
 
     const navigate = useNavigate()
     const [produtos,setProdutos] = useState(mock_produtos)
-    const refs = useRef([])
 
     function buscarProdutos(e){
         let query = e.target.value.toUpperCase()
@@ -53,9 +52,9 @@ export default function SelecaoProdutos(){
 
         if (movement.products.length === 0){
             movement.products.push(
-                {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
-                {id: 1, "urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
-                {id: 2, "urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"}
+                {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 1, "unidade": "kilograma"},
+                {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 1, "unidade": "unidade"},
+                {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 1, "unidade": "unidade"}
             )
         }
 
@@ -66,7 +65,7 @@ export default function SelecaoProdutos(){
     return(<div className={styles.selecaoProdutos}>
         <TopBar title={"Seleção de Produtos"} showBackArrow={true}/>
         <div className={styles.barraDeBusca}>
-            <IconInput onChange={buscarProdutos}/>
+            <IconInput onChange={buscarProdutos} placeholder={"Pesquisa por nome"}/>
             <StrechList
                 showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
                 onChange={ordenar}
@@ -77,7 +76,7 @@ export default function SelecaoProdutos(){
                 return <Product
                     key={i}
                     addressImg={p.urlImagem} name={p.nome}
-                    quantity={p.quantidade} checkboxVariant={true}
+                    quantity={`${p.quantidade} ${p.unidade}`} checkboxVariant={true}
                 />
             })}
         </div>

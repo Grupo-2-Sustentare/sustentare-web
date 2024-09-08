@@ -4,6 +4,7 @@ import TopBar from "../../../components/TopBar/TopBar";
 import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {errorToast, successToast} from "../../../components/Toast/Toast";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
@@ -20,15 +21,25 @@ export default function NovoMovimento({}){
 
     // Mock, para testes
     // movement = {"products": [
-    //         {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
-    //         {id: 1, "urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
-    //         {id: 2, "urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
-    //         {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
+    //         {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 12, "unidade": "kilogramas"},
+    //         {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 32, "unidade": "unidades"},
+    //         {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 75, "unidade": "unidades"},
+    //         {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": 4, "unidade": "sacos"}
     // ]}
 
     function editarProduto(p){
         sessionStorage.setItem("productBeingEdited", JSON.stringify(p))
         navigate("produto/tipo-movimento")
+    }
+
+    function finalizar(){
+        if (movement.products.length === 0){
+            errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
+            return
+        }
+        sessionStorage.setItem("movement", null)
+        successToast("Movimentação salva com sucesso!")
+        setTimeout(() => navigate("/menu-inicial"),2000)
     }
 
     return (
@@ -43,7 +54,7 @@ export default function NovoMovimento({}){
                     btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                     return <Product
-                        key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}
+                        addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
                         buttonsConfig={btnConfig}
                     />
                 })}
@@ -53,7 +64,7 @@ export default function NovoMovimento({}){
                     insideText={"Adicionar produto"}
                     onClick={() => navigate("/cadastros-de-estoque/selecao-produtos")}
                 />
-                <Button insideText={"Concluir movimento"}/>
+                <Button insideText={"Concluir movimento"} onClick={finalizar}/>
             </div>
         </div>
     )
