@@ -21,7 +21,6 @@ export default function SelecaoProdutos(){
 
     const navigate = useNavigate()
     const [produtos,setProdutos] = useState(mock_produtos)
-    const refs = useRef([])
 
     function buscarProdutos(e){
         let query = e.target.value.toUpperCase()
@@ -53,9 +52,9 @@ export default function SelecaoProdutos(){
 
         if (movement.products.length === 0){
             movement.products.push(
-                {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 12, "unidade": "kilogramas"},
-                {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 32, "unidade": "unidades"},
-                {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 75, "unidade": "unidades"}
+                {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 1, "unidade": "kilograma"},
+                {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 1, "unidade": "unidade"},
+                {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 1, "unidade": "unidade"}
             )
         }
 
