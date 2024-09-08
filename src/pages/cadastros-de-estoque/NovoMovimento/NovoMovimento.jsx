@@ -4,6 +4,7 @@ import TopBar from "../../../components/TopBar/TopBar";
 import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {errorToast, successToast} from "../../../components/Toast/Toast";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
@@ -31,6 +32,16 @@ export default function NovoMovimento({}){
         navigate("produto/tipo-movimento")
     }
 
+    function finalizar(){
+        if (movement.products.length === 0){
+            errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
+            return
+        }
+        sessionStorage.setItem("movement", null)
+        successToast("Movimentação salva com sucesso!")
+        setTimeout(() => navigate("/menu-inicial"),2000)
+    }
+
     return (
         <div className={styles.novoMovimento}>
             <TopBar title={"Nova Movimentação"} showBackArrow={false}/>
@@ -43,7 +54,7 @@ export default function NovoMovimento({}){
                     btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                     return <Product
-                        key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
+                        addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
                         buttonsConfig={btnConfig}
                     />
                 })}
@@ -53,7 +64,7 @@ export default function NovoMovimento({}){
                     insideText={"Adicionar produto"}
                     onClick={() => navigate("/cadastros-de-estoque/selecao-produtos")}
                 />
-                <Button insideText={"Concluir movimento"}/>
+                <Button insideText={"Concluir movimento"} onClick={finalizar}/>
             </div>
         </div>
     )
