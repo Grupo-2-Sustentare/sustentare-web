@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import styles from './topBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SideMenu from '../SideMenu/SideMenu';
+import {useNavigate} from "react-router-dom";
 
 export default function TopBar({ title, showBackArrow }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate()
+
 
   const handleMenuClick = () => {
     if (!showBackArrow) {
       setMenuOpen(!isMenuOpen);
+    } else {
+      navigate(-1)
     }
   };
 
