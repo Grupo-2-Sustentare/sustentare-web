@@ -2,10 +2,13 @@ import styles from "./novoMovimento.module.css"
 import Button from "../../../components/Button/Button";
 import TopBar from "../../../components/TopBar/TopBar";
 import Product from "../../../components/ProductItem/Product";
+import {useNavigate} from "react-router-dom";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
 export default function NovoMovimento({}){
+    const navigate = useNavigate()
+
     let movement = sessionStorage.getItem("movement")
     if (movement == null){
         sessionStorage.setItem("movement", JSON.stringify({"products": []}))
@@ -15,12 +18,12 @@ export default function NovoMovimento({}){
     }
 
     // Mock, para testes
-    movement = {"products": [
-            {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
-            {id: 1, "urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
-            {id: 2, "urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
-            {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
-    ]}
+    // movement = {"products": [
+    //         {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
+    //         {id: 1, "urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
+    //         {id: 2, "urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
+    //         {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
+    // ]}
 
     return (
         <div className={styles.novoMovimento}>
@@ -34,7 +37,10 @@ export default function NovoMovimento({}){
                 })}
             </div>
             <div className={styles.botoes}>
-                <Button insideText={"Adicionar produto"}/>
+                <Button
+                    insideText={"Adicionar produto"}
+                    onClick={() => navigate("/cadastros-de-estoque/selecao-produtos")}
+                />
                 <Button insideText={"Concluir movimento"}/>
             </div>
         </div>

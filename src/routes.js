@@ -9,6 +9,7 @@ import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
+import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/SelecaoProdutos";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -23,6 +24,7 @@ function Rotas() {
                 {rotaPadrao}
                 <Route path={"/menu-inicial"} element={<MainMenu />} />
                 <Route path={"/cadastros-de-estoque"} element={<NovoMovimento />} />
+                    <Route path={"/cadastros-de-estoque/selecao-produtos"} element={<SelecaoProdutos />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
