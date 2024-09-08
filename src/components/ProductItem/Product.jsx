@@ -4,7 +4,18 @@ import checkbox_styles from "../Checkbox/checkbox.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {alertToast} from "../Toast/Toast";
 
-
+export const DEFAULT_BUTTON_CONFIG = {
+    "yellow": {
+        "icon": "fa-solid fa-pen",
+        "text": "Editar quantidade",
+        "action": () => alertToast("Defina uma ação para esse botão.")
+    },
+    "red": {
+        "icon": "fa-solid fa-trash",
+        "text": "Remover",
+        "action": () => alertToast("Defina uma ação para esse botão.")
+    }
+}
 export default function Product(
     {
         addressImg, name, quantity, checkboxVariant = false, checkedByDefault = false,
@@ -14,18 +25,7 @@ export default function Product(
     // Inicializando o parâmetro que customiza os botões.
     // Para usar, respeite o schema abaixo:
     if (buttonsConfig === undefined){
-        buttonsConfig = {
-            "yellow": {
-                "icon": "fa-solid fa-pen",
-                "text": "Editar quantidade",
-                "action": () => alertToast("Defina uma ação para esse botão.")
-            },
-            "red": {
-                "icon": "fa-solid fa-trash",
-                "text": "Remover",
-                "action": () => alertToast("Defina uma ação para esse botão.")
-            }
-        }
+        buttonsConfig = DEFAULT_BUTTON_CONFIG
     }
 
     // Imagem padrão quando nenhuma foi definida.
