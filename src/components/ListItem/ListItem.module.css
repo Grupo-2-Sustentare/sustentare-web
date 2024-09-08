@@ -41,7 +41,7 @@
     display: block;
 }
 
-.itemInfo{
+.mainInfo{
     margin: 0;
     padding: 0;
     line-height: 1;
@@ -55,11 +55,11 @@
     gap: 8px;
 }
 
-.itemInfo h4 {
+.mainInfo h4 {
     font-size: 1em;
     font-weight: 500;
 }
-.itemInfo h5 {
+.mainInfo h5 {
     font-size: 16px;
     font-weight: 500;
 }

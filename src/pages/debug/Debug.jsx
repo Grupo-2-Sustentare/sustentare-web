@@ -17,8 +17,10 @@ import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import {toast} from "react-hot-toast";
 import {alertToast, errorToast, successToast} from "../../components/Toast/Toast";
 import ListItem from "../../components/ListItem/ListItem";
+import Product from "../../components/ProductItem/Product";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
+const IMG_FEIJAO = "https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png"
 const ICON_USUARIO = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
 const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
 
@@ -28,28 +30,24 @@ export default function Debug(){
 
     return (
         <>
-            <h3>MODO DEBUG</h3>
-            <p>Teste de componentes...</p>
-            <br/>
-            <TopBar/>
-
-            <Button
-                insideText={"Toast de alerta"}
-                onClick={()=>alertToast("texto!")}
+            <Button insideText={"Nãoooo"}/>
+            <Product
+                name={"Feijão carioquinha"}
+                quantity={"25 kilogramas"}
+                addressImg={IMG_FEIJAO}
             />
-
-            <ListItem heading={"Passou do prazo de validade"}/>
-            <ListItem
-                heading={"Antônio"} subheading={"Usuário"}
-                adressImg={ICON_USUARIO} fullBorderRadius={true}
+            <Product
+                name={"Feijão carioquinha"}
+                quantity={"25 kilogramas"}
+                addressImg={IMG_FEIJAO}
+                checkboxVariant={true}
             />
-            <ListItem
-                heading={"Ingrediente de self-service"}
-                adressImg={"https://s2.glbimg.com/HICC8kDSGKuUVscyYbsx-CFi40c=/620x345/e.glbimg.com/og/ed/f/original/2015/05/26/higaten2.jpg"}
-            />
-            <ListItem
-                heading={"Mililitro"} subheading={"Tipo: Volume"}
-                icon={"cube"}
+            <Product
+                name={"Feijão carioquinha"}
+                quantity={"25 kilogramas"}
+                addressImg={IMG_FEIJAO}
+                checkboxVariant={true}
+                checkedByDefault={true}
             />
         </>
     )
