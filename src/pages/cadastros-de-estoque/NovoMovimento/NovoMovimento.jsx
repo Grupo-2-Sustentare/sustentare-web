@@ -3,19 +3,22 @@ import Button from "../../../components/Button/Button";
 import TopBar from "../../../components/TopBar/TopBar";
 import Product from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
 export default function NovoMovimento({}){
     const navigate = useNavigate()
 
-    let movement = sessionStorage.getItem("movement")
-    if (movement == null){
-        sessionStorage.setItem("movement", JSON.stringify({"products": []}))
-        movement = [{"products": []}]
-    } else {
-        movement = JSON.parse(movement)
+    let jsonMovs = JSON.parse(sessionStorage.getItem("movement"))
+    if (jsonMovs === null){
+        jsonMovs = {"products": []}
+        sessionStorage.setItem("movement", JSON.stringify(jsonMovs))
     }
+
+    let [movement, setMovement] = useState(jsonMovs)
+
+    console.log(movement)
 
     // Mock, para testes
     // movement = {"products": [
