@@ -18,8 +18,6 @@ export default function NovoMovimento({}){
 
     let [movement, setMovement] = useState(jsonMovs)
 
-    console.log(movement)
-
     // Mock, para testes
     // movement = {"products": [
     //         {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
@@ -40,9 +38,9 @@ export default function NovoMovimento({}){
                 {movement.products.length === 0 && (
                     <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
                 )}
-                {movement.products.map((p) => {
+                {movement.products.map((p, i) => {
                     let btnConfig = DEFAULT_BUTTON_CONFIG
-                    btnConfig.yellow.action = () => editarProduto(p)
+                    btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                     return <Product
                         key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}

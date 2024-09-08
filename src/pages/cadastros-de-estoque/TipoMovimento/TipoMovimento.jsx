@@ -6,7 +6,6 @@ import IconButton from "../../../components/IconButton/IconButton";
 export default function TipoMovimento(){
     let p = JSON.parse(sessionStorage.getItem("productBeingEdited"))
 
-
     return (<div>
         <TopBar title={"Tipo de movimento"} showBackArrow={true}/>
         <div className={styles.cabecalho}>
