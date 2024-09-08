@@ -20,10 +20,10 @@ export default function NovoMovimento({}){
 
     // Mock, para testes
     // movement = {"products": [
-    //         {id: 0, "urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": "12 kilogramas"},
-    //         {id: 1, "urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": "32 unidades"},
-    //         {id: 2, "urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": "75 unidades"},
-    //         {id: 3, "urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": "4 sacos"},
+    //         {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 12, "unidade": "kilogramas"},
+    //         {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 32, "unidade": "unidades"},
+    //         {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 75, "unidade": "unidades"},
+    //         {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": 4, "unidade": "sacos"}
     // ]}
 
     function editarProduto(p){
@@ -43,7 +43,7 @@ export default function NovoMovimento({}){
                     btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                     return <Product
-                        key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={p.quantidade}
+                        key={p.id} addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
                         buttonsConfig={btnConfig}
                     />
                 })}
