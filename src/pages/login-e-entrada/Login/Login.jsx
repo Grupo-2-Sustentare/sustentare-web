@@ -42,7 +42,7 @@ const Login = () => {
     )
 
     return (
-        <div className={styles["login-e-entrada"]}>
+        <div className={styles.login}>
             <h1>Paralelo 19</h1>
             <form>
                 <TextInput label={"Nome:"} value={nome} onChange={(e) => handleInputChange(e, setNome)}/>

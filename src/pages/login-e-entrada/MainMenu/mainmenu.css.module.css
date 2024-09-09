@@ -1,0 +1,11 @@
+.topBar{
+    height: 65px;
+}
+
+.botoesTela{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 70px;
+    justify-content: center;
+}

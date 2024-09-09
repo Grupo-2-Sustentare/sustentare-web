@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
 
-     const github = "https://github.com/Grupo-2-Sustentare/sustentare-web/tree/main/src/assets/images/catgorias";
+     const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";
      return(
           <>
              <div className={style.topBar}>
@@ -25,36 +25,36 @@ export default function ConfigurationMenu({}){
                     heading={"Ingredientes do self service"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={github + "/Self service"}/>
+                    adressImg={githubPath + "Self%20service.png"}/>
                 <ListItem 
                     heading={"Bebidas"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJoN1-whoTTukSdz0dLPTXwt_gJodJ-OKJrpQmVEVTQBUFJm_lRs0xITVAfR1duTCjWGp6K-0QyN85zXsRH4yAueWQfIy3btbCuXcIUScTqopyTuF4-Fy7aydrMzi4rU1blc83eXcL0BwF/s1600/Foto+1.jpg"}/>
+                    adressImg={githubPath + "bebidas.jpg"}/>
                 <ListItem 
                     heading={"Doces para encomenda"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={"https://soubh.uai.com.br/uploads/post/image/11608/main_shutterstock_394680466.jpg"}/>
+                    adressImg={githubPath + "doces%20encomenda.jpg"}/>
                 <ListItem 
                     heading={"Produtos de limpeza"} 
                     subheading={""} fullBorderRadius={true} 
-                    adressImg={"https://www.hygibras.com/wp-content/uploads/2022/01/produtos-quimicos-de-limpeza-destaque.png"}/>
+                    adressImg={githubPath + "prod%20limpeza.jpg"}/>
                 <ListItem 
                     heading={"Utensilios de cozinha"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={"https://cdn.awsli.com.br/757/757427/produto/1404312321e408e8f2b.jpg"}/>
+                    adressImg={githubPath + "utensilios.jpg"}/>
                 <ListItem 
                     heading={"Descartáveis"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={"https://sg-delivery.s3.sa-east-1.amazonaws.com/upload/images/164006202303286423429611628.jpg"}/>
+                    adressImg={githubPath + "descartaveis.jpg"}/>
                 <ListItem 
                     heading={"Condimentos avulsos"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={"https://imgs.extra.com.br/1558877951/1xg.jpg"}/>
+                    adressImg={githubPath + "condimentos.jpg"}/>
              </div>
 
           </>
