@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput/TextInput";
 import TopBar from "../../components/TopBar/TopBar";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import IconInput from "../../components/IconInput/IconInput";
-import ProductItem from "../../components/ProductItem/ProductItem"
+import Product from "../../components/ProductItem/Product";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
@@ -23,10 +23,10 @@ const ConfiguracoesCategorias = () => {
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <ProductItem title="Sobremesa" showCheckbox={false} />
-                <ProductItem title="Balcão" showCheckbox={false} />
-                <ProductItem title="self-service" showCheckbox={false} />
-                <ProductItem title="Bebidas" showCheckbox={false} />
+                <Product title="Sobremesa" showCheckbox={false} />
+                <Product title="Balcão" showCheckbox={false} />
+                <Product title="self-service" showCheckbox={false} />
+                <Product title="Bebidas" showCheckbox={false} />
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova categoria" onClick={handleSave}/>

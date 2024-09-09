@@ -13,6 +13,9 @@ const CriandoUnidadeMedida = () => {
 
 
     return (
+
+        // let[ola,setOla] = useState(false)
+
         <div>
             <TopBar title={"Criando Unidade de Medida"} />
             <div className={styles.divPrincipal}>
@@ -37,6 +40,7 @@ const CriandoUnidadeMedida = () => {
                 <div className={styles.divMeasumentTextInput}>
                     <h4>Uma libra equivale a</h4>
                     <MeasurementUnitInput />
+                    <h4 className={styles.divText}>Selecione um tipo de unidade de medida para realizar o cálculo de base</h4>
                 </div>
                 
                 
