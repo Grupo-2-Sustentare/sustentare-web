@@ -3,10 +3,10 @@
     flex-direction: column;
     align-items: start;
     gap: 8px;
+    width: 100%;
 }
 
 .textInput label{
-    max-width: 262px;
     font-size: 1.3em;
     font-weight: 500;
 }
@@ -15,6 +15,7 @@
     height: 47px;
     width: 100%;
     padding: 8px;
+    width: 100%;
     background: var(--gunmetal);
     border: var(--borda-branca);
     border-radius: 8px;

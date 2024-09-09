@@ -1,4 +1,4 @@
-import styles from "../configuracoes-de-produtos/Configuracoes-de-produtos.module.css";
+import styles from "./ConfiguracoesCategoria.module.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import StreachList from "../../components/StrechList/StrechList";
@@ -9,7 +9,7 @@ import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import IconInput from "../../components/IconInput/IconInput";
 import ProductItem from "../../components/ProductItem/ProductItem"
 
-const ConfiguracoesProdutos = () => {
+const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
     const handleSave = () => {
         navigate("/criando-produto");
@@ -17,24 +17,22 @@ const ConfiguracoesProdutos = () => {
 
     return (
         <div>
-            <TopBar title={"configurações de produtos"}/>
+            <TopBar title={"configurações de categorias"}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <ProductItem title="Feijão" weight="25 kilogramas"  showCheckbox={false} />
-                <ProductItem title="Frango" weight="15 kilogramas"  showCheckbox={false} />
-                <ProductItem title="Coca-Cola" weight="100 unidades"  showCheckbox={false} />
-                <ProductItem title="Pepsi" weight="85 unidades"  showCheckbox={false} />
-                <ProductItem title="Água" weight="110 unidades"  showCheckbox={false} />
-                <ProductItem title="Arroz" weight="50 kilogramas"  showCheckbox={false} />
+                <ProductItem title="Sobremesa" showCheckbox={false} />
+                <ProductItem title="Balcão" showCheckbox={false} />
+                <ProductItem title="self-service" showCheckbox={false} />
+                <ProductItem title="Bebidas" showCheckbox={false} />
             </div>
             <div className={styles.divBotao}>
-            <Button insideText="Cadastrar novo produto" onClick={handleSave}/>
+            <Button insideText="Cadastrar nova categoria" onClick={handleSave}/>
             </div>
         </div>
     );
 };
 
-export default ConfiguracoesProdutos;
+export default ConfiguracoesCategorias;

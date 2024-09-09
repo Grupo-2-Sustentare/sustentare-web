@@ -2,19 +2,19 @@ import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate pa
 import React, { useState } from "react"; // Importa React e o hook useState para gerenciamento de estado
 import StreachList from "../../components/StrechList/StrechList"
 import TextInput from "../../components/TextInput/TextInput"
-import styles from "./CriandoProduto.module.css";
+import styles from "./EditandoProduto.module.css";
 import Checkbox from "../../components/Checkbox/Checkbox";
 import MeasurementUnitInput from "../../components/MeasumentTextInput/MeasurementUnitInput"
 import TopBar from "../../components/TopBar/TopBar"
 import Button from "../../components/Button/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader"
 
-const CriandoProduto = () => {
+const EditandoProduto = () => {
 
 
     return (
         <div>
-            <TopBar title={"Criando Novo Produto"} />
+            <TopBar title={"Editando Produto"} />
             <div className={styles.divPrincipal}>
                 <ImageUploader/>
                 <div className={styles.TextInput}>
@@ -39,10 +39,10 @@ const CriandoProduto = () => {
                 
             </div>
                 <div className={styles.divBotao}>
-                    <Button insideText={"Salvar novo produto"}/>
+                    <Button insideText={"Salvar edição"}/>
                 </div>
         </div>
     );
 };
 
-export default CriandoProduto;
+export default EditandoProduto;

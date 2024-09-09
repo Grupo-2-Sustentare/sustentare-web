@@ -14,6 +14,10 @@ import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
+import EditandoProduto from "./pages/editando-produto/EditandoProduto"
+import ConfiguracoesCategorias from "./pages/configuracoes-de-categorias/ConfiguracoeCategorias"
+import ConfiguracoesUnidadeMedida from "./pages/confirguracoes-de-unidade-medida/ConfiguracoesUnidadeMedida"
+import CriandoUnidadeMedida from "./pages/criando-unidade-medida/CriandoUnidadeMedida"
 import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/SelecaoProdutos";
 import TipoMovimento from "./pages/cadastros-de-estoque/TipoMovimento/TipoMovimento";
 import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/QuantidadeMovimento/QuantidadeMovimento";
@@ -44,6 +48,10 @@ function Rotas() {
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
+                <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
+                <Route path={"/configuracoes-de-categorias"} element={<ConfiguracoesCategorias/>}/>
+                <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
+                <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
             </Routes>
         </BrowserRouter>
         )

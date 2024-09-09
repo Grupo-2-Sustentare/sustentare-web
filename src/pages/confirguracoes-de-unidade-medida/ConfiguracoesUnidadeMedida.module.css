@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    width: 100%;
-    padding: 16px;
-    padding-bottom: 150px; /* Adicione este padding para criar espaço no final */
+   padding: 16px;
+   padding-bottom: 150px;
 }
 
 .divBotao{
@@ -15,8 +14,7 @@
     align-items: center;
     border-top: var(--borda-branca);
     position: fixed;
-    bottom: 0; /* Alterado para 0 */
-    left: 0; /* Certifique-se de que o botão fique fixo ao rodapé */
+    bottom: 0px; 
     background-color: var(--gunmetal);
 }
 
@@ -29,5 +27,4 @@
     border-bottom: var(--borda-branca);
     padding-top: 8px;
     padding-bottom: 16px;
-    width: 100%;
 }

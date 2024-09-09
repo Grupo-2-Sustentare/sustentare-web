@@ -61,26 +61,27 @@ const Cadastro = () => {
     };
 
     return (
-        <div className={styles.divPrincipal}>
-                <TopBar/>
+        <div>
+                <TopBar title={"Cadastro"}/>
+                <div className={styles.divPrincipal}>
                 <div className={styles.divTexInput}>
-                    <h1 className={styles.h1}>Email:</h1>
+                    <h4 className={styles.h4}>Email:</h4>
                     <TextInput Input value={email} type="text" onChange={(e) => handleTextInputChange(e, setEmail)}/>
                 </div>
                 <div className={styles.divTexInput}>
-                    <h1 className={styles.h1}>Nome:</h1>
+                    <h4 className={styles.h4}>Nome:</h4>
                     <TextInput value={nome} type="text" onChange={(e) => handleTextInputChange(e, setNome)}/>
                 </div>
                 <div className={styles.divTexInput}>
-                    <h1 className={styles.h1}>Senha</h1>
+                    <h4 className={styles.h4}>Senha</h4>
                     <TextInput value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)}/>
                 </div>
                 <div className={styles.divAdministrador}>
-                    <h1 className={styles.h1}>Administrador:</h1>
+                    <h4 className={styles.h4}>Administrador:</h4>
                     <Checkbox onClick={handleCheckboxInputChange}/>
                 </div>
                 <div className={styles.campo}>
-                    <h1 className={styles.h1}>Adicionar uma imagem:</h1>
+                    <h4 className={styles.h4}>Adicionar uma imagem:</h4>
                     <div className={styles.devInput}>
                         <input 
                             type="file"
@@ -91,10 +92,10 @@ const Cadastro = () => {
                     </div>
                 </div>
 
+                </div>
                 <div className={styles.divButton}>
                     <Button insideText={"Confirmar"}  onClick={handleSave}/>
                 </div>
-
         </div>
     );
 };
