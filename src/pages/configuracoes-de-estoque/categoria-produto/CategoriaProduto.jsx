@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
 
+     const github = "https://github.com/Grupo-2-Sustentare/sustentare-web/tree/main/src/assets/images/catgorias";
      return(
           <>
              <div className={style.topBar}>
@@ -24,7 +25,7 @@ export default function ConfigurationMenu({}){
                     heading={"Ingredientes do self service"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={"https://mercadoeconsumo.com.br/wp-content/uploads/2021/12/self-service.jpg"}/>
+                    adressImg={github + "/Self service"}/>
                 <ListItem 
                     heading={"Bebidas"} 
                     subheading={""} 
