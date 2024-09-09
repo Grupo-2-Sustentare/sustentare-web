@@ -5,9 +5,14 @@ import MeasurementUnitInput from "../../../components/MeasumentTextInput/Measure
 import Button from "../../../components/Button/Button";
 import style from "../editando-unidade-de-medida/editandoUnidadeDeMedida.module.css";
 import {useNavigate} from "react-router-dom";
+import { successToast } from "../../../components/Toast/Toast.jsx";
 
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
+
+     function salvarEdicao(){
+        successToast("Unidade de medida editada com sucesso")
+     }
 
      return(
           <>
@@ -26,7 +31,7 @@ export default function ConfigurationMenu({}){
              </div>
              <hr></hr>
              <div className={style.conteudoFinalTela}>
-                <Button insideText={"Salvar edição"}/>
+                <Button insideText={"Salvar edição"} onClick={salvarEdicao}/>
              </div>
                 
           </>

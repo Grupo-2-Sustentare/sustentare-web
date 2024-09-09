@@ -10,7 +10,7 @@ export default function ConfigurationMenu({}){
      const navigate = useNavigate();
 
      function salvarEdicao(){
-         successToast("AAAAAAAAAAAAA")
+         successToast("Categoria editada com sucesso")
      }
 
      const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";
