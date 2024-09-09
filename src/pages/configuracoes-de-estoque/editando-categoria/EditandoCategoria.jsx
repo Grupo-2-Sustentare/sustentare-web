@@ -20,7 +20,7 @@ export default function ConfigurationMenu({}){
              </div>
              <hr></hr>
              <div className={style.conteudoFinalTela}>
-                <Button insideText={"Salvar edições"}/>
+                <Button insideText={"Salvar edição"}/>
              </div>
                 
           </>

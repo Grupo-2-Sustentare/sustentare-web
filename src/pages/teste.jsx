@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import TopBar from "../components/TopBar/TopBar.jsx";
 import Switch from '../components/Switch/Switch.jsx';
+import Button from "../components/Button/Button.jsx";
 import SideMenu from '../components/SideMenu/SideMenu.jsx'
 import ItemProduto from '../components/ProductItem/Product.jsx'
 import Botao from '../components/IconButton/IconButton.jsx'
@@ -18,27 +19,7 @@ const ExibirComponentes = () => {
 
     return (
         <div>
-            <TopBar title="Entrada DE PRODUTOS" showBackArrow={false} />
-            {/* <TopBar title="histórico de operações" showBackArrow={false} /> */}
-            {/* <TopBar title="AAAAAAAAaaaaaaaaaaaaaaaa" showBackArrow={true} /> */}
-            {/* <Botao/> */}
-            <Switch initialState={false} onChange={(newState) => console.log(newState)} labels={{ on: 'Ativo', off: 'Inativo' }}/>
-            {/* <SideMenu userName={userName} userImage={userImage}/> */}
-            <ItemProduto addressImg="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" title="Feijão carioquinha" weight="25 kilogramas" />
-            <ItemProduto 
-                addressImg="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
-                title="Feijão carioca" 
-                weight="25 kilogramos" 
-                showCheckbox={false} 
-                showButtons={true} 
-            />
-            <ItemProduto 
-                addressImg="https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png" 
-                title="Feijão carioca" 
-                weight="25 kilogramos" 
-                showCheckbox={false} 
-                showButtons={true} 
-            />
+            <Button insideText={"aaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb"}/>
         </div>
     );
 }
