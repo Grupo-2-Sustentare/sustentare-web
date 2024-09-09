@@ -13,6 +13,7 @@
 
 .textInput > div{
     height: 47px;
+    width: 100%;
     padding: 8px;
     width: 100%;
     background: var(--gunmetal);

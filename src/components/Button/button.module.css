@@ -1,14 +1,14 @@
-button{
+.button{
     background-color: var(--carvao);
     border: var(--borda-branca);
     border-radius: 8px;
     height: 65px;
-    width: 190px;
+    width: 100%;
     color: var(--white);
     box-shadow: var(--sombra-ex-vermelha);
     font-weight: 600;
 }
 
-button:active{
+.button:active{
     box-shadow: var(--sombra-in-clara), var(--sombra-ex-vermelha);
 }

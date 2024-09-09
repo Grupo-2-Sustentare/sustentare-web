@@ -3,8 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Debug from "./pages/debug/Debug";
 import Login from "./pages/login-e-entrada/Login/Login";
 import MainMenu from "./pages/login-e-entrada/MainMenu/MainMenu";
-import NewMovement from "./pages/cadastros-de-estoque/NewMovement/NewMovement"
+import NovoMovimento from "./pages/cadastros-de-estoque/NovoMovimento/NovoMovimento"
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
+import CategoriaProduto from "./pages/configuracoes-de-estoque/categoria-produto/CategoriaProduto"
+import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/unidade-de-medida-produto/UnidadeMedidaProduto"
+import CriandoNovaCategoria from "./pages/configuracoes-de-estoque/criando-nova-categoria/CriandoNovaCategoria"
+import EditandoCategoria from "./pages/configuracoes-de-estoque/editando-categoria/EditandoCategoria"
 import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
@@ -13,6 +17,9 @@ import EditandoProduto from "./pages/editando-produto/EditandoProduto"
 import ConfiguracoesCategorias from "./pages/configuracoes-de-categorias/ConfiguracoeCategorias"
 import ConfiguracoesUnidadeMedida from "./pages/confirguracoes-de-unidade-medida/ConfiguracoesUnidadeMedida"
 import CriandoUnidadeMedida from "./pages/criando-unidade-medida/CriandoUnidadeMedida"
+import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/SelecaoProdutos";
+import TipoMovimento from "./pages/cadastros-de-estoque/TipoMovimento/TipoMovimento";
+import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/QuantidadeMovimento/QuantidadeMovimento";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -26,8 +33,15 @@ function Rotas() {
             <Routes>
                 {rotaPadrao}
                 <Route path={"/menu-inicial"} element={<MainMenu />} />
-                <Route path={"/cadastros-de-estoque"} element={<NewMovement />} />
+                <Route path={"/cadastros-de-estoque"} element={<NovoMovimento />} />
+                    <Route path={"/cadastros-de-estoque/selecao-produtos"} element={<SelecaoProdutos />} />
+                        <Route path={"/cadastros-de-estoque/produto/tipo-movimento"} element={<TipoMovimento />} />
+                        <Route path={"/cadastros-de-estoque/produto/quantidade-movimento"} element={<QuantidadeMovimento />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
+                        <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
+                        <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
+                        <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
+                        <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />

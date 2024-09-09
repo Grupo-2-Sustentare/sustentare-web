@@ -16,64 +16,39 @@ import SideMenu from "../../components/SideMenu/SideMenu";
 import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import {toast} from "react-hot-toast";
 import {alertToast, errorToast, successToast} from "../../components/Toast/Toast";
+import ListItem from "../../components/ListItem/ListItem";
+import Product from "../../components/ProductItem/Product";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
+const IMG_FEIJAO = "https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png"
+const ICON_USUARIO = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
 const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
 
 export default function Debug(){
     sessionStorage.setItem("nome_usuario", "Antônio")
-    sessionStorage.setItem(
-        "icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
-    )
+    sessionStorage.setItem("icone_usuario", ICON_USUARIO)
 
     return (
         <>
-            <h3>MODO DEBUG</h3>
-            <p>Teste de componentes...</p>
-            <br/>
-            <TopBar/>
-
-            <Button
-                insideText={"Toast de sucesso"}
-                onClick={()=>successToast("texto!")}
+            <Button insideText={"Nãoooo"}/>
+            <Product
+                name={"Feijão carioquinha"}
+                quantity={"25 kilogramas"}
+                addressImg={IMG_FEIJAO}
             />
-            <Button
-                insideText={"Toast de alerta"}
-                onClick={()=>alertToast("texto!")}
+            <Product
+                name={"Feijão carioquinha"}
+                quantity={"25 kilogramas"}
+                addressImg={IMG_FEIJAO}
+                checkboxVariant={true}
             />
-            <Button
-                insideText={"Toast de erro"}
-                onClick={()=>errorToast("texto!")}
+            <Product
+                name={"Feijão carioquinha"}
+                quantity={"25 kilogramas"}
+                addressImg={IMG_FEIJAO}
+                checkboxVariant={true}
+                checkedByDefault={true}
             />
-
-
-            {/*<IconInput label={"Senha"} type={"password"} icon={"user-secret"}/>*/}
-            {/*<MeasurementUnitInput*/}
-            {/*    label={"teste"}*/}
-            {/*    measurementUnit={"Unidade de medida mega hiper grande"}*/}
-            {/*    onChange={()=>console.log("Mexeram na unidade!!!")}*/}
-            {/*/>*/}
-            <OperationLog
-                title={"Alteração"}
-                action={"Correção dos nomes dos componentes"}
-                authorName={"Fulano Silva Sauro"}
-                adressImg={"https://neweralive.na/wp-content/uploads/2024/06/lloyd-sikeba.jpg"}
-                time={"Ontem"}
-            />
-            {/*<StrechList/>*/}
-            {/*<ImageUploader />*/}
-            {/*<Toast title={"Toast de sucesso!"} variant={"success"}/>*/}
-            {/*<Toast title={"Toast de alerta!"} variant={"alert"}/>*/}
-            {/*<Toast title={"Toast de erro!"} variant={"error"}/>*/}
-            {/*<Toast title={*/}
-            {/*    `Toast com um texto muitissísimo grande, além de um ícone */}
-            {/*    diferente.*/}
-            {/*    Por quê? Porque ele é único! (e nos ajuda a testar!!!)`*/}
-            {/*}*/}
-            {/*    customIcon={"wand-magic-sparkles"}*/}
-            {/*/>*/}
-            <StrechList/>
-
         </>
     )
 }

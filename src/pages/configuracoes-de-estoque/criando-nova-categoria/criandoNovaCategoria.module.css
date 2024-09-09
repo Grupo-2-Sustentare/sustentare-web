@@ -1,0 +1,24 @@
+.topBar{
+    height: 65px;
+}
+ 
+.conteudoInicioTela{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 7px;
+    width: 100%;
+    height: 645px;
+}
+
+.conteudoFinalTela{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding-left: 45px;
+    padding-right: 45px;
+    position: relative;
+}

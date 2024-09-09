@@ -1,143 +1,89 @@
-.itemCard {
+.product {
   display: flex;              
   background-color: var(--gunmetal);
-  border: 1px solid var(--white);
-  height: 75px;
+  border: var(--borda-branca);
   width: 100%;
-  border-radius: 8px;
-  /* transition: all 0.2s ease; */
+  border-radius: 4px;
   flex-direction: column;
-  margin: 5px;
+  justify-content: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  gap: 16px;
+  height: fit-content;
 }
 
-.expanded {
-  height: 200px;
+.mainInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.mainInfo > img{
+  border-radius: 8px;
+  border: var(--borda-branca);
+  height: 60px;
+  width: 60px;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+  width: 70%;
+ }
+
+.info > *{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.info h4{
+  font-size: 1em;
+  font-weight: bold;
+}
+.info h5 {
+  font-size: 0.8em;
+  font-weight: initial;
+}
+
+.checked {
+  border-color: var(--white);
+  background-color: var(--gunmetal);
   box-shadow: var(--sombra-in-clara);
 }
   
-  
-.textProductItem{
+.buttons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  font-family: var(--fonte-corpo);
-  /* background-color: #ffc107; */
-  width: 60%;
-  height: 100%;
- }
-
- .text1{
-    font-size: 1em;
-    font-weight: bold;
- }
-
- .text2{
-  font-size: 0.8em;
- }
-
- .moldura{
+  align-items: center;
+  gap: 16px;
+  height: fit-content;
+  margin: 16px 0;
+}
+.buttons > button{
+  color: var(--preto);
+  border: none;
+  border-radius: 16px;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 16px;
+  height: fit-content;
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* background-color: #dc3545; */
-  height: 70px;
-  width: 24%;
+  gap: 16px;
 }
-  .image{
-    border-radius: 8px;
-    border: 2px solid var(--white);
-    height: 85%;
-    width: 80%;
-  }
-  
-  .itemInfo {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    justify-content: space-evenly;
-    width: 100%;
-    height: 100%; /* Define uma altura mínima para manter os itens corretamente dispostos */
+.editBtn {
+  background-color: var(--yellow);
+}
+.removeBtn {
+  background-color: var(--vermelho);
 }
 
-.itemActions {
-    display: flex;
-    /* align-items: center;
-    justify-content: center;
-    margin-top: 10px;  */
+.icon{
+  font-size: 0.8em;
 }
-
-  .checked {
-    /* background-color: #ffc107; */
-    border-color: var(--white);
-    background-color: var(--gunmetal);
-    box-shadow: var(--sombra-in-clara);
-  }
-  .divCheckbox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: greenyellow; */
-    height: 100%;
-    width: 13%;
-  }
-  
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    /* background-color:aqua; */
-    justify-content: center;
-    align-items: center;
-    height: 120px;
-    width: 100%;
-    /* margin-left: 10px; */
-  }
-  
-  .showButtons .buttons {
-    display: flex;
-    height: 50px;
-    width: 50px;
-  }
-  
-  .editBtn {
-    background-color: var(--yellow);
-    color: var(--preto);
-    border: none;
-    font-size: 1em;
-    /* padding: 5px 10px; */
-    margin-bottom: 10px;
-    border-radius: 10px;
-    /* cursor: pointer; */
-    height: 45px;
-    width: 70%;
-  }
-  
-  .removeBtn {
-    background-color: var(--vermelho);
-    font-size: 1em;
-    color: var(--preto);
-    border: none;
-    /* padding: 5px 10px; */
-    border-radius: 10px;
-    height: 45px;
-    width: 45%;
-  }
-
-  .icon {
-    /* filter: black !important; */
-    color: black;
-  }
-
-  #botaoEdt .FontAwesomeIcon{
-    color: black;
-  }
-  
-.divExtensao{
-  height: 100%;
-  width: 13%;
-}
-  
-.hidden {
-  display: none;
+.icon > path {
+  fill: var(--preto);
 }
