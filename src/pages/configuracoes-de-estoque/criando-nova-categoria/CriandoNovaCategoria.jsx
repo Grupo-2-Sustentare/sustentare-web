@@ -4,9 +4,14 @@ import TextInput from "../../../components/TextInput/TextInput";
 import Button from "../../../components/Button/Button";
 import style from "../criando-nova-categoria/criandoNovaCategoria.module.css";
 import {useNavigate} from "react-router-dom";
+import { successToast } from "../../../components/Toast/Toast";
 
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
+
+     function categoriaCriada(){
+      successToast("Categoria criada com sucesso")
+     }
 
      return(
           <>
@@ -20,7 +25,7 @@ export default function ConfigurationMenu({}){
              </div>
              <hr></hr>
              <div className={style.conteudoFinalTela}>
-                <Button insideText={"Salvar nova categoria"}/>
+                <Button insideText={"Salvar nova categoria"} onClick={categoriaCriada}/>
              </div>
                 
           </>

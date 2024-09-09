@@ -1,14 +1,14 @@
+.menu{
+    height: 80px;
+}
+
 .containerButton{
     display: flex;
-    /* background-color: blueviolet; */
     flex-direction: column;
     height: 600px;
     width: 100%;
     justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-}
-
-.menu{
-    height: 80px;
+    padding: 0 100px;
+    gap: 30px;
 }

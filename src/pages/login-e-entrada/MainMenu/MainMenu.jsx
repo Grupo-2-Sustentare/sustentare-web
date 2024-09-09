@@ -1,4 +1,6 @@
 import IconButton from "../../../components/IconButton/IconButton";
+import TopBar from "../../../components/TopBar/TopBar";
+import style from "../MainMenu/mainMenu.css.module.css"
 import {useNavigate} from "react-router-dom";
 
 export default function MainMenu({}){
@@ -6,7 +8,11 @@ export default function MainMenu({}){
 
     return (
         <>
-            <IconButton
+        <div className={style.topBar}>
+               <TopBar title="Página Inicial" showBackArrow={false}/>
+        </div>
+        <div className={style.botoesTela}>
+        <IconButton
                 icone={"right-to-bracket"}
                 texto={"Registrar movimento no estoque"}
                 onClick={() => navigate("/cadastros-de-estoque")}
@@ -26,6 +32,7 @@ export default function MainMenu({}){
                 texto={"Gerenciar equipe"}
                 onClick={() => {alert("Não Implementado")}}
             />
+        </div>
         </>
     )
 }
