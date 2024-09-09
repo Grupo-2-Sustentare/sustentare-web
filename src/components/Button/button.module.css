@@ -3,9 +3,11 @@
     border: var(--borda-branca);
     border-radius: 8px;
     height: 65px;
-    width: 100%;
+    width: fit-content;
     color: var(--white);
     box-shadow: var(--sombra-ex-vermelha);
+    padding: 0px 16px;
+    max-width: 80%;
     font-weight: 600;
 }
 
