@@ -1,11 +1,13 @@
-.menu{
+.topBar{
    height: 65px;
 }
 
 .conteudoInicioTela{
+    display: flex;
+    flex-direction: column;
     padding: 6px;
     height: 120px;
-    gap: 6px;
+    gap: 8px;
 }
 
 hr{

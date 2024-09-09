@@ -7,7 +7,7 @@
 
 .textInput input{
     height: 47px;
-    width: 262px;
+    width: 100%;
     padding: 8px;
     background: var(--gunmetal);
     border: var(--borda-branca);
@@ -17,6 +17,6 @@
 
 .textInput label{
     max-width: 262px;
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 500;
 }

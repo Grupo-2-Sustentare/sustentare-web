@@ -10,13 +10,13 @@ export default function ConfigurationMenu({}){
 
      return(
           <>
-             <div className={style.menu}>
+             <div className={style.topBar}>
                <TopBar title="Categoria do produto" showBackArrow={false}/>
              </div>
             
              <div className={style.conteudoInicioTela}>
                 <IconInput placeholder={"Pesquisar por nome"}/>
-                <StrechList titulo=" "/>
+                <StrechList showTitle={false} hint="Ordenar por nome"/>
              </div>
                 <hr></hr>
              <div className={style.conteudoTela}>

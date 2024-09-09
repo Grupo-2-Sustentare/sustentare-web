@@ -7,6 +7,8 @@ import NovoMovimento from "./pages/cadastros-de-estoque/NovoMovimento/NovoMovime
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 import CategoriaProduto from "./pages/configuracoes-de-estoque/categoria-produto/CategoriaProduto"
 import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/unidade-de-medida-produto/UnidadeMedidaProduto"
+import CriandoNovaCategoria from "./pages/configuracoes-de-estoque/criando-nova-categoria/CriandoNovaCategoria"
+import EditandoCategoria from "./pages/configuracoes-de-estoque/editando-categoria/EditandoCategoria"
 import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
@@ -32,10 +34,12 @@ function Rotas() {
                         <Route path={"/cadastros-de-estoque/produto/tipo-movimento"} element={<TipoMovimento />} />
                         <Route path={"/cadastros-de-estoque/produto/quantidade-movimento"} element={<QuantidadeMovimento />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
+                        <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
+                        <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
+                        <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
+                        <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
                 <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
-                <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
-                <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
