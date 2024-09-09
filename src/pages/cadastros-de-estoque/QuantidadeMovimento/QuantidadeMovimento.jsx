@@ -5,7 +5,6 @@ import Product from "../../../components/ProductItem/Product";
 import Switch from "../../../components/Switch/Switch";
 import Button from "../../../components/Button/Button";
 import RedirectionList from "../../../components/RedirectionList/RedirectionList";
-import {errorToast} from "../../../components/Toast/Toast";
 import MeasurementUnitInput from "../../../components/MeasumentTextInput/MeasurementUnitInput";
 
 export function QuantidadeMovimento(){
@@ -30,7 +29,9 @@ export function QuantidadeMovimento(){
             <MeasurementUnitInput measurementUnit={p.unidade} placeholder={0}/>
             <Switch label={"É ajuste de uma marcação anterior errada?"}/>
             {ehSaida &&
-                (<RedirectionList title={"Categoria do consumo"}/>)
+                (<RedirectionList
+                    title={"Categoria do consumo"} hint={p.categoriaConsumo} redirectUrl={"/categoria-consumo"}
+                />)
             }
             {!ehSaida &&
                 (<Switch label={"Compra de última hora?"}/>)

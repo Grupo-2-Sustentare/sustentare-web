@@ -29,7 +29,7 @@ export default function NovoMovimento({}){
 
     function editarProduto(p){
         sessionStorage.setItem("productBeingEdited", JSON.stringify(p))
-        navigate("produto/tipo-movimento")
+        navigate("/tipo-movimento")
     }
 
     function finalizar(){
@@ -62,7 +62,7 @@ export default function NovoMovimento({}){
             <div className={styles.botoes}>
                 <Button
                     insideText={"Adicionar produto"}
-                    onClick={() => navigate("/cadastros-de-estoque/selecao-produtos")}
+                    onClick={() => navigate("/selecao-produtos")}
                 />
                 <Button insideText={"Concluir movimento"} onClick={finalizar}/>
             </div>
