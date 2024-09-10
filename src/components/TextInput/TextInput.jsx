@@ -12,10 +12,18 @@ export default function TextInput({ label, type="text", onChange, placeholder}){
         tagLabel = <label>{label}</label>
     }
 
+    const handleChange = (event) => {
+        const value = event.target.value;
+        if (onChange) {
+            onChange(value); // Passa o valor do campo, não o evento
+        }
+    };
+
+
     return (
         <div className={styles.textInput}>
             {tagLabel}
-            <input type={type} onChange={onChange} placeholder={placeholder}/>
+            <input type={type}  onChange={handleChange} placeholder={placeholder}/>
         </div>
     )
 }
