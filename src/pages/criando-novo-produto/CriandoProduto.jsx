@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate para redirecionamento de rotas
 import React, { useState } from "react"; // Importa React e o hook useState para gerenciamento de estado
 import StreachList from "../../components/StrechList/StrechList"
+import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import TextInput from "../../components/TextInput/TextInput"
 import styles from "./CriandoProduto.module.css";
 import Checkbox from "../../components/Checkbox/Checkbox";
@@ -10,7 +11,8 @@ import Button from "../../components/Button/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader"
 
 const CriandoProduto = () => {
-
+    const navigate = useNavigate()
+    let p = JSON.parse(sessionStorage.getItem("productBeingCreated"))
 
     return (
         <div>
@@ -23,7 +25,10 @@ const CriandoProduto = () => {
                 </div>
                 <div className={styles.TextInput}>
                     <h4>Categoria</h4>
-                    <StreachList titulo="" />
+                    {/* <StreachList titulo="" /> */}
+                    <RedirectionList
+                    title={"Categoria"} hint={p.categoria} redirectUrl={"/categoria-produto"}
+                />
                 </div>
                 <div className={styles.TextInput}>
                     <h4>Unidade de medida:</h4>

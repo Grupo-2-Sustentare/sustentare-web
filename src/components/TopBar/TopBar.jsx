@@ -33,9 +33,7 @@ export default function TopBar({ title, showBackArrow }) {
   const userImage = sessionStorage.getItem("icone_usuario")
 
   return (
-    <div>
-      <div className={styles.bloco}>
-      </div>
+    <>
       <div className={styles.menuSuperior}>
         <div className={styles.iconDiv} onClick={handleMenuClick}>
           <FontAwesomeIcon className={styles.icon} icon={icon} />
@@ -50,6 +48,8 @@ export default function TopBar({ title, showBackArrow }) {
           <div className={styles.overlay} onClick={closeMenu}></div>
         </div>
       )}
-    </div>
+      <div className={styles.bloco}>
+      </div>
+    </>
   );
 }

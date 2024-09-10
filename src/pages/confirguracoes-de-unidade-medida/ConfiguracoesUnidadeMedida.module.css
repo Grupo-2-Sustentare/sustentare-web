@@ -4,7 +4,6 @@
     gap: 24px;
    padding: 16px;
    width: 100%;
-   padding-bottom: 150px;
 }
 
 .divBotao{
@@ -14,8 +13,7 @@
     justify-content: center;
     align-items: center;
     border-top: var(--borda-branca);
-    position: fixed;
-    bottom: 0px; 
+    position: relative;
     background-color: var(--gunmetal);
 }
 

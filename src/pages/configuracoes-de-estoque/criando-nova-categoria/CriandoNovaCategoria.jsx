@@ -21,6 +21,8 @@ export default function ConfigurationMenu({}){
             
              <div className={style.conteudoInicioTela}>
                 <ImageUploader />
+             </div>
+             <div className={style.meioTela}>
                 <TextInput label={"Nome: "}/>
              </div>
              <hr></hr>
