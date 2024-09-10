@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   gap: 45px;
-  padding: 8px 10px;
+  padding: 8px 35px;
 }
 .login > form{
   display: flex;
@@ -17,5 +17,6 @@
 }
 
 .login h1{
+  font-size: 2em;
   text-shadow: var(--sombra-vermelha)
 }

@@ -3,7 +3,7 @@ import styles from './ListItem.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function ListItem(
-        { heading, subheading, adressImg, descImg, icon, fullBorderRadius=false}
+        { heading, subheading, adressImg, descImg, icon, fullBorderRadius=false, onClick}
     ) {
     if (adressImg !== undefined && icon !== undefined){
         throw new Error("Tanto um ícone quanto uma imagem foram definidos para o mesmo ListItem")
@@ -21,11 +21,11 @@ export default function ListItem(
 
     // Adicionamos classe na sub-div se houver um subtítulo.
     let subheadingClass = (subheading === undefined)
-        ? styles.itemInfo
-        : styles.itemInfo + " " + styles.withSubheading
+        ? styles.mainInfo
+        : styles.mainInfo + " " + styles.withSubheading
 
     return (
-        <div className={styles.itemList}>
+        <div className={styles.itemList} onClick={onClick}>
             <div className={illustrationClass}>
                 <img src={adressImg} alt={descImg}/>
                 <FontAwesomeIcon icon={icon} />
