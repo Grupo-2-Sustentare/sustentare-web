@@ -15,7 +15,7 @@
     align-items: center;
     border-top: var(--borda-branca);
     position: fixed;
-    bottom: 0; /* Alterado para 0 */
+    bottom: 15px; /* Alterado para 0 */
     left: 0; /* Certifique-se de que o botão fique fixo ao rodapé */
     background-color: var(--gunmetal);
 }
