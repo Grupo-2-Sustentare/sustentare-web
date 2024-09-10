@@ -17,18 +17,21 @@ const ConfiguracoesProdutos = () => {
 
     return (
         <div>
-            <TopBar title={"configurações de produtos"}/>
+            <div className={styles.divTopBar}>
+            <TopBar  title={"configurações de produtos"}/>
+            </div>
             <div className={styles.divPrincipal}>
+                
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <Product title="Feijão" weight="25 kilogramas"  showCheckbox={false} />
-                <Product title="Frango" weight="15 kilogramas"  showCheckbox={false} />
-                <Product title="Coca-Cola" weight="100 unidades"  showCheckbox={false} />
-                <Product title="Pepsi" weight="85 unidades"  showCheckbox={false} />
-                <Product title="Água" weight="110 unidades"  showCheckbox={false} />
-                <Product title="Arroz" weight="50 kilogramas"  showCheckbox={false} />
+                <Product name="Feijão" quantity="25 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/feijão.png"/>
+                <Product name="Guarana" quantity="70 unidades"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/guarana.jpeg"/>
+                <Product name="Coca-Cola" quantity="100 unidades"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/coca300.jpeg"/>
+                <Product name="Sobrecoxa" quantity="85 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/sobrecoxa.jpg"/>
+                <Product name="Água" quantity="110 unidades"  showCheckbox={false} />
+                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar novo produto" onClick={handleSave}/>

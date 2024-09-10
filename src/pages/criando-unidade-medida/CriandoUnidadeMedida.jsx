@@ -10,9 +10,14 @@ import Button from "../../components/Button/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader"
 
 const CriandoUnidadeMedida = () => {
+    const [valorTextInput, setValorTextInput] = useState(""); 
     const [valorEquivalente, setValorEquivalente] = useState(""); 
     const [valorStreachList, setValorStreachList] = useState(""); 
     const [ola, setOla] = useState(false);
+
+    const handleInputChange = (value) => {
+        setValorTextInput(value); 
+    };
 
     const handleStreachListChange = (value) => {
         setValorStreachList(value); 
@@ -41,7 +46,7 @@ const CriandoUnidadeMedida = () => {
 
                 <div className={styles.TextInput}>
                     <h4>Nome:</h4>
-                    <TextInput />
+                    <TextInput onChange={handleInputChange}/>
                 </div>
                 <div className={styles.TextInput}>
                     <h4>Abreviação no singular:</h4>
@@ -59,7 +64,7 @@ const CriandoUnidadeMedida = () => {
                 <div className={styles.divMeasumentTextInput}>
                     {ola ? (
                         <>
-                            <h4>{typeof valorStreachList === 'string' ? valorStreachList : 'valor inválido'} equivale a</h4>
+                            <h4>Um(a) {valorTextInput.toLowerCase()} equivale a</h4>
                             <div className={styles.divvMeasumentTextInput}>
                             <MeasurementUnitInput measurementUnit={valorEquivalente} />
                             </div>
