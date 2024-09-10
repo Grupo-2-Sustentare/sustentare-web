@@ -7,13 +7,17 @@ import TextInput from "../../components/TextInput/TextInput";
 import TopBar from "../../components/TopBar/TopBar";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import IconInput from "../../components/IconInput/IconInput";
-import Product from "../../components/ProductItem/Product";
+import Product, { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const handleSave = () => {
         navigate("/criando-produto");
     };
+
+    let x = DEFAULT_BUTTON_CONFIG
+    x.yellow.action = ()=>{}
+
 
     return (
         <div>
@@ -23,7 +27,7 @@ const ConfiguracoesProdutos = () => {
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <Product title="Feijão" weight="25 kilogramas"  showCheckbox={false} />
+                <Product title="Feijão" weight="25 kilogramas"  showCheckbox={false} buttonsConfig={x} />
                 <Product title="Frango" weight="15 kilogramas"  showCheckbox={false} />
                 <Product title="Coca-Cola" weight="100 unidades"  showCheckbox={false} />
                 <Product title="Pepsi" weight="85 unidades"  showCheckbox={false} />

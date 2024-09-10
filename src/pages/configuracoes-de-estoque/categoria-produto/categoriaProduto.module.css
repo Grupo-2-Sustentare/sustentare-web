@@ -1,13 +1,8 @@
-.topBar{
-   height: 65px;
-   position: fixed;
-}
-
 .conteudoInicioTela{
     display: flex;
     flex-direction: column;
     padding: 6px;
-    height: 180px;
+    height: 210px;
     gap: 8px;
     justify-content: flex-end;
 }
@@ -22,6 +17,6 @@ hr{
     width: 100%;
     gap: 6px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 }

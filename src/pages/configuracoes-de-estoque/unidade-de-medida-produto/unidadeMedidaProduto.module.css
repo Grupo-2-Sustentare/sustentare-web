@@ -1,9 +1,3 @@
-.topBar{
-    height: 65px;
-    position: fixed;
- }
- 
- 
  .conteudoInicioTela{
      display: flex;
      padding: 6px;

@@ -9,6 +9,8 @@ export default function ConfigurationMenu({}){
      const navigate = useNavigate();
      const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";
 
+     let p = JSON.parse(sessionStorage.getItem("productBeingCreated"))
+
      const categoriaList = [
         {"heading": "Ingredientes do self service", "adressImg": githubPath + "Self%20service.png"},
         {"heading": "Bebidas", "adressImg": githubPath + "bebidas.jpg"},
@@ -18,6 +20,12 @@ export default function ConfigurationMenu({}){
         {"heading": "Descartáveis", "adressImg": githubPath + "descartaveis.jpg"},
         {"heading": "Condimentos avulsos", "adressImg": githubPath + "condimentos.jpg"},
      ]
+
+    //  function marcarCategoria(c){
+    //     p.categoriaProduto = c
+    //     sessionStorage.setItem("productBeingCreated", JSON.stringify(p))
+    //     navigate("/criando-produto")
+    // }
 
      return(
           <>
@@ -33,6 +41,7 @@ export default function ConfigurationMenu({}){
              <div className={style.conteudoTela}>
                 {categoriaList.map(categoria=>{
                     return <ListItem fullBorderRadius={true} heading={categoria.heading} adressImg={categoria.adressImg}/>
+                    // onClick={()=>marcarCategoria(categoria)}
                 })}
                 {/* <ListItem 
                     heading={"Ingredientes do self service"} 
