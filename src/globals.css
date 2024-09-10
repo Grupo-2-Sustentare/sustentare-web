@@ -68,11 +68,10 @@ body{
 }
 
 #root{
-    min-height: 812px;
+    height: 100vh;
     width: 375px;
     outline: 2px solid white;
     background: var(--gradiente);
-    /* gap: 24px; */
     display: flex;
     flex-direction: column;
     align-items: center;
