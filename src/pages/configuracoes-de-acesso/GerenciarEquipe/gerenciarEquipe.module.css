@@ -1,0 +1,36 @@
+.gerenciarEquipe{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.barraDeBusca{
+    width: 100%;
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background-color: var(--carvao);
+}
+
+.equipe{
+    width: 100%;
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    border: var(--borda-branca);
+    border-width: 1px 0 1px 0;
+    overflow-y: scroll;
+}
+
+.containerBotao{
+    width: 100%;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
