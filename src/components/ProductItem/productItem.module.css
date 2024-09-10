@@ -115,3 +115,6 @@
 .icon > svg{
   display: block;
 }
+.inverse > path {
+  fill: var(--white);
+}

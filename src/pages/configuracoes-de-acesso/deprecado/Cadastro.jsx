@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
-import api from "../../api";
-import TextInput from "../../components/TextInput/TextInput"
-import styles  from "../../pages/configuracoes-de-acesso/cadastro.module.css";
-import Button from "../../components/Button/Button";
-import Checkbox from "../../components/Checkbox/Checkbox"
-import TopBar from "../../components/TopBar/TopBar";
+import api from "../../../api";
+import TextInput from "../../../components/TextInput/TextInput"
+import styles  from "./cadastro.module.css";
+import Button from "../../../components/Button/Button";
+import Checkbox from "../../../components/Checkbox/Checkbox"
+import TopBar from "../../../components/TopBar/TopBar";
  
 
 
