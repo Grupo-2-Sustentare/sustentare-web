@@ -4,6 +4,7 @@ import StrechList from "../../../components/StrechList/StrechList";
 import TopBar from "../../../components/TopBar/TopBar";
 import Button from "../../../components/Button/Button";
 import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
+import {useNavigate} from "react-router-dom";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/usuarios/"
 const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
@@ -14,6 +15,7 @@ const MOCK_USUARIOS = [
 ]
 
 export default function GerenciarEquipe(){
+    let navigate = useNavigate()
     let usuarios = MOCK_USUARIOS
     let btnsConfig = DEFAULT_BUTTON_CONFIG
 
@@ -27,6 +29,8 @@ export default function GerenciarEquipe(){
     btnsConfig.yellow.icon = "clock-rotate-left"
     btnsConfig.yellow.iconFillInvert = true
     btnsConfig.yellow.text = "Visualizar histórico"
+
+    btnsConfig.red.action = () => navigate("/remover-colaborador")
 
     return(<div className={styles.gerenciarEquipe}>
         <TopBar title={"Gerenciar equipe"}/>
