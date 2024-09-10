@@ -1,3 +1,8 @@
+.bloco{
+  padding: 25px 180px;
+  width: 100%;
+}
+
 .menuSuperior {
     display: flex;
     flex-direction: row;
