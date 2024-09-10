@@ -1,9 +1,3 @@
-.header{
-    width: 100%;
-    height: 50px;
-    background-color: black;
-}
-
 .divPrincipal{
     width: 100%;
     height: 100%;
@@ -18,25 +12,6 @@
     gap: 16px;
 }
 
-.divTexInput{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.campo {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-}
-
-
-
-input[type="file"] {
-    font-size: 12px; /* Altere o valor para o tamanho de fonte desejado */
-}
-
 .divButton{
     width: 100%;
     height: 113px;
@@ -44,4 +19,5 @@ input[type="file"] {
     justify-content: center;
     align-items: center;
     border-top: var(--borda-branca);
+    background-color: var(--gunmetal);
 }
