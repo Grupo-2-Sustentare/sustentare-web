@@ -20,7 +20,7 @@ export default function MainMenu({}){
             <IconButton
                 icone={"clock-rotate-left"}
                 texto={"Ver histórico de atividades"}
-                onClick={() => {alert("Não Implementado")}}
+                onClick={() => navigate("/configuracoes-de-acesso")}
             />
             <IconButton
                 icone={"wrench"}
@@ -30,7 +30,7 @@ export default function MainMenu({}){
             <IconButton
                 icone={"users-gear"}
                 texto={"Gerenciar equipe"}
-                onClick={() => {alert("Não Implementado")}}
+                onClick={() => {navigate("/configuracoes-de-acesso")}}
             />
         </div>
         </>

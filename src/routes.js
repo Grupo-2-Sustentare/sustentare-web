@@ -10,7 +10,7 @@ import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/unidade-de-me
 import CriandoNovaCategoria from "./pages/configuracoes-de-estoque/criando-nova-categoria/CriandoNovaCategoria"
 import EditandoCategoria from "./pages/configuracoes-de-estoque/editando-categoria/EditandoCategoria"
 import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/editando-unidade-de-medida/EditandoUnidadeDeMedida"
-import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
+import Cadastro from "./pages/configuracoes-de-acesso/deprecado/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
@@ -22,6 +22,7 @@ import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/Seleca
 import TipoMovimento from "./pages/cadastros-de-estoque/TipoMovimento/TipoMovimento";
 import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/QuantidadeMovimento/QuantidadeMovimento";
 import CategoriaConsumo from "./pages/cadastros-de-estoque/CategoriaConsumo/CategoriaConsumo";
+import GerenciarEquipe from "./pages/configuracoes-de-acesso/GerenciarEquipe/GerenciarEquipe";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -46,7 +47,7 @@ function Rotas() {
                         <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
                         <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
                         <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
-                <Route path={"/configuracoes-de-acesso"} element={<Cadastro />} />
+                <Route path={"/configuracoes-de-acesso"} element={<GerenciarEquipe/>} />
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
