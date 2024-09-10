@@ -18,7 +18,14 @@ const SideMenu = ({ userName, userImage }) => {
                     <h1>Paralelo 19</h1>
                 </div>
                     <div className={style.sidebarMenu}>
-                <MenuItem icon={"house"} title="Página inicial" onClick={() => {alert("Ajustar Rota para MainMenu !!!")}}/>
+                <MenuItem icon={"house"} title="Página inicial" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"shapes"} title="Movimentos de estoque" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"clock-rotate-left"} title="Histórico de operações" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"wrench"} title="Alterar definições" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"users-gear"} title="Gerenciar equipes" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"circle-check"} title="Realizar Fechamento" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"gear"} title="Configurações" onClick={() => navigate("/menu-inicial")}/>
+
                                                                                 
                  {/* Aqui vai o seu componente de itens do menu */}
 
