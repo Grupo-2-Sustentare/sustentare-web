@@ -16,7 +16,7 @@ const ConfiguracoesProdutos = () => {
     };
 
     return (
-        <div>
+        <>
             <div className={styles.divTopBar}>
             <TopBar  title={"configurações de produtos"}/>
             </div>
@@ -36,7 +36,7 @@ const ConfiguracoesProdutos = () => {
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar novo produto" onClick={handleSave}/>
             </div>
-        </div>
+        </>
     );
 };
 
