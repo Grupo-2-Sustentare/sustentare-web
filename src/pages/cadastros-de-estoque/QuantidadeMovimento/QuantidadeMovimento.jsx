@@ -27,14 +27,16 @@ export function QuantidadeMovimento(){
         <div className={styles.principal}>
             <p>Quanto do produto {acao} estoque?</p>
             <MeasurementUnitInput measurementUnit={p.unidade} placeholder={0}/>
-            <Switch label={"É ajuste de uma marcação anterior errada?"}/>
             {ehSaida &&
                 (<RedirectionList
                     title={"Categoria do consumo"} hint={p.categoriaConsumo} redirectUrl={"/categoria-consumo"}
                 />)
             }
             {!ehSaida &&
-                (<Switch label={"Compra de última hora?"}/>)
+                (<>
+                    <Switch label={"É ajuste de uma marcação anterior errada?"}/>
+                    <Switch label={"Compra de última hora?"}/>
+                </>)
             }
         </div>
         <div className={styles.containerBotao}>
