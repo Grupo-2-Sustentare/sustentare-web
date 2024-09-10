@@ -39,13 +39,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
+    border: var(--borda-branca);
     background-color: var(--carvao);
-    width: 80%;
-    height: 100px;
-    font-size: 10px;
+    width: 95%;
+    height: 140px;
 }
 
-
-.divText > h4{
-
+.divvMeasumentTextInput{
+    display: flex;
 }

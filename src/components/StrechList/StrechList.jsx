@@ -6,10 +6,16 @@ export default function StrechList({
         hint = "Selecione...",
         items = ["Adicione", "seus itens", "à lista"], onChange
     }){
+        const handleChange = (event) => {
+            const selectedValue = event.target.value;
+            if (onChange) {
+                onChange(selectedValue); // Passa o valor selecionado para a função onChange
+            }
+        };
     return(
         <div className={styles.container}>
             {showTitle && (<label>{title}</label>)}
-            <select defaultValue={"hint"} onChange={onChange}>
+            <select defaultValue={"hint"} onChange={handleChange}>
                 {/* Opção placeholder padrão e não-selecionável */}
                 <option value={"hint"} disabled={true}>{hint}</option>
                 {items.map(item => <option key={item} value={item}>{item}</option>)}
