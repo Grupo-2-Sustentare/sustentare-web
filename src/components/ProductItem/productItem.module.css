@@ -89,3 +89,6 @@
 .icon > path {
   fill: var(--preto);
 }
+.inverse > path {
+  fill: var(--white);
+}

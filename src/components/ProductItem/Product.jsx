@@ -5,15 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {alertToast} from "../Toast/Toast";
 
 export const DEFAULT_BUTTON_CONFIG = {
+    // Estilos default de cada botão. Importar em classes que deseja alterar e passar como prop para esse componente.
     "yellow": {
         "style": {},
         "icon": "fa-solid fa-pen",
+        "iconFillInvert": false, // Quando false, o ícone será preto. Quando true, branco.
         "text": "Editar quantidade",
         "action": () => alertToast("Defina uma ação para esse botão.")
     },
     "red": {
         "style": {},
         "icon": "fa-solid fa-trash",
+        "iconFillInvert": false,
         "text": "Remover",
         "action": () => alertToast("Defina uma ação para esse botão.")
     }
@@ -69,14 +72,23 @@ export default function Product(
                       className={styles.editBtn} id='botaoEdt' onClick={buttonsConfig.yellow.action}
                       style={buttonsConfig.yellow.style}
                   >
-                      <FontAwesomeIcon className={styles.icon} icon={buttonsConfig.yellow.icon}/>
+
+                      <FontAwesomeIcon
+                          // Aplica a classe de ícone e, se for para inverter a cor para branco, aplica essa classe
+                          // também.
+                          className={styles.icon + " " + (buttonsConfig.yellow.iconFillInvert ? styles.inverse:"")}
+                          icon={buttonsConfig.yellow.icon}
+                      />
                       {buttonsConfig.yellow.text}
                   </button>
                   <button
                       className={styles.removeBtn} id='botaoRemove' onClick={buttonsConfig.red.action}
                       style={buttonsConfig.red.style}
                   >
-                      <FontAwesomeIcon className={styles.icon} icon={buttonsConfig.red.icon}/>
+                      <FontAwesomeIcon
+                          className={styles.icon + " " + (buttonsConfig.red.iconFillInvert ? styles.inverse:"")}
+                          icon={buttonsConfig.red.icon}
+                      />
                       {buttonsConfig.red.text}
                   </button>
           </div>
