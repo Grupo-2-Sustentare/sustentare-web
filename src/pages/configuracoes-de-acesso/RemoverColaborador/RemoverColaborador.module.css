@@ -1,0 +1,28 @@
+.Global{
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    align-items: center;
+    justify-content: center;
+    width: 375px;
+}
+.Card{  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 90%;
+    gap: 8px;
+}
+.Card span{
+    font-size: 1em;
+}
+.Buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 40%;
+    width: 90%;
+}

@@ -31,6 +31,8 @@ export default function GerenciarEquipe(){
     btnsConfig.yellow.text = "Visualizar histórico"
     btnsConfig.yellow.action = ()=>navigate("/adicionando-colaborador")
 
+    btnsConfig.red.action = () => navigate("/remover-colaborador")
+
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
