@@ -16,7 +16,7 @@ const ConfiguracoesCategorias = () => {
     };
 
     return (
-        <div>
+        <>
             <TopBar title={"configurações de categorias"}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
@@ -31,7 +31,7 @@ const ConfiguracoesCategorias = () => {
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova categoria" onClick={handleSave}/>
             </div>
-        </div>
+        </>
     );
 };
 
