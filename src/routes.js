@@ -43,21 +43,22 @@ function Rotas() {
                         <Route path={"/quantidade-movimento"} element={<QuantidadeMovimento />} />
                         <Route path={"/categoria-consumo"} element={<CategoriaConsumo />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
-                        <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
-                        <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
-                        <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
-                        <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
-                        <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
+                    <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
+                    <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
+                    <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
+                    <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
+                    <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
                 <Route path={"/configuracoes-de-acesso"} element={<GerenciarEquipe/>} />
                     <Route path={"/adicionando-colaborador"} element={<AdicionandoColaborador/>} />
+                    <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
-                <Route path={"/teste"} element={<ExibirComponentes/>} />
                 <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
                 <Route path={"/configuracoes-de-categorias"} element={<ConfiguracoesCategorias/>}/>
                 <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
                 <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
-                <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
+
+                <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
         </BrowserRouter>
         )
