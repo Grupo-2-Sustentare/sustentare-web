@@ -10,11 +10,35 @@ import Button from "../../components/Button/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader"
 
 const CriandoUnidadeMedida = () => {
+    const [valorTextInput, setValorTextInput] = useState(""); 
+    const [valorEquivalente, setValorEquivalente] = useState(""); 
+    const [valorStreachList, setValorStreachList] = useState(""); 
+    const [ola, setOla] = useState(false);
+
+    const handleInputChange = (value) => {
+        setValorTextInput(value); 
+    };
+
+    const handleStreachListChange = (value) => {
+        setValorStreachList(value); 
+        if(value === "Massa"){
+            setValorEquivalente("Kilograma(s)")
+        }else if(value === "Volume"){
+            setValorEquivalente("Litro(s)")
+        }else{
+            setValorEquivalente("unidade(s)")
+        }
+        if (value !== "" && value !== "hint") {
+            setOla(true); 
+        } else {
+            setOla(false); 
+        }
+    };
 
 
     return (
 
-        // let[ola,setOla] = useState(false)
+        
 
         <div>
             <TopBar title={"Criando Unidade de Medida"} />
@@ -22,25 +46,34 @@ const CriandoUnidadeMedida = () => {
 
                 <div className={styles.TextInput}>
                     <h4>Nome:</h4>
-                    <TextInput />
+                    <TextInput onChange={handleInputChange}/>
                 </div>
                 <div className={styles.TextInput}>
                     <h4>Abreviação no singular:</h4>
-                    <StreachList titulo="" />
+                    <TextInput />
                 </div>
                 <div className={styles.TextInput}>
                     <h4>Abreviação no plural:</h4>
-                    <StreachList titulo="" />
+                    <TextInput />
                 </div>
                 <div className={styles.TextInput}>
                     <h4>Tipo:</h4>
-                    <StreachList titulo="" />
+                    <StreachList items={["Massa","Volume","Quantidade genérica"] }titulo="" onChange={handleStreachListChange}/>
                 </div>
 
                 <div className={styles.divMeasumentTextInput}>
-                    <h4>Uma libra equivale a</h4>
-                    <MeasurementUnitInput />
-                    <h4 className={styles.divText}>Selecione um tipo de unidade de medida para realizar o cálculo de base</h4>
+                    {ola ? (
+                        <>
+                            <h4>Um(a) {valorTextInput.toLowerCase()} equivale a</h4>
+                            <div className={styles.divvMeasumentTextInput}>
+                            <MeasurementUnitInput measurementUnit={valorEquivalente} />
+                            </div>
+                        </>
+                    ) : (
+                        <div className={styles.divText}>
+                            <p>Selecione um tipo de <br />unidade de medida para <br />realizar o cálculo de base</p>
+                        </div>
+                    )}
                 </div>
                 
                 

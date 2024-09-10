@@ -16,7 +16,7 @@ const ConfiguracoesUnidadeMedida = () => {
     };
 
     return (
-        <div>
+        <>
             <TopBar title={"configurações de Unidade de Medida"}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
@@ -32,7 +32,7 @@ const ConfiguracoesUnidadeMedida = () => {
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova unidade de medida" onClick={handleSave}/>
             </div>
-        </div>
+        </>
     );
 };
 

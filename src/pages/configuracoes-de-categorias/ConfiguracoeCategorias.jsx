@@ -16,22 +16,22 @@ const ConfiguracoesCategorias = () => {
     };
 
     return (
-        <div>
+        <>
             <TopBar title={"configurações de categorias"}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <Product title="Sobremesa" showCheckbox={false} />
-                <Product title="Balcão" showCheckbox={false} />
-                <Product title="self-service" showCheckbox={false} />
-                <Product title="Bebidas" showCheckbox={false} />
+                <Product title="Sobremesa encomenda" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/doces%20encomenda.jpg"/>
+                <Product title="Bebidas" showCheckbox={false} addressImg="https://github.com/Grupo-2-Sustentare/sustentare-web/blob/main/src/assets/images/categorias/bebidas.jpg?raw=true"/>
+                <Product title="self-service" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/Self%20service.png"/>
+                <Product title="Descartaveis" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/descartaveis.jpg"/>
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova categoria" onClick={handleSave}/>
             </div>
-        </div>
+        </>
     );
 };
 

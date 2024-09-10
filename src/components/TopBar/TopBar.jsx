@@ -34,6 +34,8 @@ export default function TopBar({ title, showBackArrow }) {
 
   return (
     <div>
+      <div className={styles.bloco}>
+      </div>
       <div className={styles.menuSuperior}>
         <div className={styles.iconDiv} onClick={handleMenuClick}>
           <FontAwesomeIcon className={styles.icon} icon={icon} />
