@@ -6,7 +6,9 @@
     height: 60px;
     width: 375px;
     border-bottom: 2px solid var(--white);
-    /* margin-bottom: 5px; */
+    position: fixed;
+    top: 0;
+    left: 0;
   }
   
   .iconDiv{

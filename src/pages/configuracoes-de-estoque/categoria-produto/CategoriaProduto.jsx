@@ -7,8 +7,18 @@ import {useNavigate} from "react-router-dom";
 
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
-
      const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";
+
+     const categoriaList = [
+        {"heading": "Ingredientes do self service", "adressImg": githubPath + "Self%20service.png"},
+        {"heading": "Bebidas", "adressImg": githubPath + "bebidas.jpg"},
+        {"heading": "Doces para encomenda", "adressImg": githubPath + "doces%20encomenda.jpg"},
+        {"heading": "Produtos de limpeza", "adressImg": githubPath + "prod%20limpeza.jpg"},
+        {"heading": "Utensilios de cozinha", "adressImg": githubPath + "utensilios.jpg"},
+        {"heading": "Descartáveis", "adressImg": githubPath + "descartaveis.jpg"},
+        {"heading": "Condimentos avulsos", "adressImg": githubPath + "condimentos.jpg"},
+     ]
+
      return(
           <>
              <div className={style.topBar}>
@@ -21,7 +31,10 @@ export default function ConfigurationMenu({}){
              </div>
                 <hr></hr>
              <div className={style.conteudoTela}>
-                <ListItem 
+                {categoriaList.map(categoria=>{
+                    return <ListItem fullBorderRadius={true} heading={categoria.heading} adressImg={categoria.adressImg}/>
+                })}
+                {/* <ListItem 
                     heading={"Ingredientes do self service"} 
                     subheading={""} 
                     fullBorderRadius={true} 
@@ -54,7 +67,7 @@ export default function ConfigurationMenu({}){
                     heading={"Condimentos avulsos"} 
                     subheading={""} 
                     fullBorderRadius={true} 
-                    adressImg={githubPath + "condimentos.jpg"}/>
+                    adressImg={githubPath + "condimentos.jpg"}/> */}
              </div>
 
           </>

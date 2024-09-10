@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./RedirectionList.module.css";
 import { useNavigate } from 'react-router-dom';
 
-export default function RedirectionList({title=undefined, redirectUrl}) {
+export default function RedirectionList({title=undefined, redirectUrl, hint="Selecione..."}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -16,7 +16,7 @@ export default function RedirectionList({title=undefined, redirectUrl}) {
         <div className={styles.container}>
             {(title != undefined) && (<label>{title}</label>)}
             <select className={styles.button} onClick={handleClick}>
-                <option value="">Selecione...</option>
+                <option value="">{hint}</option>
             </select>
         </div>
     );
