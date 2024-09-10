@@ -40,7 +40,11 @@ export default function ConfigurationMenu({}){
                 <hr></hr>
              <div className={style.conteudoTela}>
                 {categoriaList.map(categoria=>{
-                    return <ListItem fullBorderRadius={true} heading={categoria.heading} adressImg={categoria.adressImg}/>
+                    return <ListItem 
+                            fullBorderRadius={true} 
+                            heading={categoria.heading} 
+                            adressImg={categoria.adressImg}
+                            />
                     // onClick={()=>marcarCategoria(categoria)}
                 })}
                 {/* <ListItem 

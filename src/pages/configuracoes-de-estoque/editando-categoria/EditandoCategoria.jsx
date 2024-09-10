@@ -18,10 +18,11 @@ export default function ConfigurationMenu({}){
           <>
              <div className={style.topBar}>
                <TopBar title="Editando Categoria" showBackArrow={true}/>
-             </div>
-            
+            </div>
              <div className={style.conteudoInicioTela}>
                 <ImageUploader oldImage={githubPath + "bebidas.jpg"}/>
+             </div>
+             <div className={style.meioTela}>
                 <TextInput label={"Nome: "} placeholder={"Bebidas"}/>
              </div>
              <hr></hr>
