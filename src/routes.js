@@ -10,7 +10,7 @@ import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/unidade-de-me
 import CriandoNovaCategoria from "./pages/configuracoes-de-estoque/criando-nova-categoria/CriandoNovaCategoria"
 import EditandoCategoria from "./pages/configuracoes-de-estoque/editando-categoria/EditandoCategoria"
 import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/editando-unidade-de-medida/EditandoUnidadeDeMedida"
-import Cadastro from "./pages/configuracoes-de-acesso/Cadastro";
+import Cadastro from "./pages/configuracoes-de-acesso/deprecado/Cadastro";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
