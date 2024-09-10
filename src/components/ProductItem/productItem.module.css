@@ -89,3 +89,29 @@
 .icon > path {
   fill: var(--preto);
 }
+
+.illustration{
+  width: fit-content;
+  height: 65px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.illustration > *{
+  display: none;
+}
+
+.image > img{
+  display: block;
+  border: 1px solid var(--white);
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+}
+.lessRadius > img{
+  border-radius: 8px;
+}
+.icon > svg{
+  display: block;
+}

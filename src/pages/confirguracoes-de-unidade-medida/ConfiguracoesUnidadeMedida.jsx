@@ -23,11 +23,11 @@ const ConfiguracoesUnidadeMedida = () => {
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <Product name="Mililitro"  quantity={["Tipo: Volume", <br />, "Abreviação: ml"]}  showCheckbox={false} IconInput="fa-solid fa-cube" />
-                <Product name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} />
-                <Product name="Sacas"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} />
-                <Product name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: sacas"]}  showCheckbox={false} />
-                <Product name="Pack de refrigerante"    quantity={["Tipo: Genérico", <br />, "Abreviação: packs"]}  showCheckbox={false} />
+                <Product addressImg={false} name="Mililitro"  quantity={["Tipo: Volume", <br />, "Abreviação: ml"]}  showCheckbox={false} icon="fa-solid fa-cube" />
+                <Product addressImg={false} name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} />
+                <Product addressImg={false} name="Sacas"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} />
+                <Product addressImg={false} name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: sacas"]}  showCheckbox={false} />
+                <Product addressImg={false} name="Pack de refrigerante"    quantity={["Tipo: Genérico", <br />, "Abreviação: packs"]}  showCheckbox={false} />
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova unidade de medida" onClick={handleSave}/>

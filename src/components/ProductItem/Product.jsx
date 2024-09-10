@@ -20,8 +20,8 @@ export const DEFAULT_BUTTON_CONFIG = {
 }
 export default function Product(
     {
-        addressImg, name, quantity, checkboxVariant = false, checkedByDefault = false,
-        buttonsConfig = undefined, fullBorderRadius=false
+      addressImg, icon, name, quantity, checkboxVariant = false, checkedByDefault = false,
+      buttonsConfig = undefined, fullBorderRadius = false
     }
     ) {
     // Inicializando o parâmetro que customiza os botões.
@@ -46,10 +46,24 @@ export default function Product(
       }
     }
 
+
+     // Define imagem padrão ou ícone padrão
+  if (icon === undefined) {
+    icon = "fa-solid fa-question";
+  }
+
+  if (addressImg === undefined) {
+    addressImg = "https://placehold.co/400/F5FBEF/22333B?text=Produto";
+  }
+
     return (
       <div className={styles.product}>
         <div className={styles.mainInfo} onClick={handleClick}>
-          <img src={addressImg} alt={"Ícone do produto"} className={fullBorderRadius ? styles.profileImage:""}/>
+        {addressImg ? (
+          <img src={addressImg} alt={"Ícone do produto"} className={fullBorderRadius ? styles.profileImage : ""} />
+        ) : (
+          <FontAwesomeIcon icon={icon} className={styles.icon} />
+        )}
 
           <span className={styles.info}>
             <h4>{name}</h4>
