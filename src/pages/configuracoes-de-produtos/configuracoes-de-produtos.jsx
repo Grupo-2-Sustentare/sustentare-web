@@ -17,8 +17,11 @@ const ConfiguracoesProdutos = () => {
 
     return (
         <div>
-            <TopBar title={"configurações de produtos"}/>
+            <div className={styles.divTopBar}>
+            <TopBar  title={"configurações de produtos"}/>
+            </div>
             <div className={styles.divPrincipal}>
+                
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>
                     <StreachList titulo=" "/>
