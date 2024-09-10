@@ -2,7 +2,6 @@
     background: var(--gunmetal);
     display: flex;
     flex-direction: row;
-    height: auto;
     width: 100%;
     justify-content: flex-start;
     align-items: center;
@@ -51,7 +50,7 @@
 .withSubheading{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     gap: 8px;
 }
 
