@@ -12,12 +12,12 @@ import Product from "../../components/ProductItem/Product";
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
     const handleSave = () => {
-        navigate("/criando-produto");
+        navigate("/criando-nova-categoria");
     };
 
     return (
         <>
-            <TopBar title={"configurações de categorias"}/>
+            <TopBar title={"configurações de categorias"} showBackArrow={true}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>

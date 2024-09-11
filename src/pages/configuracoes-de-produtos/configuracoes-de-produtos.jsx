@@ -24,7 +24,7 @@ const ConfiguracoesProdutos = () => {
     return (
         <>
             <div className={styles.divTopBar}>
-            <TopBar  title={"configurações de produtos"}/>
+            <TopBar  title={"configurações de produtos"} showBackArrow={true}/>
             </div>
             <div className={styles.divPrincipal}>
             <div className={styles.divFiltroEBusca}>

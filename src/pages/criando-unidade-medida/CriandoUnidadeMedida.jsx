@@ -53,7 +53,7 @@ const CriandoUnidadeMedida = () => {
         
 
         <div>
-            <TopBar title={"Criando Unidade de Medida"} />
+            <TopBar title={"Criando Unidade de Medida"} showBackArrow={true}/>
             <div className={styles.divPrincipal}>
 
                 <div className={styles.TextInput}>
