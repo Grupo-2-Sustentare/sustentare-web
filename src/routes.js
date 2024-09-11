@@ -10,7 +10,7 @@ import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/unidade-de-me
 import CriandoNovaCategoria from "./pages/configuracoes-de-estoque/criando-nova-categoria/CriandoNovaCategoria"
 import EditandoCategoria from "./pages/configuracoes-de-estoque/editando-categoria/EditandoCategoria"
 import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/editando-unidade-de-medida/EditandoUnidadeDeMedida"
-import Cadastro from "./pages/configuracoes-de-acesso/deprecado/Cadastro";
+import AdicionandoColaborador from "./pages/configuracoes-de-acesso/adicionando-colaborador/AdicionandoColaborador";
 import ConfiguracoesProdutos from "./pages/configuracoes-de-produtos/configuracoes-de-produtos"
 import CriandoProduto from "./pages/criando-novo-produto/CriandoProduto"
 import ExibirComponentes from "./pages/teste";
@@ -22,7 +22,8 @@ import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/Seleca
 import TipoMovimento from "./pages/cadastros-de-estoque/TipoMovimento/TipoMovimento";
 import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/QuantidadeMovimento/QuantidadeMovimento";
 import CategoriaConsumo from "./pages/cadastros-de-estoque/CategoriaConsumo/CategoriaConsumo";
-import GerenciarEquipe from "./pages/configuracoes-de-acesso/GerenciarEquipe/GerenciarEquipe";
+import GerenciarEquipe from "./pages/configuracoes-de-acesso/gerenciar-equipe/GerenciarEquipe";
+import RemoverColaborador from "./pages/configuracoes-de-acesso/RemoverColaborador/RemoverColaborador";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -42,19 +43,22 @@ function Rotas() {
                         <Route path={"/quantidade-movimento"} element={<QuantidadeMovimento />} />
                         <Route path={"/categoria-consumo"} element={<CategoriaConsumo />} />
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
-                        <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
-                        <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
-                        <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
-                        <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
-                        <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
+                    <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
+                    <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
+                    <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
+                    <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
+                    <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
                 <Route path={"/configuracoes-de-acesso"} element={<GerenciarEquipe/>} />
+                    <Route path={"/adicionando-colaborador"} element={<AdicionandoColaborador/>} />
+                    <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
-                <Route path={"/teste"} element={<ExibirComponentes/>} />
                 <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
                 <Route path={"/configuracoes-de-categorias"} element={<ConfiguracoesCategorias/>}/>
                 <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
                 <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
+
+                <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
         </BrowserRouter>
         )
