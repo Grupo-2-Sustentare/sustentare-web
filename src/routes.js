@@ -24,6 +24,7 @@ import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/QuantidadeMovime
 import CategoriaConsumo from "./pages/cadastros-de-estoque/CategoriaConsumo/CategoriaConsumo";
 import GerenciarEquipe from "./pages/configuracoes-de-acesso/GerenciarEquipe/GerenciarEquipe";
 import RemoverColaborador from "./pages/configuracoes-de-acesso/RemoverColaborador/RemoverColaborador";
+import Configuracoes from "./pages/configuracoes/Configuracoes";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -57,6 +58,7 @@ function Rotas() {
                 <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
                 <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
                 <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
+                <Route path={"/configuracoes"} element={<Configuracoes/>}/>
             </Routes>
         </BrowserRouter>
         )

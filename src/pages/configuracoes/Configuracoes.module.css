@@ -1,0 +1,35 @@
+.Global{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    gap: 16px;
+    width: 90%;
+}
+.Global > h4{
+    font-size: 0.5em !important;
+    color: aquamarine;
+}
+
+.Configuracoes{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.Versao{
+    border: solid white;
+    border-width: 1px 0;
+    width: 100%;
+    padding: 16px;
+    gap: 16px;
+}
+.H4{
+    font-size: 1.1em;
+    padding-bottom: 5%;
+}
+.H3{
+    font-size: 1.6em;
+}
