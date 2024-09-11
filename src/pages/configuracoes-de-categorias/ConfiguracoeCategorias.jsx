@@ -21,7 +21,7 @@ const ConfiguracoesCategorias = () => {
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>
-                    <StreachList titulo=" "/>
+                    <StreachList showTitle={false} titulo=" "/>
                 </div>
                 <Product name="Sobremesa encomenda" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/doces%20encomenda.jpg"/>
                 <Product name="Bebidas" showCheckbox={false} addressImg="https://github.com/Grupo-2-Sustentare/sustentare-web/blob/main/src/assets/images/categorias/bebidas.jpg?raw=true"/>

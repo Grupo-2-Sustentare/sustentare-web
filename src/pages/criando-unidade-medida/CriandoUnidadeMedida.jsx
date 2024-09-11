@@ -57,20 +57,16 @@ const CriandoUnidadeMedida = () => {
             <div className={styles.divPrincipal}>
 
                 <div className={styles.TextInput}>
-                    <h4>Nome:</h4>
-                    <TextInput onChange={handleInputChange}/>
+                    <TextInput label="Nome:" onChange={handleInputChange}/>
                 </div>
                 <div className={styles.TextInput}>
-                    <h4>Abreviação no singular:</h4>
-                    <TextInput />
+                    <TextInput label="Abreviação no singular:"/>
                 </div>
                 <div className={styles.TextInput}>
-                    <h4>Abreviação no plural:</h4>
-                    <TextInput />
+                    <TextInput label="Abreviação no plural:"/>
                 </div>
                 <div className={styles.TextInput}>
-                    <h4>Tipo:</h4>
-                    <StreachList items={["Massa","Volume","Quantidade genérica"] }titulo="" onChange={handleStreachListChange}/>
+                    <StreachList title="Tipo:" items={["Massa","Volume","Quantidade genérica"] }titulo="" onChange={handleStreachListChange}/>
                 </div>
 
                 <div className={styles.divMeasumentTextInput}>
