@@ -1,9 +1,11 @@
 .divPrincipal{
     display: flex;
     flex-direction: column;
-    gap: 24px;
-   padding: 16px;
+    gap: 8px;
+   padding: 8px;
+   height: 634px;
    width: 100%;
+   overflow-y: scroll;
 }
 
 .divBotao{
