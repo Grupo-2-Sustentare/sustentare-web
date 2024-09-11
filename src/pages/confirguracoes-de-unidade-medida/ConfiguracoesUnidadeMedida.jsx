@@ -17,7 +17,7 @@ const ConfiguracoesUnidadeMedida = () => {
 
     return (
         <>
-            <TopBar title={"configurações de Unidade de Medida"}/>
+            <TopBar title={"configurações de Unidade de Medida"} showBackArrow={true}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>

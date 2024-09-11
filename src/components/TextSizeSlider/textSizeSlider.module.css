@@ -4,10 +4,8 @@
     justify-content: left;
     gap: 16px;
 }
-
-.textSizeSlider h4{
-    font-size: 1em;
-    font-weight: 500;
+.textSizeSlider > h4{
+    font-size: 0.9em;
 }
 
 .textSizeSlider div{
@@ -43,9 +41,9 @@
 }
 .barra::-webkit-slider-thumb {
     border: var(--borda-branca);
-    height: 42px;
-    width: 42px;
-    border-radius: 32px;
+    height: 32px;
+    width: 32px;
+    border-radius: 100%;
     background: var(--vermelho);
     cursor: pointer;
     -webkit-appearance: none;

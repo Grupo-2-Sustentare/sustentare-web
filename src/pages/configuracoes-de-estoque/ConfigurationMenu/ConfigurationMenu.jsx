@@ -37,12 +37,12 @@ export default function ConfigurationMenu({ }) {
                     <IconButton
                          icone={"fa-solid fa-list"}
                          texto={"Categorias"}
-                         onClick={() => { alert("Em Desenvolvimento...") }}
+                         onClick={() => navigate("/configuracoes-de-categorias")}
                     />
                     <IconButton
                          icone={"fa-solid fa-scale-balanced"}
                          texto={"Unidades de medidas"}
-                         onClick={() => { alert("Em Desenvolvimento...") }}
+                         onClick={() => navigate("/configuracoes-de-unidade-medida")}
                     />
                </div>
           </>

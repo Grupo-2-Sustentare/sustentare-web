@@ -22,7 +22,7 @@ const CriandoProduto = () => {
 
     return (
         <div>
-            <TopBar title={"Criando Novo Produto"} />
+            <TopBar title={"Criando Novo Produto"} showBackArrow={true}/>
             <div className={styles.divPrincipal}>
                 <ImageUploader/>
                 <div className={styles.TextInput}>
