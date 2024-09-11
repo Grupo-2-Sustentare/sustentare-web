@@ -15,7 +15,7 @@ const MOCK_USUARIOS = [
 ]
 
 export default function GerenciarEquipe(){
-    let navigate = useNavigate()
+    const navigate = useNavigate()
     let usuarios = MOCK_USUARIOS
     let btnsConfig = DEFAULT_BUTTON_CONFIG
 
@@ -29,27 +29,30 @@ export default function GerenciarEquipe(){
     btnsConfig.yellow.icon = "clock-rotate-left"
     btnsConfig.yellow.iconFillInvert = true
     btnsConfig.yellow.text = "Visualizar histórico"
+    btnsConfig.yellow.action = ()=>navigate("/adicionando-colaborador")
 
     btnsConfig.red.action = () => navigate("/remover-colaborador")
 
-    return(<div className={styles.gerenciarEquipe}>
-        <TopBar title={"Gerenciar equipe"}/>
-        <div className={styles.barraDeBusca}>
-            <IconInput placeholder={"Pesquisa por nome"}/>
-            <StrechList
-                showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
-            />
-        </div>
-        <div className={styles.equipe}>
-            {usuarios.map(u => {
-                    return <Product
-                    name={u.nome} quantity={"Usuário(a)"} addressImg={u.urlImagem}
-                    fullBorderRadius={true}
+    return(
+        <div className={styles.gerenciarEquipe}>
+            <TopBar title={"Gerenciar equipe"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput placeholder={"Pesquisa por nome"}/>
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
                 />
-            })}
+            </div>
+            <div className={styles.equipe}>
+                {usuarios.map(u => {
+                        return <Product
+                        name={u.nome} quantity={"Usuário(a)"} addressImg={u.urlImagem}
+                        fullBorderRadius={true} buttonsConfig={btnsConfig}
+                    />
+                })}
+            </div>
+            <div className={styles.containerBotao}>
+                <Button insideText={"Adicionar colaborador"} onClick={()=>navigate("/adicionando-colaborador")}/>
+            </div>
         </div>
-        <div className={styles.containerBotao}>
-            <Button insideText={"Adicionar colaborador"}/>
-        </div>
-    </div>)
+    )
 }

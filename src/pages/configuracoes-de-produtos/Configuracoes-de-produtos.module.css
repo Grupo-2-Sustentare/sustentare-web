@@ -1,35 +1,26 @@
-
-
-.divPrincipal{
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    padding: 16px;
-    padding-bottom: 150px; /* Adicione este padding para criar espaço no final */
-}
-
-.divBotao{
-    width: 100%;
-    height: 113px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: var(--borda-branca);
-    position: fixed;
-    bottom: 15px; /* Alterado para 0 */
-    left: 0; /* Certifique-se de que o botão fique fixo ao rodapé */
-    background-color: var(--gunmetal);
-}
-
 .divFiltroEBusca{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-bottom: var(--borda-branca);
-    padding-top: 8px;
-    padding-bottom: 16px;
     width: 100%;
+    gap: 8px;
+}
+.divPrincipal{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    height: 634px;
+    padding: 6px;
+    overflow-y: scroll;
+}
+.divBotao{
+    display: flex;
+    width: 100%;
+    height: 113px;
+    justify-content: center;
+    align-items: center;
+    border-top: var(--borda-branca);
+    position: relative;
+    background-color: var(--gunmetal);
 }

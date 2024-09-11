@@ -32,7 +32,7 @@ export default function ConfigurationMenu({ }) {
                     <IconButton
                          icone={"fa-solid fa-tag"}
                          texto={"Produto"}
-                         onClick={() => { alert("Em Desenvolvimento...") }}
+                         onClick={() => navigate("/configuracoes-de-produtos")}
                     />
                     <IconButton
                          icone={"fa-solid fa-list"}

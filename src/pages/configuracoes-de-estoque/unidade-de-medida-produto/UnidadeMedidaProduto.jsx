@@ -8,6 +8,15 @@ import {useNavigate} from "react-router-dom";
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
 
+     const unidadeMedidaList = [
+        {"icon": "fa-solid fa-cube","heading": "Mililitro", "subheading": "Tipo: Volume - Abreviação: ml"},
+        {"icon": "fa-solid fa-hippo","heading": "Quilograma", "subheading": "Tipo: Massa - Abreviação: kg"},
+        {"icon": "fa-solid fa-circle","heading": "Quantidade Genérica", "subheading": "Tipo: Genérico - Abreviação: un"},
+        {"icon": "fa-solid fa-cube","heading": "Sacas", "subheading": "Tipo: Volume - Abreviação: ml"},
+        {"icon": "fa-solid fa-hippo","heading": "Galão", "subheading": "Tipo: Volume - Abreviação: ml"},
+        
+     ]
+
      return(
           <>
              <div className={style.topBar}>
@@ -20,19 +29,15 @@ export default function ConfigurationMenu({}){
              </div>
                 <hr></hr>
              <div className={style.conteudoTela}>
-                <ListItem 
-                    icon={"fa-solid fa-cube"}
-                    heading={"Mililitro"} 
-                    subheading={"Tipo: Volume - Abreviação: ml"} 
-                    fullBorderRadius={false} 
-                />
-                <ListItem 
-                    icon={"fa-solid fa-hippo"}
-                    heading={"Quilograma"} 
-                    subheading={"Tipo: Massa - Abreviação: kg"} 
-                    fullBorderRadius={false} 
-                    />
-                <ListItem 
+             {unidadeMedidaList.map(unidadeMedida=>{
+                    return <ListItem 
+                            fullBorderRadius={true} 
+                            icon={unidadeMedida.icon}
+                            heading={unidadeMedida.heading} 
+                            subheading={unidadeMedida.subheading}
+                            />
+                })}
+                {/* <ListItem 
                     icon={"fa-solid fa-circle"}
                     heading={"Quantidade Genérica"} 
                     subheading={"Tipo: Genérico - Abreviação: un"} 
@@ -49,7 +54,7 @@ export default function ConfigurationMenu({}){
                     heading={"Galão"} 
                     subheading={"Tipo: Volume - Abreviação: ml"} 
                     fullBorderRadius={false} 
-                    /> 
+                    />  */}
              </div>
 
           </>

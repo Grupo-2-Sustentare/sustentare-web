@@ -7,7 +7,8 @@ import TextInput from "../../components/TextInput/TextInput";
 import TopBar from "../../components/TopBar/TopBar";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import IconInput from "../../components/IconInput/IconInput";
-import Product from "../../components/ProductItem/Product";
+import Product, { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
@@ -15,22 +16,32 @@ const ConfiguracoesProdutos = () => {
         navigate("/criando-produto");
     };
 
+    let x = DEFAULT_BUTTON_CONFIG
+    x.yellow.action = ()=>{navigate("/editando-produto")}
+
+    const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
+
     return (
         <>
             <div className={styles.divTopBar}>
             <TopBar  title={"configurações de produtos"}/>
             </div>
             <div className={styles.divPrincipal}>
-                
-                <div className={styles.divFiltroEBusca}>
+            <div className={styles.divFiltroEBusca}>
                     <IconInput/>
-                    <StreachList titulo=" "/>
-                </div>
-                <Product name="Feijão" quantity="25 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/feijão.png"/>
-                <Product name="Guarana" quantity="70 unidades"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/guarana.jpeg"/>
-                <Product name="Coca-Cola" quantity="100 unidades"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/coca300.jpeg"/>
+                    <StreachList showTitle={false}/>
+            </div>
+            <hr></hr>
+                <Product name="Feijão" quantity="25 kilogramas"  showCheckbox={false} addressImg={githubPath + "feijão.png"} buttonsConfig={x}/>
+                <Product name="Guarana" quantity="70 unidades"  showCheckbox={false} addressImg={githubPath + "guarana.jpeg"}/>
+                <Product name="Coca-Cola" quantity="100 unidades"  showCheckbox={false} addressImg={githubPath + "coca300.jpeg"}/>
                 <Product name="Sobrecoxa" quantity="85 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/sobrecoxa.jpg"/>
                 <Product name="Água" quantity="110 unidades"  showCheckbox={false} />
+                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
+                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
+                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
+                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
+                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
                 <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
             </div>
             <div className={styles.divBotao}>

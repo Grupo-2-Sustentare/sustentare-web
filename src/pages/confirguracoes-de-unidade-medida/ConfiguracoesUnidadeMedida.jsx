@@ -23,11 +23,10 @@ const ConfiguracoesUnidadeMedida = () => {
                     <IconInput/>
                     <StreachList titulo=" "/>
                 </div>
-                <Product title="Mililitro"    weight={["Tipo: Volume", <br />, "Abreviação: ml"]}  showCheckbox={false} />
-                <Product title="Quilograma"    weight={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} />
-                <Product title="Sacas"    weight={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} />
-                <Product title="Quilograma"    weight={["Tipo: Massa", <br />, "Abreviação: sacas"]}  showCheckbox={false} />
-                <Product title="Pack de refrigerante"    weight={["Tipo: Genérico", <br />, "Abreviação: packs"]}  showCheckbox={false} />
+                <Product addressImg={false} name="Mililitro"  quantity={["Tipo: Volume", <br />, "Abreviação: ml"]}  showCheckbox={false} icon="fa-solid fa-cube" />
+                <Product addressImg={false} name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} icon="fa-solid fa-hippo"/>
+                <Product addressImg={false} name="Sacas"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} icon="fa-solid fa-hippo"/>
+                <Product addressImg={false} name="Quantidade Genérica"    quantity={["Tipo: Massa", <br />, "Abreviação: sacas"]}  showCheckbox={false} icon="fa-solid fa-circle"/> 
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova unidade de medida" onClick={handleSave}/>

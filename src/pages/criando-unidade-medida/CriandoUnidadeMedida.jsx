@@ -8,8 +8,14 @@ import MeasurementUnitInput from "../../components/MeasumentTextInput/Measuremen
 import TopBar from "../../components/TopBar/TopBar"
 import Button from "../../components/Button/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader"
+import {alertToast, successToast} from "../../components/Toast/Toast";
+import { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
+
+
+
 
 const CriandoUnidadeMedida = () => {
+    var buttonsConfig = undefined
     const [valorTextInput, setValorTextInput] = useState(""); 
     const [valorEquivalente, setValorEquivalente] = useState(""); 
     const [valorStreachList, setValorStreachList] = useState(""); 
@@ -35,6 +41,10 @@ const CriandoUnidadeMedida = () => {
         }
     };
 
+
+    function salvar(){
+        successToast("Unidade de medida criada com sucesso")
+    }
 
     return (
 
@@ -79,7 +89,7 @@ const CriandoUnidadeMedida = () => {
                 
             </div>
                 <div className={styles.divBotao}>
-                    <Button insideText={"Salvar nova unidade de medida"}/>
+                    <Button insideText={"Salvar nova unidade de medida"} onClick={salvar}/>
                 </div>
         </div>
     );
