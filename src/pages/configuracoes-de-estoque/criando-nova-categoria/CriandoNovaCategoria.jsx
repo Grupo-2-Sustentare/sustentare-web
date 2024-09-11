@@ -11,6 +11,7 @@ export default function ConfigurationMenu({}){
 
      function categoriaCriada(){
       successToast("Categoria criada com sucesso")
+      navigate("/configuracoes-de-categorias")
      }
 
      return(
