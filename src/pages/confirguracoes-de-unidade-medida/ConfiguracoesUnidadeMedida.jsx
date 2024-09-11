@@ -21,7 +21,7 @@ const ConfiguracoesUnidadeMedida = () => {
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>
-                    <StreachList titulo=" "/>
+                    <StreachList showTitle={false} titulo=" "/>
                 </div>
                 <Product addressImg={false} name="Mililitro"  quantity={["Tipo: Volume", <br />, "Abreviação: ml"]}  showCheckbox={false} icon="fa-solid fa-cube" />
                 <Product addressImg={false} name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} icon="fa-solid fa-hippo"/>

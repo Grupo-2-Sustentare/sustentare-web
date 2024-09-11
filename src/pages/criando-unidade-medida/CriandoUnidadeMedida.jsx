@@ -16,6 +16,7 @@ import { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
 
 const CriandoUnidadeMedida = () => {
     var buttonsConfig = undefined
+    const navigate = useNavigate()
     const [valorTextInput, setValorTextInput] = useState(""); 
     const [valorEquivalente, setValorEquivalente] = useState(""); 
     const [valorStreachList, setValorStreachList] = useState(""); 
@@ -44,6 +45,7 @@ const CriandoUnidadeMedida = () => {
 
     function salvar(){
         successToast("Unidade de medida criada com sucesso")
+        navigate("/configuracoes-de-unidade-medida")
     }
 
     return (
