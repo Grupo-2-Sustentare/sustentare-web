@@ -29,12 +29,13 @@ const Login = () => {
         // }).catch(() => {
         //     toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente."); // Exibe uma mensagem de erro se a requisição falhar
         // })
-        sessionStorage.setItem("nome_usuario", nome)
+        sessionStorage.setItem("nome_usuario", "Antônio")
         navigate("/menu-inicial")
     };
 
     const handleInputChange = (event, setStateFunction) => { // Função para manipular as mudanças nos inputs
-        setStateFunction(event.target.value); // Atualiza o estado correspondente
+        // setStateFunction(event.target.value); // Atualiza o estado correspondente
+        return
     }
 
     sessionStorage.setItem(

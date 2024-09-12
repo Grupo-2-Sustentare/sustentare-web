@@ -23,7 +23,7 @@ export default function HistoricoOperacoes(){
     }
 
     return(<>
-        <TopBar title={"Historico de operações"} showBackArrow={true}/>
+        <TopBar title={"Historico de operações"} showBackArrow={false}/>
         <div className={styles.barraDeBusca}>
             <IconInput onChange={buscarLogs} placeholder={"Pesquisa por nome"}/>
             <StrechList
