@@ -6,7 +6,7 @@ import TextSizeSlider from '../../components/TextSizeSlider/TextSizeSlider';
 export default function Configuracoes() {
     return (
         <div className={styles.Global}>
-            <TopBar title={"Configurações"} showBackArrow={true} />
+            <TopBar title={"Configurações"}/>
             <div className={styles.Configuracoes}>
                 <span className={styles.H3}>
                     Acessibilidade
