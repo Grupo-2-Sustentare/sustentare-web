@@ -11,6 +11,10 @@ export default function ConfigurationMenu({}){
 
      function salvarEdicao(){
          successToast("Categoria editada com sucesso")
+         const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-categorias");
+       }, toastDuration);
      }
 
      const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";

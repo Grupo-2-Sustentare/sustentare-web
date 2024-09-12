@@ -12,6 +12,10 @@ export default function ConfigurationMenu({}){
 
      function salvarEdicao(){
         successToast("Unidade de medida editada com sucesso")
+        const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-unidade-medida");
+       }, toastDuration);
      }
 
      return(

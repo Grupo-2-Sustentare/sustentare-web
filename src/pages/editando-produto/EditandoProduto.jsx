@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"; // Importa o hook useNavigate para redirecionamento de rotas
+import { Navigate, useNavigate } from "react-router-dom"; // Importa o hook useNavigate para redirecionamento de rotas
 import React, { useState } from "react"; // Importa React e o hook useState para gerenciamento de estado
 import StreachList from "../../components/StrechList/StrechList"
 import TextInput from "../../components/TextInput/TextInput"
@@ -8,8 +8,18 @@ import MeasurementUnitInput from "../../components/MeasumentTextInput/Measuremen
 import TopBar from "../../components/TopBar/TopBar"
 import Button from "../../components/Button/Button";
 import ImageUploader from "../../components/ImageUploader/ImageUploader"
+import { successToast } from "../../components/Toast/Toast";
 
 const EditandoProduto = () => {
+    const navigate = useNavigate();
+
+    function salvarEdicao(){
+        successToast("Produto editado com sucesso")
+        const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-produtos");
+       }, toastDuration);
+     }
 
     const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
@@ -36,7 +46,7 @@ const EditandoProduto = () => {
                 
             </div>
                 <div className={styles.divBotao}>
-                    <Button insideText={"Salvar edição"}/>
+                    <Button insideText={"Salvar edição"} onClick={salvarEdicao}/>
                 </div>
         </div>
     );

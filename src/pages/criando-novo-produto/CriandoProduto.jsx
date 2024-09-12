@@ -17,7 +17,10 @@ const CriandoProduto = () => {
 
     function Salvar(){
         successToast("Produto criado com sucesso")
-        navigate("/configuracoes-de-produtos")
+        const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-produtos");
+       }, toastDuration);
     }
 
     return (
@@ -30,10 +33,16 @@ const CriandoProduto = () => {
                 </div>
                 <div className={styles.TextInput}>
                  
-                    <StrechList title="Categoria" titulo="" />
+                    {/* <StrechList title="Categoria"/> */}
+                    <RedirectionList
+                    title={"Categoria"} redirectUrl={"/categoria-produto"}
+                />
                 </div>
                 <div className={styles.TextInput}>
-                    <StrechList title="Unidade de medida:" titulo="" />
+                    {/* <StrechList title="Unidade de medida:"/> */}
+                    <RedirectionList
+                    title={"Unidade de medida"} redirectUrl={"/unidade-de-medida-do-produto"}
+                />
                 </div>
 
                 <div className={styles.divPerecivel}>

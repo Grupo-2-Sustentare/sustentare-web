@@ -45,7 +45,10 @@ const CriandoUnidadeMedida = () => {
 
     function salvar(){
         successToast("Unidade de medida criada com sucesso")
-        navigate("/configuracoes-de-unidade-medida")
+        const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-unidade-medida");
+       }, toastDuration);
     }
 
     return (

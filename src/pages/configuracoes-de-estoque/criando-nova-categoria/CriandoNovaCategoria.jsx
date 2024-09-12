@@ -11,7 +11,10 @@ export default function ConfigurationMenu({}){
 
      function categoriaCriada(){
       successToast("Categoria criada com sucesso")
-      navigate("/configuracoes-de-categorias")
+      const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-categorias");
+       }, toastDuration);
      }
 
      return(
