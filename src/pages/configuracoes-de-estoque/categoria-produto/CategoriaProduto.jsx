@@ -30,7 +30,7 @@ export default function ConfigurationMenu({}){
      return(
           <>
              <div className={style.topBar}>
-               <TopBar title="Categoria do produto" showBackArrow={false}/>
+               <TopBar title="Categoria do produto" showBackArrow={true} backNavigationPath={"/criando-produto"}/>
              </div>
             
              <div className={style.conteudoInicioTela}>

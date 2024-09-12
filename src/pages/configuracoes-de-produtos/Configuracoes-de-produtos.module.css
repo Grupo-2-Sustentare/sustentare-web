@@ -11,7 +11,7 @@
     gap: 8px;
     width: 100%;
     height: 634px;
-    padding: 6px;
+    padding: 8px 16px 8px 16px;
     overflow-y: scroll;
 }
 .divBotao{
@@ -22,5 +22,5 @@
     align-items: center;
     border-top: var(--borda-branca);
     position: relative;
-    background-color: var(--gunmetal);
+    background-color: var(--gradiente);
 }

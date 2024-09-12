@@ -11,13 +11,16 @@ export default function ConfigurationMenu({}){
 
      function categoriaCriada(){
       successToast("Categoria criada com sucesso")
-      navigate("/configuracoes-de-categorias")
+      const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-categorias");
+       }, toastDuration);
      }
 
      return(
           <>
              <div className={style.topBar}>
-               <TopBar title="Criando nova Categoria" showBackArrow={true}/>
+               <TopBar title="Criando nova Categoria" showBackArrow={true} backNavigationPath={"/configuracoes-de-categorias"}/>
              </div>
             
              <div className={style.conteudoInicioTela}>

@@ -62,26 +62,32 @@ export default function SelecaoProdutos(){
         navigate("/cadastros-de-estoque")
     }
 
-    return(<div className={styles.selecaoProdutos}>
-        <TopBar title={"Seleção de Produtos"} showBackArrow={true}/>
-        <div className={styles.barraDeBusca}>
-            <IconInput onChange={buscarProdutos} placeholder={"Pesquisa por nome"}/>
-            <StrechList
-                showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
-                onChange={ordenar}
-            />
-        </div>
-        <div className={styles.containerProdutos}>
-            {produtos.map((p,i) => {
-                return <Product
-                    key={i}
-                    addressImg={p.urlImagem} name={p.nome}
-                    quantity={`${p.quantidade} ${p.unidade}`} checkboxVariant={true}
+    return(
+    <>
+        <TopBar title={"Seleção de Produtos"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
+        <div className={styles.divPrincipal}>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={buscarProdutos} placeholder={"Pesquisa por nome"}/>
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
+                    onChange={ordenar}
                 />
-            })}
+            </div>
+            {/* <div className={styles.containerProdutos}> */}
+            <hr></hr>
+            {produtos.map((p,i) => {
+                    return <Product
+                        key={i}
+                        addressImg={p.urlImagem} name={p.nome}
+                        quantity={`${p.quantidade} ${p.unidade}`} checkboxVariant={true}
+                    />
+             })}
+                
+            {/* </div> */}
         </div>
-        <div className={styles.containerBotao}>
-            <Button insideText={"Confirmar seleção"} onClick={adicionarProdutos}/>
-        </div>
-    </div>)
+            <div className={styles.containerBotao}>
+                <Button insideText={"Confirmar seleção"} onClick={adicionarProdutos}/>
+            </div>
+    </>
+)
 }

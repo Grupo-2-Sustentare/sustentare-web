@@ -43,29 +43,31 @@ export default function NovoMovimento({}){
     }
 
     return (
-        <div className={styles.novoMovimento}>
+        <>
             <TopBar title={"Nova Movimentação"} showBackArrow={false}/>
-            <div className={styles.containerProdutos}>
-                {movement.products.length === 0 && (
-                    <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
-                )}
-                {movement.products.map((p, i) => {
-                    let btnConfig = DEFAULT_BUTTON_CONFIG
-                    btnConfig.yellow.action = () => editarProduto(movement.products[i])
+            <div className={styles.divPrincipal}>
+                {/* <div className={styles.containerProdutos}> */}
+                    {movement.products.length === 0 && (
+                        <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
+                    )}
+                    {movement.products.map((p, i) => {
+                        let btnConfig = DEFAULT_BUTTON_CONFIG
+                        btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
-                    return <Product
-                        addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
-                        buttonsConfig={btnConfig}
+                        return <Product
+                            addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
+                            buttonsConfig={btnConfig}
+                        />
+                    })}
+                {/* </div> */}
+            </div>
+                <div className={styles.botoes}>
+                    <Button
+                        insideText={"Adicionar produto"}
+                        onClick={() => navigate("/selecao-produtos")}
                     />
-                })}
-            </div>
-            <div className={styles.botoes}>
-                <Button
-                    insideText={"Adicionar produto"}
-                    onClick={() => navigate("/selecao-produtos")}
-                />
-                <Button insideText={"Concluir movimento"} onClick={finalizar}/>
-            </div>
-        </div>
+                    <Button insideText={"Concluir entrada"} onClick={finalizar}/>
+                </div>
+        </>
     )
 }

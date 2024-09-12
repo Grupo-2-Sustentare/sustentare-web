@@ -20,7 +20,7 @@ export default function ConfigurationMenu({}){
      return(
           <>
              <div className={style.topBar}>
-               <TopBar title="Unidade de Medida do produto" showBackArrow={true}/>
+               <TopBar title="Unidade de Medida do produto" showBackArrow={true} backNavigationPath={"/criando-produto"}/>
              </div>
             
              <div className={style.conteudoInicioTela}>

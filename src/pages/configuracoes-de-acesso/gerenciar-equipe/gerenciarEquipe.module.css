@@ -1,8 +1,9 @@
 .gerenciarEquipe{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 99vh;
     width: 100%;
+    padding-top: 16px;
 }
 
 .barraDeBusca{

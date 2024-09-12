@@ -1,36 +1,47 @@
-.selecaoProdutos{
+.divPrincipal{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    height: 634px;
+    padding: 8px 16px 8px 16px;
+    overflow-y: scroll;
+}
+
+/* .selecaoProdutos{
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100%;
-}
+} */
 
 .barraDeBusca{
-    width: 100%;
-    padding: 8px 16px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    background-color: var(--carvao);
+    width: 100%;
+    gap: 8px;
 }
 
 .containerProdutos{
     width: 100%;
-    padding: 8px 16px;
+    /* padding: 8px 16px; */
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    height: 100%;
-    border: var(--borda-branca);
+    /* gap: 16px; */
+    /* height: 100%; */
+    /* border: var(--borda-branca); */
     border-width: 1px 0 1px 0;
     overflow-y: scroll;
 }
 
 .containerBotao{
-    width: 100%;
-    padding: 8px 0;
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    height: 113px;
     justify-content: center;
     align-items: center;
+    border-top: var(--borda-branca);
+    position: relative;
+    background-color: var(--gradiente);
 }

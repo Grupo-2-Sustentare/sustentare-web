@@ -23,7 +23,7 @@ export default function CategoriaConsumo(){
     }
 
     return(<>
-        <TopBar title={"Categoria do consumo"} showBackArrow={true}/>
+        <TopBar title={"Categoria do consumo"} showBackArrow={true} backNavigationPath={"/quantidade-movimento"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
             <Product name={p.nome} addressImg={p.urlImagem} quantity={`${p.quantidade} ${p.unidade}`}/>

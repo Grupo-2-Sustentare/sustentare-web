@@ -10,7 +10,7 @@ export const DEFAULT_BUTTON_CONFIG = {
         "style": {},
         "icon": "fa-solid fa-pen",
         "iconFillInvert": false, // Quando false, o ícone será preto. Quando true, branco.
-        "text": "Editar quantidade",
+        "text": "Editar",
         "action": () => alertToast("Defina uma ação para esse botão.")
     },
     "red": {

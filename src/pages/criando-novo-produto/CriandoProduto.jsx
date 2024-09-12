@@ -17,12 +17,15 @@ const CriandoProduto = () => {
 
     function Salvar(){
         successToast("Produto criado com sucesso")
-        navigate("/configuracoes-de-produtos")
+        const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-produtos");
+       }, toastDuration);
     }
 
     return (
         <div>
-            <TopBar title={"Criando Novo Produto"} showBackArrow={true}/>
+            <TopBar title={"Criando Novo Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"}/>
             <div className={styles.divPrincipal}>
                 <ImageUploader/>
                 <div className={styles.TextInput}>
@@ -30,10 +33,16 @@ const CriandoProduto = () => {
                 </div>
                 <div className={styles.TextInput}>
                  
-                    <StrechList title="Categoria" titulo="" />
+                    {/* <StrechList title="Categoria"/> */}
+                    <RedirectionList
+                    title={"Categoria"} redirectUrl={"/categoria-produto"}
+                />
                 </div>
                 <div className={styles.TextInput}>
-                    <StrechList title="Unidade de medida:" titulo="" />
+                    {/* <StrechList title="Unidade de medida:"/> */}
+                    <RedirectionList
+                    title={"Unidade de medida"} redirectUrl={"/unidade-de-medida-do-produto"}
+                />
                 </div>
 
                 <div className={styles.divPerecivel}>
@@ -45,7 +54,7 @@ const CriandoProduto = () => {
                 
             </div>
                 <div className={styles.divBotao}>
-                    <Button insideText={"Salvar novo produto"} onClick={Salvar}/>
+                    <Button insideText={"Salvar novo produto"} onClick={Salvar} />
                 </div>
         </div>
     );

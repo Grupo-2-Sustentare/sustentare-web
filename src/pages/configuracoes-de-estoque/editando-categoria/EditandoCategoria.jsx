@@ -11,13 +11,17 @@ export default function ConfigurationMenu({}){
 
      function salvarEdicao(){
          successToast("Categoria editada com sucesso")
+         const toastDuration = 1000;
+        setTimeout(() => {
+         navigate("/configuracoes-de-categorias");
+       }, toastDuration);
      }
 
      const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";
      return(
           <>
              <div className={style.topBar}>
-               <TopBar title="Editando Categoria" showBackArrow={true}/>
+               <TopBar title="Editando Categoria" showBackArrow={true} backNavigationPath={"/configuracoes-de-categorias"}/>
             </div>
              <div className={style.conteudoInicioTela}>
                 <ImageUploader oldImage={githubPath + "bebidas.jpg"}/>
