@@ -20,7 +20,7 @@ const ConfiguracoesCategorias = () => {
 
     return (
         <>
-            <TopBar title={"configurações de categorias"} showBackArrow={true}/>
+            <TopBar title={"configurações de categorias"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.divFiltroEBusca}>
                     <IconInput/>

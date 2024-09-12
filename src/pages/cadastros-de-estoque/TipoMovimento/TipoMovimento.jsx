@@ -15,7 +15,7 @@ export default function TipoMovimento(){
     }
 
     return (<div>
-        <TopBar title={"Tipo de movimento"} showBackArrow={true}/>
+        <TopBar title={"Tipo de movimento"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
             <Product name={p.nome} addressImg={p.urlImagem} quantity={  `${p.quantidade} ${p.unidade}`}/>

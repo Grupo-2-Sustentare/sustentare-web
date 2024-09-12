@@ -53,7 +53,7 @@ const CriandoUnidadeMedida = () => {
         
 
         <div>
-            <TopBar title={"Criando Unidade de Medida"} showBackArrow={true}/>
+            <TopBar title={"Criando Unidade de Medida"} showBackArrow={true} backNavigationPath={"/configuracoes-de-unidade-medida"}/>
             <div className={styles.divPrincipal}>
 
                 <TextInput label="Nome:" onChange={handleInputChange}/>

@@ -17,7 +17,7 @@ export default function ConfigurationMenu({}){
      return(
           <>
              <div className={style.topBar}>
-               <TopBar title="Editando Categoria" showBackArrow={true}/>
+               <TopBar title="Editando Categoria" showBackArrow={true} backNavigationPath={"/configuracoes-de-categorias"}/>
             </div>
              <div className={style.conteudoInicioTela}>
                 <ImageUploader oldImage={githubPath + "bebidas.jpg"}/>

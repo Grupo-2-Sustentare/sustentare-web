@@ -1,13 +1,13 @@
 .bloco{
-  height: 72px;
+  height: 60px;
   width: 200px;
 }
 
 .menuSuperior {
     display: flex;
     flex-direction: row;
-    background-color: black;
-    color: white;
+    background-color: var(--preto);
+    color: var(--white);
     height: 60px;
     width: 375px;
     border-bottom: 2px solid var(--white);

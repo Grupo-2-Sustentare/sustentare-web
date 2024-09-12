@@ -15,7 +15,7 @@ const EditandoProduto = () => {
 
     return (
         <div>
-            <TopBar title={"Editando Produto"} />
+            <TopBar title={"Editando Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"}/>
             <div className={styles.divPrincipal}>
                 <div className={styles.editarImagem}>
                     <ImageUploader oldImage={githubPath + "feijão.png"}/>

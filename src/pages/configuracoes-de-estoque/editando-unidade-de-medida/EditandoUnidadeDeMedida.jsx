@@ -17,7 +17,7 @@ export default function ConfigurationMenu({}){
      return(
           <>
              <div className={style.topBar}>
-               <TopBar title="Editando unidade de medida" showBackArrow={true}/>
+               <TopBar title="Editando unidade de medida" showBackArrow={true} backNavigationPath={"/configuracoes-de-unidade-medida"}/>
              </div>
             
              <div className={style.conteudoInicioTela}>
@@ -26,7 +26,7 @@ export default function ConfigurationMenu({}){
                 <TextInput label={"Abreviação no plural: "}/>
                 <StrechList showTitle={true} title="Tipo" hint="Unidade Genérica"/>
                 <div className={style.divUnidadeMedida}>
-                    <MeasurementUnitInput placeholder={"0"} label={"Um(a) ->nome ->pack de Refri- equivale a"} measurementUnit={"unidade"}/>
+                    <MeasurementUnitInput placeholder={"0"} label={"Um(a) " + " equivale a"} measurementUnit={"unidade"}/>
                 </div>
              </div>
              <hr></hr>

@@ -19,7 +19,7 @@ export function QuantidadeMovimento(){
     }
 
     return(<div>
-        <TopBar showBackArrow={true} title={"Quantidade de movimento"}/>
+        <TopBar showBackArrow={true} title={"Quantidade de movimento"} backNavigationPath={"/tipo-movimento"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
             <Product name={p.nome} addressImg={p.urlImagem} quantity={  `${p.quantidade} ${p.unidade}`}/>

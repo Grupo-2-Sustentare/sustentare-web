@@ -22,7 +22,7 @@ const CriandoProduto = () => {
 
     return (
         <div>
-            <TopBar title={"Criando Novo Produto"} showBackArrow={true}/>
+            <TopBar title={"Criando Novo Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"}/>
             <div className={styles.divPrincipal}>
                 <ImageUploader/>
                 <div className={styles.TextInput}>
@@ -45,7 +45,7 @@ const CriandoProduto = () => {
                 
             </div>
                 <div className={styles.divBotao}>
-                    <Button insideText={"Salvar novo produto"} onClick={Salvar}/>
+                    <Button insideText={"Salvar novo produto"} onClick={Salvar} />
                 </div>
         </div>
     );

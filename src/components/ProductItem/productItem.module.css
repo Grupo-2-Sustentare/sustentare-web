@@ -12,6 +12,10 @@
   height: fit-content;
 }
 
+.product:has(.icon){
+  gap: 16px;
+}
+
 .mainInfo {
   display: flex;
   flex-direction: row;
