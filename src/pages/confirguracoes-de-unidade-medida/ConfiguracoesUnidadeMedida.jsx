@@ -23,6 +23,7 @@ const ConfiguracoesUnidadeMedida = () => {
                     <IconInput/>
                     <StreachList showTitle={false} titulo=" "/>
                 </div>
+                <hr></hr>
                 <Product addressImg={false} name="Mililitro"  quantity={["Tipo: Volume", <br />, "Abreviação: ml"]}  showCheckbox={false} icon="fa-solid fa-cube" />
                 <Product addressImg={false} name="Quilograma"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} icon="fa-solid fa-hippo"/>
                 <Product addressImg={false} name="Sacas"    quantity={["Tipo: Massa", <br />, "Abreviação: kg"]}  showCheckbox={false} icon="fa-solid fa-hippo"/>

@@ -1,9 +1,12 @@
-.TextInput{
+/* .TextInput{
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
+} */
 
+.editarImagem{
+    margin: 0 4px;
+}
 .divPerecivel{
     display: flex;
     align-items: center;
@@ -13,8 +16,12 @@
 .divPrincipal{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 24px;
-    padding: 16px;
+    width: 100%;
+    height: 634px;
+    padding: 0 16px;
+    overflow-y: scroll;
 }
 
 .divBotao{
@@ -24,4 +31,5 @@
     justify-content: center;
     align-items: center;
     border-top: var(--borda-branca);
+    background-color: var(--gradiente);
 }

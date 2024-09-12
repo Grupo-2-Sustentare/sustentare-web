@@ -11,31 +11,28 @@ import ImageUploader from "../../components/ImageUploader/ImageUploader"
 
 const EditandoProduto = () => {
 
+    const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
     return (
         <div>
             <TopBar title={"Editando Produto"} />
             <div className={styles.divPrincipal}>
-                <ImageUploader/>
-                <div className={styles.TextInput}>
-                    <h4>Nome:</h4>
-                    <TextInput />
+                <div className={styles.editarImagem}>
+                    <ImageUploader oldImage={githubPath + "feijão.png"}/>
                 </div>
-                <div className={styles.TextInput}>
-                    <h4>Categoria</h4>
-                    <StreachList titulo="" />
-                </div>
-                <div className={styles.TextInput}>
-                    <h4>Unidade de medida:</h4>
-                    <StreachList titulo="" />
-                </div>
+                {/* <div className={styles.TextInput}> */}
+                    <TextInput label={"Nome: "} />
+                {/* </div> */}
+               
+                <StreachList title={"Categoria"} />
+                <StreachList title={"Unidade de medida: "}/>
 
                 <div className={styles.divPerecivel}>
-                    <h4>Perecível</h4>
+                    <span>Perecível: </span>
                     <Checkbox />
                 </div>
 
-                <MeasurementUnitInput />
+                <MeasurementUnitInput measurementUnit={"dias para vencer"}/>
                 
             </div>
                 <div className={styles.divBotao}>

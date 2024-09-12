@@ -56,25 +56,23 @@ const CriandoUnidadeMedida = () => {
             <TopBar title={"Criando Unidade de Medida"} showBackArrow={true}/>
             <div className={styles.divPrincipal}>
 
-                <div className={styles.TextInput}>
-                    <TextInput label="Nome:" onChange={handleInputChange}/>
-                </div>
-                <div className={styles.TextInput}>
-                    <TextInput label="Abreviação no singular:"/>
-                </div>
-                <div className={styles.TextInput}>
-                    <TextInput label="Abreviação no plural:"/>
-                </div>
-                <div className={styles.TextInput}>
-                    <StreachList title="Tipo:" items={["Massa","Volume","Quantidade genérica"] }titulo="" onChange={handleStreachListChange}/>
-                </div>
+                <TextInput label="Nome:" onChange={handleInputChange}/>
+
+                <TextInput label="Abreviação no singular:"/>
+
+                <TextInput label="Abreviação no plural:"/>
+
+                <StreachList title="Tipo:" items={["Massa","Volume","Quantidade genérica"] }titulo="" onChange={handleStreachListChange}/>
+                
 
                 <div className={styles.divMeasumentTextInput}>
                     {ola ? (
                         <>
-                            <h4>Um(a) {valorTextInput.toLowerCase()} equivale a</h4>
-                            <div className={styles.divvMeasumentTextInput}>
+                            {/* <div className={styles.divvMeasumentTextInput}>
                             <MeasurementUnitInput measurementUnit={valorEquivalente} />
+                            </div> */}
+                            <div className={styles.divUnidadeMedida}>
+                                <MeasurementUnitInput placeholder={"0"} label={"Um(a) " + " equivale a"} measurementUnit={valorEquivalente}/>
                             </div>
                         </>
                     ) : (
