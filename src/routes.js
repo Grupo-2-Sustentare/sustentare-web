@@ -25,6 +25,7 @@ import CategoriaConsumo from "./pages/cadastros-de-estoque/CategoriaConsumo/Cate
 import GerenciarEquipe from "./pages/configuracoes-de-acesso/gerenciar-equipe/GerenciarEquipe";
 import RemoverColaborador from "./pages/configuracoes-de-acesso/RemoverColaborador/RemoverColaborador";
 import Configuracoes from "./pages/configuracoes/Configuracoes";
+import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -38,20 +39,24 @@ function Rotas() {
             <Routes>
                 {rotaPadrao}
                 <Route path={"/menu-inicial"} element={<MainMenu />} />
+
                 <Route path={"/cadastros-de-estoque"} element={<NovoMovimento />} />
                     <Route path={"/selecao-produtos"} element={<SelecaoProdutos />} />
                         <Route path={"/tipo-movimento"} element={<TipoMovimento />} />
                         <Route path={"/quantidade-movimento"} element={<QuantidadeMovimento />} />
                         <Route path={"/categoria-consumo"} element={<CategoriaConsumo />} />
+
                 <Route path={"/configuracoes-de-estoque"} element={<ConfigurationMenu />} />
                     <Route path={"/categoria-produto"} element={<CategoriaProduto />} />
                     <Route path={"/unidade-de-medida-do-produto"} element={<UnidadeMedidaProduto/>} />
                     <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
                     <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
                     <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
+
                 <Route path={"/configuracoes-de-acesso"} element={<GerenciarEquipe/>} />
                     <Route path={"/adicionando-colaborador"} element={<AdicionandoColaborador/>} />
                     <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
+
                 <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
                 <Route path={"/criando-produto"} element={<CriandoProduto/>} />
                 <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
@@ -59,8 +64,11 @@ function Rotas() {
                 <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
                 <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
 
-                <Route path={"/teste"} element={<ExibirComponentes/>} />
+                <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
+
                 <Route path={"/configuracoes"} element={<Configuracoes/>}/>
+
+                <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
         </BrowserRouter>
         )
