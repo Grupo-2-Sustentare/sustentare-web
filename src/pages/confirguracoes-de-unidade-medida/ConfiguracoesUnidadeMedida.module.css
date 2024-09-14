@@ -15,6 +15,9 @@
     overflow-y: scroll;
 }
 
+path{
+    fill: var(--white)!important;
+}
 
 .divBotao{
     display: flex;
