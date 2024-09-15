@@ -9,11 +9,11 @@ import Product, { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Pro
 
 // Constante JSON mockada
 const MOCK_UNIDADES = [
-    { nome: "Mililitro", tipo: "Volume", abreviacao: "ml", icone: "fa-solid fa-cube" },
-    { nome: "Quilograma", tipo: "Massa", abreviacao: "kg", icone: "fa-solid fa-hippo" },
-    { nome: "Sacas", tipo: "Massa", abreviacao: "sacas", icone: "fa-solid fa-hippo" },
-    { nome: "Quantidade Genérica", tipo: "Massa", abreviacao: "unidades", icone: "fa-solid fa-circle" },
-    { nome: "Quantidade Genérica", tipo: "Massa", abreviacao: "unidades", icone: "fa-solid fa-circle" }
+    { nome: "Mililitro", tipo: "Volume", abreviacao: "ml", icone: "fa-cube" },
+    { nome: "Quilograma", tipo: "Massa", abreviacao: "kg", icone: "fa-hippo" },
+    { nome: "Sacas", tipo: "Massa", abreviacao: "sacas", icone: "fa-hippo" },
+    { nome: "Quantidade Genérica", tipo: "Massa", abreviacao: "unidades", icone: "fa-circle" },
+    { nome: "Quantidade Genérica", tipo: "Massa", abreviacao: "unidades", icone: "fa-circle" }
 ];
 
 const ConfiguracoesUnidadeMedida = () => {
