@@ -1,10 +1,10 @@
-import TopBar from "../../../components/TopBar/TopBar";
-import ImageUploader from "../../../components/ImageUploader/ImageUploader";
-import TextInput from "../../../components/TextInput/TextInput";
-import Button from "../../../components/Button/Button";
-import style from "../criando-nova-categoria/criandoNovaCategoria.module.css";
+import TopBar from "../../../../components/TopBar/TopBar";
+import ImageUploader from "../../../../components/ImageUploader/ImageUploader";
+import TextInput from "../../../../components/TextInput/TextInput";
+import Button from "../../../../components/Button/Button";
+import style from "../criandoNovaCategoria/criandoNovaCategoria.module.css";
 import {useNavigate} from "react-router-dom";
-import { successToast } from "../../../components/Toast/Toast";
+import { successToast } from "../../../../components/Toast/Toast";
 
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();

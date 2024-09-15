@@ -1,11 +1,11 @@
-import TopBar from "../../../components/TopBar/TopBar";
-import TextInput from "../../../components/TextInput/TextInput";
-import StrechList from "../../../components/StrechList/StrechList.jsx";
-import MeasurementUnitInput from "../../../components/MeasumentTextInput/MeasurementUnitInput.jsx";
-import Button from "../../../components/Button/Button";
-import style from "../editando-unidade-de-medida/editandoUnidadeDeMedida.module.css";
+import TopBar from "../../../../components/TopBar/TopBar.jsx";
+import TextInput from "../../../../components/TextInput/TextInput.jsx";
+import StrechList from "../../../../components/StrechList/StrechList.jsx";
+import MeasurementUnitInput from "../../../../components/MeasumentTextInput/MeasurementUnitInput.jsx";
+import Button from "../../../../components/Button/Button.jsx";
+import style from "../editandoUnidadeDeMedida/editandoUnidadeDeMedida.module.css";
 import {useNavigate} from "react-router-dom";
-import { successToast } from "../../../components/Toast/Toast.jsx";
+import { successToast } from "../../../../components/Toast/Toast.jsx";
 
 export default function ConfigurationMenu({}){
      const navigate = useNavigate();
