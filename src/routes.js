@@ -5,17 +5,17 @@ import Debug from "./pages/debug/Debug";
 import Login from "./pages/login-e-entrada/Login/Login";
 import MainMenu from "./pages/login-e-entrada/MainMenu/MainMenu";
 
-import NovoMovimento from "./pages/cadastros-de-estoque/NovoMovimento/NovoMovimento"
-import CategoriaConsumo from "./pages/cadastros-de-estoque/CategoriaConsumo/CategoriaConsumo";
-import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/QuantidadeMovimento/QuantidadeMovimento";
-import SelecaoProdutos from "./pages/cadastros-de-estoque/SelecaoProdutos/SelecaoProdutos";
-import TipoMovimento from "./pages/cadastros-de-estoque/TipoMovimento/TipoMovimento";
+import NovoMovimento from "./pages/cadastros-de-estoque/novoMovimento/NovoMovimento";
+import CategoriaConsumo from "./pages/cadastros-de-estoque/categoriaConsumo/CategoriaConsumo";
+import {QuantidadeMovimento} from "./pages/cadastros-de-estoque/quantidadeMovimento/QuantidadeMovimento";
+import SelecaoProdutos from "./pages/cadastros-de-estoque/selecaoProdutos/SelecaoProdutos";
+import TipoMovimento from "./pages/cadastros-de-estoque/tipoMovimento/TipoMovimento";
 
 import Configuracoes from "./pages/configuracoes/Configuracoes";
 
 import AdicionandoColaborador from "./pages/configuracoes-de-acesso/adicionandoColaborador/AdicionandoColaborador";
 import GerenciarEquipe from "./pages/configuracoes-de-acesso/gererenciarEquipe/GerenciarEquipe";
-import RemoverColaborador from "./pages/configuracoes-de-acesso/RemoverColaborador/RemoverColaborador";
+import RemoverColaborador from "./pages/configuracoes-de-acesso/removerColaborador/RemoverColaborador";
 
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 
