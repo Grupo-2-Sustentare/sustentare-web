@@ -1,18 +1,20 @@
 import styles from "./ConfiguracoesUnidadeMedida.module.css";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import StreachList from "../../components/StrechList/StrechList";
-import Button from "../../components/Button/Button";
-import TopBar from "../../components/TopBar/TopBar";
-import IconInput from "../../components/IconInput/IconInput";
-import Product, { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
+import StreachList from "../../../../components/StrechList/StrechList";
+import Button from "../../../../components/Button/Button";
+import TopBar from "../../../../components/TopBar/TopBar";
+import IconInput from "../../../../components/IconInput/IconInput";
+import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
 
 // Constante JSON mockada
 const MOCK_UNIDADES = [
     { nome: "Mililitro", tipo: "Volume", abreviacao: "ml", icone: "fa-solid fa-cube" },
     { nome: "Quilograma", tipo: "Massa", abreviacao: "kg", icone: "fa-solid fa-hippo" },
     { nome: "Sacas", tipo: "Massa", abreviacao: "sacas", icone: "fa-solid fa-hippo" },
-    { nome: "Quantidade Genérica", tipo: "Massa", abreviacao: "unidades", icone: "fa-solid fa-circle" },
+    { nome: "Mililitro", tipo: "Volume", abreviacao: "ml", icone: "fa-solid fa-cube" },
+    { nome: "Mililitro", tipo: "Volume", abreviacao: "ml", icone: "fa-solid fa-cube" },
+    { nome: "Mililitro", tipo: "Volume", abreviacao: "ml", icone: "fa-solid fa-cube" },
     { nome: "Quantidade Genérica", tipo: "Massa", abreviacao: "unidades", icone: "fa-solid fa-circle" }
 ];
 
