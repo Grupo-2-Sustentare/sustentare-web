@@ -6,6 +6,12 @@ import Button from "../../../../components/Button/Button";
 import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
 import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
+import StreachList from "../../components/StrechList/StrechList";
+import Button from "../../components/Button/Button";
+import TopBar from "../../components/TopBar/TopBar";
+import IconInput from "../../components/IconInput/IconInput";
+import Product, { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
+
 
 // Constante JSON mockada
 const MOCK_UNIDADES = [
