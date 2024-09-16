@@ -1,13 +1,13 @@
 import styles from "./ConfiguracoesCategoria.module.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import StreachList from "../../components/StrechList/StrechList";
-import Button from "../../components/Button/Button";
-import TextInput from "../../components/TextInput/TextInput";
-import TopBar from "../../components/TopBar/TopBar";
-import RedirectionList from "../../components/RedirectionList/RedirectionList";
-import IconInput from "../../components/IconInput/IconInput";
-import Product, { DEFAULT_BUTTON_CONFIG } from "../../components/ProductItem/Product";
+import StreachList from "../../../../components/StrechList/StrechList";
+import Button from "../../../../components/Button/Button";
+import TextInput from "../../../../components/TextInput/TextInput";
+import TopBar from "../../../../components/TopBar/TopBar";
+import RedirectionList from "../../../../components/RedirectionList/RedirectionList";
+import IconInput from "../../../../components/IconInput/IconInput";
+import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();

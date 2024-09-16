@@ -1,8 +1,8 @@
-import IconInput from "../../../components/IconInput/IconInput.jsx";
-import ListItem from "../../../components/ListItem/ListItem.jsx";
-import StrechList from "../../../components/StrechList/StrechList.jsx";
-import TopBar from "../../../components/TopBar/TopBar";
-import style from "../categoria-produto/categoriaProduto.module.css";
+import IconInput from "../../../../components/IconInput/IconInput.jsx";
+import ListItem from "../../../../components/ListItem/ListItem.jsx";
+import StrechList from "../../../../components/StrechList/StrechList.jsx";
+import TopBar from "../../../../components/TopBar/TopBar.jsx";
+import style from "../categoriaProduto/categoriaProduto.module.css";
 import {useNavigate} from "react-router-dom";
 
 export default function ConfigurationMenu({}){

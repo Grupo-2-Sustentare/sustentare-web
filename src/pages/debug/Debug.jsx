@@ -7,7 +7,7 @@ import TextSizeSlider from "../../components/TextSizeSlider/TextSizeSlider";
 import RedirectionList from "../../components/RedirectionList/RedirectionList";
 import Placeholder from "../../components/Placeholder/Placeholder";
 import Button from "../../components/Button/Button";
-import CriandoProduto from "../criando-novo-produto/CriandoProduto";
+import CriandoProduto from "../configuracoes-de-estoque/Produto/criandoNovoProduto/CriandoProduto";
 import OperationLog from "../../components/OperationLog/OperationLog";
 import MenuItem from "../../components/MenuItem/MenuItem";
 import Switch from "../../components/Switch/Switch";
