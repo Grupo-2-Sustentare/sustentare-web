@@ -60,18 +60,18 @@ function Rotas() {
                     <Route path={"/criando-nova-categoria"} element={<CriandoNovaCategoria/>} />
                     <Route path={"/editando-categoria"} element={<EditandoCategoria/>} />
                     <Route path={"/editando-unidade-de-medida"} element={<EditandoUnidadeDeMedida/>} />
+                    <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
+                    <Route path={"/criando-produto"} element={<CriandoProduto/>} />
+                    <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
+                    <Route path={"/configuracoes-de-categorias"} element={<ConfiguracoesCategorias/>}/>
+                    <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
+                    <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
 
                 <Route path={"/configuracoes-de-acesso"} element={<GerenciarEquipe/>} />
                     <Route path={"/adicionando-colaborador"} element={<AdicionandoColaborador/>} />
                     <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
 
-                <Route path={"/configuracoes-de-produtos"} element={<ConfiguracoesProdutos />}/>
-                <Route path={"/criando-produto"} element={<CriandoProduto/>} />
-                <Route path={"/editando-produto"} element={<EditandoProduto/>}/>
-                <Route path={"/configuracoes-de-categorias"} element={<ConfiguracoesCategorias/>}/>
-                <Route path={"/configuracoes-de-unidade-medida"} element={<ConfiguracoesUnidadeMedida/>}/>
-                <Route path={"/criando-unidade-medida"} element={<CriandoUnidadeMedida/>}/>
-
+                
                 <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
 
                 <Route path={"/configuracoes"} element={<Configuracoes/>}/>
