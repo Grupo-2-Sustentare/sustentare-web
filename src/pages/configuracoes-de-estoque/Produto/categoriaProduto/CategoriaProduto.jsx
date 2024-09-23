@@ -21,11 +21,12 @@ export default function ConfigurationMenu({}){
         {"heading": "Condimentos avulsos", "adressImg": githubPath + "condimentos.jpg"},
      ]
 
-    //  function marcarCategoria(c){
-    //     p.categoriaProduto = c
-    //     sessionStorage.setItem("productBeingCreated", JSON.stringify(p))
-    //     navigate("/criando-produto")
-    // }
+     const selectListItem = (categoria) => {
+        // Armazena o item selecionado na sessionStorage
+        sessionStorage.setItem('selectedCategoria', JSON.stringify(categoria));
+  
+        navigate(sessionStorage.paginaRequisicao);
+     };
 
      return(
           <>
@@ -44,43 +45,9 @@ export default function ConfigurationMenu({}){
                             fullBorderRadius={true} 
                             heading={categoria.heading} 
                             adressImg={categoria.adressImg}
+                            onClick={() => selectListItem(categoria)}
                             />
-                    // onClick={()=>marcarCategoria(categoria)}
                 })}
-                {/* <ListItem 
-                    heading={"Ingredientes do self service"} 
-                    subheading={""} 
-                    fullBorderRadius={true} 
-                    adressImg={githubPath + "Self%20service.png"}/>
-                <ListItem 
-                    heading={"Bebidas"} 
-                    subheading={""} 
-                    fullBorderRadius={true} 
-                    adressImg={githubPath + "bebidas.jpg"}/>
-                <ListItem 
-                    heading={"Doces para encomenda"} 
-                    subheading={""} 
-                    fullBorderRadius={true} 
-                    adressImg={githubPath + "doces%20encomenda.jpg"}/>
-                <ListItem 
-                    heading={"Produtos de limpeza"} 
-                    subheading={""} fullBorderRadius={true} 
-                    adressImg={githubPath + "prod%20limpeza.jpg"}/>
-                <ListItem 
-                    heading={"Utensilios de cozinha"} 
-                    subheading={""} 
-                    fullBorderRadius={true} 
-                    adressImg={githubPath + "utensilios.jpg"}/>
-                <ListItem 
-                    heading={"Descartáveis"} 
-                    subheading={""} 
-                    fullBorderRadius={true} 
-                    adressImg={githubPath + "descartaveis.jpg"}/>
-                <ListItem 
-                    heading={"Condimentos avulsos"} 
-                    subheading={""} 
-                    fullBorderRadius={true} 
-                    adressImg={githubPath + "condimentos.jpg"}/> */}
              </div>
 
           </>

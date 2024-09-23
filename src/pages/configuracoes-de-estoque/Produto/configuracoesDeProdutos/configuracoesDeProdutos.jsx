@@ -11,6 +11,9 @@ import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductIt
 import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const ConfiguracoesProdutos = () => {
+    sessionStorage.removeItem('paginaRequisicao');
+    sessionStorage.removeItem('selectedUnidadeMedida');
+    sessionStorage.removeItem('selectedCategoria');
     const navigate = useNavigate();
     const handleSave = () => {
         navigate("/criando-produto");
