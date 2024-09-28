@@ -6,7 +6,7 @@ const FORMATOS_VALIDOS = [
     "avif", "jfif", "pjpeg", "pjp", "bmp", "png", "jpg", "jpeg", "webp"
 ]
 
-export default function ImageUploader({oldImage=null}){
+export default function ImageUploader({oldImage=null, onImageSelect}){
     // Param oldImage: Usado na edição de um registro, para demonstrar a imagem atualmente sendo usada.
 
 
@@ -27,6 +27,8 @@ export default function ImageUploader({oldImage=null}){
         let elementoImg = URL.createObjectURL(upload)
         setUploadMessage("Imagem enviada com sucesso!")
         setUploadedImage(elementoImg)
+
+        onImageSelect(upload);
     }
 
     const [uploadMessage, setUploadMessage] = useState("Selecione uma imagem da sua galeria")
