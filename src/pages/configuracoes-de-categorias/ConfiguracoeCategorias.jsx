@@ -25,7 +25,7 @@ const ConfiguracoesCategorias = () => {
                 </div>
                 <Product name="Sobremesa encomenda" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/doces%20encomenda.jpg"/>
                 <Product name="Bebidas" showCheckbox={false} addressImg="https://github.com/Grupo-2-Sustentare/sustentare-web/blob/main/src/assets/images/categorias/bebidas.jpg?raw=true"/>
-                <Product name="self-service" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/Self%20service.png"/>
+                <Product name="self-service" showCheckbox={false} addressImg="https://sustentaree-s3.s3.amazonaws.com//produtos/imagens/27"/>
                 <Product name="Descartaveis" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/descartaveis.jpg"/>
             </div>
             <div className={styles.divBotao}>

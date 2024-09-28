@@ -13,9 +13,9 @@ export default function TextInput({ label, type="text", onChange, placeholder}){
     }
 
     const handleChange = (event) => {
-        const value = event.target.value;
+       /* const value = event.target.value;*/
         if (onChange) {
-            onChange(value); // Passa o valor do campo, não o evento
+            onChange(event); // Passa o valor do campo, não o evento
         }
     };
 
