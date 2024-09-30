@@ -14,19 +14,31 @@
     }
 }
 
-.principal{
+.inicioPrincipal{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 24px;
-    padding: 24px 16px;
-    height: 520px;
+    align-items: center;
+    background-color: var(--gunmetal);
+    border-radius: 10px;
+    border: var(--borda-branca);
+    height: 100px;
+    margin: 8px;
     p{
         font-size: 1.2em;
         font-weight: 600;
         text-align: center;
     }
+}
+
+.principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 16px 16px;
+    height: 520px;
+    overflow-y: scroll;
 }
 
 .containerBotao{

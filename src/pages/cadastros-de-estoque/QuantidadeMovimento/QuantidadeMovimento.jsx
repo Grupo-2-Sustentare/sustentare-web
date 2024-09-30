@@ -5,6 +5,7 @@ import Product from "../../../components/ProductItem/Product";
 import Switch from "../../../components/Switch/Switch";
 import Button from "../../../components/Button/Button";
 import RedirectionList from "../../../components/RedirectionList/RedirectionList";
+import TextInput from "../../../components/TextInput/TextInput";
 import MeasurementUnitInput from "../../../components/MeasumentTextInput/MeasurementUnitInput";
 
 export function QuantidadeMovimento(){
@@ -25,8 +26,10 @@ export function QuantidadeMovimento(){
             <Product name={p.nome} addressImg={p.urlImagem} quantity={  `${p.quantidade} ${p.unidade}`}/>
         </div>
         <div className={styles.principal}>
-            <p>Quanto do produto {acao} estoque?</p>
-            <MeasurementUnitInput measurementUnit={p.unidade} placeholder={0}/>
+        <div className={styles.inicioPrincipal}>
+                 <p>Quanto do produto {acao} estoque?</p>
+        </div>
+            <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} placeholder={0}/>
             {ehSaida &&
                 (<RedirectionList
                     title={"Categoria do consumo"} hint={p.categoriaConsumo} redirectUrl={"/categoria-consumo"}
@@ -34,6 +37,8 @@ export function QuantidadeMovimento(){
             }
             {!ehSaida &&
                 (<>
+                    <MeasurementUnitInput label={"Preço(Unitário): "} measurementUnit={"R$"} placeholder={0}/>
+                    {/* <TextInput /> */}
                     <Switch label={"É ajuste de uma marcação anterior errada?"}/>
                     <Switch label={"Compra de última hora?"}/>
                 </>)
