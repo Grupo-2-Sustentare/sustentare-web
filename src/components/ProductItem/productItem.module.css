@@ -122,3 +122,16 @@
 .inverse > path {
   fill: var(--white);
 }
+
+.noImageOrIcon {
+  display: flex;
+  padding: 16px;
+}
+
+.noImageOrIcon h4 {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  width: 300px;
+  height: 60px;
+}

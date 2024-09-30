@@ -24,7 +24,7 @@ export const DEFAULT_BUTTON_CONFIG = {
 export default function Product(
     {
       addressImg, icon, name, quantity, checkboxVariant = false, checkedByDefault = false,
-      buttonsConfig = undefined, fullBorderRadius = false
+      buttonsConfig = undefined, fullBorderRadius = false, showImageOrIcon = true
     }
     ) {
     // Inicializando o parâmetro que customiza os botões.
@@ -33,9 +33,14 @@ export default function Product(
         buttonsConfig = DEFAULT_BUTTON_CONFIG
     }
 
-    // Imagem padrão quando nenhuma foi definida.
-    if (addressImg === undefined){
-        addressImg = "https://placehold.co/400/F5FBEF/22333B?text=Produto"
+    const noImageOrIcon = !showImageOrIcon;
+
+    if (!showImageOrIcon){
+      addressImg = null;  // Deixa ambos como null ou undefined para não exibir nada
+      icon = null;
+    }else if(showImageOrIcon && addressImg === undefined){
+      // Imagem padrão quando somente addressImg é indefinido
+      addressImg = "https://placehold.co/400/F5FBEF/22333B?text=Produto";
     }
 
     let [checked, setChecked] = useState(checkedByDefault);
@@ -60,7 +65,7 @@ export default function Product(
   }
 
     return (
-      <div className={styles.product}>
+      <div className={`${styles.product} ${noImageOrIcon ? styles.noImageOrIcon : ""}`}>
         <div className={styles.mainInfo} onClick={handleClick}>
         {addressImg ? (
           <img src={addressImg} alt={"Ícone do produto"} className={fullBorderRadius ? styles.profileImage : ""} />

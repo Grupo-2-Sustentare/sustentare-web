@@ -1,6 +1,7 @@
 import styles from "./ConfiguracoesCategoria.module.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import ListItem from "../../../../components/ListItem/ListItem";
 import StreachList from "../../../../components/StrechList/StrechList";
 import Button from "../../../../components/Button/Button";
 import TextInput from "../../../../components/TextInput/TextInput";
@@ -15,6 +16,11 @@ const ConfiguracoesCategorias = () => {
         navigate("/criando-nova-categoria");
     };
 
+    const categoriaLista = [
+        "Sobremesa encomenda", "Bebidas",
+        "Self-service", "Descartaveis"
+    ]
+    
     let actioCategoria = DEFAULT_BUTTON_CONFIG
     actioCategoria.yellow.action = ()=>{navigate("/editando-categoria")}
 
@@ -27,10 +33,11 @@ const ConfiguracoesCategorias = () => {
                     <StreachList showTitle={false} titulo=" "/>
                 </div>
                 <hr></hr>
-                <Product name="Sobremesa encomenda" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/doces%20encomenda.jpg" buttonsConfig={actioCategoria}/>
-                <Product name="Bebidas" showCheckbox={false} addressImg="https://github.com/Grupo-2-Sustentare/sustentare-web/blob/main/src/assets/images/categorias/bebidas.jpg?raw=true"/>
-                <Product name="self-service" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/Self%20service.png"/>
-                <Product name="Descartaveis" showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/descartaveis.jpg"/>
+                <div className={styles.principal}>
+                     {categoriaLista.map(categoria=>{
+                        return <Product name={categoria} showImageOrIcon={false}/>
+                      })}
+                </div>
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar nova categoria" onClick={handleSave}/>

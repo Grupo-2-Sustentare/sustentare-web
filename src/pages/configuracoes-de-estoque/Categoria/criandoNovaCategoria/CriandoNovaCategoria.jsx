@@ -22,10 +22,6 @@ export default function ConfigurationMenu({}){
              <div className={style.topBar}>
                <TopBar title="Criando nova Categoria" showBackArrow={true} backNavigationPath={"/configuracoes-de-categorias"}/>
              </div>
-            
-             <div className={style.conteudoInicioTela}>
-                <ImageUploader />
-             </div>
              <div className={style.meioTela}>
                 <TextInput label={"Nome: "}/>
              </div>
