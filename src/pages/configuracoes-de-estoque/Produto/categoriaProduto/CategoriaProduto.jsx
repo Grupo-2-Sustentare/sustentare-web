@@ -12,13 +12,13 @@ export default function ConfigurationMenu({}){
      let p = JSON.parse(sessionStorage.getItem("productBeingCreated"))
 
      const categoriaList = [
-        {"heading": "Ingredientes do self service", "adressImg": githubPath + "Self%20service.png"},
-        {"heading": "Bebidas", "adressImg": githubPath + "bebidas.jpg"},
-        {"heading": "Doces para encomenda", "adressImg": githubPath + "doces%20encomenda.jpg"},
-        {"heading": "Produtos de limpeza", "adressImg": githubPath + "prod%20limpeza.jpg"},
-        {"heading": "Utensilios de cozinha", "adressImg": githubPath + "utensilios.jpg"},
-        {"heading": "Descartáveis", "adressImg": githubPath + "descartaveis.jpg"},
-        {"heading": "Condimentos avulsos", "adressImg": githubPath + "condimentos.jpg"},
+        {"heading": "Ingredientes do self service"},
+        {"heading": "Bebidas"},
+        {"heading": "Doces para encomenda"},
+        {"heading": "Produtos de limpeza"},
+        {"heading": "Utensilios de cozinha"},
+        {"heading": "Descartáveis"},
+        {"heading": "Condimentos avulsos"},
      ]
 
      const selectListItem = (categoria) => {
