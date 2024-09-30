@@ -37,7 +37,7 @@ export function QuantidadeMovimento(){
             }
             {!ehSaida &&
                 (<>
-                    <MeasurementUnitInput label={"Preço(Unitário): "} measurementUnit={"R$"} placeholder={0}/>
+                    <MeasurementUnitInput label={"Preço (unitário): "} measurementUnit={"R$"} placeholder={0}/>
                     {/* <TextInput /> */}
                     <Switch label={"É ajuste de uma marcação anterior errada?"}/>
                     <Switch label={"Compra de última hora?"}/>

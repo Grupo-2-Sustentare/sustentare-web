@@ -22,6 +22,10 @@ const ConfiguracoesCategorias = () => {
     ]
     
     let actioCategoria = DEFAULT_BUTTON_CONFIG
+    actioCategoria.yellow.style = {}
+    actioCategoria.yellow.icon = "fa-solid fa-pen"
+    actioCategoria.yellow.iconFillInvert = false
+    actioCategoria.yellow.text = "Editar"
     actioCategoria.yellow.action = ()=>{navigate("/editando-categoria")}
 
     return (
