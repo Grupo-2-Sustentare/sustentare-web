@@ -52,6 +52,10 @@ export default function NovoMovimento({}){
                     )}
                     {movement.products.map((p, i) => {
                         let btnConfig = DEFAULT_BUTTON_CONFIG
+                        btnConfig.yellow.style = {}
+                        btnConfig.yellow.icon = "fa-solid fa-pen"
+                        btnConfig.yellow.iconFillInvert = false
+                        btnConfig.yellow.text = "Editar"
                         btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                         return <Product
