@@ -90,7 +90,7 @@
 .icon{
   font-size: 0.8em;
 }
-.icon > path {
+.icon > svg {
   fill: var(--preto);
 }
 
@@ -116,10 +116,15 @@
 .lessRadius > img{
   border-radius: 8px;
 }
-.icon > svg{
+.icon > path{
   display: block;
+  fill: var(--white);
 }
-.inverse > path {
+
+button > .icon > path{
+  fill: var(--preto);
+}
+button > .inverse > path {
   fill: var(--white);
 }
 

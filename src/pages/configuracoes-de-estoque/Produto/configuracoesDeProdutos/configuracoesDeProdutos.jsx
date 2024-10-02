@@ -20,6 +20,10 @@ const ConfiguracoesProdutos = () => {
     };
 
     let actioProduto = DEFAULT_BUTTON_CONFIG
+    actioProduto.yellow.style = {}
+    actioProduto.yellow.icon = "fa-solid fa-pen"
+    actioProduto.yellow.iconFillInvert = false
+    actioProduto.yellow.text = "Editar"
     actioProduto.yellow.action = ()=>{navigate("/editando-produto")}
 
     const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
