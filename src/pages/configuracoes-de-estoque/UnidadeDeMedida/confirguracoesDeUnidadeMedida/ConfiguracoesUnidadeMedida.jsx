@@ -25,6 +25,10 @@ const ConfiguracoesUnidadeMedida = () => {
     };
 
     let actioUnidadeMedida = { ...DEFAULT_BUTTON_CONFIG };
+    actioUnidadeMedida.yellow.style = {}
+    actioUnidadeMedida.yellow.icon = "fa-solid fa-pen"
+    actioUnidadeMedida.yellow.iconFillInvert = false
+    actioUnidadeMedida.yellow.text = "Editar"
     actioUnidadeMedida.yellow.action = () => { navigate("/editando-unidade-de-medida") };
 
     // Var que em algum momento vai deixar de receber o mock para se tornar dinâmica
