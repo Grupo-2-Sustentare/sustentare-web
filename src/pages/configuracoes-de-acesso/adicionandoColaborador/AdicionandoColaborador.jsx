@@ -17,6 +17,7 @@ const AdicionandoColaborador = () => {
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);
+    const [ativo, setAtivo] = useState(true)
     const idResponsavel = sessionStorage.getItem("idResponsavel") || 100;
 
     function toBase64(file) {
@@ -30,12 +31,14 @@ const AdicionandoColaborador = () => {
 
     const handleSave = async () => {
         console.log(nome);
+        console.log(ativo)
         console.log(email);
         console.log(senha);
         console.log(acesso);
         console.log(imagem);
+        
 
-        const objetoAdicionado = { nome, email, senha, acesso, imagem };
+        const objetoAdicionado = {nome, email, senha, acesso, ativo, imagem};
 
         try {
             await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
