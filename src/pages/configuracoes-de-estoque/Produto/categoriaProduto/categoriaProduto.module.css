@@ -1,0 +1,22 @@
+.conteudoInicioTela{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px 8px 16px;
+    height: 121px;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+hr{
+   width: 100%;
+}
+
+.conteudoTela{
+    padding: 8px 16px 8px 16px;
+    height: 100%;
+    width: 100%;
+    gap: 6px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}

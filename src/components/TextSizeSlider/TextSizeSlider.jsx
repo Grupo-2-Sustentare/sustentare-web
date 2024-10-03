@@ -2,7 +2,7 @@ import styles from "./textSizeSlider.module.css"
 import {useState} from "react";
 
 const TAMANHO_PADRAO = 24
-const TAMANHO_MAXIMO = 48
+const TAMANHO_MAXIMO = 34
 
 export default function TextSizeSlider(){
 

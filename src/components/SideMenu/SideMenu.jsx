@@ -8,7 +8,7 @@ const SideMenu = ({ userName, userImage }) => {
 
     function logout(){
         sessionStorage.clear()
-        navigate("/login")
+        navigate("/")
     }
 
     return (
@@ -19,12 +19,12 @@ const SideMenu = ({ userName, userImage }) => {
                 </div>
                     <div className={style.sidebarMenu}>
                 <MenuItem icon={"house"} title="Página inicial" onClick={() => navigate("/menu-inicial")}/>
-                <MenuItem icon={"shapes"} title="Movimentos de estoque" onClick={() => navigate("/menu-inicial")}/>
-                <MenuItem icon={"clock-rotate-left"} title="Histórico de operações" onClick={() => navigate("/menu-inicial")}/>
-                <MenuItem icon={"wrench"} title="Alterar definições" onClick={() => navigate("/menu-inicial")}/>
-                <MenuItem icon={"users-gear"} title="Gerenciar equipes" onClick={() => navigate("/menu-inicial")}/>
-                <MenuItem icon={"circle-check"} title="Realizar Fechamento" onClick={() => navigate("/menu-inicial")}/>
-                <MenuItem icon={"gear"} title="Configurações" onClick={() => navigate("/menu-inicial")}/>
+                <MenuItem icon={"shapes"} title="Movimentos de estoque" onClick={() => navigate("/cadastros-de-estoque")}/>
+                <MenuItem icon={"clock-rotate-left"} title="Histórico de operações" onClick={() => navigate("/historico-de-operacoes")}/>
+                <MenuItem icon={"wrench"} title="Alterar definições" onClick={() => navigate("/configuracoes-de-estoque")}/>
+                <MenuItem icon={"users-gear"} title="Gerenciar equipes" onClick={() => navigate("/configuracoes-de-acesso")}/>
+                {/*<MenuItem icon={"circle-check"} title="Realizar Fechamento" onClick={() => navigate("/menu-inicial")}/>*/}
+                <MenuItem icon={"gear"} title="Configurações" onClick={() => navigate("/configuracoes")}/>
 
                                                                                 
                  {/* Aqui vai o seu componente de itens do menu */}

@@ -1,0 +1,33 @@
+/* .topBar{
+    height: 65px;
+} */
+ 
+.conteudoInicioTela{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 10px;
+    width: 100%;
+    height: 645px;
+    overflow-y: scroll;
+}
+
+.divUnidadeMedida{
+    border-radius: 12px;
+    border: 2px solid var(--white);
+    width: 100%;
+    height: fit-content;
+    padding: 8px 16px 8px 16px;
+    background-color: var(--carvao);
+}
+
+.conteudoFinalTela{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    background-color: var(--gradiente);
+}

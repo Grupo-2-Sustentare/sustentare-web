@@ -1,0 +1,35 @@
+/* .TextInput{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+} */
+
+.editarImagem{
+    margin: 0 4px;
+}
+.divPerecivel{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.divPrincipal{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+    width: 100%;
+    height: 634px;
+    padding: 8px 16px 8px 16px;
+    overflow-y: scroll;
+}
+
+.divBotao{
+    width: 100%;
+    height: 113px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: var(--borda-branca);
+    background-color: var(--gradiente);
+}

@@ -20,7 +20,7 @@ export default function MainMenu({}){
             <IconButton
                 icone={"clock-rotate-left"}
                 texto={"Ver histórico de atividades"}
-                onClick={() => navigate("/configuracoes-de-acesso")}
+                onClick={() => navigate("/historico-de-operacoes")}
             />
             <IconButton
                 icone={"wrench"}
