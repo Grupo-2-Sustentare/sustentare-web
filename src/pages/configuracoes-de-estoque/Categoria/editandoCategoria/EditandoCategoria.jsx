@@ -25,7 +25,7 @@ export default function ConfigurationMenu({ }) {
    };
 
    async function salvarEdicao() {
-      if (!categoria.nome.trim() || categoria.nome == categoria.nome) {
+      if (!categoria.nome.trim()) {
          errorToast("O nome da categoria não pode estar vazio."); // Exibe um toast de erro
          return; // Impede a execução do restante da função
       }
