@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { successToast } from "../../../../components/Toast/Toast";
 import { useState } from "react";
 
-export default function ConfigurationMenu({ }) {
+export default function CriandoCategoria({ }) {
    const navigate = useNavigate();
    const [nomeCategoria, setNomeCategoria] = useState(""); // Estado para o nome da categoria
    const [ativo, setAtivo] = useState(""); // Estado para a descrição

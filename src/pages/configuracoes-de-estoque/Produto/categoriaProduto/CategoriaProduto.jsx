@@ -5,7 +5,7 @@ import TopBar from "../../../../components/TopBar/TopBar.jsx";
 import style from "../categoriaProduto/categoriaProduto.module.css";
 import {useNavigate} from "react-router-dom";
 
-export default function ConfigurationMenu({}){
+export default function CategoriaProduto({}){
      const navigate = useNavigate();
      const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/categorias/";
 

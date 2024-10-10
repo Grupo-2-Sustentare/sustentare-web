@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { errorToast, successToast } from "../../../../components/Toast/Toast";
 import { useEffect, useState } from "react";
 
-export default function ConfigurationMenu({ }) {
+export default function EditandoCategoria({ }) {
    const navigate = useNavigate();
    const [categoria, setCategoria] = useState({ nome: "" }); // Estado para armazenar a categoria
 
