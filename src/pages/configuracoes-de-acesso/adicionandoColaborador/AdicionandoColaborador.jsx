@@ -6,6 +6,7 @@ import TextInput from "../../../components/TextInput/TextInput";
 import Button from "../../../components/Button/Button";
 import Checkbox from "../../../components/Checkbox/Checkbox";
 import TopBar from "../../../components/TopBar/TopBar";
+import BotaoExport from "../../../components/BotaoExport";
 import ImageUploader from "../../../components/ImageUploader/ImageUploader";
 import { errorToast, successToast } from "../../../components/Toast/Toast";
 
@@ -17,6 +18,7 @@ const AdicionandoColaborador = () => {
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);
+    const [ativo, setAtivo] = useState(true)
     const idResponsavel = sessionStorage.getItem("idResponsavel") || 100;
 
     function toBase64(file) {
@@ -30,12 +32,14 @@ const AdicionandoColaborador = () => {
 
     const handleSave = async () => {
         console.log(nome);
+        console.log(ativo)
         console.log(email);
         console.log(senha);
         console.log(acesso);
         console.log(imagem);
+        
 
-        const objetoAdicionado = { nome, email, senha, acesso, imagem };
+        const objetoAdicionado = {nome, email, senha, acesso, ativo, imagem};
 
         try {
             await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
@@ -64,6 +68,7 @@ const AdicionandoColaborador = () => {
             <div className={styles.divPrincipal}>
                 <ImageUploader onImageSelect={handleImageChange} />
                 <TextInput label={"Nome:"} value={nome} onChange={(e) => handleTextInputChange(e, setNome)} />
+                {/* <BotaoExport/> */}
                 <TextInput label={"Email:"} value={email} onChange={(e) => handleTextInputChange(e, setEmail)} />
                 <TextInput label={"Senha:"} value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)} />
                 <div className={styles.divAdministrador}>
