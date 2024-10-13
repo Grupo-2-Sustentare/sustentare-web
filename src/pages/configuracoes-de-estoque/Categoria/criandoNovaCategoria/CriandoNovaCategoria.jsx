@@ -33,12 +33,14 @@ export default function CriandoCategoria({ }) {
 
    // Função que cria a nova categoria
    async function criarCategoria() {
-      if (!nomeCategoria) {
+      const nomeCategoriaTrimmed = nomeCategoria.trim(); // Remove espaços em branco no início e no fim
+
+      if (!nomeCategoriaTrimmed) {
          errorToast("O nome da categoria não pode estar vazio.");
          return;
       }
 
-      const categoriaDuplicada = categoriasExistentes.some(categoria => categoria.nome === nomeCategoria);
+      const categoriaDuplicada = categoriasExistentes.some(categoria => categoria.nome === nomeCategoriaTrimmed);
       if (categoriaDuplicada) {
          errorToast("Já existe uma categoria com esse nome.");
          return;
@@ -47,7 +49,7 @@ export default function CriandoCategoria({ }) {
       try {
          // Fazendo a requisição POST para criar a categoria
          const response = await api.post(`/categorias?idResponsavel=${idResponsavel}`, {
-            nome: nomeCategoria,
+            nome: nomeCategoriaTrimmed, // Envia o nome da categoria sem espaços extras
             ativo: 1
          });
 
@@ -62,10 +64,10 @@ export default function CriandoCategoria({ }) {
          if (error.response) {
             // O servidor respondeu com um código de status fora do intervalo de 2xx
             console.error("Erro ao criar a categoria:", error.response.data);
-            alert(`Erro: ${error.response.data.message || "Ocorreu um erro ao tentar criar a categoria."}`);
+            errorToast(error.response.data.message || "Ocorreu um erro ao tentar criar a categoria.");
          } else {
             console.error("Erro ao criar a categoria:", error);
-            alert("Ocorreu um erro ao tentar criar a categoria.");
+            errorToast("Ocorreu um erro ao tentar criar a categoria.");
          }
       }
    }
