@@ -19,9 +19,13 @@ const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"
 
 export default function GerenciarEquipe(){
     const navigate = useNavigate()
-    const [usuarios, setUsuarios] = useState([]);
+    const [usuarios, setUsuarios] = useState(() => {
+        const storedUsuarios = sessionStorage.getItem('usuarios');
+        return storedUsuarios ? JSON.parse(storedUsuarios) : [];
+      });      
     let btnsConfig = DEFAULT_BUTTON_CONFIG
-
+    console.log("------------------------------------------")
+    console.log(usuarios)
     let style = getComputedStyle(document.body)
     let gunmetal = style.getPropertyValue("--gunmetal")
     let white = style.getPropertyValue("--white")
@@ -37,20 +41,20 @@ export default function GerenciarEquipe(){
     btnsConfig.red.action = () => navigate("/remover-colaborador")
 
 
-    useEffect(() => {
-        const fetchUsuarios = async () => {
-            try {
-                const response = await api.get('/usuarios');
-                setUsuarios(response.data);
-                console.log(response.data);
-                sessionStorage.setItem('usuarios', JSON.stringify(response.data));
-            } catch (error) {
-                console.error("Erro ao buscar usuários:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchUsuarios = async () => {
+    //         try {
+    //             const response = await api.get('/usuarios');
+    //             setUsuarios(response.data);
+    //             console.log(response.data);
+    //             sessionStorage.setItem('usuarios', JSON.stringify(response.data));
+    //         } catch (error) {
+    //             console.error("Erro ao buscar usuários:", error);
+    //         }
+    //     };
 
-        fetchUsuarios(); // Chama a função para buscar usuários
-    }, []); 
+    //     fetchUsuarios(); // Chama a função para buscar usuários
+    // }, []); 
 
     return(
         <div className={styles.gerenciarEquipe}>

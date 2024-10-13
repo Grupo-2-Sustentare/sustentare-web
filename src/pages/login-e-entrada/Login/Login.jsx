@@ -29,6 +29,7 @@ const Login = () => {
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
                  sessionStorage.setItem("nome_usuario", nome)
                  navigate("/menu-inicial")
+                 fetchUsuarios()
              }).catch(() => {
                  toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente."); // Exibe uma mensagem de erro se a requisição falhar
              })
@@ -37,6 +38,19 @@ const Login = () => {
     const handleInputChange = (event, setStateFunction) => {
         const value = event.target.value;
         setStateFunction(value);
+    };
+
+    const [usuarios, setUsuarios] = useState([]);
+
+    const fetchUsuarios = async () => {
+        try {
+            const response = await api.get('/usuarios');
+            setUsuarios(response.data);
+            console.log(response.data);
+            sessionStorage.setItem('usuarios', JSON.stringify(response.data));
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+        }
     };
 
     sessionStorage.setItem(
