@@ -4,23 +4,46 @@ import TextInput from "../../../../components/TextInput/TextInput";
 import Button from "../../../../components/Button/Button";
 import style from "../criandoNovaCategoria/criandoNovaCategoria.module.css";
 import { useNavigate } from "react-router-dom";
-import { successToast } from "../../../../components/Toast/Toast";
-import { useState } from "react";
+import { errorToast, successToast } from "../../../../components/Toast/Toast";
+import { useState, useEffect } from "react";
 
 export default function CriandoCategoria({ }) {
    const navigate = useNavigate();
    const [nomeCategoria, setNomeCategoria] = useState(""); // Estado para o nome da categoria
-   const [ativo, setAtivo] = useState(""); // Estado para a descrição
-    const [loading, setLoading] = useState(false); // Estado para loading
+   const [categoriasExistentes, setCategoriasExistentes] = useState([]); // Iniciar como array vazio
+   const [loading, setLoading] = useState(false); // Estado para loading
 
    const idResponsavel = 100; // pegar da sessionStorage futuramente
+
+   // Função para buscar categorias existentes
+   async function buscarCategorias() {
+      try {
+         const response = await api.get(`/categorias`); // Faz a requisição GET para listar categorias
+         setCategoriasExistentes(response.data); // Atualiza o estado com as categorias obtidas
+      } catch (error) {
+         console.error("Erro ao buscar categorias:", error);
+         errorToast("Ocorreu um erro ao buscar as categorias.");
+      }
+   }
+
+   useEffect(() => {
+      // Chama a função de buscar categorias quando o componente é montado
+      buscarCategorias();
+   }, []); // Executa apenas uma vez, ao montar o componente
 
    // Função que cria a nova categoria
    async function criarCategoria() {
       if (!nomeCategoria) {
-         alert("O nome da categoria não pode estar vazio.");
+         errorToast("O nome da categoria não pode estar vazio.");
          return;
       }
+
+      const categoriaDuplicada = categoriasExistentes.some(categoria => categoria.nome === nomeCategoria);
+      if (categoriaDuplicada) {
+         errorToast("Já existe uma categoria com esse nome.");
+         return;
+      }
+
       try {
          // Fazendo a requisição POST para criar a categoria
          const response = await api.post(`/categorias?idResponsavel=${idResponsavel}`, {
