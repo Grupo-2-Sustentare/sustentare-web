@@ -13,6 +13,7 @@ const Login = () => {
     const navigate = useNavigate(); // Inicializa o hook de navegação
     const [nome, setNome] = useState(""); // Estado para armazenar o ano da música
     const [senha, setSenha] = useState(""); // Estado para armazenar o gênero da música
+    const [id, setId] = useState("");
 
     const handleSave = () => {
         // TODO - Desabilitado até conclusão do Front.
@@ -24,8 +25,9 @@ const Login = () => {
         // // Faz uma requisição POST para a API
         console.log(nome)
         console.log(senha)
-             api.post(`/usuarios/login`, objetoAdicionado).then(() => {
-                 toast.success("Novo Card criado com sucesso!"); // Exibe uma mensagem de sucesso
+             const response = api.post(`/usuarios/login`, objetoAdicionado).then((response) => {
+                 toast.success("Novo Card criado com sucesso!");
+                 sessionStorage.setItem("responsavel", JSON.stringify(response.data))
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
                  sessionStorage.setItem("nome_usuario", nome)
                  navigate("/menu-inicial")

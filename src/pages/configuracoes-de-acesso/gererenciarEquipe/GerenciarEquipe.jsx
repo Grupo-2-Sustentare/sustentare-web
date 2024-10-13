@@ -24,7 +24,6 @@ export default function GerenciarEquipe(){
         return storedUsuarios ? JSON.parse(storedUsuarios) : [];
       });      
     let btnsConfig = DEFAULT_BUTTON_CONFIG
-    console.log("------------------------------------------")
     console.log(usuarios)
     let style = getComputedStyle(document.body)
     let gunmetal = style.getPropertyValue("--gunmetal")
@@ -38,7 +37,7 @@ export default function GerenciarEquipe(){
     btnsConfig.yellow.text = "Visualizar histórico"
     btnsConfig.yellow.action = ()=>navigate("/adicionando-colaborador")
 
-    btnsConfig.red.action = () => navigate("/remover-colaborador")
+    btnsConfig.red.action = (infoUsuario) => navigate("/remover-colaborador", { state: { usuario: infoUsuario } });
 
 
     // useEffect(() => {
@@ -69,7 +68,7 @@ export default function GerenciarEquipe(){
                 {usuarios.map(u => {
                         return <Product
                         name={u.nome} quantity={"Usuário(a)"} addressImg={`data:image/jpeg;base64,${u.imagem}`}
-                        fullBorderRadius={true} buttonsConfig={btnsConfig}
+                        fullBorderRadius={true} buttonsConfig={btnsConfig} infoUsuario={u}
                     />
                 })}
             </div>
