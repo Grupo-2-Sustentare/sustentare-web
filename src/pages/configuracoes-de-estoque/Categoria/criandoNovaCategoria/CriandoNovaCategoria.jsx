@@ -40,7 +40,8 @@ export default function CriandoCategoria({ }) {
          return;
       }
 
-      const categoriaDuplicada = categoriasExistentes.some(categoria => categoria.nome === nomeCategoriaTrimmed);
+      // Converte o nome da categoria e os nomes existentes para lowercase para a comparação
+      const categoriaDuplicada = categoriasExistentes.some(categoria => categoria.nome.toLowerCase() === nomeCategoriaTrimmed.toLowerCase());
       if (categoriaDuplicada) {
          errorToast("Já existe uma categoria com esse nome.");
          return;
