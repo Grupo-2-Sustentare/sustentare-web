@@ -19,7 +19,12 @@ const AdicionandoColaborador = () => {
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);
     const [ativo, setAtivo] = useState(true)
-    const idResponsavel = sessionStorage.getItem("idResponsavel") || 100;
+    const responsavelString = sessionStorage.getItem("responsavel"); 
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+
+    const idResponsavel = responsavel ? responsavel.id : null;
+    const acessoResponsavel = responsavel ? responsavel.acesso : null;
+
 
     function toBase64(file) {
         return new Promise((resolve, reject) => {
@@ -29,6 +34,19 @@ const AdicionandoColaborador = () => {
             reader.onerror = (error) => reject(error);
         });
     }
+
+    const [usuarios, setUsuarios] = useState([]);
+
+    const fetchUsuarios = async () => {
+        try {
+            const response = await api.get('/usuarios');
+            setUsuarios(response.data);
+            console.log(response.data);
+            sessionStorage.setItem('usuarios', JSON.stringify(response.data));
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+        }
+    };
 
     const handleSave = async () => {
         console.log(nome);
@@ -42,10 +60,17 @@ const AdicionandoColaborador = () => {
         const objetoAdicionado = {nome, email, senha, acesso, ativo, imagem};
 
         try {
-            await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
-            successToast("configuracoes-de-acesso realizado com sucesso!");
-            sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
-            navigate("/");
+            if(acessoResponsavel == 1){
+                await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
+                successToast("configuracoes-de-acesso realizado com sucesso!");
+                sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
+                fetchUsuarios()
+                navigate("/configuracoes-de-acesso");
+            }else{
+                console.log(acessoResponsavel)
+                errorToast("Usuário não tem permissão de cadastrar outro usuário");
+            }
+
         } catch {
             errorToast("Ocorreu um erro ao tentar realizar o cadastro, por favor, tente novamente.");
         }
