@@ -5,6 +5,7 @@ import ListItem from '../../../components/ListItem/ListItem';
 import IconButton from '../../../components/IconButton/IconButton';
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from "../../../api";
+import { errorToast, successToast } from "../../../components/Toast/Toast";
 
 
 function RemoverColaborador() {
@@ -24,7 +25,9 @@ function RemoverColaborador() {
         try {
             await api.delete(`/usuarios/${usuario.id}?${new URLSearchParams({ idResponsavel })}`);
             removendoUsuarioDaSessionStorage()
+            successToast("Usuário removido");
         } catch (error) {
+            errorToast("Erro ao buscar usuários");
             console.error("Erro ao buscar usuários:", error);
         } 
         navigate("/configuracoes-de-acesso ")
@@ -33,8 +36,7 @@ function RemoverColaborador() {
 
     const removendoUsuarioDaSessionStorage = async () => {
         const usuarios = JSON.parse(sessionStorage.getItem('usuarios'));
-        console.log("ESTA AQUIIIIIIIIIIIIII")
-        console.log(usuarios)    
+   
         if (usuarios && Array.isArray(usuarios)) { // Verifica se é um array válido
             const idParaRemover = usuario.id; // ID do usuário a ser removido
             const responsavelAtualizado = usuarios.filter(item => item.id !== idParaRemover); // Remove o usuário com o ID

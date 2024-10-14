@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import api from "../../../api";
 import styles from "./adicionandoColaborador.module.css";
 import TextInput from "../../../components/TextInput/TextInput";
@@ -10,6 +10,7 @@ import BotaoExport from "../../../components/BotaoExport";
 import ImageUploader from "../../../components/ImageUploader/ImageUploader";
 import { errorToast, successToast } from "../../../components/Toast/Toast";
 
+
 const AdicionandoColaborador = () => {
     const navigate = useNavigate();
 
@@ -19,8 +20,9 @@ const AdicionandoColaborador = () => {
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);
     const [ativo, setAtivo] = useState(true)
-    const responsavelString = sessionStorage.getItem("responsavel"); 
-    const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+    const responsavelString = sessionStorage.getItem("responsavel");
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+    const [novoUsuario, setNovoUsuario] = useState({})
 
     const idResponsavel = responsavel ? responsavel.id : null;
     const acessoResponsavel = responsavel ? responsavel.acesso : null;
@@ -35,18 +37,48 @@ const AdicionandoColaborador = () => {
         });
     }
 
-    const [usuarios, setUsuarios] = useState([]);
 
-    const fetchUsuarios = async () => {
+    const fetchUsuarioAdicionado = async () => {
         try {
-            const response = await api.get('/usuarios');
-            setUsuarios(response.data);
-            console.log(response.data);
-            sessionStorage.setItem('usuarios', JSON.stringify(response.data));
+            const response = await api.get('/usuarios/usuario-ultimo-id');
+            setNovoUsuario(response.data);
         } catch (error) {
-            console.error("Erro ao buscar usuários:", error);
+            console.error("Erro ao buscar usuários");
         }
     };
+    
+    useEffect(() => {
+        if (Object.keys(novoUsuario).length !== 0) {
+            adicionandoUsuarioNaSessionStorage(novoUsuario)
+            navigate("/configuracoes-de-acesso");
+        }
+    }, [novoUsuario]);
+
+
+
+    const adicionandoUsuarioNaSessionStorage = (teste) => {
+        const usuariosString = sessionStorage.getItem('usuarios');
+        let usuarios = [];
+    
+        if (usuariosString) {
+            try {
+                usuarios = JSON.parse(usuariosString);
+                if (!Array.isArray(usuarios)) {
+                    console.log("O valor armazenado não é um array. Será criado um novo array.");
+                    usuarios = [];
+                }
+            } catch (error) {
+                console.error("Erro ao analisar o JSON de usuários:", error);
+                usuarios = [];
+            }
+        }
+    
+        // Adiciona o novo usuário, que agora está sendo passado diretamente
+        usuarios.push(teste);
+    
+        sessionStorage.setItem('usuarios', JSON.stringify(usuarios));
+    };
+
 
     const handleSave = async () => {
         console.log(nome);
@@ -55,18 +87,16 @@ const AdicionandoColaborador = () => {
         console.log(senha);
         console.log(acesso);
         console.log(imagem);
-        
 
-        const objetoAdicionado = {nome, email, senha, acesso, ativo, imagem};
+
+        const objetoAdicionado = { nome, email, senha, acesso, ativo, imagem };
 
         try {
-            if(acessoResponsavel == 1){
+            if (acessoResponsavel == 1) {
                 await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
                 successToast("configuracoes-de-acesso realizado com sucesso!");
                 sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
-                fetchUsuarios()
-                navigate("/configuracoes-de-acesso");
-            }else{
+            } else {
                 console.log(acessoResponsavel)
                 errorToast("Usuário não tem permissão de cadastrar outro usuário");
             }
@@ -74,6 +104,9 @@ const AdicionandoColaborador = () => {
         } catch {
             errorToast("Ocorreu um erro ao tentar realizar o cadastro, por favor, tente novamente.");
         }
+
+        await fetchUsuarioAdicionado(); 
+
     };
 
     const handleTextInputChange = (event, setStateFunction) => {
