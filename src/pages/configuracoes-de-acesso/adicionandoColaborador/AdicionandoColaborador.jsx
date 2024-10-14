@@ -6,7 +6,7 @@ import TextInput from "../../../components/TextInput/TextInput";
 import Button from "../../../components/Button/Button";
 import Checkbox from "../../../components/Checkbox/Checkbox";
 import TopBar from "../../../components/TopBar/TopBar";
-import BotaoExport from "../../../components/BotaoExport";
+import BotaoExport from "../../../components/buttonExport/BotaoExport";
 import ImageUploader from "../../../components/ImageUploader/ImageUploader";
 import { errorToast, successToast } from "../../../components/Toast/Toast";
 
