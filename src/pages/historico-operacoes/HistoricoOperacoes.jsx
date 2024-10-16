@@ -5,6 +5,7 @@ import IconInput from "../../components/IconInput/IconInput";
 import StrechList from "../../components/StrechList/StrechList";
 import api from "../../api";
 import React, {useEffect, useState} from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/usuarios/"
@@ -18,27 +19,58 @@ const MOCK_LOGS = [
 ]
 
 export default function HistoricoOperacoes(){
+    const location = useLocation();
+    const usuarioEscolhido = location.state?.usuario;
+    console.log("----------------------USUARIO ESCOLHIDO--------------------------")
+    console.log(usuarioEscolhido)
+
     const [logs, setLogs] = useState(() => {
         const storedUsuarios = sessionStorage.getItem('audit_view_logs');
         return storedUsuarios ? JSON.parse(storedUsuarios) : [];
-      });   
+      });
+         // Estado para armazenar logs
+    const [logsTeste, setLogsTeste] = useState([]);
+    
+    // Estado para controlar o carregamento
+    const [loading, setLoading] = useState(true);   
     // const logs = MOCK_LOGS
 
     function buscarLogs(){
 
     }
 
-    const handleSave = () => {
+    const buscarLogTodosUsuario = () => {
 
         api.get(`/audit-logs`).then((response) => {
              sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
+             setLogsTeste(response.data);
+             setLoading(false);
          }).catch(() => {
              console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+             setLoading(false);
+        })
+    };
+
+    const buscarLogUsuarioEspecifico = () => {
+        
+        api.get(`/audit-logs/${usuarioEscolhido.id}`).then((response) => {
+             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
+             setLogsTeste(response.data);
+             setLoading(false);
+         }).catch(() => {
+             console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+             setLoading(false);
         })
     };
 
     useEffect(() => {
-        handleSave();
+        if(usuarioEscolhido != undefined){
+            buscarLogUsuarioEspecifico();
+
+        }else{
+            buscarLogTodosUsuario();
+  
+        }
     }, []);
 
     const logsParaRelacionar = JSON.parse(sessionStorage.getItem('logs'));
@@ -64,7 +96,7 @@ export default function HistoricoOperacoes(){
             />
         </div>
         <div className={styles.principal}>
-            {logs.map(l=>{
+            {logsTeste.map(l=>{
                 return <OperationLog
                     title={l.titulo} operation={l.descricao} author={obterNomeUsuario(l.fkUsuario)} time={l.dataHora} adressImg={obterImagemUsuario(l.fkUsuario)}
                 />

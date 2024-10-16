@@ -87,7 +87,7 @@ export default function Product(
       {expanded && (
         <div className={styles.buttons}>
           <button
-            className={styles.editBtn} id='botaoEdt' onClick={buttonsConfig.yellow.action}
+            className={styles.editBtn} id='botaoEdt' onClick={() => buttonsConfig.yellow.action(infoUsuario)}
             style={buttonsConfig.yellow.style}
           >
 

@@ -35,7 +35,7 @@ export default function GerenciarEquipe(){
     btnsConfig.yellow.icon = "clock-rotate-left"
     btnsConfig.yellow.iconFillInvert = true
     btnsConfig.yellow.text = "Visualizar histórico"
-    btnsConfig.yellow.action = ()=>navigate("/historico-de-operacoes")
+    btnsConfig.yellow.action = (infoUsuario)=>navigate("/historico-de-operacoes", { state: { usuario: infoUsuario } })
 
     btnsConfig.red.action = (infoUsuario) => navigate("/remover-colaborador", { state: { usuario: infoUsuario } });
 
