@@ -96,11 +96,20 @@ export default function HistoricoOperacoes(){
             />
         </div>
         <div className={styles.principal}>
-            {logsTeste.map(l=>{
-                return <OperationLog
-                    title={l.titulo} operation={l.descricao} author={obterNomeUsuario(l.fkUsuario)} time={l.dataHora} adressImg={obterImagemUsuario(l.fkUsuario)}
-                />
-            })}
+        {Array.isArray(logsTeste) && logsTeste.length > 0 ? (
+                logsTeste.map((l) => (
+                    <OperationLog
+                        key={l.id}  // Sempre importante adicionar uma chave única quando usamos map
+                        title={l.titulo}
+                        operation={l.descricao}
+                        author={obterNomeUsuario(l.fkUsuario)}
+                        time={l.dataHora}
+                        adressImg={obterImagemUsuario(l.fkUsuario)}
+                    />
+                ))
+            ) : (
+                <div>Nenhum log encontrado.</div>
+            )}
         </div>
     </>)
 }
