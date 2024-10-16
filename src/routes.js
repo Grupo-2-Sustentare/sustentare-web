@@ -35,6 +35,8 @@ import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/UnidadeDeM
 
 import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
 
+import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
+
 function Rotas() {
     let rotaPadrao = null;
     if (process.env.REACT_APP_MODO_DEBUG === "1"){
@@ -75,6 +77,8 @@ function Rotas() {
                 <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
 
                 <Route path={"/configuracoes"} element={<Configuracoes/>}/>
+
+                <Route path={"/tela-de-confirmacao"} element={<TelaDeConfirmacao/>}/>
 
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>

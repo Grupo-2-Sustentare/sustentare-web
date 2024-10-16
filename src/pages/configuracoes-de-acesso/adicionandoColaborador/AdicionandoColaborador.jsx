@@ -19,6 +19,7 @@ const AdicionandoColaborador = () => {
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);
+
     const [ativo, setAtivo] = useState(true)
     const responsavelString = sessionStorage.getItem("responsavel");
     const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
@@ -87,6 +88,7 @@ const AdicionandoColaborador = () => {
         console.log(senha);
         console.log(acesso);
         console.log(imagem);
+        
 
 
         const objetoAdicionado = { nome, email, senha, acesso, ativo, imagem };
