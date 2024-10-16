@@ -3,6 +3,8 @@ import TopBar from "../../components/TopBar/TopBar";
 import OperationLog from "../../components/OperationLog/OperationLog";
 import IconInput from "../../components/IconInput/IconInput";
 import StrechList from "../../components/StrechList/StrechList";
+import api from "../../api";
+import React, {useEffect, useState} from 'react';
 
 const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/usuarios/"
@@ -16,11 +18,42 @@ const MOCK_LOGS = [
 ]
 
 export default function HistoricoOperacoes(){
-    const logs = MOCK_LOGS
+    const [logs, setLogs] = useState(() => {
+        const storedUsuarios = sessionStorage.getItem('audit_view_logs');
+        return storedUsuarios ? JSON.parse(storedUsuarios) : [];
+      });   
+    // const logs = MOCK_LOGS
 
     function buscarLogs(){
 
     }
+
+    const handleSave = () => {
+
+        api.get(`/audit-logs`).then((response) => {
+             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
+         }).catch(() => {
+             console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+        })
+    };
+
+    useEffect(() => {
+        handleSave();
+    }, []);
+
+    const logsParaRelacionar = JSON.parse(sessionStorage.getItem('logs'));
+    const usuarios = JSON.parse(sessionStorage.getItem('usuarios'));
+
+    const obterNomeUsuario = (fkUsuario) => {
+        const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
+        return usuarioEncontrado ? usuarioEncontrado.nome : 'Usuário não encontrado';
+    };
+
+    const obterImagemUsuario = (fkUsuario) => {
+        const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
+        return usuarioEncontrado ? usuarioEncontrado.imagem : 'Usuário não encontrado';
+    };
+
 
     return(<>
         <TopBar title={"Historico de operações"} showBackArrow={false}/>
@@ -33,7 +66,7 @@ export default function HistoricoOperacoes(){
         <div className={styles.principal}>
             {logs.map(l=>{
                 return <OperationLog
-                    title={l.titulo} operation={l.ato} author={l.autor} time={l.horario} adressImg={MOCK_URL + l.icone}
+                    title={l.titulo} operation={l.descricao} author={obterNomeUsuario(l.fkUsuario)} time={l.dataHora} adressImg={obterImagemUsuario(l.fkUsuario)}
                 />
             })}
         </div>
