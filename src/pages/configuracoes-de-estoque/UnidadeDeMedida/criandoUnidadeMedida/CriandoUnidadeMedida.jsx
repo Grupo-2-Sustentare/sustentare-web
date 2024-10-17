@@ -61,9 +61,7 @@ const CriandoUnidadeMedida = () => {
 
                 <TextInput label="Nome:" onChange={handleInputChange}/>
 
-                <TextInput label="Abreviação no singular:"/>
-
-                <TextInput label="Abreviação no plural:"/>
+                <TextInput label="Simbolo:"/>
 
                 <StreachList title="Tipo:" items={["Massa","Volume","Quantidade genérica"] }titulo="" onChange={handleStreachListChange}/>
                 
