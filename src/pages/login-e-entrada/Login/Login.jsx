@@ -13,6 +13,7 @@ const Login = () => {
     const navigate = useNavigate(); // Inicializa o hook de navegação
     const [nome, setNome] = useState(""); // Estado para armazenar o ano da música
     const [senha, setSenha] = useState(""); // Estado para armazenar o gênero da música
+    const [id, setId] = useState("");
 
     const handleSave = () => {
         // TODO - Desabilitado até conclusão do Front.
@@ -24,11 +25,13 @@ const Login = () => {
         // // Faz uma requisição POST para a API
         console.log(nome)
         console.log(senha)
-             api.post(`/usuarios/login`, objetoAdicionado).then(() => {
-                 toast.success("Novo Card criado com sucesso!"); // Exibe uma mensagem de sucesso
+             const response = api.post(`/usuarios/login`, objetoAdicionado).then((response) => {
+                 toast.success("Novo Card criado com sucesso!");
+                 sessionStorage.setItem("responsavel", JSON.stringify(response.data))
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
                  sessionStorage.setItem("nome_usuario", nome)
                  navigate("/menu-inicial")
+                 fetchUsuarios()
              }).catch(() => {
                  toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente."); // Exibe uma mensagem de erro se a requisição falhar
              })
@@ -37,6 +40,19 @@ const Login = () => {
     const handleInputChange = (event, setStateFunction) => {
         const value = event.target.value;
         setStateFunction(value);
+    };
+
+    const [usuarios, setUsuarios] = useState([]);
+
+    const fetchUsuarios = async () => {
+        try {
+            const response = await api.get('/usuarios');
+            setUsuarios(response.data);
+            console.log(response.data);
+            sessionStorage.setItem('usuarios', JSON.stringify(response.data));
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+        }
     };
 
     sessionStorage.setItem(

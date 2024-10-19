@@ -2,6 +2,8 @@ import React from 'react';
 import styles from "./Configuracoes.module.css";
 import TopBar from "../../components/TopBar/TopBar";
 import TextSizeSlider from '../../components/TextSizeSlider/TextSizeSlider';
+import BotaoExport from '../../components/buttonExport/BotaoExport'
+import BotaoImport from '../../components/BotaoImport/BotaoImport'
 
 export default function Configuracoes() {
     return (
@@ -15,6 +17,8 @@ export default function Configuracoes() {
                     Tamanho do texto
                 </span>
                 <TextSizeSlider />
+                <BotaoExport/>
+                <BotaoImport/>
             </div>
             <div className={styles.Versao}>
                 <span className={styles.H4}>Versão 1.0 - 2024</span>
