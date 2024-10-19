@@ -6,7 +6,8 @@ import StreachList from "../../../../components/StrechList/StrechList";
 import Button from "../../../../components/Button/Button";
 import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
-import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
+import Product from "../../../../components/ProductItem/Product";
+import { successToast } from "../../../../components/Toast/Toast";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
@@ -48,7 +49,7 @@ const ConfiguracoesCategorias = () => {
 
             api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
-                    alert(`Categoria "${categoria.nome}" desativada com sucesso!`);
+                    successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
                     setCategorias((prevCategorias) =>
                         prevCategorias.filter((cat) => cat.id !== categoria.id)
                     );

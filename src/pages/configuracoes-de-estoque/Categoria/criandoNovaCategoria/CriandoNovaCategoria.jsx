@@ -11,7 +11,6 @@ export default function CriandoCategoria({ }) {
    const navigate = useNavigate();
    const [nomeCategoria, setNomeCategoria] = useState(""); // Estado para o nome da categoria
    const [categoriasExistentes, setCategoriasExistentes] = useState([]); // Iniciar como array vazio
-   const [loading, setLoading] = useState(false); // Estado para loading
 
    const idResponsavel = 100; // pegar da sessionStorage futuramente
 
