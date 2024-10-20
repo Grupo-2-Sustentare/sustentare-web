@@ -4,21 +4,22 @@ import OperationLog from "../../components/OperationLog/OperationLog";
 import IconInput from "../../components/IconInput/IconInput";
 import StrechList from "../../components/StrechList/StrechList";
 import api from "../../api";
-import React, {useEffect, useState} from 'react';
+import Product from "../../components/ProductItem/Product";
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/usuarios/"
 const MOCK_LOGS = [
-    {titulo: "Movimento", ato: "-0,5kg em sobrecoxa de frango", horario: "1 minuto atrás", autor: "Antônio", icone: "1.png"},
-    {titulo: "Ajuste", ato: "+7kg em sobrecoxa de frango", horario: "1 minuto atrás", autor: "Jorge", icone: "3.jpeg"},
-    {titulo: "Alteração", ato: "Renomeada a sobrecoxa para sobrecoxa de frango", horario: "2 minuto atrás", autor: "Jorge", icone: "3.jpeg"},
-    {titulo: "Movimento", ato: "+22kg em coxa de frango", horario: "7 minuto atrás", autor: "Antônio", icone: "1.png"},
-    {titulo: "Movimento", ato: "-23 garrafas de coca-cola", horario: "ontem", autor: "Ingrid", icone: "2.jpeg"},
-    {titulo: "Movimento", ato: "-34kg de arroz branco", horario: "27 de ago.", autor: "Antônio", icone: "1.png"}
+    { titulo: "Movimento", ato: "-0,5kg em sobrecoxa de frango", horario: "1 minuto atrás", autor: "Antônio", icone: "1.png" },
+    { titulo: "Ajuste", ato: "+7kg em sobrecoxa de frango", horario: "1 minuto atrás", autor: "Jorge", icone: "3.jpeg" },
+    { titulo: "Alteração", ato: "Renomeada a sobrecoxa para sobrecoxa de frango", horario: "2 minuto atrás", autor: "Jorge", icone: "3.jpeg" },
+    { titulo: "Movimento", ato: "+22kg em coxa de frango", horario: "7 minuto atrás", autor: "Antônio", icone: "1.png" },
+    { titulo: "Movimento", ato: "-23 garrafas de coca-cola", horario: "ontem", autor: "Ingrid", icone: "2.jpeg" },
+    { titulo: "Movimento", ato: "-34kg de arroz branco", horario: "27 de ago.", autor: "Antônio", icone: "1.png" }
 ]
 
-export default function HistoricoOperacoes(){
+export default function HistoricoOperacoes() {
     const location = useLocation();
     const usuarioEscolhido = location.state?.usuario;
     console.log("----------------------USUARIO ESCOLHIDO--------------------------")
@@ -27,49 +28,49 @@ export default function HistoricoOperacoes(){
     const [logs, setLogs] = useState(() => {
         const storedUsuarios = sessionStorage.getItem('audit_view_logs');
         return storedUsuarios ? JSON.parse(storedUsuarios) : [];
-      });
-         // Estado para armazenar logs
+    });
+    // Estado para armazenar logs
     const [logsTeste, setLogsTeste] = useState([]);
-    
+
     // Estado para controlar o carregamento
-    const [loading, setLoading] = useState(true);   
+    const [loading, setLoading] = useState(true);
     // const logs = MOCK_LOGS
 
-    function buscarLogs(){
+    function buscarLogs() {
 
     }
 
     const buscarLogTodosUsuario = () => {
 
         api.get(`/audit-logs`).then((response) => {
-             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
-             setLogsTeste(response.data);
-             setLoading(false);
-         }).catch(() => {
-             console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
-             setLoading(false);
+            sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
+            setLogsTeste(response.data);
+            setLoading(false);
+        }).catch(() => {
+            console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+            setLoading(false);
         })
     };
 
     const buscarLogUsuarioEspecifico = () => {
-        
+
         api.get(`/audit-logs/${usuarioEscolhido.id}`).then((response) => {
-             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
-             setLogsTeste(response.data);
-             setLoading(false);
-         }).catch(() => {
-             console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
-             setLoading(false);
+            sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
+            setLogsTeste(response.data);
+            setLoading(false);
+        }).catch(() => {
+            console.log("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+            setLoading(false);
         })
     };
 
     useEffect(() => {
-        if(usuarioEscolhido != undefined){
+        if (usuarioEscolhido != undefined) {
             buscarLogUsuarioEspecifico();
 
-        }else{
+        } else {
             buscarLogTodosUsuario();
-  
+
         }
     }, []);
 
@@ -87,29 +88,42 @@ export default function HistoricoOperacoes(){
     };
 
 
-    return(<>
-        <TopBar title={"Historico de operações"} showBackArrow={false}/>
-        <div className={styles.barraDeBusca}>
-            <IconInput onChange={buscarLogs} placeholder={"Pesquisa por nome"}/>
-            <StrechList
-                showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
-            />
+    return (<>
+        <div className={styles.historicaDeOperacoes}>
+            <TopBar title={"Historico de operações"} showBackArrow={false} />
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={buscarLogs} placeholder={"Pesquisa por nome"} />
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
+                />
+            </div>
+            <hr></hr>
+            <div className={styles.principal}>
+                {Array.isArray(logsTeste) && logsTeste.length > 0 ? (
+                    logsTeste.map((l) => (
+                        <OperationLog
+                            key={l.id}  // Sempre importante adicionar uma chave única quando usamos map
+                            title={l.titulo}
+                            operation={l.descricao}
+                            author={obterNomeUsuario(l.fkUsuario)}
+                            time={l.dataHora}
+                            adressImg={obterImagemUsuario(l.fkUsuario)}
+                        />
+                    ))
+                ) : (
+                    <div className={styles.mensagem}>Nenhum registro encontrado</div>
+                )}
+                {/* <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product> */}
+            </div>
         </div>
-        <div className={styles.principal}>
-        {Array.isArray(logsTeste) && logsTeste.length > 0 ? (
-                logsTeste.map((l) => (
-                    <OperationLog
-                        key={l.id}  // Sempre importante adicionar uma chave única quando usamos map
-                        title={l.titulo}
-                        operation={l.descricao}
-                        author={obterNomeUsuario(l.fkUsuario)}
-                        time={l.dataHora}
-                        adressImg={obterImagemUsuario(l.fkUsuario)}
-                    />
-                ))
-            ) : (
-                <div>Nenhum log encontrado.</div>
-            )}
-        </div>
-    </>)
+   </> )
 }

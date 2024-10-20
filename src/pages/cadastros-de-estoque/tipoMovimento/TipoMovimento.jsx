@@ -3,6 +3,7 @@ import TopBar from "../../../components/TopBar/TopBar";
 import Product from "../../../components/ProductItem/Product";
 import IconButton from "../../../components/IconButton/IconButton";
 import {useNavigate} from "react-router-dom";
+import ListItem from "../../../components/ListItem/ListItem";
 
 export default function TipoMovimento(){
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ export default function TipoMovimento(){
         <TopBar title={"Tipo de movimento"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
-            <Product name={p.nome} addressImg={p.urlImagem} quantity={  `${p.quantidade} ${p.unidade}`}/>
+            <ListItem adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.nome} subheading={  `${p.quantidade} ${p.unidade}`}  fullBorderRadius={true}/>
         </div>
         <div className={styles.principal}>
             <p>Qual tipo de movimento você deseja realizar?</p>
