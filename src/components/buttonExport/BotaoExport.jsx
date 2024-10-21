@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from "./buttonExport.module.css"
 
 const DownloadButton = () => {
   const downloadTxt = () => {
@@ -22,7 +23,7 @@ const DownloadButton = () => {
   };
 
   return (
-    <button onClick={downloadTxt}>Exportar TXT</button>
+    <button className={styles.button} onClick={downloadTxt}>Exportar TXT</button>
   );
 };
 

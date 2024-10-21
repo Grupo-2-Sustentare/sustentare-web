@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
+    height: 150vh;
     gap: 16px;
     width: 90%;
 }
@@ -32,4 +32,12 @@
 }
 .H3{
     font-size: 1.6em;
+}
+
+.ImportExport{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px;
+    gap: 5px;
 }

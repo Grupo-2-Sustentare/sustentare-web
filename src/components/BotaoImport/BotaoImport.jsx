@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import styles from "./buttonImport.module.css";
 
 const ImportTxtButton = () => {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
   };
 
   const uploadTxt = () => {
@@ -32,8 +34,12 @@ const ImportTxtButton = () => {
 
   return (
     <div>
-      <input type="file" accept=".txt" onChange={handleFileChange} />
-      <button onClick={uploadTxt}>Importar TXT</button>
+      <label className={styles.customFileUpload}>
+        Escolher Arquivo txt
+        <input className={styles.inputFile} type="file" accept=".txt" onChange={handleFileChange} />
+      </label>
+      {file && <p className={styles.fileName}>{file.name}</p>}
+      <button className={styles.button} onClick={uploadTxt}>Importar TXT</button>
     </div>
   );
 };

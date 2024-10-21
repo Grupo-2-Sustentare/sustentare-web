@@ -17,8 +17,16 @@ export default function Configuracoes() {
                     Tamanho do texto
                 </span>
                 <TextSizeSlider />
-                <BotaoExport/>
-                <BotaoImport/>
+                <div className={styles.ImportExport}>
+                    <span className={styles.H4}>
+                    Exportar todos os produtos:
+                    </span>
+                    <BotaoExport/>
+                    <span className={styles.H4}>
+                        Importar todos os produtos:
+                    </span>
+                    <BotaoImport/>
+                </div>
             </div>
             <div className={styles.Versao}>
                 <span className={styles.H4}>Versão 1.0 - 2024</span>
