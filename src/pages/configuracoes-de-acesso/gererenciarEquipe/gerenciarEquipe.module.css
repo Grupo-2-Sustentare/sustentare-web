@@ -8,28 +8,28 @@
 
 .barraDeBusca{
     width: 100%;
-    padding: 8px 16px;
+    padding: 16px 16px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    background-color: var(--carvao);
+    gap: 8px;
+    background-color: var(--gradiente);
 }
 
 .equipe{
     width: 100%;
-    padding: 8px 16px;
+    padding: 16px 16px;
     display: flex;
     flex-direction: column;
     gap: 16px;
     height: 100%;
-    border: var(--borda-branca);
+    /* border: var(--borda-branca); */
     border-width: 1px 0 1px 0;
     overflow-y: scroll;
 }
 
 .containerBotao{
     width: 100%;
-    padding: 8px 0;
+    padding: 16px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,18 +1,36 @@
-.barraDeBusca{
-    width: 100%;
-    padding: 8px 16px;
+.historicaDeOperacoes{
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    background-color: var(--carvao);
+    height: 812px;
+    width: 100%;
+    padding-top: 16px;
+}
+
+.barraDeBusca{
+    width: 100%;
+    padding: 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--gradiente);
 }
 
 .principal{
+    width: 100%;
+    padding: 16px 16px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 16px;
+    height: 100%;
+    /* border: var(--borda-branca); */
+    border-width: 1px 0 1px 0;
+    overflow-y: scroll;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.mensagem{
+    display: flex;
     justify-content: center;
-    width: 100%;
-    gap: 24px;
-    padding: 24px 16px;
+    /* align-items: center; */
 }

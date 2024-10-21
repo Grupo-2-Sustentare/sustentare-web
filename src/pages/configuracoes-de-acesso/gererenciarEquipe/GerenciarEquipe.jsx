@@ -64,6 +64,7 @@ export default function GerenciarEquipe(){
                     showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
                 />
             </div>
+            <hr></hr>
             <div className={styles.equipe}>
                 {usuarios.map(u => {
                         return <Product
@@ -71,7 +72,18 @@ export default function GerenciarEquipe(){
                         fullBorderRadius={true} buttonsConfig={btnsConfig} infoUsuario={u}
                     />
                 })}
+                {/* <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product>
+                <Product></Product> */}
             </div>
+            <hr></hr>
             <div className={styles.containerBotao}>
                 <Button insideText={"Adicionar colaborador"} onClick={()=>navigate("/adicionando-colaborador")}/>
             </div>
