@@ -18,14 +18,25 @@ export default function Configuracoes() {
                 </span>
                 <TextSizeSlider />
                 <div className={styles.ImportExport}>
-                    <span className={styles.H4}>
-                    Exportar todos os produtos:
-                    </span>
-                    <BotaoExport/>
-                    <span className={styles.H4}>
-                        Importar todos os produtos:
-                    </span>
-                    <BotaoImport/>
+                    <div className={styles.Export}>
+                        <span className={styles.H3}>
+                            Exportar todos os produtos:
+                        </span>
+                        <span className={styles.H4}>
+                            Exportar todos os produtos existentes no sistema para um arquivo txt
+                        </span>
+                        <BotaoExport/>
+                    </div>
+                    <div className={styles.Import}>
+                        <span className={styles.H3}>
+                            Importar produtos:
+                        </span>
+                        <span className={styles.H4}>
+                            Importar produtos para o sistema 
+                        </span>
+                        <BotaoImport/>
+                    </div>
+
                 </div>
             </div>
             <div className={styles.Versao}>
