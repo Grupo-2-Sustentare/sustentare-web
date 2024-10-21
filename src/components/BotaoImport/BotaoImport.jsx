@@ -16,7 +16,7 @@ const ImportTxtButton = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('http://localhost:8080/lambdaTest/importarTxt', {
+    fetch('http://localhost:8080/itens/importarTxt', {
       method: 'POST',
       body: formData
     })

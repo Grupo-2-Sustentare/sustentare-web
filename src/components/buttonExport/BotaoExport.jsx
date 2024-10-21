@@ -2,7 +2,7 @@ import React from 'react';
 
 const DownloadButton = () => {
   const downloadTxt = () => {
-    fetch('http://localhost:8080/lambdaTest/txt') // Alterando a URL para o endpoint correto
+    fetch('http://localhost:8080/itens/exportarTxt') // Alterando a URL para o endpoint correto
       .then(response => {
         if (response.ok) {
           return response.blob(); // Recebe o arquivo como blob
