@@ -34,7 +34,7 @@
     font-family: var(--fonte-artistica);
     font-size: 18px;
     font-weight: bold;
-    border-bottom: 2px solid var(--white); /* Uma linha de destaque inferior, por exemplo */
+    /* Uma linha de destaque inferior, por exemplo */
 }
 
 .sidebarMenu {

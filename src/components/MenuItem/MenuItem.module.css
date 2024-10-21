@@ -7,10 +7,16 @@
     justify-content:flex-start;
     align-items: center;
     border: solid var(--white);
-    border-width: 1px 0 1px 0;
+    border-width: 1px 0 0 0;
     padding: 16px;
     cursor: pointer;
     gap: 16px;
+}
+.MenuItem:last-child{
+    border-bottom-width: 3px;
+}
+.MenuItem:first-child{
+    border-top-width: 3px;
 }
 .icon{
     width: 25px;

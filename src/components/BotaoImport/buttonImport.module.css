@@ -1,9 +1,4 @@
 /* buttonImport.module.css */
-div{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
 
 
 .button {
@@ -18,7 +13,8 @@ div{
     max-width: 80%;
     min-width: 190px;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin: 16px 0;
+
 }
 
 .button:active {
