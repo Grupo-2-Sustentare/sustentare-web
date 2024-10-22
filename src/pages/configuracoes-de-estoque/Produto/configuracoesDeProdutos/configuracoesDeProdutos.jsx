@@ -1,19 +1,74 @@
 import styles from "../configuracoesDeProdutos/ConfiguracoesDeProdutos.module.css";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StreachList from "../../../../components/StrechList/StrechList";
 import Button from "../../../../components/Button/Button";
 import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
+import api from "../../../../api";
 import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
+import { successToast } from "../../../../components/Toast/Toast";
 
 const ConfiguracoesProdutos = () => {
     sessionStorage.removeItem('paginaRequisicao');
     sessionStorage.removeItem('selectedUnidadeMedida');
     sessionStorage.removeItem('selectedCategoria');
     const navigate = useNavigate();
+    // const [itens, setItem] = useState([]);
+    const [produtos, setProdutos] = useState([]);
+
+    // useEffect(() => {
+    //     api.get("/itens")
+    //         .then((response) => {
+    //             setItem(response.data); // Armazena os dados da API no estado
+    //         })
+    //         .catch((error) => {
+    //             console.error("Erro ao buscar itens:", error); // Trata erros
+    //         });
+    // }, []);
+
+    useEffect(() => {
+        api.get("/produtos")
+            .then((response) => {
+                setProdutos(response.data); // Armazena os dados da API no estado
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar produtos:", error); // Trata erros
+            });
+    }, []);
+
+
     const handleSave = () => {
         navigate("/criando-produto");
+    };
+
+    // Função para salvar a categoria na sessionStorage e navegar para a página de edição
+    const handleEdit = (produto) => {
+        sessionStorage.setProduto("produto_selecionado", JSON.stringify(produto)); // Salva a categoria na sessionStorage
+        navigate("/editando-produto"); // Redireciona para a página de edição
+    };
+    
+    const handleRemove = (produto) => {
+        const confirmRemove = window.confirm(`Você realmente deseja desativar o produto "${produto.item.nome}"?`);
+
+        if (confirmRemove) {
+            // Suponha que você tenha o ID do responsável disponível
+            const responsavelString = sessionStorage.getItem("responsavel");
+            const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+            const idResponsavel = responsavel ? responsavel.id : null;
+            // alert(idResponsavel)
+            api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
+                .then((response) => {
+                    successToast(`Produto "${produto.item.nome}" desativada com sucesso!`);
+                    setProdutos((prevProdutos) =>
+                        prevProdutos.filter((prod) => prod.id !== produto.id)
+                    );
+                })
+                .catch((error) => {
+                    console.error("Erro ao desativar produto:", error);
+                    alert("Ocorreu um erro ao tentar desativar o produto.");
+                });
+        }
     };
 
     let actioProduto = DEFAULT_BUTTON_CONFIG
@@ -36,12 +91,29 @@ const ConfiguracoesProdutos = () => {
                     <StreachList showTitle={false}/>
             </div>
             <hr></hr>
-                <Product name="Feijão" quantity="25 kilogramas"  showCheckbox={false} addressImg={githubPath + "feijão.png"} buttonsConfig={actioProduto}/>
-                <Product name="Guarana" quantity="70 unidades"  showCheckbox={false} addressImg={githubPath + "guarana.jpeg"}/>
-                <Product name="Coca-Cola" quantity="100 unidades"  showCheckbox={false} addressImg={githubPath + "coca300.jpeg"}/>
-                <Product name="Sobrecoxa" quantity="85 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/sobrecoxa.jpg"/>
-                <Product name="Água" quantity="110 unidades"  showCheckbox={false} />
-                <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/>
+                {/* <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/> */}
+                {produtos.map((produto) => (
+                        // <Product key={categoria.id} name={categoria.nome} showImageOrIcon={false} />
+                        <Product
+                            // key={produtos.id}
+                            name={produto.item.nome}
+                            quantity={produto.qtdProduto + " " + produto.item.unidade_medida.nome}
+                            showCheckbox={false} 
+                            // addressImg=
+                            buttonsConfig={{
+                                yellow: {
+                                    icon: "fa-solid fa-pen",
+                                    text: "Editar",
+                                    action: () => handleEdit(produto),
+                                },
+                                red: {
+                                    icon: "fa-solid fa-trash",
+                                    text: "Remover",
+                                    action: () => handleRemove(produto),
+                                }
+                            }}
+                        />
+                    ))}
             </div>
             <div className={styles.divBotao}>
             <Button insideText="Cadastrar novo produto" onClick={handleSave}/>

@@ -14,7 +14,6 @@ const ConfiguracoesCategorias = () => {
     const [categorias, setCategorias] = useState([]); // Estado para armazenar as categorias carregadas da API
 
     useEffect(() => {
-        // Fazendo a requisição GET para buscar as categorias
         api.get("/categorias")
             .then((response) => {
                 setCategorias(response.data); // Armazena os dados da API no estado
@@ -22,7 +21,7 @@ const ConfiguracoesCategorias = () => {
             .catch((error) => {
                 console.error("Erro ao buscar categorias:", error); // Trata erros
             });
-    }, []); // O array vazio [] faz com que a requisição seja feita apenas uma vez ao carregar o componente
+    }, []);
 
     // const categoriaLista = [
     //     "Sobremesa encomenda", "Bebidas",

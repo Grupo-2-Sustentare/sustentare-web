@@ -124,7 +124,7 @@ const AdicionandoColaborador = () => {
 
     return (
         <>
-            <TopBar title={"Adicionando colaboradores"} showBackArrow={true} />
+            <TopBar title={"Adicionando colaboradores"} showBackArrow={true} backNavigationPath={"/configuracoes-de-acesso"}/>
             <div className={styles.divPrincipal}>
                 <ImageUploader onImageSelect={handleImageChange} />
                 <TextInput label={"Nome:"} value={nome} onChange={(e) => handleTextInputChange(e, setNome)} />
