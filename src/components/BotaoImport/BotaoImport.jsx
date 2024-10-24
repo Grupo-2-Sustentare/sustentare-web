@@ -39,7 +39,7 @@ const ImportTxtButton = () => {
         <input className={styles.inputFile} type="file" accept=".txt" onChange={handleFileChange} />
       </label>
       {file && <p className={styles.fileName}>{file.name}</p>}
-      <button className={styles.button} onClick={uploadTxt}>envio TXT</button>
+      <button className={styles.button} onClick={uploadTxt}>confirmar envio</button>
     </div>
   );
 };
