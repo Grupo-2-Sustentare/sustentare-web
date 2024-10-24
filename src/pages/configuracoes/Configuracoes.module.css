@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 150vh;
+    height: 170vh;
     gap: 16px;
     width: 90%;
 }
@@ -39,5 +39,22 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 5px;
-    gap: 5px;
+    gap: 20px;
+    margin: 5px 0 5px 0px;
+}
+
+.Export{
+    display: flex;
+    flex-direction: column;
+}
+
+.Import{
+    display: flex;
+    flex-direction: column;
+}
+
+.linha{
+    border: solid white;
+    border-width: 1px 0 0 0;
+    margin: 20px 0 20px 0;
 }

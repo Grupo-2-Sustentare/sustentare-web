@@ -17,15 +17,27 @@ export default function Configuracoes() {
                     Tamanho do texto
                 </span>
                 <TextSizeSlider />
+                <div className={styles.linha}></div>
                 <div className={styles.ImportExport}>
-                    <span className={styles.H4}>
-                    Exportar todos os produtos:
-                    </span>
-                    <BotaoExport/>
-                    <span className={styles.H4}>
-                        Importar todos os produtos:
-                    </span>
-                    <BotaoImport/>
+                    <div className={styles.Export}>
+                        <span className={styles.H3}>
+                            Exportação:
+                        </span>
+                        <span className={styles.H4}>
+                            Exportar todos os produtos em um arquivo txt para utilizar como backup.   
+                        </span>
+                        <BotaoExport/>
+                    </div>
+                    <div className={styles.Import}>
+                        <span className={styles.H3}>
+                            Importação:
+                        </span>
+                        <span className={styles.H4}>
+                            Importar produtos de um arquivo texto armazenado como backup anteriormente.
+                        </span>
+                        <BotaoImport/>
+                    </div>
+
                 </div>
             </div>
             <div className={styles.Versao}>
