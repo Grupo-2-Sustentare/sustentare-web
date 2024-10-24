@@ -4,11 +4,12 @@
     flex-direction: column;
     gap: 6px;
     width: 100%;
+
+    > label{
+        font-size: 1em;
+    }
 }
 
-label{
-    font-size: 1em;
-}
 
 select{
     background-color: var(--gunmetal);
