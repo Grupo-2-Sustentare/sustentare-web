@@ -72,16 +72,7 @@ export default function GerenciarEquipe(){
                         fullBorderRadius={true} buttonsConfig={btnsConfig} infoUsuario={u}
                     />
                 })}
-                {/* <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product>
-                <Product></Product> */}
+
             </div>
             <hr></hr>
             <div className={styles.containerBotao}>

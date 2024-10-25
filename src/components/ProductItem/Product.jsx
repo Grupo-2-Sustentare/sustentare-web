@@ -67,7 +67,7 @@ export default function Product(
     <div className={`${styles.product} ${noImageOrIcon ? styles.noImageOrIcon : ""}`}>
       <div className={styles.mainInfo} onClick={handleClick}>
         {addressImg ? (
-            <img src={addressImg} alt={"Ícone do produto"} className={fullBorderRadius ? styles.profileImage : ""} />
+            <img src={addressImg} alt={"imagem"} className={fullBorderRadius ? styles.profileImage : ""} />
         ) : icon ? (
             // Renderiza o ícone somente se 'icon' não for null
             <FontAwesomeIcon icon={icon} className={styles.icon} />

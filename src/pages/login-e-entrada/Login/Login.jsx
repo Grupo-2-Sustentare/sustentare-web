@@ -7,6 +7,7 @@ import TextInput from "../../../components/TextInput/TextInput";
 import api from "../../../api";
 import RedirectionList from "../../../components/RedirectionList/RedirectionList"
 import MainMenu from "../MainMenu/MainMenu"
+import { errorToast, successToast } from "../../../components/Toast/Toast";
 
 const Login = () => {
 
@@ -30,10 +31,15 @@ const Login = () => {
                  sessionStorage.setItem("responsavel", JSON.stringify(response.data))
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
                  sessionStorage.setItem("nome_usuario", nome)
+                 successToast("Login feito com sucesso");
                  navigate("/menu-inicial")
                  fetchUsuarios()
-             }).catch(() => {
-                 toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente."); // Exibe uma mensagem de erro se a requisição falhar
+             }).catch((error) => {
+                if(error.response.status === 401){
+                    errorToast("Nome ou senha incorreto");
+                }else{
+                    toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente.");
+                }
              })
     };
 

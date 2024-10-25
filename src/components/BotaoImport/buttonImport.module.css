@@ -30,7 +30,7 @@
     border: 2px solid var(--borda-branca);
     border-radius: 8px;
     color: var(--carvao);
-    font-size: 12px;
+    font-size: 1em;
     padding: 8px 16px;
     cursor: pointer;
     display: inline-block;

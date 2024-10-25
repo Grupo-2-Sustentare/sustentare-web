@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./buttonImport.module.css";
+import { errorToast, successToast } from "../../components/Toast/Toast";
 
 const ImportTxtButton = () => {
   const [file, setFile] = useState(null);
@@ -24,9 +25,9 @@ const ImportTxtButton = () => {
     })
       .then(response => {
         if (response.ok) {
-          alert('Arquivo enviado com sucesso');
+          successToast("Arquivo enviado com sucesso");
         } else {
-          alert('Erro ao enviar o arquivo');
+          errorToast("Erro ao enviar o arquivo")
         }
       })
       .catch(error => console.error('Erro ao enviar o arquivo:', error));

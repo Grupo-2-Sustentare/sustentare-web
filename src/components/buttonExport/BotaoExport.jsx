@@ -1,13 +1,16 @@
 import React from 'react';
 import styles from "./buttonExport.module.css"
+import { errorToast, successToast } from "../../components/Toast/Toast";
 
 const DownloadButton = () => {
   const downloadTxt = () => {
     fetch('http://localhost:8080/itens/exportarTxt') // Alterando a URL para o endpoint correto
       .then(response => {
         if (response.ok) {
+          successToast("Arquivo txt exportado com sucesso");
           return response.blob(); // Recebe o arquivo como blob
         }
+        errorToast("Erro ao baixar o arquivo")
         throw new Error('Erro ao baixar o arquivo');
       })
       .then(blob => {
