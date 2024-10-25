@@ -113,7 +113,7 @@ export default function HistoricoOperacoes() {
                             operation={l.descricao}
                             author={obterNomeUsuario(l.fkUsuario)}
                             time={l.dataHora}
-                            adressImg={obterImagemUsuario(l.fkUsuario)}
+                            adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
                         />
                     ))
                 ) : (
