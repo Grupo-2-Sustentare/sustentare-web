@@ -84,12 +84,18 @@ export default function HistoricoOperacoes() {
 
     const obterImagemUsuario = (fkUsuario) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         if(usuarioEncontrado == undefined){
-            return "https://placehold.co/400/F5FBEF/22333B?text=User"
+            return null
         }
         if(usuarioEncontrado.imagem == undefined){
-            return "https://placehold.co/400/F5FBEF/22333B?text=User"
+            return null
         }
+        if(usuarioEncontrado.imagem === null){
+            return null
+        }
+        console.log(usuarioEncontrado.nome)
+        console.log(usuarioEncontrado.imagem)
         return usuarioEncontrado.imagem;
     };
 
@@ -113,7 +119,9 @@ export default function HistoricoOperacoes() {
                             operation={l.descricao}
                             author={obterNomeUsuario(l.fkUsuario)}
                             time={l.dataHora}
-                            adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
+                            adressImg={obterImagemUsuario(l.fkUsuario) ? `data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
+                            // adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
+                            // u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
                         />
                     ))
                 ) : (
