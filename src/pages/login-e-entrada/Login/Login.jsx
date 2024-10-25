@@ -23,7 +23,7 @@ const Login = () => {
                  senha
              };
         
-        // // Faz uma requisição POST para a API
+
         console.log(nome)
         console.log(senha)
              const response = api.post(`/usuarios/login`, objetoAdicionado).then((response) => {
