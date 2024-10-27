@@ -4,6 +4,7 @@ import TopBar from "../../components/TopBar/TopBar";
 import TextSizeSlider from '../../components/TextSizeSlider/TextSizeSlider';
 import BotaoExport from '../../components/buttonExport/BotaoExport'
 import BotaoImport from '../../components/BotaoImport/BotaoImport'
+import BotaoExportCsv from '../../components/buttonExportCsv/BotaoExportCsv'
 
 export default function Configuracoes() {
     return (
@@ -24,9 +25,10 @@ export default function Configuracoes() {
                             Exportação:
                         </span>
                         <span className={styles.H4}>
-                            Exportar todos os produtos em um arquivo txt para utilizar como backup.   
+                            Exportar todos os produtos em um arquivo texto ou csv para utilizar como backup.   
                         </span>
                         <BotaoExport/>
+                        <BotaoExportCsv/>
                     </div>
                     <div className={styles.Import}>
                         <span className={styles.H3}>
