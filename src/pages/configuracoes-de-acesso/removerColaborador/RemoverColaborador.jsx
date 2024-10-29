@@ -51,7 +51,7 @@ function RemoverColaborador() {
 
     return (
         <div className={styles.Global}>
-            <TopBar title={"Removendo colaborador"} showBackArrow={true}/>
+            <TopBar title={"Removendo colaborador"} showBackArrow={false}/>
             <div className={styles.Card}>
                 <span>O seguinte usuário será deletado:</span>
                 <ListItem

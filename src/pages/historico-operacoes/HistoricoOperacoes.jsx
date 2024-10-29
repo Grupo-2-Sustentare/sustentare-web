@@ -84,7 +84,19 @@ export default function HistoricoOperacoes() {
 
     const obterImagemUsuario = (fkUsuario) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
-        return usuarioEncontrado ? usuarioEncontrado.imagem : 'Usuário não encontrado';
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        if(usuarioEncontrado == undefined){
+            return null
+        }
+        if(usuarioEncontrado.imagem == undefined){
+            return null
+        }
+        if(usuarioEncontrado.imagem === null){
+            return null
+        }
+        console.log(usuarioEncontrado.nome)
+        console.log(usuarioEncontrado.imagem)
+        return usuarioEncontrado.imagem;
     };
 
 
@@ -102,12 +114,14 @@ export default function HistoricoOperacoes() {
                 {Array.isArray(logsTeste) && logsTeste.length > 0 ? (
                     logsTeste.map((l) => (
                         <OperationLog
-                            key={l.id}  // Sempre importante adicionar uma chave única quando usamos map
+                            key={l.id}
                             title={l.titulo}
                             operation={l.descricao}
                             author={obterNomeUsuario(l.fkUsuario)}
                             time={l.dataHora}
-                            adressImg={obterImagemUsuario(l.fkUsuario)}
+                            adressImg={obterImagemUsuario(l.fkUsuario) ? `data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
+                            // adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
+                            // u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
                         />
                     ))
                 ) : (

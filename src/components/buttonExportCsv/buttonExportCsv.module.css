@@ -1,0 +1,18 @@
+.button{
+    background-color: var(--carvao);
+    border: var(--borda-branca);
+    border-radius: 8px;
+    height: 65px;
+    width: fit-content;
+    color: var(--white);
+    box-shadow: var(--sombra-ex-vermelha);
+    padding: 0px 16px;
+    max-width: 80%;
+    min-width: 190px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.button:active{
+    box-shadow: var(--sombra-in-clara), var(--sombra-ex-vermelha);
+}
