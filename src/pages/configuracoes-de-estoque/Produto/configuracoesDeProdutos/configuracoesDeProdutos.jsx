@@ -45,24 +45,37 @@ const ConfiguracoesProdutos = () => {
     };
     
     const handleRemove = (produto) => {
+        
         const confirmRemove = window.confirm(`Você realmente deseja desativar o produto "${produto.item.nome}"?`);
-
+    
         if (confirmRemove) {
             // Suponha que você tenha o ID do responsável disponível
             const responsavelString = sessionStorage.getItem("responsavel");
             const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
             const idResponsavel = responsavel ? responsavel.id : null;
-            // alert(idResponsavel)
+    
+            // Armazena o item associado ao produto antes da remoção do produto
+            const itemId = produto.item.id;
+    
+            // Deleta o produto
             api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
-                    successToast(`Produto "${produto.item.nome}" desativada com sucesso!`);
+                    successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
+    
+                    // Atualiza a lista de produtos removendo o produto deletado
                     setProdutos((prevProdutos) =>
                         prevProdutos.filter((prod) => prod.id !== produto.id)
                     );
+    
+                    // Após a remoção do produto, remove o item associado
+                    return api.delete(`/itens/${itemId}?idResponsavel=${idResponsavel}`);
+                })
+                .then(() => {
+                    successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
                 })
                 .catch((error) => {
-                    console.error("Erro ao desativar produto:", error);
-                    alert("Ocorreu um erro ao tentar desativar o produto.");
+                    console.error("Erro ao desativar produto ou remover item associado:", error);
+                    alert("Ocorreu um erro ao tentar desativar o produto ou remover o item associado.");
                 });
         }
     };

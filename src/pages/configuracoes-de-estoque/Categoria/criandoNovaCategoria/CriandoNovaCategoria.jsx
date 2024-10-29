@@ -12,7 +12,9 @@ export default function CriandoCategoria({ }) {
    const [nomeCategoria, setNomeCategoria] = useState(""); // Estado para o nome da categoria
    const [categoriasExistentes, setCategoriasExistentes] = useState([]); // Iniciar como array vazio
 
-   const idResponsavel = 100; // pegar da sessionStorage futuramente
+   const responsavelString = sessionStorage.getItem("responsavel");
+   const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+   const idResponsavel = responsavel ? responsavel.id : null;
 
    // Função para buscar categorias existentes
    async function buscarCategorias() {

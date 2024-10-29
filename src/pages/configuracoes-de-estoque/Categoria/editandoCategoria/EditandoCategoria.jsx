@@ -29,7 +29,9 @@ export default function EditandoCategoria({ }) {
          errorToast("O nome da categoria não pode estar vazio."); // Exibe um toast de erro
          return; // Impede a execução do restante da função
       }
-      const idResponsavel = 100; // Substitua pelo valor correto
+      const responsavelString = sessionStorage.getItem("responsavel");
+      const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+      const idResponsavel = responsavel ? responsavel.id : null;
 
       api.put(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`, { nome: categoria.nome, ativo: categoria.ativo})
          .then((response) => {

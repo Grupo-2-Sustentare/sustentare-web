@@ -52,16 +52,16 @@ const EditandoProduto = () => {
 
     if (storedUnidadeMedida) {
         try {
-            itemUM = JSON.parse(storedUnidadeMedida) || defaultItem;
+            itemUM = JSON.parse(storedUnidadeMedida) || produtoSelecionado.item.unidade_medida;
         } catch (error) {
-            itemUM = defaultItem;
+            itemUM = produtoSelecionado.item.unidade_medida;
         }
     }
     if (storedCategoria) {
         try {
-            itemC = JSON.parse(storedCategoria) || produtoSelecionado.item.categoria.nome;
+            itemC = JSON.parse(storedCategoria) || produtoSelecionado.item.categoria;
         } catch (error) {
-            itemC = produtoSelecionado.item.categoria.nome;
+            itemC = produtoSelecionado.item.categoria;
         }
     }
 
@@ -135,36 +135,44 @@ const EditandoProduto = () => {
                 errorToast("Erro ao atualizar Produto");
                 throw new Error('Falha na atualização do item');
                 return;
-            } else {
-
-                // Atualiza o produto somente se a atualização do item for bem-sucedida
-                const produtoUpdate = {
-                    preco,
-                    qtdProduto,
-                    qtdMedida,
-                    ativo: true
-                };
-
-                const produtoResponse = await fetch(`${API_BASE_URL}/produtos/${produtoSelecionado.id}?idResponsavel=${idResponsavel}&fkItem=${produtoSelecionado.item.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(produtoUpdate),
-                });
-
-                if (!produtoResponse.ok) {
-                    // errorToast("Erro ao atualizar produto");
-                    throw new Error('Falha na atualização do produto');
-                }
+            } 
+            else {
+                successToast("Produto editado com sucesso");
+                const toastDuration = 1000;
+                setTimeout(() => {
+                    sessionStorage.removeItem("produto_selecionado");
+                    navigate("/configuracoes-de-produtos");
+                }, toastDuration);
             }
 
-            successToast("Produto editado com sucesso");
-            const toastDuration = 1000;
-            setTimeout(() => {
-                sessionStorage.removeItem("produto_selecionado");
-                navigate("/configuracoes-de-produtos");
-            }, toastDuration);
+            //     // Atualiza o produto somente se a atualização do item for bem-sucedida
+            //     const produtoUpdate = {
+            //         preco,
+            //         qtdProduto,
+            //         qtdMedida,
+            //         ativo: true
+            //     };
+
+            //     const produtoResponse = await fetch(`${API_BASE_URL}/produtos/${produtoSelecionado.id}?idResponsavel=${idResponsavel}&fkItem=${produtoSelecionado.item.id}`, {
+            //         method: 'PUT',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify(produtoUpdate),
+            //     });
+
+            //     if (!produtoResponse.ok) {
+            //         // errorToast("Erro ao atualizar produto");
+            //         throw new Error('Falha na atualização do produto');
+            //     }
+            // }
+
+            // successToast("Produto editado com sucesso");
+            // const toastDuration = 1000;
+            // setTimeout(() => {
+            //     sessionStorage.removeItem("produto_selecionado");
+            //     navigate("/configuracoes-de-produtos");
+            // }, toastDuration);
 
         } catch (error) {
             console.error('Erro ao atualizar:', error);

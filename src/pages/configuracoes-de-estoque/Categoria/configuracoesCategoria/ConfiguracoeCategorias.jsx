@@ -42,9 +42,10 @@ const ConfiguracoesCategorias = () => {
         const confirmRemove = window.confirm(`Você realmente deseja desativar a categoria "${categoria.nome}"?`);
 
         if (confirmRemove) {
-            // Suponha que você tenha o ID do responsável disponível
-            const idResponsavel = 100; // Substitua pelo valor correto
-            // Ao logar pegar o Id do Usuário na sessionStorage
+            
+            const responsavelString = sessionStorage.getItem("responsavel");
+            const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+            const idResponsavel = responsavel ? responsavel.id : null;
 
             api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
