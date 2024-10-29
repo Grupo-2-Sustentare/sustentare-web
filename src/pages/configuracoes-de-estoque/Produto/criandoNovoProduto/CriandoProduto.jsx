@@ -14,6 +14,10 @@ import { successToast } from "../../../../components/Toast/Toast";
 const CriandoProduto = () => {
     const navigate = useNavigate()
     sessionStorage.paginaRequisicao = "/criando-produto"
+    const responsavelString = sessionStorage.getItem("responsavel");
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+    const idResponsavel = responsavel ? responsavel.id : null;
+
     const defaultItem = {
         heading: "Selecione...",
         subheading: "Sem informação disponível"

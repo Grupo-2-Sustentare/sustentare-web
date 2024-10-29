@@ -13,19 +13,15 @@ const ConfiguracoesProdutos = () => {
     sessionStorage.removeItem('paginaRequisicao');
     sessionStorage.removeItem('selectedUnidadeMedida');
     sessionStorage.removeItem('selectedCategoria');
-    const navigate = useNavigate();
-    // const [itens, setItem] = useState([]);
-    const [produtos, setProdutos] = useState([]);
 
-    // useEffect(() => {
-    //     api.get("/itens")
-    //         .then((response) => {
-    //             setItem(response.data); // Armazena os dados da API no estado
-    //         })
-    //         .catch((error) => {
-    //             console.error("Erro ao buscar itens:", error); // Trata erros
-    //         });
-    // }, []);
+    sessionStorage.removeItem("nome");
+    sessionStorage.removeItem("diasVencimento");
+    sessionStorage.removeItem("perecivel");
+    sessionStorage.removeItem("produto_selecionado");
+    sessionStorage.removeItem("selectedUnidadeMedida");
+    sessionStorage.removeItem("selectedCategoria");
+    const navigate = useNavigate();
+    const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
         api.get("/produtos")
@@ -44,7 +40,7 @@ const ConfiguracoesProdutos = () => {
 
     // Função para salvar a categoria na sessionStorage e navegar para a página de edição
     const handleEdit = (produto) => {
-        sessionStorage.setProduto("produto_selecionado", JSON.stringify(produto)); // Salva a categoria na sessionStorage
+        sessionStorage.setItem("produto_selecionado", JSON.stringify(produto)); // Salva a categoria na sessionStorage
         navigate("/editando-produto"); // Redireciona para a página de edição
     };
     
