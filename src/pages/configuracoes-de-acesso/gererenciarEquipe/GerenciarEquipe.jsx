@@ -66,6 +66,7 @@ export default function GerenciarEquipe(){
             </div>
             <hr></hr>
             <div className={styles.equipe}>
+                {usuarios.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
                 {usuarios.map(u => {
                         return <Product
                         name={u.nome} quantity={"Usuário(a)"} addressImg={u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
