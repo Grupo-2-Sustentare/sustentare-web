@@ -57,7 +57,7 @@ function RemoverColaborador() {
                 <ListItem
                     heading={usuario.nome}
                     subheading={"Usuário(a)"}
-                    adressImg={`data:image/jpeg;base64,${usuario.imagem}`}
+                    adressImg={usuario.imagem ? `data:image/jpeg;base64,${usuario.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
                     descImg={"Imagem do usuário"}
                 />
             </div>
