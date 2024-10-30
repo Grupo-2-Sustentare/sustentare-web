@@ -84,7 +84,10 @@ export default function ConfigurationMenu({}) {
    console.log("Valor de conversaoPadrao:", conversaoPadrao);
    console.log("Tipo de conversao_padrao:", typeof conversaoPadrao, conversaoPadrao);
  
-   const idResponsavel = 100; // Substitua pelo valor correto
+   const responsavelString = sessionStorage.getItem("responsavel");
+   const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+   const idResponsavel = responsavel ? responsavel.id : null;
+   
    const convertedConversaoPadrao = parseFloat(conversaoPadrao);
  
    if (isNaN(convertedConversaoPadrao)) {

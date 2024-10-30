@@ -19,7 +19,9 @@ const CriandoUnidadeMedida = () => {
     const [unidadesExistentes, setUnidadesExistentes] = useState([]); // Estado para unidades já existentes
     const [ola, setOla] = useState(false); // Estado para controle de exibição do cálculo base
 
-    const idResponsavel = 100; // pegar da sessionStorage futuramente
+    const responsavelString = sessionStorage.getItem("responsavel");
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+    const idResponsavel = responsavel ? responsavel.id : null; // pegar da sessionStorage futuramente
 
     // Função para buscar unidades existentes
     async function buscarUnidades() {

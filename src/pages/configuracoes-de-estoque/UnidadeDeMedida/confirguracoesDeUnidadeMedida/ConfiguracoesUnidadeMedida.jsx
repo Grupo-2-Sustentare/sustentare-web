@@ -40,7 +40,9 @@ const ConfiguracoesUnidadeMedida = () => {
 
         if (confirmRemove) {
             // Pegando o ID do responsável (pode ser obtido da sessionStorage)
-            const idResponsavel = 100; // Substitua pelo valor correto
+            const responsavelString = sessionStorage.getItem("responsavel");
+            const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+            const idResponsavel = responsavel ? responsavel.id : null;
 
             api.delete(`/unidades-medida/${unidadeMedida.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
