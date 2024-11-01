@@ -1,5 +1,5 @@
 import styles from "./ConfiguracoesUnidadeMedida.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import StreachList from "../../../../components/StrechList/StrechList";
 import Button from "../../../../components/Button/Button";
@@ -13,7 +13,17 @@ const ConfiguracoesUnidadeMedida = () => {
     const navigate = useNavigate();
     const [unidades, setUnidades] = useState([]);
 
+    const location = useLocation();
+    const unidadeMedidaRemovida = location.state?.unidadeMedidaRemovida;
+
     useEffect(() => {
+
+        if(unidadeMedidaRemovida != undefined){
+            setUnidades((prevUnidades) =>
+            prevUnidades.filter((uni) => uni.id !== unidadeMedidaRemovida.id)
+        );
+        }
+
         // Faz a requisição GET para buscar as unidades de medida
         const fetchUnidades = async () => {
             try {
@@ -47,9 +57,7 @@ const ConfiguracoesUnidadeMedida = () => {
             api.delete(`/unidades-medida/${unidadeMedida.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
                     successToast(`Unidade "${unidadeMedida.nome}" desativada com sucesso!`);
-                    setUnidades((prevUnidades) =>
-                        prevUnidades.filter((uni) => uni.id !== unidadeMedida.id)
-                    );
+                    
                 })
                 .catch((error) => {
                     console.error("Erro ao desativar unidade de medida:", error);
@@ -97,7 +105,7 @@ const ConfiguracoesUnidadeMedida = () => {
                                 red: {
                                     icon: "fa-solid fa-trash",
                                     text: "Remover",
-                                    action: () => handleRemove(u),
+                                    action: () => navigate("/tela-de-confirmacao", { state: { unidadeDeMedida: u } }),
                                 }
                             }}
                         />

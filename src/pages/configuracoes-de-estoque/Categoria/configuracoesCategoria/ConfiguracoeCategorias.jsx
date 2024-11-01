@@ -97,7 +97,7 @@ const ConfiguracoesCategorias = () => {
                                 red: {
                                     icon: "fa-solid fa-trash",
                                     text: "Remover",
-                                    action: () => handleRemove(categoria),
+                                    action: () => navigate("/tela-de-confirmacao", { state: { categoria: categoria } }),
                                 }
                             }}
                         />
