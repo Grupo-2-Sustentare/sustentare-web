@@ -5,6 +5,7 @@ import IconButton from "../../components/IconButton/IconButton";
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from "../../api";
 import { errorToast, successToast } from "../../components/Toast/Toast";
+import React, { useEffect, useState } from 'react';
 
 export default function TelaDeConfirmacao({ }) {
     var backNavigationPath = "/configuracoes-de-categorias" // Setinha de voltar na TopBar
@@ -45,12 +46,26 @@ export default function TelaDeConfirmacao({ }) {
         }
     }
 
+   
+        if(categoria != undefined){
+            heading = categoria.nome
+            adressImg = categoria.imagem ? `data:image/jpeg;base64,${categoria.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+            mensagemConfirmacao = "A seguinte categoria será deletada: "
+        }
+    
+        if(unidadeDeMedida != undefined){
+            heading = unidadeDeMedida.nome
+            adressImg = unidadeDeMedida.imagem ? `data:image/jpeg;base64,${unidadeDeMedida.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+            mensagemConfirmacao = "A seguinte unidade de medida será deletada: "
+        }
+
+
     return (
         <>
             <div>
                 <TopBar 
                 title={tituloTopBar} 
-                showBackArrow={true} 
+                showBackArrow={false} 
                 backNavigationPath={backNavigationPath}
                 />
             </div>
