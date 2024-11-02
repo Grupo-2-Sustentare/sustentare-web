@@ -38,6 +38,7 @@ export default function NovoMovimento({}){
             return
         }
         sessionStorage.setItem("movement", null)
+        sessionStorage.setItem("produtosSelecionados", null)
         successToast("Movimentação salva com sucesso!")
         setTimeout(() => navigate("/menu-inicial"),2000)
     }
@@ -59,7 +60,9 @@ export default function NovoMovimento({}){
                         btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                         return <Product
-                            addressImg={p.urlImagem} name={p.nome} quantity={`${p.quantidade} ${p.unidade}`}
+                            addressImg={p.urlImagem} 
+                            name={p.item.nome} 
+                            quantity={`${p.qtdProduto} ${p.item.unidade_medida.nome}`}
                             buttonsConfig={btnConfig}
                         />
                     })}

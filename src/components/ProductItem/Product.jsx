@@ -22,8 +22,17 @@ export const DEFAULT_BUTTON_CONFIG = {
 };
 export default function Product(
   {
-    addressImg, icon, name, quantity, checkboxVariant = false, checkedByDefault = false,
-    buttonsConfig = undefined, fullBorderRadius = false, showImageOrIcon = true, infoUsuario
+    addressImg, 
+    icon, 
+    name, 
+    quantity, 
+    checkboxVariant = false, 
+    checkedByDefault = false,
+    buttonsConfig = undefined, 
+    fullBorderRadius = false, 
+    showImageOrIcon = true, 
+    infoUsuario, 
+    onChange
   }
 ) {
   // Inicializando o parâmetro que customiza os botões.
@@ -45,13 +54,23 @@ export default function Product(
   let [checked, setChecked] = useState(checkedByDefault);
   let [expanded, setExpanded] = useState(false);
 
+  // const handleClick = (e) => {
+  //   if (checkboxVariant) {
+  //     setChecked(!checked)
+  //   } else {
+  //     setExpanded(!expanded)
+  //   }
+  // }
+
   const handleClick = (e) => {
     if (checkboxVariant) {
-      setChecked(!checked)
+      setChecked((prev) => !prev);
+      console.log(`Produto: ${name}, Checked: ${checked}`)
+      onChange && onChange(); // Apenas chama onChange se existir
     } else {
-      setExpanded(!expanded)
+      setExpanded((prev) => !prev);
     }
-  }
+  };
 
 
   // Define imagem padrão ou ícone padrão
@@ -79,7 +98,7 @@ export default function Product(
         </span>
 
         {checkboxVariant && (
-          <span className={checkbox_styles.checkbox} onClick={() => handleClick()}>
+          <span className={checkbox_styles.checkbox} onClick={(e) => { e.stopPropagation(); handleClick(e); }}>
             <FontAwesomeIcon icon="fa-solid fa-check" style={{ opacity: checked ? 1 : 0 }} />
           </span>
         )}
