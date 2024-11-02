@@ -25,12 +25,21 @@ export default function TelaDeConfirmacao({ }) {
     const location = useLocation();
     const categoria = location.state?.categoria;
     const unidadeDeMedida = location.state?.unidadeDeMedida;
+    const produto = location.state?.produto;
     
     const navigate = useNavigate()
 
     const removendo = async () => {
         if(categoria != undefined){
-
+            api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
+            .then((response) => {
+                successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
+                navigate("/configuracoes-de-categorias", { state: { categoriaRemovida: categoria } })
+            })
+            .catch((error) => {
+                console.error("Erro ao desativar categoria:", error);
+                alert("Ocorreu um erro ao tentar desativar a categoria.");
+            });
         }
     
         if(unidadeDeMedida != undefined){
@@ -43,22 +52,63 @@ export default function TelaDeConfirmacao({ }) {
                 console.error("Erro ao desativar unidade de medida:", error);
                 errorToast("Ocorreu um erro ao tentar desativar a unidade de medida.");
             });
+
+            if(produto != undefined){
+                api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
+                .then((response) => {
+                    successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
+    
+                    // Após a remoção do produto, remove o item associado
+                    return api.delete(`/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
+                })
+                .then(() => {
+                    successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
+                })
+                .catch((error) => {
+                    console.error("Erro ao desativar produto ou remover item associado:", error);
+                    alert("Ocorreu um erro ao tentar desativar o produto ou remover o item associado.");
+                });
+            }
         }
     }
 
    
         if(categoria != undefined){
+            tituloTopBar = "Removendo Categoria"
             heading = categoria.nome
-            adressImg = categoria.imagem ? `data:image/jpeg;base64,${categoria.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+            adressImg = categoria.imagem ? `data:image/jpeg;base64,${categoria.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Categoria"
             mensagemConfirmacao = "A seguinte categoria será deletada: "
         }
     
         if(unidadeDeMedida != undefined){
+            tituloTopBar = "Removendo Unidade de Medida"
             heading = unidadeDeMedida.nome
-            adressImg = unidadeDeMedida.imagem ? `data:image/jpeg;base64,${unidadeDeMedida.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+            adressImg = unidadeDeMedida.imagem ? `data:image/jpeg;base64,${unidadeDeMedida.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Unidade"
             mensagemConfirmacao = "A seguinte unidade de medida será deletada: "
         }
 
+        if(produto != undefined){
+            tituloTopBar = "Removendo Produto"
+            heading = produto.item.nome
+            adressImg = produto.imagem ? `data:image/jpeg;base64,${produto.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Produto"
+            mensagemConfirmacao = "O seguinte produto será deletada: "
+        }
+
+        console.log(produto)
+
+        const cancelar = () => {
+            if(categoria != undefined){
+                navigate("/configuracoes-de-categorias")
+            }
+        
+            if(unidadeDeMedida != undefined){
+                navigate("/configuracoes-de-unidade-medida")
+            }
+    
+            if(produto != undefined){
+                navigate("/configuracoes-de-produtos")
+            }
+        };
 
     return (
         <>
@@ -91,7 +141,7 @@ export default function TelaDeConfirmacao({ }) {
                     <IconButton
                         icone={"fa-solid fa-x"}
                         texto={"Cancelar"}
-                    // onClick={}
+                        onClick={cancelar}
                     />
                 </div>
             </div>
