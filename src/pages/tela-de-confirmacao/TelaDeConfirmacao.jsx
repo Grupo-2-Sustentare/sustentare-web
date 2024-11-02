@@ -30,7 +30,9 @@ export default function TelaDeConfirmacao({ }) {
     const navigate = useNavigate()
 
     const removendo = async () => {
+        console.log("aloooo")
         if(categoria != undefined){
+            console.log("categoria")
             api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
             .then((response) => {
                 successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
@@ -43,6 +45,7 @@ export default function TelaDeConfirmacao({ }) {
         }
     
         if(unidadeDeMedida != undefined){
+            console.log("unidade de medida")
             api.delete(`/unidades-medida/${unidadeDeMedida.id}?idResponsavel=${idResponsavel}`)
             .then((response) => {
                 successToast(`Unidade "${unidadeDeMedida.nome}" desativada com sucesso!`);
@@ -52,23 +55,25 @@ export default function TelaDeConfirmacao({ }) {
                 console.error("Erro ao desativar unidade de medida:", error);
                 errorToast("Ocorreu um erro ao tentar desativar a unidade de medida.");
             });
+        }
+        console.log("está aqui")
+        if(produto != undefined){
+            console.log("entrou")
+            api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
+            .then((response) => {
+                successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
 
-            if(produto != undefined){
-                api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
-                .then((response) => {
-                    successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
-    
-                    // Após a remoção do produto, remove o item associado
-                    return api.delete(`/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
-                })
-                .then(() => {
-                    successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
-                })
-                .catch((error) => {
-                    console.error("Erro ao desativar produto ou remover item associado:", error);
-                    alert("Ocorreu um erro ao tentar desativar o produto ou remover o item associado.");
-                });
-            }
+                // Após a remoção do produto, remove o item associado
+                return api.delete(`/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
+            })
+            .then(() => {
+                successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
+                navigate("/configuracoes-de-produtos")
+            })
+            .catch((error) => {
+                console.error("Erro ao desativar produto ou remover item associado:", error);
+                alert("Ocorreu um erro ao tentar desativar o produto ou remover o item associado.");
+            });
         }
     }
 
@@ -94,7 +99,9 @@ export default function TelaDeConfirmacao({ }) {
             mensagemConfirmacao = "O seguinte produto será deletada: "
         }
 
+        console.log("----------------")
         console.log(produto)
+        console.log("----------------")
 
         const cancelar = () => {
             if(categoria != undefined){
