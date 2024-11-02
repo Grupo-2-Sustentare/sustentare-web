@@ -95,11 +95,11 @@ const ConfiguracoesProdutos = () => {
             <TopBar  title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"}/>
             </div>
             <div className={styles.divPrincipal}>
-            <div className={styles.divFiltroEBusca}>
+            {/* <div className={styles.divFiltroEBusca}>
                     <IconInput/>
                     <StreachList showTitle={false}/>
             </div>
-            <hr></hr>
+            <hr></hr> */}
                 {/* <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/> */}
                 {produtos.map((produto) => (
                         // <Product key={categoria.id} name={categoria.nome} showImageOrIcon={false} />

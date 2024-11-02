@@ -63,7 +63,7 @@ const ConfiguracoesUnidadeMedida = () => {
             return "fa-solid fa-cube"; // Ícone para Volume
         } else if (categoria === "Massa") {
             return "fa-solid fa-hippo"; // Ícone para Massa
-        } else if (categoria === "Unidade" || categoria === "unidade" || categoria === "Genérico" || categoria === "genérico") {
+        } else if (categoria === "Genérica" || categoria === "genérica") {
             return "fa-solid fa-circle"; // Ícone para Quantidade
         } else {
             return "fa-solid fa-question"; // Ícone padrão para outros tipos
@@ -74,11 +74,11 @@ const ConfiguracoesUnidadeMedida = () => {
         <>
             <TopBar title={"configurações de Unidade de Medida"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
-                <div className={styles.divFiltroEBusca}>
+                {/* <div className={styles.divFiltroEBusca}>
                     <IconInput />
                     <StreachList showTitle={false} titulo=" " />
                 </div>
-                <hr></hr>
+                <hr></hr> */}
                 {unidades.map(u => {
                     return (
                         <Product

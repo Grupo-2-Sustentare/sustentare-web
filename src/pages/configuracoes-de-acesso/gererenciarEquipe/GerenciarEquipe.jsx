@@ -58,13 +58,13 @@ export default function GerenciarEquipe(){
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
-            <div className={styles.barraDeBusca}>
+            {/* <div className={styles.barraDeBusca}>
                 <IconInput placeholder={"Pesquisa por nome"}/>
                 <StrechList
                     showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
                 />
             </div>
-            <hr></hr>
+            <hr></hr> */}
             <div className={styles.equipe}>
                 {usuarios.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
                 {usuarios.map(u => {

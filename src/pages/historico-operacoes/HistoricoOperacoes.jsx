@@ -103,13 +103,13 @@ export default function HistoricoOperacoes() {
     return (<>
         <div className={styles.historicaDeOperacoes}>
             <TopBar title={"Historico de operações"} showBackArrow={false} />
-            <div className={styles.barraDeBusca}>
+            {/* <div className={styles.barraDeBusca}>
                 <IconInput onChange={buscarLogs} placeholder={"Pesquisa por nome"} />
                 <StrechList
                     showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
                 />
             </div>
-            <hr></hr>
+            <hr></hr> */}
             <div className={styles.principal}>
                 {Array.isArray(logsTeste) && logsTeste.length > 0 ? (
                     logsTeste.map((l) => (

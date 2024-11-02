@@ -119,7 +119,7 @@ export default function SelecaoProdutos(){
     <>
         <TopBar title={"Seleção de Produtos"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.divPrincipal}>
-            <div className={styles.barraDeBusca}>
+            {/* <div className={styles.barraDeBusca}>
                 <IconInput 
                 // onChange={buscarProdutos} 
                 placeholder={"Pesquisa por nome"}/>
@@ -127,9 +127,9 @@ export default function SelecaoProdutos(){
                     showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
                     // onChange={ordenar}
                 />
-            </div>
+            </div> */}
             {/* <div className={styles.containerProdutos}> */}
-            <hr></hr>
+            {/* <hr></hr> */}
             {produtos.map((produto) => (
                     <Product
                         key={produto.id}

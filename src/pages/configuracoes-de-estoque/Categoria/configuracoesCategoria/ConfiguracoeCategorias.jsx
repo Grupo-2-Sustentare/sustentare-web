@@ -72,11 +72,11 @@ const ConfiguracoesCategorias = () => {
         <>
             <TopBar title={"configurações de categorias"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
-                <div className={styles.divFiltroEBusca}>
+                {/* <div className={styles.divFiltroEBusca}>
                     <IconInput />
                     <StreachList showTitle={false} titulo=" " />
                 </div>
-                <hr></hr>
+                <hr></hr> */}
                 <div className={styles.principal}>
                     {/* {categoriaLista.map(categoria=>{
                         return <Product name={categoria} showImageOrIcon={false}/>
