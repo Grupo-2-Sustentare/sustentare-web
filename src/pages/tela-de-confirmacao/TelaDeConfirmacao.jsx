@@ -83,6 +83,7 @@ export default function TelaDeConfirmacao({ }) {
             heading = categoria.nome
             adressImg = categoria.imagem ? `data:image/jpeg;base64,${categoria.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Categoria"
             mensagemConfirmacao = "A seguinte categoria será deletada: "
+            subheading = " "
         }
     
         if(unidadeDeMedida != undefined){
@@ -90,6 +91,7 @@ export default function TelaDeConfirmacao({ }) {
             heading = unidadeDeMedida.nome
             adressImg = unidadeDeMedida.imagem ? `data:image/jpeg;base64,${unidadeDeMedida.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Unidade"
             mensagemConfirmacao = "A seguinte unidade de medida será deletada: "
+            subheading = " "
         }
 
         if(produto != undefined){
@@ -97,11 +99,9 @@ export default function TelaDeConfirmacao({ }) {
             heading = produto.item.nome
             adressImg = produto.imagem ? `data:image/jpeg;base64,${produto.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Produto"
             mensagemConfirmacao = "O seguinte produto será deletada: "
+            subheading = " "
         }
 
-        console.log("----------------")
-        console.log(produto)
-        console.log("----------------")
 
         const cancelar = () => {
             if(categoria != undefined){
