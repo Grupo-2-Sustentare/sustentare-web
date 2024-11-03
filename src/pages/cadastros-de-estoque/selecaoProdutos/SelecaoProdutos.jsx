@@ -13,15 +13,7 @@ const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentar
 const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
 
 export default function SelecaoProdutos(){
-    // Mock, para testes
-    // const mock_produtos = [
-    //     {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 12, "unidade": "kilogramas"},
-    //     {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 32, "unidade": "unidades"},
-    //     {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 75, "unidade": "unidades"},
-    //     {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": 4, "unidade": "sacos"}
-    // ]
 
-    // const [produtos,setProdutos] = useState(mock_produtos)
     const navigate = useNavigate()
 
     const [produtos, setProdutos] = useState([]);
@@ -92,9 +84,9 @@ export default function SelecaoProdutos(){
 
     const toggleProdutoSelecionado = (produto) => {
         setProdutosSelecionados((prevSelecionados) => {
-            if (prevSelecionados.some((p) => p.id === produto.id)) {
+            if (prevSelecionados.some((p) => p.item.id === produto.item.id)) {
                 // Remove o produto se já estiver selecionado
-                return prevSelecionados.filter((p) => p.id !== produto.id);
+                return prevSelecionados.filter((p) => p.item.id !== produto.item.id);
             } else {
                 // Adiciona o produto se não estiver selecionado
                 return [...prevSelecionados, produto];
@@ -115,6 +107,7 @@ export default function SelecaoProdutos(){
         navigate("/cadastros-de-estoque");
     }
 
+
     return(
     <>
         <TopBar title={"Seleção de Produtos"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
@@ -132,7 +125,8 @@ export default function SelecaoProdutos(){
             {/* <hr></hr> */}
             {produtos.map((produto) => (
                     <Product
-                        key={produto.id}
+                        key={produto.item.id}
+                        id={produto.item.id}
                         addressImg={produto.urlImagem}
                         name={produto.item.nome}
                         quantity={`${produto.qtdProduto} ${produto.item.unidade_medida.nome}`}

@@ -11,10 +11,22 @@ const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentar
 export default function NovoMovimento({}){
     const navigate = useNavigate()
 
-    let jsonMovs = JSON.parse(sessionStorage.getItem("movement"))
-    if (jsonMovs === null){
-        jsonMovs = {"products": []}
-        sessionStorage.setItem("movement", JSON.stringify(jsonMovs))
+    // Carrega os produtos selecionados da sessionStorage
+    const productCheckedStates = JSON.parse(sessionStorage.getItem("productCheckedStates")) || [];
+
+    // Carrega o movimento e filtra produtos de acordo com `productCheckedStates`
+    let jsonMovs = JSON.parse(sessionStorage.getItem("movement"));
+    if (jsonMovs === null) {
+        jsonMovs = { "products": [] };
+        sessionStorage.setItem("movement", JSON.stringify(jsonMovs));
+    } else {
+        // Filtra produtos em `movement` para incluir apenas os que estão em `productCheckedStates`
+        jsonMovs.products = jsonMovs.products.filter(product =>
+            productCheckedStates.some(checkedProduct => checkedProduct.id === product.item.id)
+        );
+        
+        // Atualiza `movement` na sessionStorage para remover produtos não selecionados
+        sessionStorage.setItem("movement", JSON.stringify(jsonMovs));
     }
 
     let [movement, setMovement] = useState(jsonMovs)
@@ -37,8 +49,12 @@ export default function NovoMovimento({}){
             errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
             return
         }
+        // sessionStorage.removeItem("movement")
         sessionStorage.setItem("movement", null)
-        sessionStorage.setItem("produtosSelecionados", null)
+        // sessionStorage.removeItem("produtosSelecionados")
+        sessionStorage.setItem("produtosSelecionados",null)
+        sessionStorage.removeItem("productCheckedStates")
+
         successToast("Movimentação salva com sucesso!")
         setTimeout(() => navigate("/menu-inicial"),2000)
     }
@@ -60,6 +76,8 @@ export default function NovoMovimento({}){
                         btnConfig.yellow.action = () => editarProduto(movement.products[i])
 
                         return <Product
+                            key={i} // Certifique-se de que a chave é única
+                            id={p.item.id} // Passando o id do produto
                             addressImg={p.urlImagem} 
                             name={p.item.nome} 
                             quantity={`${p.qtdProduto} ${p.item.unidade_medida.nome}`}

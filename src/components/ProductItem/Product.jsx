@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './productItem.module.css';
 import checkbox_styles from "../Checkbox/checkbox.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,18 +20,22 @@ export const DEFAULT_BUTTON_CONFIG = {
     action: () => alertToast("Defina uma ação para esse botão."),
   }
 };
+
+const STORAGE_KEY = "productCheckedStates";
+
 export default function Product(
   {
-    addressImg, 
-    icon, 
-    name, 
-    quantity, 
-    checkboxVariant = false, 
+    id, // Adicionando id aqui
+    addressImg,
+    icon,
+    name,
+    quantity,
+    checkboxVariant = false,
     checkedByDefault = false,
-    buttonsConfig = undefined, 
-    fullBorderRadius = false, 
-    showImageOrIcon = true, 
-    infoUsuario, 
+    buttonsConfig = undefined,
+    fullBorderRadius = false,
+    showImageOrIcon = true,
+    infoUsuario,
     onChange
   }
 ) {
@@ -61,16 +65,56 @@ export default function Product(
   //     setExpanded(!expanded)
   //   }
   // }
+  // Recupera o array de produtos selecionados do sessionStorage
+    // Recupera o estado de checked do sessionStorage
+    useEffect(() => {
+      const savedCheckedStates = JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || [];
+      const productState = savedCheckedStates.find(item => item.id === id);
+      if (productState) {
+        setChecked(productState.checked);
+      }
+    }, [id]); // Alterado para escutar mudanças de id
+  
+    const handleClick = (e) => {
+      if (checkboxVariant) {
+        setChecked((prevChecked) => {
+          const newChecked = !prevChecked;
+          console.log(`Produto: ${name}, Checked: ${newChecked}, ID: ${id}`);
+  
+          // Atualiza o estado no sessionStorage
+          const savedCheckedStates = JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || [];
+          let updatedCheckedStates;
+  
+          if (newChecked) {
+            // Adiciona ou atualiza o produto no sessionStorage
+            updatedCheckedStates = savedCheckedStates.filter(item => item.id !== id);
+            updatedCheckedStates.push({ id, name, checked: newChecked });
+          } else {
+            // Remove o produto se estiver desmarcado
+            updatedCheckedStates = savedCheckedStates.filter(item => item.id !== id);
+          }
+  
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updatedCheckedStates));
+  
+          // Chama a função de callback, se fornecida
+          onChange && onChange();
+          return newChecked;
+        });
+      } else {
+        setExpanded((prev) => !prev);
+      }
+    };
 
-  const handleClick = (e) => {
-    if (checkboxVariant) {
-      setChecked((prev) => !prev);
-      console.log(`Produto: ${name}, Checked: ${checked}`)
-      onChange && onChange(); // Apenas chama onChange se existir
-    } else {
-      setExpanded((prev) => !prev);
-    }
-  };
+
+  // const handleClick = (e) => {
+  //   if (checkboxVariant) {
+  //     setChecked((prev) => !prev);
+  //     console.log(`Produto: ${name}, Checked: ${checked}`)
+  //     onChange && onChange(); // Apenas chama onChange se existir
+  //   } else {
+  //     setExpanded((prev) => !prev);
+  //   }
+  // };
 
 
   // Define imagem padrão ou ícone padrão
@@ -86,10 +130,10 @@ export default function Product(
     <div className={`${styles.product} ${noImageOrIcon ? styles.noImageOrIcon : ""}`}>
       <div className={styles.mainInfo} onClick={handleClick}>
         {addressImg ? (
-            <img src={addressImg} alt={"imagem"} className={fullBorderRadius ? styles.profileImage : ""} />
+          <img src={addressImg} alt={"imagem"} className={fullBorderRadius ? styles.profileImage : ""} />
         ) : icon ? (
-            // Renderiza o ícone somente se 'icon' não for null
-            <FontAwesomeIcon icon={icon} className={styles.icon} />
+          // Renderiza o ícone somente se 'icon' não for null
+          <FontAwesomeIcon icon={icon} className={styles.icon} />
         ) : null}  {/* Se 'icon' for null, não renderiza nada */}
 
         <span className={styles.info}>
