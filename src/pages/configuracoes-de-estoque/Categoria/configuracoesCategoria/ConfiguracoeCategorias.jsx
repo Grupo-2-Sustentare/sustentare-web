@@ -47,17 +47,7 @@ const ConfiguracoesCategorias = () => {
             const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
             const idResponsavel = responsavel ? responsavel.id : null;
 
-            api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
-                .then((response) => {
-                    successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
-                    setCategorias((prevCategorias) =>
-                        prevCategorias.filter((cat) => cat.id !== categoria.id)
-                    );
-                })
-                .catch((error) => {
-                    console.error("Erro ao desativar categoria:", error);
-                    alert("Ocorreu um erro ao tentar desativar a categoria.");
-                });
+
         }
     };
 
@@ -97,7 +87,7 @@ const ConfiguracoesCategorias = () => {
                                 red: {
                                     icon: "fa-solid fa-trash",
                                     text: "Remover",
-                                    action: () => handleRemove(categoria),
+                                    action: () => navigate("/tela-de-confirmacao", { state: { categoria: categoria } }),
                                 }
                             }}
                         />

@@ -11,6 +11,7 @@ import Button from "../../../../components/Button/Button";
 import ImageUploader from "../../../../components/ImageUploader/ImageUploader"
 import api from "../../../../api";
 import { successToast } from "../../../../components/Toast/Toast";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const CriandoProduto = () => {
     const navigate = useNavigate()
@@ -54,7 +55,9 @@ const CriandoProduto = () => {
 
     const [nome, setNome] = useState(sessionStorage.getItem("nome") || "");
     const [diasVencimento, setDiasVencimento] = useState(sessionStorage.getItem("diasVencimento") || "");
-    const [isChecked, setIsChecked] = useState(JSON.parse(sessionStorage.getItem("perecivel")));
+    const [isChecked, setIsChecked] = useState(
+        JSON.parse(sessionStorage.getItem("perecivel")) || false
+    );
 
     // Sincroniza os valores com sessionStorage apenas quando mudam
     useEffect(() => {
@@ -95,6 +98,7 @@ const CriandoProduto = () => {
     var itemId = 0;
 
     function Salvar() {
+        console.log(isChecked)
         const item = {
             nome,
             perecivel: isChecked,

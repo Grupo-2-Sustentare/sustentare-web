@@ -43,17 +43,17 @@ const AdicionandoColaborador = () => {
         try {
             const response = await api.get('/usuarios/usuario-ultimo-id');
             setNovoUsuario(response.data);
+            console.log("----------------")
+            console.log(response.data)
+            console.log("----------------")
+            adicionandoUsuarioNaSessionStorage(response.data)
+            navigate("/configuracoes-de-acesso");
         } catch (error) {
             console.error("Erro ao buscar usuários");
         }
     };
     
-    useEffect(() => {
-        if (Object.keys(novoUsuario).length !== 0) {
-            adicionandoUsuarioNaSessionStorage(novoUsuario)
-            navigate("/configuracoes-de-acesso");
-        }
-    }, [novoUsuario]);
+
 
 
 
