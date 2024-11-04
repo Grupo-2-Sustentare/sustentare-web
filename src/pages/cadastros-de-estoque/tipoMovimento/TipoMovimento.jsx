@@ -10,7 +10,7 @@ export default function TipoMovimento(){
     let p = JSON.parse(sessionStorage.getItem("productBeingEdited"))
 
     function selecionarQuantidade(saida){
-        p.quantidade = saida ? -Math.abs(p.quantidade) : Math.abs(p.quantidade)
+        p.quantidade = saida ? -1 : 1
         sessionStorage.setItem("productBeingEdited", JSON.stringify(p))
         navigate("/quantidade-movimento")
     }
