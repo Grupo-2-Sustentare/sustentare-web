@@ -51,6 +51,7 @@ const CriandoProduto = () => {
 
     const [preco, setPreco] = useState(0);
     const [qtdProduto, setQtdProduto] = useState(0);
+    const [qtdProdutoTotal, setQtdProdutoTotal] = useState(0);
     const [qtdMedida, setQtdMedida] = useState(0);
 
     const [nome, setNome] = useState(sessionStorage.getItem("nome") || "");
@@ -109,6 +110,7 @@ const CriandoProduto = () => {
         const produto = {
             preco: preco,
             qtdProduto: qtdProduto,
+            qtdProdutoTotal: qtdProdutoTotal,
             qtdMedida: qtdMedida,
             ativo: true
         };

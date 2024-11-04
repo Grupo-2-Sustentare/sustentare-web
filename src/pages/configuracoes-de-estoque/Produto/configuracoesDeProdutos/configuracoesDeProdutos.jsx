@@ -86,7 +86,7 @@ const ConfiguracoesProdutos = () => {
                         <Product
                             // key={produtos.id}
                             name={produto.item.nome}
-                            quantity={produto.qtdProduto + " " + produto.item.unidade_medida.nome}
+                            quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
                             showCheckbox={false} 
                             // addressImg=
                             buttonsConfig={{

@@ -129,7 +129,7 @@ export default function SelecaoProdutos(){
                         id={produto.item.id}
                         addressImg={produto.urlImagem}
                         name={produto.item.nome}
-                        quantity={`${produto.qtdProduto} ${produto.item.unidade_medida.nome}`}
+                        quantity={`${produto.qtdProdutoTotal} ${produto.item.unidade_medida.nome}`}
                         checkboxVariant={true}
                         checked={produtosSelecionados.some((p) => p.id === produto.id)}
                         onChange={() => toggleProdutoSelecionado(produto)}
