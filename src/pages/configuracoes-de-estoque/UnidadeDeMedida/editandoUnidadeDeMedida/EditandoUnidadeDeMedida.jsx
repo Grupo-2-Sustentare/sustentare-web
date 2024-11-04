@@ -145,7 +145,7 @@ export default function ConfigurationMenu({}) {
         <TextInput label="Nome: " value={nome} onChange={handleNomeChange} placeholder={nomeDaUnidade || "Insira um nome"} />
         <TextInput label="Símbolo: " value={simbolo} onChange={handleSimboloChange} placeholder={simboloDaUnidade || "Insira o símbolo"} />
         {/* <StrechList title="Tipo" items={["Massa", "Volume", "Quantidade genérica"]} titulo="" value={categoria} onChange={handleCategoriaChange} /> */}
-        <StrechList title="Tipo" items={categoriasUnicas} value={categoria} onChange={handleCategoriaChange} />
+        <StrechList title="Tipo" items={categoriasUnicas} value={categoria} hint={categoria} onChange={handleCategoriaChange} />
         
         <div className={style.divUnidadeMedida}>
           <MeasurementUnitInput placeholder={conversaoPadrao} label={"Um(a) " + nome + " equivale a"} measurementUnit={simbolo} onChange={handleConversaoChange} />
