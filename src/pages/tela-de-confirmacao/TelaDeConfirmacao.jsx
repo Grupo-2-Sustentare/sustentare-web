@@ -86,7 +86,7 @@ export default function TelaDeConfirmacao({ }) {
             return "fa-solid fa-cube"; // Ícone para Volume
         } else if (categoriaUnidadeMedida === "Massa") {
             return "fa-solid fa-hippo"; // Ícone para Massa
-        } else if (categoriaUnidadeMedida === "Unidade" || categoriaUnidadeMedida === "unidade" || categoriaUnidadeMedida === "Genérico" || categoriaUnidadeMedida === "genérico") {
+        } else if (categoriaUnidadeMedida === "Genérica" || categoriaUnidadeMedida === "genérica") {
             return "fa-solid fa-circle"; // Ícone para Quantidade
         } else {
             return "fa-solid fa-question"; // Ícone padrão para outros tipos
