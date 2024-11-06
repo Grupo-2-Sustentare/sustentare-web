@@ -55,6 +55,20 @@ export default function GerenciarEquipe(){
     //     fetchUsuarios(); // Chama a função para buscar usuários
     // }, []); 
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+          const storedData = sessionStorage.getItem('usuarios');
+          const reloadDone = sessionStorage.getItem('reloadDone');
+
+          if (storedData && !reloadDone) {
+            window.location.reload();
+            sessionStorage.setItem('reloadDone', 'true'); 
+          }
+        }, 2500);
+    
+        return () => clearInterval(interval);
+      }, []);
+
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
