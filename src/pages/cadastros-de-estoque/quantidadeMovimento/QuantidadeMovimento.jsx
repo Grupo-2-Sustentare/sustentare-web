@@ -70,9 +70,11 @@ export function QuantidadeMovimento() {
         sessionStorage.setItem("isUltimaHora", newState.toString());
     };
 
+    // Enviando interação de estoque para o banco
     async function salvarEdicao() {
         const categoriaInteracao = ehSaida ? categoriaConsumo : (isUltimaHora ? "Compra de última hora" : "Entrada");
-        console.log(quantidade)
+        // console.log(quantidade)
+
         const payload = {
             interacaoEstoqueCriacaoDTO: {
                 categoriaInteracao: categoriaInteracao,
@@ -95,7 +97,11 @@ export function QuantidadeMovimento() {
                 let produtoBeingEdited = JSON.parse(sessionStorage.getItem("productBeingEdited"));
 
                 // Atualiza o valor de quantidadeMovimento com a resposta da API
-                produtoBeingEdited.quantidadeMovimento += response.data.produto.qtdProduto;
+                // produtoBeingEdited.quantidadeMovimento = response.data.produto.qtdProduto;
+                produtoBeingEdited.quantidadeMovimento = 
+                ehSaida 
+                    ? `-${response.data.produto.qtdProduto}`  // Saída: valor negativo
+                    : `+${response.data.produto.qtdProduto}`;  // Entrada/Compra de última hora: valor positivo
 
                 // Salva novamente o produto atualizado no sessionStorage
                 sessionStorage.setItem("productBeingEdited", JSON.stringify(produtoBeingEdited));
@@ -104,20 +110,22 @@ export function QuantidadeMovimento() {
                 let produtosSelecionados = JSON.parse(sessionStorage.getItem("movement")).products || [];
 
                 // Atualiza a quantidadeMovimento do produto editado
+                // produtosSelecionados = produtosSelecionados.map(produto =>
+                //     produto.id === produtoBeingEdited.id
+                //         ? { ...produto, quantidadeMovimento: produto.quantidadeMovimento = response.data.produto.qtdProduto }
+                //         : produto
+                // );
+
                 produtosSelecionados = produtosSelecionados.map(produto =>
                     produto.id === produtoBeingEdited.id
-                        ? { ...produto, quantidadeMovimento: produto.quantidadeMovimento + response.data.produto.qtdProduto }
+                        ? { ...produto, quantidadeMovimento: produtoBeingEdited.quantidadeMovimento }
                         : produto
                 );
-
-                // Salva o array atualizado de produtosSelecionados de volta no sessionStorage
+                
                 sessionStorage.setItem("movement", JSON.stringify({ products: produtosSelecionados }));
-
-                // Limpa o valor de quantidade no sessionStorage
                 sessionStorage.removeItem("quantidade");
-
-                // Redireciona para a página de cadastros de estoque
                 navigate("/cadastros-de-estoque");
+
             } else {
                 console.error("Erro ao salvar movimento:", response);
             }

@@ -79,7 +79,7 @@ export default function Product(
       if (checkboxVariant) {
         setChecked((prevChecked) => {
           const newChecked = !prevChecked;
-          console.log(`Produto: ${name}, Checked: ${newChecked}, ID: ${id}`);
+          // console.log(`Produto: ${name}, Checked: ${newChecked}, ID: ${id}`);
   
           // Atualiza o estado no sessionStorage
           const savedCheckedStates = JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || [];
