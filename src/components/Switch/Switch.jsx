@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './switch.module.css';
 
-const Switch = ({ initialState, action, label}) => {
-  const [isOn, setIsOn] = useState(initialState);
+const Switch = ({ initialState, action, label, storageKey }) => {
+  const storedState = sessionStorage.getItem(storageKey);
+  const initial = storedState ? JSON.parse(storedState) : initialState;
+
+  const [isOn, setIsOn] = useState(initial);
+
+  useEffect(() => {
+    // Salva o estado no sessionStorage sempre que o isOn mudar
+    sessionStorage.setItem(storageKey, JSON.stringify(isOn));
+    if (action !== undefined) {
+      action(isOn);
+    }
+  }, [isOn, action, storageKey]);
 
   function toggleSwitch() {
-      const newState = !isOn;
-      setIsOn(newState)
-      if (action !== undefined){
-        action(newState)
-      }
+    setIsOn(prevState => !prevState);
   }
 
   return (

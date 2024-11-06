@@ -5,8 +5,8 @@ import IconButton from "../../components/IconButton/IconButton";
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from "../../api";
 import { errorToast, successToast } from "../../components/Toast/Toast";
-import React, { useEffect, useState } from 'react';
-import { icon } from "@fortawesome/fontawesome-svg-core";
+// import React, { useEffect, useState } from 'react';
+// import { icon } from "@fortawesome/fontawesome-svg-core";
 
 export default function TelaDeConfirmacao({ }) {
     var backNavigationPath = "/configuracoes-de-categorias" // Setinha de voltar na TopBar
@@ -33,7 +33,7 @@ export default function TelaDeConfirmacao({ }) {
 
     const removendo = async () => {
         console.log("aloooo")
-        if(categoria != undefined){
+        if(categoria !== undefined){
             console.log("categoria")
             api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
             .then((response) => {
@@ -46,7 +46,7 @@ export default function TelaDeConfirmacao({ }) {
             });
         }
     
-        if(unidadeDeMedida != undefined){
+        if(unidadeDeMedida !== undefined){
             console.log("unidade de medida")
             api.delete(`/unidades-medida/${unidadeDeMedida.id}?idResponsavel=${idResponsavel}`)
             .then((response) => {
@@ -59,7 +59,7 @@ export default function TelaDeConfirmacao({ }) {
             });
         }
         console.log("está aqui")
-        if(produto != undefined){
+        if(produto !== undefined){
             // fullBorderRadius=true;
             console.log("entrou")
             api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
@@ -94,7 +94,7 @@ export default function TelaDeConfirmacao({ }) {
     };
 
    
-        if(categoria != undefined){
+        if(categoria !== undefined){
             tituloTopBar = "Removendo Categoria"
             heading = categoria.nome
             adressImg = undefined
@@ -103,7 +103,7 @@ export default function TelaDeConfirmacao({ }) {
             subheading = " "
         }
     
-        if(unidadeDeMedida != undefined){
+        if(unidadeDeMedida !== undefined){
             tituloTopBar = "Removendo Unidade de Medida"
             heading = unidadeDeMedida.nome
             adressImg = undefined
@@ -112,26 +112,32 @@ export default function TelaDeConfirmacao({ }) {
             subheading = " "
         }
 
-        if(produto != undefined){
+        if(produto !== undefined){
             tituloTopBar = "Removendo Produto"
             heading = produto.item.nome
             adressImg = produto.imagem ? `data:image/jpeg;base64,${produto.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Produto"
             icon = undefined
             mensagemConfirmacao = "O seguinte produto será deletada: "
             subheading = " "
+            sessionStorage.removeItem("movement")
+            sessionStorage.removeItem("produtosSelecionados")
+            sessionStorage.removeItem("productCheckedStates")
+            sessionStorage.removeItem("preco")
+            sessionStorage.removeItem("qtdMovimento")
+            sessionStorage.removeItem("isUltimaHora")
         }
 
 
         const cancelar = () => {
-            if(categoria != undefined){
+            if(categoria !== undefined){
                 navigate("/configuracoes-de-categorias")
             }
         
-            if(unidadeDeMedida != undefined){
+            if(unidadeDeMedida !== undefined){
                 navigate("/configuracoes-de-unidade-medida")
             }
     
-            if(produto != undefined){
+            if(produto !== undefined){
                 navigate("/configuracoes-de-produtos")
             }
         };

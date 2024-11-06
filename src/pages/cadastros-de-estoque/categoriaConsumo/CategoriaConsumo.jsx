@@ -26,7 +26,8 @@ export default function CategoriaConsumo(){
         <TopBar title={"Categoria do consumo"} showBackArrow={true} backNavigationPath={"/quantidade-movimento"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
-            <Product name={p.nome} addressImg={p.urlImagem} quantity={`${p.quantidade} ${p.unidade}`}/>
+            {/* <Product name={p.nome} addressImg={p.urlImagem} quantity={`${p.quantidade} ${p.unidade}`}/> */}
+            <ListItem adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.item.nome} subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}  fullBorderRadius={true}/>
         </div>
         <div className={styles.principal}>
             {itensLista.map(item=>{

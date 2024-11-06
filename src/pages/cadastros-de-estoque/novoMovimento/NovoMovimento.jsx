@@ -1,14 +1,14 @@
 import styles from "./novoMovimento.module.css"
 import Button from "../../../components/Button/Button";
 import TopBar from "../../../components/TopBar/TopBar";
-import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-import {errorToast, successToast} from "../../../components/Toast/Toast";
+import Product, { DEFAULT_BUTTON_CONFIG } from "../../../components/ProductItem/Product";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { errorToast, successToast } from "../../../components/Toast/Toast";
 
 const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
-export default function NovoMovimento({}){
+export default function NovoMovimento({ }) {
     const navigate = useNavigate()
 
     // Carrega os produtos selecionados da sessionStorage
@@ -24,7 +24,12 @@ export default function NovoMovimento({}){
         jsonMovs.products = jsonMovs.products.filter(product =>
             productCheckedStates.some(checkedProduct => checkedProduct.id === product.item.id)
         );
-        
+        // Certifique-se de que cada produto tenha uma propriedade 'quantidadeMovimento'
+        jsonMovs.products = jsonMovs.products.map(product => ({
+            ...product,
+            quantidadeMovimento: product.quantidadeMovimento || 0  // Adiciona ou preserva a quantidade de movimento
+        }));
+
         // Atualiza `movement` na sessionStorage para remover produtos não selecionados
         sessionStorage.setItem("movement", JSON.stringify(jsonMovs));
     }
@@ -39,60 +44,107 @@ export default function NovoMovimento({}){
     //         {"urlImagem": MOCK_URL + "feijão.png", "nome": "Feijão", "quantidade": 4, "unidade": "sacos"}
     // ]}
 
-    function editarProduto(p){
-        sessionStorage.setItem("productBeingEdited", JSON.stringify(p))
-        navigate("/tipo-movimento")
+    function editarProduto(p, qtdMovimento) {
+        // Atualiza a quantidade de movimento para esse produto
+        const updatedProduct = {
+            ...p,
+            quantidadeMovimento: qtdMovimento  // Atualiza a quantidade de movimento
+        };
+
+        // Atualiza o produto na lista de movimento
+        const updatedProducts = movement.products.map(product =>
+            product.item.id === p.item.id ? updatedProduct : product
+        );
+
+        // Atualiza o estado e o sessionStorage
+        setMovement({ ...movement, products: updatedProducts });
+        sessionStorage.setItem("movement", JSON.stringify({ ...movement, products: updatedProducts }));
+
+        // Vai para a página de edição
+        sessionStorage.setItem("productBeingEdited", JSON.stringify(updatedProduct));
+        // sessionStorage.setItem("qtdMovimentoDoProduto", qtdMovimento);
+        navigate("/tipo-movimento");
     }
 
-    function finalizar(){
-        if (movement.products.length === 0){
+
+    function removerProdutoNovoMovimento(produtoParaRemover) {
+        // Atualiza o estado 'movement' para remover o produto
+        const novosProdutos = movement.products.filter(p => p.item.id !== produtoParaRemover.item.id);
+
+        // Atualiza a lista de produtos verificados (productCheckedStates) removendo o produto
+        const novosProductCheckedStates = productCheckedStates.filter(checkedProduct => checkedProduct.id !== produtoParaRemover.item.id);
+
+        // Atualiza o estado com a lista de produtos filtrada
+        setMovement(prevMovement => {
+            const updatedMovement = { ...prevMovement, products: novosProdutos };
+            // Atualiza a sessionStorage com o novo movimento
+            sessionStorage.setItem("movement", JSON.stringify(updatedMovement));
+
+            // Atualiza a lista de produtos verificados na sessionStorage
+            sessionStorage.setItem("productCheckedStates", JSON.stringify(novosProductCheckedStates));
+
+            return updatedMovement;
+        });
+    }
+
+
+    function finalizar() {
+        if (movement.products.length === 0) {
             errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
             return
         }
-        // sessionStorage.removeItem("movement")
-        sessionStorage.setItem("movement", null)
-        // sessionStorage.removeItem("produtosSelecionados")
-        sessionStorage.setItem("produtosSelecionados",null)
+        sessionStorage.removeItem("movement")
+        sessionStorage.removeItem("produtosSelecionados")
         sessionStorage.removeItem("productCheckedStates")
+        sessionStorage.removeItem("preco")
+        sessionStorage.removeItem("qtdMovimento")
+        sessionStorage.removeItem("isUltimaHora")
+        // sessionStorage.setItem("movement", null)
+        // sessionStorage.setItem("produtosSelecionados",null)
 
         successToast("Movimentação salva com sucesso!")
-        setTimeout(() => navigate("/menu-inicial"),2000)
+        setTimeout(() => navigate("/menu-inicial"), 2000)
     }
 
     return (
         <>
-            <TopBar title={"Nova Movimentação"} showBackArrow={false}/>
+            <TopBar title={"Nova Movimentação"} showBackArrow={false} />
             <div className={styles.divPrincipal}>
                 {/* <div className={styles.containerProdutos}> */}
-                    {movement.products.length === 0 && (
-                        <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
-                    )}
-                    {movement.products.map((p, i) => {
-                        let btnConfig = DEFAULT_BUTTON_CONFIG
-                        btnConfig.yellow.style = {}
-                        btnConfig.yellow.icon = "fa-solid fa-pen"
-                        btnConfig.yellow.iconFillInvert = false
-                        btnConfig.yellow.text = "Editar"
-                        btnConfig.yellow.action = () => editarProduto(movement.products[i])
-
-                        return <Product
-                            key={i} // Certifique-se de que a chave é única
-                            id={p.item.id} // Passando o id do produto
-                            addressImg={p.urlImagem} 
-                            name={p.item.nome} 
-                            quantity={`${p.qtdProduto} ${p.item.unidade_medida.nome}`}
-                            buttonsConfig={btnConfig}
-                        />
-                    })}
-                {/* </div> */}
-            </div>
-                <div className={styles.botoes}>
-                    <Button
-                        insideText={"Adicionar produto"}
-                        onClick={() => navigate("/selecao-produtos")}
+                {movement.products.length === 0 && (
+                    <p className={styles.avisoVazio}>Nenhum produto adicionado a essa entrada.</p>
+                )}
+                {movement.products.map((p, i) => {
+                    let qtdMovimento = p.quantidadeMovimento || 0;  // Obtém a quantidade de movimento
+                    return <Product
+                        key={i}
+                        id={p.item.id}
+                        addressImg={p.urlImagem}
+                        name={p.item.nome}
+                        quantity={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}
+                        buttonsConfig={{
+                            yellow: {
+                                icon: "fa-solid fa-pen",
+                                text: "Editar",
+                                action: () => editarProduto(movement.products[i], qtdMovimento),
+                            },
+                            red: {
+                                icon: "fa-solid fa-trash",
+                                text: "Remover",
+                                action: () => removerProdutoNovoMovimento(movement.products[i]),
+                            }
+                        }}
                     />
-                    <Button insideText={"Concluir entrada"} onClick={finalizar}/>
-                </div>
+                })}
+
+            </div>
+            <div className={styles.botoes}>
+                <Button
+                    insideText={"Adicionar produto"}
+                    onClick={() => navigate("/selecao-produtos")}
+                />
+                <Button insideText={"Concluir entrada"} onClick={finalizar} />
+            </div>
         </>
     )
 }
