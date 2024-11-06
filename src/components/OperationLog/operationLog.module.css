@@ -50,7 +50,7 @@
 }
 
 .nameBubble{
-    position: absolute;
+    position:absolute;
     color: var(--preto);
     padding: 4px;
     border-radius: 16px;
@@ -60,10 +60,11 @@
     border: var(--borda-vidro);
     width: 105px;
     text-align: center;
-    bottom: 90px;
+    bottom: 58px;
     left: -16px;
     display: none;
 }
+
 .bubbleCaret{
     position: absolute;
     bottom: -14px;
