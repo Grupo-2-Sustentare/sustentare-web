@@ -10,6 +10,32 @@ const ImportTxtButton = () => {
     setFile(selectedFile);
   };
 
+  // const uploadTxt = () => {
+  //   if (!file) {
+  //     alert('Selecione um arquivo primeiro');
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+
+  //   fetch('http://localhost:8080/itens/importarTxt', {
+  //     method: 'POST',
+  //     body: formData
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         successToast("Arquivo enviado com sucesso");
+  //       } else {
+  //         errorToast("Erro ao enviar o arquivo")
+  //       }
+  //     })
+  //     .catch(error => console.error('Erro ao enviar o arquivo:', error));
+  // };
+  const responsavelString = sessionStorage.getItem("responsavel");
+  const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+  const idResponsavel = responsavel ? responsavel.id : null;
+
   const uploadTxt = () => {
     if (!file) {
       alert('Selecione um arquivo primeiro');
@@ -18,6 +44,7 @@ const ImportTxtButton = () => {
 
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('idResponsavel',idResponsavel);
 
     fetch('http://localhost:8080/itens/importarTxt', {
       method: 'POST',

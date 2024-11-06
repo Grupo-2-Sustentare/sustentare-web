@@ -39,19 +39,19 @@ const AdicionandoColaborador = () => {
     }
 
 
-    const fetchUsuarioAdicionado = async () => {
-        try {
-            const response = await api.get('/usuarios/usuario-ultimo-id');
-            setNovoUsuario(response.data);
-            console.log("----------------")
-            console.log(response.data)
-            console.log("----------------")
-            adicionandoUsuarioNaSessionStorage(response.data)
-            navigate("/configuracoes-de-acesso");
-        } catch (error) {
-            console.error("Erro ao buscar usuários");
-        }
-    };
+    // const fetchUsuarioAdicionado = async () => {
+    //     try {
+    //         const response = await api.get('/usuarios/usuario-ultimo-id');
+    //         setNovoUsuario(response.data);
+    //         console.log("----------------")
+    //         console.log(response.data)
+    //         console.log("----------------")
+    //         adicionandoUsuarioNaSessionStorage(response.data)
+    //         navigate("/configuracoes-de-acesso");
+    //     } catch (error) {
+    //         console.error("Erro ao buscar usuários");
+    //     }
+    // };
     
 
 
@@ -95,9 +95,11 @@ const AdicionandoColaborador = () => {
 
         try {
             if (acessoResponsavel == 1) {
-                await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
+                const response = await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
                 successToast("configuracoes-de-acesso realizado com sucesso!");
                 sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
+                adicionandoUsuarioNaSessionStorage(response.data); 
+                navigate("/configuracoes-de-acesso");
             } else {
                 console.log(acessoResponsavel)
                 errorToast("Usuário não tem permissão de cadastrar outro usuário");
@@ -106,8 +108,6 @@ const AdicionandoColaborador = () => {
         } catch {
             errorToast("Ocorreu um erro ao tentar realizar o cadastro, por favor, tente novamente.");
         }
-
-        await fetchUsuarioAdicionado(); 
 
     };
 
