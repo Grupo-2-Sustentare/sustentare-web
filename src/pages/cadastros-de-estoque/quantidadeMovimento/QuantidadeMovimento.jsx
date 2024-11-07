@@ -15,10 +15,6 @@ import { errorToast, successToast } from "../../../components/Toast/Toast";
 export function QuantidadeMovimento() {
     const navigate = useNavigate()
     let p = JSON.parse(sessionStorage.getItem("productBeingEdited"))
-    const responsavelString = sessionStorage.getItem("responsavel");
-    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
-    const idResponsavel = responsavel ? responsavel.id : null;
-
 
     let ehSaida = p.saida < 0
     let acao = ehSaida ? "saiu do" : "entrou no"
@@ -56,7 +52,12 @@ export function QuantidadeMovimento() {
 
     const handleQuantidadeChange = (e) => {
         const novaQuantidade = e.target.value;
-        setQuantidade(novaQuantidade);
+        // Verifique se o valor é um número inteiro positivo ou negativo (completo)
+        if (/^\d*$/.test(novaQuantidade)) {
+            setQuantidade(novaQuantidade);
+        } else {
+            errorToast("Por favor, insira uma quantidade inteira.");
+        }
     };
 
     const handlePrecoChange = (e) => {
@@ -70,8 +71,12 @@ export function QuantidadeMovimento() {
         sessionStorage.setItem("isUltimaHora", newState.toString());
     };
 
-    // Enviando interação de estoque para o banco
     async function salvarEdicao() {
+        // Validação adicional para quantidade como um número inteiro
+        if (!Number.isInteger(Number(quantidade))) {
+            errorToast("A quantidade deve ser um número inteiro.");
+            return;
+        }
 
         // Validações de entrada
         if (!ehSaida) {
@@ -99,60 +104,50 @@ export function QuantidadeMovimento() {
             }
         }
 
-        const categoriaInteracao = ehSaida ? categoriaConsumo : (isUltimaHora ? "Compra de última hora" : "Entrada");
-        // console.log(quantidade)
+        // Atualizar productBeingEdited com os valores de quantidade, preço e categoria
+        let produtoBeingEdited = JSON.parse(sessionStorage.getItem("productBeingEdited"));
 
-        const payload = {
-            interacaoEstoqueCriacaoDTO: {
-                categoriaInteracao: categoriaInteracao,
-                dataHora: new Date().toISOString().replace('T', ' ').substring(0, 19)  // Formato "YYYY-MM-DD HH:MM:SS"
-            },
-            produtoCriacaoDTO: {
-                preco: !ehSaida ? parseFloat(preco.replace(',', '.')) : 0,
-                qtdProduto: parseFloat(quantidade.replace(',', '.')) || 0,
-                qtdMedida: 0,
-                ativo: true
-            }
+        produtoBeingEdited = {
+            ...produtoBeingEdited,
+            preco: !ehSaida ? parseFloat(preco.replace(',', '.')) : 0,
+            qtdProduto: Math.round(quantidade),
+            quantidadeMovimento: ehSaida ? `-${quantidade}` : `+${quantidade}`,
+            categoriaInteracao: ehSaida ? categoriaConsumo : (isUltimaHora ? "Compra de última hora" : "Entrada")
         };
 
-        try {
-            const response = await api.post(`http://localhost:8080/interacoes-estoque?fkItem=${p.item.id}&idResponsavel=${idResponsavel}`, payload);
-            if (response.status === 200) {
-                successToast("Movimento salvo com sucesso");
+        // Salva o produto atualizado no sessionStorage
+        sessionStorage.setItem("productBeingEdited", JSON.stringify(produtoBeingEdited));
 
-                // Recupera o produto editado do sessionStorage
-                let produtoBeingEdited = JSON.parse(sessionStorage.getItem("productBeingEdited"));
+        // Atualiza o produto também no array `products` de `movement`
+        let movement = JSON.parse(sessionStorage.getItem("movement")) || { products: [] };
+        let produtosSelecionados = movement.products || [];
 
-                // Atualiza o valor de quantidadeMovimento com a resposta da API
-                // produtoBeingEdited.quantidadeMovimento = response.data.produto.qtdProduto;
-                produtoBeingEdited.quantidadeMovimento =
-                    ehSaida
-                        ? `-${response.data.produto.qtdProduto}`  // Saída: valor negativo
-                        : `+${response.data.produto.qtdProduto}`;  // Entrada/Compra de última hora: valor positivo
+        let produtosSelecionadosAtualizados = [];
 
-                // Salva novamente o produto atualizado no sessionStorage
-                sessionStorage.setItem("productBeingEdited", JSON.stringify(produtoBeingEdited));
-
-                // Atualiza o produto no array 'produtosSelecionados' também
-                let produtosSelecionados = JSON.parse(sessionStorage.getItem("movement")).products || [];
-
-                produtosSelecionados = produtosSelecionados.map(produto =>
-                    produto.id === produtoBeingEdited.id
-                        ? { ...produto, quantidadeMovimento: produtoBeingEdited.quantidadeMovimento }
-                        : produto
-                );
-
-                sessionStorage.setItem("movement", JSON.stringify({ products: produtosSelecionados }));
-                sessionStorage.removeItem("quantidade");
-                navigate("/cadastros-de-estoque");
-
+        produtosSelecionados.forEach(produto => {
+            if (produto.id === produtoBeingEdited.id) {
+                // Atualiza o produto com os valores do produtoBeingEdited
+                produtosSelecionadosAtualizados.push({ ...produto, ...produtoBeingEdited });
             } else {
-                console.error("Erro ao salvar movimento:", response);
+                // Mantém o produto inalterado
+                produtosSelecionadosAtualizados.push(produto);
             }
-        } catch (error) {
-            console.error("Erro ao realizar requisição:", error);
-        }
+        });
+
+        // Atualiza produtosSelecionados com a nova lista de produtos
+        produtosSelecionados = produtosSelecionadosAtualizados;
+
+        sessionStorage.setItem("movement", JSON.stringify({ products: produtosSelecionados }));
+
+        // Limpar os valores temporários do sessionStorage
+        sessionStorage.removeItem("quantidade");
+        sessionStorage.removeItem("preco");
+        sessionStorage.removeItem("isUltimaHora")
+
+        successToast("Edição salva. Movimentação pronta para confirmação.");
+        navigate("/cadastros-de-estoque");
     }
+
 
     return (<div>
         <TopBar showBackArrow={true} title={"Quantidade de movimento"} backNavigationPath={"/tipo-movimento"} />
@@ -168,13 +163,13 @@ export function QuantidadeMovimento() {
             {ehSaida &&
                 (<>
                     <RedirectionList title={"Categoria do consumo"} hint={categoriaConsumo} redirectUrl={"/categoria-consumo"} onChange={setCategoriaConsumo} />
-                    <MeasurementUnitInput label={"Quantidade saída: "} measurementUnit={p.item.unidade_medida.nome} placeholder={"0,0"} type={Number} value={quantidade} onChange={handleQuantidadeChange} />
+                    <MeasurementUnitInput label={"Quantidade saída: "} measurementUnit={p.item.unidade_medida.nome} placeholder={"0"} type={Number} value={quantidade} onChange={handleQuantidadeChange} />
                 </>
                 )
             }
             {!ehSaida &&
                 (<>
-                    <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} placeholder={"0,0"} value={quantidade} onChange={handleQuantidadeChange} />
+                    <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} placeholder={"0"} value={quantidade} onChange={handleQuantidadeChange} />
                     <MeasurementUnitInput label={"Preço (unitário): "} measurementUnit={"R$"} placeholder={"0,0"} value={preco} onChange={handlePrecoChange} />
                     <Switch
                         initialState={false}

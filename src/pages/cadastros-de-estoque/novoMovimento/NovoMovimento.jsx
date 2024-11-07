@@ -5,11 +5,15 @@ import Product, { DEFAULT_BUTTON_CONFIG } from "../../../components/ProductItem/
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { errorToast, successToast } from "../../../components/Toast/Toast";
+import api from "../../../api";
 
-const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
+// const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
 export default function NovoMovimento({ }) {
     const navigate = useNavigate()
+    const responsavelString = sessionStorage.getItem("responsavel");
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
+    const idResponsavel = responsavel ? responsavel.id : null;
 
     // Carrega os produtos selecionados da sessionStorage
     const productCheckedStates = JSON.parse(sessionStorage.getItem("productCheckedStates")) || [];
@@ -88,23 +92,48 @@ export default function NovoMovimento({ }) {
     }
 
 
-    function finalizar() {
+    async function finalizar() {
         if (movement.products.length === 0) {
             errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
             return
         }
-        sessionStorage.removeItem("movement")
-        sessionStorage.removeItem("produtosSelecionados")
-        sessionStorage.removeItem("productCheckedStates")
-        sessionStorage.removeItem("preco")
-        sessionStorage.removeItem("qtdMovimento")
-        sessionStorage.removeItem("isUltimaHora")
-        // sessionStorage.setItem("movement", null)
-        // sessionStorage.setItem("produtosSelecionados",null)
-
-        successToast("Movimentação salva com sucesso!")
-        setTimeout(() => navigate("/menu-inicial"), 2000)
+    
+        const movementData = JSON.parse(sessionStorage.getItem("movement"));
+        const { products } = movementData;
+    
+        try {
+            for (const produto of products) {
+                const payload = {
+                    interacaoEstoqueCriacaoDTO: {
+                        categoriaInteracao: produto.categoriaInteracao,
+                        dataHora: new Date().toISOString().replace('T', ' ').substring(0, 19)  // Formato "YYYY-MM-DD HH:MM:SS"
+                    },
+                    produtoCriacaoDTO: {
+                        preco: produto.preco,
+                        qtdProduto: produto.qtdProduto,
+                        qtdMedida: produto.qtdMedida || 0,
+                        ativo: true
+                    }
+                };
+    
+                await api.post(`http://localhost:8080/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
+            }
+            successToast("Movimentação concluída com sucesso.");
+            sessionStorage.removeItem("movement")
+            sessionStorage.removeItem("produtosSelecionados")
+            sessionStorage.removeItem("productCheckedStates")
+            sessionStorage.removeItem("preco")
+            sessionStorage.removeItem("qtdMovimento")
+            sessionStorage.removeItem("isUltimaHora")
+    
+            setTimeout(() => navigate("/menu-inicial"), 2000)
+        } catch (error) {
+            console.error("Erro ao concluir movimentação:", error);
+            errorToast("Erro ao concluir movimentação. Tente novamente.");
+        }
     }
+    
+    
 
     return (
         <>
