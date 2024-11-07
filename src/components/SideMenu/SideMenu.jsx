@@ -32,7 +32,7 @@ const SideMenu = ({ userName, userImage }) => {
                 </div>
                 <div className={style.sidebarFooter}>
                 {/* alt={`${userName}`} */}
-                    <img src={userImage} className={style.userImage} />
+                    
                     <div className={style.userInfo}>
                         <span className={style.userName}>{userName.toUpperCase()}</span>
                         <span className={style.logoutButton} onClick={()=>logout()}>Sair</span>
