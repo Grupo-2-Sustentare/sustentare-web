@@ -10,7 +10,7 @@ import api from "../../../api";
 import MeasurementUnitInput from "../../../components/MeasumentTextInput/MeasurementUnitInput";
 import ListItem from "../../../components/ListItem/ListItem";
 import { useEffect, useState } from "react";
-import { successToast } from "../../../components/Toast/Toast";
+import { errorToast, successToast } from "../../../components/Toast/Toast";
 
 export function QuantidadeMovimento() {
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ export function QuantidadeMovimento() {
 
     const [quantidade, setQuantidade] = useState(sessionStorage.getItem("quantidade") || "0");
     const [preco, setPreco] = useState("0");
-    const [categoriaConsumo, setCategoriaConsumo] = useState(p.categoriaConsumo || "Saida");
+    const [categoriaConsumo, setCategoriaConsumo] = useState(p.categoriaConsumo || "Selecione...");
     const [isUltimaHora, setIsUltimaHora] = useState(false);
 
     useEffect(() => {
@@ -72,6 +72,33 @@ export function QuantidadeMovimento() {
 
     // Enviando interação de estoque para o banco
     async function salvarEdicao() {
+
+        // Validações de entrada
+        if (!ehSaida) {
+            if (!quantidade || parseFloat(quantidade) <= 0) {
+                errorToast("Por favor, insira uma quantidade válida para a entrada.");
+                return;
+            }
+
+            if (!isUltimaHora && (!preco || parseFloat(preco) <= 0)) {
+                errorToast("Por favor, insira um preço válido para a entrada.");
+                return;
+            }
+        }
+
+        // Validações de saída
+        if (ehSaida) {
+            if (!categoriaConsumo || categoriaConsumo === "Selecione...") {
+                errorToast("Por favor, selecione uma categoria de consumo.");
+                return;
+            }
+
+            if (!quantidade || parseFloat(quantidade) <= 0) {
+                errorToast("Por favor, insira uma quantidade válida para a saída.");
+                return;
+            }
+        }
+
         const categoriaInteracao = ehSaida ? categoriaConsumo : (isUltimaHora ? "Compra de última hora" : "Entrada");
         // console.log(quantidade)
 
@@ -82,7 +109,7 @@ export function QuantidadeMovimento() {
             },
             produtoCriacaoDTO: {
                 preco: !ehSaida ? parseFloat(preco.replace(',', '.')) : 0,
-                qtdProduto: parseFloat(quantidade) || 0,
+                qtdProduto: parseFloat(quantidade.replace(',', '.')) || 0,
                 qtdMedida: 0,
                 ativo: true
             }
@@ -98,10 +125,10 @@ export function QuantidadeMovimento() {
 
                 // Atualiza o valor de quantidadeMovimento com a resposta da API
                 // produtoBeingEdited.quantidadeMovimento = response.data.produto.qtdProduto;
-                produtoBeingEdited.quantidadeMovimento = 
-                ehSaida 
-                    ? `-${response.data.produto.qtdProduto}`  // Saída: valor negativo
-                    : `+${response.data.produto.qtdProduto}`;  // Entrada/Compra de última hora: valor positivo
+                produtoBeingEdited.quantidadeMovimento =
+                    ehSaida
+                        ? `-${response.data.produto.qtdProduto}`  // Saída: valor negativo
+                        : `+${response.data.produto.qtdProduto}`;  // Entrada/Compra de última hora: valor positivo
 
                 // Salva novamente o produto atualizado no sessionStorage
                 sessionStorage.setItem("productBeingEdited", JSON.stringify(produtoBeingEdited));
@@ -109,19 +136,12 @@ export function QuantidadeMovimento() {
                 // Atualiza o produto no array 'produtosSelecionados' também
                 let produtosSelecionados = JSON.parse(sessionStorage.getItem("movement")).products || [];
 
-                // Atualiza a quantidadeMovimento do produto editado
-                // produtosSelecionados = produtosSelecionados.map(produto =>
-                //     produto.id === produtoBeingEdited.id
-                //         ? { ...produto, quantidadeMovimento: produto.quantidadeMovimento = response.data.produto.qtdProduto }
-                //         : produto
-                // );
-
                 produtosSelecionados = produtosSelecionados.map(produto =>
                     produto.id === produtoBeingEdited.id
                         ? { ...produto, quantidadeMovimento: produtoBeingEdited.quantidadeMovimento }
                         : produto
                 );
-                
+
                 sessionStorage.setItem("movement", JSON.stringify({ products: produtosSelecionados }));
                 sessionStorage.removeItem("quantidade");
                 navigate("/cadastros-de-estoque");
@@ -133,12 +153,6 @@ export function QuantidadeMovimento() {
             console.error("Erro ao realizar requisição:", error);
         }
     }
-
-    // const handleQuantidadeChange = (e) => {
-    //     const novaQuantidade = e.target.value;
-    //     setQuantidade(novaQuantidade);
-    //     // sessionStorage.setItem("quantidade", novaQuantidade);
-    // };
 
     return (<div>
         <TopBar showBackArrow={true} title={"Quantidade de movimento"} backNavigationPath={"/tipo-movimento"} />
@@ -153,15 +167,15 @@ export function QuantidadeMovimento() {
             </div>
             {ehSaida &&
                 (<>
-                    <RedirectionList title={"Categoria do consumo"} hint={p.categoriaConsumo} redirectUrl={"/categoria-consumo"} onChange={setCategoriaConsumo} />
-                    <MeasurementUnitInput label={"Quantidade saída: "} measurementUnit={p.item.unidade_medida.nome} placeholder={0} type={Number} value={quantidade} onChange={handleQuantidadeChange} />
+                    <RedirectionList title={"Categoria do consumo"} hint={categoriaConsumo} redirectUrl={"/categoria-consumo"} onChange={setCategoriaConsumo} />
+                    <MeasurementUnitInput label={"Quantidade saída: "} measurementUnit={p.item.unidade_medida.nome} placeholder={"0,0"} type={Number} value={quantidade} onChange={handleQuantidadeChange} />
                 </>
                 )
             }
             {!ehSaida &&
                 (<>
-                    <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} value={quantidade} onChange={handleQuantidadeChange} />
-                    <MeasurementUnitInput label={"Preço (unitário): "} measurementUnit={"R$"} placeholder={0} value={preco} onChange={handlePrecoChange} />
+                    <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} placeholder={"0,0"} value={quantidade} onChange={handleQuantidadeChange} />
+                    <MeasurementUnitInput label={"Preço (unitário): "} measurementUnit={"R$"} placeholder={"0,0"} value={preco} onChange={handlePrecoChange} />
                     <Switch
                         initialState={false}
                         action={handleUltimaHoraChange}
