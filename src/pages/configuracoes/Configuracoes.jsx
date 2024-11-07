@@ -25,10 +25,9 @@ export default function Configuracoes() {
                             Exportação:
                         </span>
                         <span className={styles.H4}>
-                            Exportar todos os produtos em um arquivo texto ou csv para utilizar como backup.   
+                            Exportar todos os produtos em um arquivo texto para utilizar como backup.   
                         </span>
                         <BotaoExport/>
-                        <BotaoExportCsv/>
                     </div>
                     <div className={styles.Import}>
                         <span className={styles.H3}>
