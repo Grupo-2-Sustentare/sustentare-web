@@ -18,37 +18,42 @@ import {toast} from "react-hot-toast";
 import {alertToast, errorToast, successToast} from "../../components/Toast/Toast";
 import ListItem from "../../components/ListItem/ListItem";
 import Product from "../../components/ProductItem/Product";
+import {useState} from "react";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
-const IMG_FEIJAO = "https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png"
 const ICON_USUARIO = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
 const DESC_PLACEHOLDER = "Imagem cinza temporária, para ser substituída no futuro."
+
+const IMG_FEIJAO = "https://saude.mpu.mp.br/nutricao/receitas/imagens/Feijaonutritivo.png"
+const IMG_ARROZ = "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/7c44045d2e8577819cb76b2b404902dd.jpg"
+const IMG_CHOCOLATE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqhtp-SiHbXADRUVwsjo0e9gptRb_fBje2SQ&s"
 
 export default function Debug(){
     sessionStorage.setItem("nome_usuario", "Antônio")
     sessionStorage.setItem("icone_usuario", ICON_USUARIO)
 
+    const [produtos, setProdutos] = useState([
+        {nome: "Feijão", imagem: IMG_FEIJAO},
+        {nome: "Arroz", imagem: IMG_ARROZ},
+        {nome: "Chocolate", imagem: IMG_CHOCOLATE},
+    ])
+
+    function ordenar(){
+        setProdutos([...produtos].sort((a, b) => a.nome.localeCompare(b.nome)))
+    }
+
     return (
         <>
-            <Button insideText={"Nãoooo"}/>
-            <Product
-                name={"Feijão carioquinha"}
-                quantity={"25 kilogramas"}
-                addressImg={IMG_FEIJAO}
-            />
-            <Product
-                name={"Feijão carioquinha"}
-                quantity={"25 kilogramas"}
-                addressImg={IMG_FEIJAO}
-                checkboxVariant={true}
-            />
-            <Product
-                name={"Feijão carioquinha"}
-                quantity={"25 kilogramas"}
-                addressImg={IMG_FEIJAO}
-                checkboxVariant={true}
-                checkedByDefault={true}
-            />
+            {produtos.map((p)=>{
+                return <Product
+                    key={p.nome}
+                    name={p.nome}
+                    quantity={"25"}
+                    addressImg={p.imagem}
+                />
+            })}
+
+            <Button insideText={"Ordenar"} onClick={()=>ordenar()}/>
         </>
     )
 }
