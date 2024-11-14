@@ -18,7 +18,8 @@ import {toast} from "react-hot-toast";
 import {alertToast, errorToast, successToast} from "../../components/Toast/Toast";
 import ListItem from "../../components/ListItem/ListItem";
 import Product from "../../components/ProductItem/Product";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const IMG_PLACEHOLDER = "https://via.assets.so/img.jpg?w=400&h=400&tc=gray&bg=#cecece"
 const ICON_USUARIO = "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1"
@@ -37,21 +38,30 @@ export default function Debug(){
         {nome: "Arroz", imagem: IMG_ARROZ},
         {nome: "Chocolate", imagem: IMG_CHOCOLATE},
     ])
-
-    function ordenar(){
+    async function ordenar(){
         setProdutos([...produtos].sort((a, b) => a.nome.localeCompare(b.nome)))
+        await carregarImagem()
     }
+    async function carregarImagem(){
+        await axios.get("https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/1").then((res) => {
+            console.log(res.data)
+        })
+    }
+
+    const [imagem, setImagem] = useState("https://placehold.co/400/F5FBEF/22333B?text=Teste")
 
     return (
         <>
             {produtos.map((p)=>{
-                return <Product
-                    key={p.nome}
-                    name={p.nome}
-                    quantity={"25"}
-                    addressImg={p.imagem}
-                />
-            })}
+                    return <Product
+                        key={p.nome}
+                        name={p.nome}
+                        quantity={"25"}
+                        addressImg={imagem}
+                    />
+                })
+            }
+            <img src={imagem} alt={"teste"}/>
 
             <Button insideText={"Ordenar"} onClick={()=>ordenar()}/>
         </>
