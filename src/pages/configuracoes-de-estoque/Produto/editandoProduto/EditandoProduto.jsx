@@ -147,6 +147,11 @@ const EditandoProduto = () => {
                     sessionStorage.removeItem("produto_selecionado");
                     navigate("/configuracoes-de-produtos");
                 }, toastDuration);
+                const toastDurationImagem = 2000 
+                setTimeout(() => {
+                    successToast("Pode levar alguns instantes para atualizar a imagem");
+                }, toastDurationImagem);
+                
             }
 
             //     // Atualiza o produto somente se a atualização do item for bem-sucedida
