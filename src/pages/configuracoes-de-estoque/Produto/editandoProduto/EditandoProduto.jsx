@@ -145,38 +145,10 @@ const EditandoProduto = () => {
                 const toastDuration = 1000;
                 setTimeout(() => {
                     sessionStorage.removeItem("produto_selecionado");
-                    navigate("/configuracoes-de-produtos");
                 }, toastDuration);
+                const responseBody = await itemResponse.json();
+                navigate("/configuracoes-de-produtos", { state: { produtoEditado: responseBody } });
             }
-
-            //     // Atualiza o produto somente se a atualização do item for bem-sucedida
-            //     const produtoUpdate = {
-            //         preco,
-            //         qtdProduto,
-            //         qtdMedida,
-            //         ativo: true
-            //     };
-
-            //     const produtoResponse = await fetch(`${API_BASE_URL}/produtos/${produtoSelecionado.id}?idResponsavel=${idResponsavel}&fkItem=${produtoSelecionado.item.id}`, {
-            //         method: 'PUT',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify(produtoUpdate),
-            //     });
-
-            //     if (!produtoResponse.ok) {
-            //         // errorToast("Erro ao atualizar produto");
-            //         throw new Error('Falha na atualização do produto');
-            //     }
-            // }
-
-            // successToast("Produto editado com sucesso");
-            // const toastDuration = 1000;
-            // setTimeout(() => {
-            //     sessionStorage.removeItem("produto_selecionado");
-            //     navigate("/configuracoes-de-produtos");
-            // }, toastDuration);
 
         } catch (error) {
             console.error('Erro ao atualizar:', error);

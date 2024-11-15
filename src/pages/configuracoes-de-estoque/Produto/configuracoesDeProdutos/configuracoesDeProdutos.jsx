@@ -1,5 +1,5 @@
 import styles from "../configuracoesDeProdutos/ConfiguracoesDeProdutos.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import StreachList from "../../../../components/StrechList/StrechList";
 import Button from "../../../../components/Button/Button";
@@ -24,7 +24,8 @@ const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
 
-
+    const location = useLocation();
+    const produtoEditado = location.state?.produtoEditado;
   
     async function carregarImagemAwsS3 (idUsuario)  {
         return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
@@ -46,8 +47,15 @@ const ConfiguracoesProdutos = () => {
     
                 const produtosComImagens = await Promise.all(
                     produtos.map(async (produto) => {
+                        if(produtoEditado != undefined ){
+                            if(produtoEditado.id == produto.item.id){
+                                sessionStorage.setItem(`produto_imagem_${produto.item.id}`, produtoEditado.imagem);
+                                return { ...produto };
+                            }
+                        }
                         const imageUrl = await carregarImagemAwsS3(produto.item.id);
-                        return { ...produto, imageUrl };
+                        sessionStorage.setItem(`produto_imagem_${produto.item.id}`, imageUrl); 
+                        return { ...produto };
                     })
                 );
     
@@ -94,6 +102,14 @@ const ConfiguracoesProdutos = () => {
     actioProduto.yellow.text = "Editar"
     actioProduto.yellow.action = () => { navigate("/editando-produto") }
 
+    const verificarTipoImagem = (imagem) =>{
+        if(imagem.startsWith("https:")){
+            return imagem
+        }
+        return `data:image/jpeg;base64,${imagem}`
+        
+    }
+
     return (
         <>
             <div className={styles.divTopBar}>
@@ -102,11 +118,13 @@ const ConfiguracoesProdutos = () => {
             <div className={styles.divPrincipal}>
                 
                 {produtos.map( (produto) => {
+                    const imagemProduto = sessionStorage.getItem(`produto_imagem_${produto.item.id}`)
+                    console.log(verificarTipoImagem(imagemProduto))
                     return <Product
                         name={produto.item.nome}
                         quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
                         showCheckbox={false}
-                        addressImg={produto.imageUrl}
+                        addressImg={verificarTipoImagem(imagemProduto)}
                         buttonsConfig={{
                             yellow: {
                                 icon: "fa-solid fa-pen",
