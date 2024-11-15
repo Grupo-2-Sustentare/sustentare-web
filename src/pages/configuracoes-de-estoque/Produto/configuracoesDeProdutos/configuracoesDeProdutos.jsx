@@ -39,25 +39,27 @@ const ConfiguracoesProdutos = () => {
 
 
     useEffect(() => {
-        api.get("/produtos")
-          .then((response) => {
-            const produtosComImagens = response.data.map(async (produto) => {
-              const imageUrl = await carregarImagemAwsS3(produto.id);
-              return { ...produto, imageUrl };
-            });
-      
-            Promise.all(produtosComImagens)
-              .then((produtosComImagensCompletos) => {
-                setProdutos(produtosComImagensCompletos);
-              })
-              .catch((error) => {
-                console.error("Erro ao carregar imagens:", error);
-              });
-          })
-          .catch((error) => {
-            console.error("Erro ao buscar produtos:", error);
-          });
-      }, []);
+        const carregarProdutos = async () => {
+            try {
+                const response = await api.get("/produtos");
+                const produtos = response.data;
+    
+                const produtosComImagens = await Promise.all(
+                    produtos.map(async (produto) => {
+                        const imageUrl = await carregarImagemAwsS3(produto.item.id);
+                        return { ...produto, imageUrl };
+                    })
+                );
+    
+                setProdutos(produtosComImagens);
+            } catch (error) {
+                console.error("Erro ao carregar produtos ou imagens:", error);
+            }
+        };
+    
+        carregarProdutos();
+    }, []);
+    
 
     const handleSave = () => {
         navigate("/criando-produto");
