@@ -11,10 +11,10 @@ import { successToast } from "../../../../components/Toast/Toast";
 import axios from "axios";
 
 const ConfiguracoesProdutos = () => {
+    const [imagens, setImagens] = useState({});
     sessionStorage.removeItem('paginaRequisicao');
     sessionStorage.removeItem('selectedUnidadeMedida');
     sessionStorage.removeItem('selectedCategoria');
-
     sessionStorage.removeItem("nome");
     sessionStorage.removeItem("diasVencimento");
     sessionStorage.removeItem("perecivel");
@@ -24,38 +24,40 @@ const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
 
-    const existImagem = (idUsuario) => {
-        const awsImageUrl = `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
-    
-            // Faz uma requisição HEAD para verificar se a imagem existe
-            axios.get(awsImageUrl).then((response) => {
-                console.log("-----------------------------------------------------")
-                console.log(response)
-                console.log("-----------------------------------------------------")
-                // Verifica se a imagem existe (status 200)
-                if (response.ok) {
-                    return awsImageUrl;
-                } else {
-                    return "https://placehold.co/400/F5FBEF/22333B?text=Produto";
-                }
+
+  
+    async function carregarImagemAwsS3 (idUsuario)  {
+        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
+            .then(() => {
+                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
             })
-            .catch((error) => {
-                console.error("Erro ao verificar imagem:", error);
-                return "https://placehold.co/400/F5FBEF/22333B?text=Produto";
+            .catch(() => {
+                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
             });
-        }
+    };
     
+
 
     useEffect(() => {
         api.get("/produtos")
-            .then((response) => {
-                setProdutos(response.data); // Armazena os dados da API no estado
-            })
-            .catch((error) => {
-                console.error("Erro ao buscar produtos:", error); // Trata erros
+          .then((response) => {
+            const produtosComImagens = response.data.map(async (produto) => {
+              const imageUrl = await carregarImagemAwsS3(produto.id);
+              return { ...produto, imageUrl };
             });
-    }, []);
-
+      
+            Promise.all(produtosComImagens)
+              .then((produtosComImagensCompletos) => {
+                setProdutos(produtosComImagensCompletos);
+              })
+              .catch((error) => {
+                console.error("Erro ao carregar imagens:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Erro ao buscar produtos:", error);
+          });
+      }, []);
 
     const handleSave = () => {
         navigate("/criando-produto");
@@ -90,28 +92,19 @@ const ConfiguracoesProdutos = () => {
     actioProduto.yellow.text = "Editar"
     actioProduto.yellow.action = () => { navigate("/editando-produto") }
 
-    const githubPath = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
-
     return (
         <>
             <div className={styles.divTopBar}>
                 <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
             </div>
             <div className={styles.divPrincipal}>
-                {/* <div className={styles.divFiltroEBusca}>
-                    <IconInput/>
-                    <StreachList showTitle={false}/>
-            </div>
-            <hr></hr> */}
-                {/* <Product name="Arroz" quantity="50 kilogramas"  showCheckbox={false} addressImg="https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/arroz.webp"/> */}
-                {produtos.map((produto) => (
-                    // <Product key={categoria.id} name={categoria.nome} showImageOrIcon={false} />
-                    <Product
-                        // key={produtos.id}
+                
+                {produtos.map( (produto) => {
+                    return <Product
                         name={produto.item.nome}
                         quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
                         showCheckbox={false}
-                        addressImg={existImagem(produto.item.id)}
+                        addressImg={produto.imageUrl}
                         buttonsConfig={{
                             yellow: {
                                 icon: "fa-solid fa-pen",
@@ -125,14 +118,15 @@ const ConfiguracoesProdutos = () => {
                             }
                         }}
                     />
-                ))}
+                }
+                )}
             </div>
             <div className={styles.divBotao}>
                 <Button insideText="Cadastrar novo produto" onClick={handleSave} />
             </div>
         </>
     );
-    
+
 };
 
 export default ConfiguracoesProdutos;
