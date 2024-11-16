@@ -19,6 +19,7 @@ const CriandoProduto = () => {
     const responsavelString = sessionStorage.getItem("responsavel");
     const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
     const idResponsavel = responsavel ? responsavel.id : null;
+    const [imagem, setImagem] = useState(null);
 
     const defaultItem = {
         heading: "Selecione...",
@@ -104,6 +105,7 @@ const CriandoProduto = () => {
             nome,
             perecivel: isChecked,
             dias_vencimento: diasVencimento,
+            imagem: imagem,
             ativo: true
         };
     
@@ -132,6 +134,10 @@ const CriandoProduto = () => {
                 })
                 .then(() => {
                     successToast("Produto criado com sucesso");
+                    const toastDurationImagem = 2000 
+                    setTimeout(() => {
+                        successToast("Pode levar alguns instantes para atualizar a imagem");
+                    }, toastDurationImagem);
                     setTimeout(() => {
                         navigate("/configuracoes-de-produtos");
                     }, 1000);
@@ -148,11 +154,27 @@ const CriandoProduto = () => {
 
     }
 
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(",")[1]);
+            reader.onerror = (error) => reject(error);
+        });
+    }
+
+    const handleImageChange = async (file) => {
+        if (file) {
+            const base64Image = await toBase64(file);
+            setImagem(base64Image);
+        }
+    };
+
     return (
         <div>
             <TopBar title={"Criando Novo Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"} />
             <div className={styles.divPrincipal}>
-                <ImageUploader />
+                <ImageUploader onImageSelect={handleImageChange}/>
                 <div className={styles.TextInput}>
                     <TextInput 
                     label="Nome:" 
