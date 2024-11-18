@@ -16,9 +16,25 @@ export default function SelecaoProdutos(){
 
     const navigate = useNavigate()
 
+    // Todos os produtos vindos back-end.
     const [produtos, setProdutos] = useState([]);
+
+    // Produtos marcados como selecionados.
     const [produtosSelecionados, setProdutosSelecionados] = useState([]);
 
+    // Produtos exibidos para o usuário (evita recarregar o back-end ao aplicar filtros.
+    const [produtosVisiveis, setProdutosVisiveis] = useState([])
+
+    // Carrega os produtos selecionados anteriomente.
+    useEffect(() => {
+        const movement = JSON.parse(sessionStorage.getItem("movement"));
+        if (movement && movement.products) {
+            setProdutosSelecionados(movement.products);
+            sessionStorage.setItem("produtosSelecionados", JSON.stringify(movement.products));
+        }
+    }, []);
+
+    // Busca produtos do back-end.
     useEffect(() => {
         api.get("/produtos")
             .then((response) => {
@@ -29,59 +45,39 @@ export default function SelecaoProdutos(){
             });
     }, []);
 
-
-    // function buscarProdutos(e){
-    //     let query = e.target.value.toUpperCase()
-
-    //     if (query.empty){
-    //         setProdutos(mock_produtos)
-    //         return
-    //     }
-
-    //     let produtosFiltrados = []
-    //     for (let i in mock_produtos){
-    //         if (mock_produtos[i].nome.toUpperCase().indexOf(query) !== -1){
-    //             produtosFiltrados.push(mock_produtos[i])
-    //         }
-    //     }
-    //     setProdutos(produtosFiltrados)
-    // }
-
-    // function ordenar(){
-    //     let produtosOrdenados = produtos
-    //     produtosOrdenados.sort() // TODO Não funciona - arrumar
-    //     setProdutos(produtosOrdenados)
-    // }
-
-    // function adicionarProdutos(){
-    //     // Colocar toast de alerta caso nenhum produto tenha sido selecionado.
-
-    //     let movement = JSON.parse(sessionStorage.getItem("movement"))
-
-    //     if (movement.products.length === 0){
-    //         movement.products.push(
-    //             {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 1, "unidade": "kilograma"},
-    //             {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 1, "unidade": "unidade"},
-    //             {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 1, "unidade": "unidade"}
-    //         )
-    //     }
-
-    //     sessionStorage.setItem("movement", JSON.stringify(movement))
-    //     navigate("/cadastros-de-estoque")
-    // }
-
+    // Ao recarregar produtos do back, altera os visíveis
     useEffect(() => {
-        const movement = JSON.parse(sessionStorage.getItem("movement"));
-        if (movement && movement.products) {
-            setProdutosSelecionados(movement.products);
-            sessionStorage.setItem("produtosSelecionados", JSON.stringify(movement.products));
-        }
-    }, []);
-    
+        setProdutosVisiveis(produtos)
+    }, [produtos]);
+
+    //Ao mudar os produtos selecionados, atualiza sua variável no session storage.
     useEffect(() => {
         sessionStorage.setItem("produtosSelecionados", JSON.stringify(produtosSelecionados));
     }, [produtosSelecionados]);
 
+    // Filtra os produtos por nome.
+    function filtrarPorNome(e) {
+        let query = e.target.value.toUpperCase()
+
+        if (query.empty) {
+            setProdutosVisiveis(produtos)
+            return
+        }
+
+        let produtosFiltrados = []
+        for (let i in produtos) {
+            if (produtos[i].item.nome.toUpperCase().indexOf(query) !== -1) {
+                produtosFiltrados.push(produtos[i])
+            }
+        }
+        setProdutosVisiveis(produtosFiltrados)
+    }
+
+    function ordenar(){
+        //ToDo
+    }
+
+    // Marca e desmarca produtos
     const toggleProdutoSelecionado = (produto) => {
         setProdutosSelecionados((prevSelecionados) => {
             if (prevSelecionados.some((p) => p.item.id === produto.item.id)) {
@@ -94,7 +90,8 @@ export default function SelecaoProdutos(){
         });
     };
 
-    function adicionarProdutos() {
+    // Salva as alterações feitas e volta à tela do movimento.
+    function finalizarSelecao() {
         if (produtosSelecionados.length === 0) {
             errorToast("Nenhum produto selecionado.");
             return;
@@ -107,23 +104,18 @@ export default function SelecaoProdutos(){
         navigate("/cadastros-de-estoque");
     }
 
-
     return(
     <>
         <TopBar title={"Seleção de Produtos"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.divPrincipal}>
-            {/* <div className={styles.barraDeBusca}>
-                <IconInput 
-                // onChange={buscarProdutos} 
-                placeholder={"Pesquisa por nome"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={filtrarPorNome} placeholder={"Pesquisa por nome"}/>
                 <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
-                    // onChange={ordenar}
+                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"} onChange={ordenar}
                 />
-            </div> */}
-            {/* <div className={styles.containerProdutos}> */}
-            {/* <hr></hr> */}
-            {produtos.map((produto) => (
+            </div>
+            <hr/>
+            {produtosVisiveis.map((produto) => (
                     <Product
                         key={produto.item.id}
                         id={produto.item.id}
@@ -135,12 +127,10 @@ export default function SelecaoProdutos(){
                         onChange={() => toggleProdutoSelecionado(produto)}
                     />
                 ))}
-                
-            {/* </div> */}
         </div>
-            <div className={styles.containerBotao}>
-                <Button insideText={"Confirmar seleção"} onClick={adicionarProdutos}/>
-            </div>
+        <div className={styles.containerBotao}>
+            <Button insideText={"Confirmar seleção"} onClick={finalizarSelecao}/>
+        </div>
     </>
 )
 }
