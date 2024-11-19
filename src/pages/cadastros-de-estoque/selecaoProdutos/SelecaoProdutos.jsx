@@ -8,9 +8,11 @@ import {useNavigate} from "react-router-dom";
 import api from "../../../api";
 import {useEffect, useRef, useState} from "react";
 import { errorToast } from "../../../components/Toast/Toast";
+import ordenacaoComPesquisa from "../../../tools/ModuloBusca";
 
-const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
-const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
+const OPCOES_ORDENACAO = [
+    "Alfabética - Crescente", "Alfabética - Decrescente", "Quantidade - Crescente", "Quantidade - Decrescente"
+]
 
 export default function SelecaoProdutos(){
 
@@ -22,20 +24,19 @@ export default function SelecaoProdutos(){
     // Produtos marcados como selecionados.
     const [produtosSelecionados, setProdutosSelecionados] = useState([]);
 
-    // Produtos exibidos para o usuário (evita recarregar o back-end ao aplicar filtros.
+    // Produtos exibidos para o usuário e a ordenação (evita recarregar o back-end ao aplicar filtros).
     const [produtosVisiveis, setProdutosVisiveis] = useState([])
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
 
-    // Carrega os produtos selecionados anteriomente.
+    // Carrega os produtos selecionados anteriomente & busca produtos do back-end.
     useEffect(() => {
         const movement = JSON.parse(sessionStorage.getItem("movement"));
         if (movement && movement.products) {
             setProdutosSelecionados(movement.products);
             sessionStorage.setItem("produtosSelecionados", JSON.stringify(movement.products));
         }
-    }, []);
 
-    // Busca produtos do back-end.
-    useEffect(() => {
         api.get("/produtos")
             .then((response) => {
                 setProdutos(response.data); // Armazena os dados da API no estado
@@ -45,37 +46,14 @@ export default function SelecaoProdutos(){
             });
     }, []);
 
-    // Ao recarregar produtos do back, altera os visíveis
-    useEffect(() => {
-        setProdutosVisiveis(produtos)
-    }, [produtos]);
-
     //Ao mudar os produtos selecionados, atualiza sua variável no session storage.
     useEffect(() => {
         sessionStorage.setItem("produtosSelecionados", JSON.stringify(produtosSelecionados));
     }, [produtosSelecionados]);
 
-    // Filtra os produtos por nome.
-    function filtrarPorNome(e) {
-        let query = e.target.value.toUpperCase()
-
-        if (query.empty) {
-            setProdutosVisiveis(produtos)
-            return
-        }
-
-        let produtosFiltrados = []
-        for (let i in produtos) {
-            if (produtos[i].item.nome.toUpperCase().indexOf(query) !== -1) {
-                produtosFiltrados.push(produtos[i])
-            }
-        }
-        setProdutosVisiveis(produtosFiltrados)
-    }
-
-    function ordenar(){
-        //ToDo
-    }
+    useEffect(() => {
+        setProdutosVisiveis(ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao))
+    }, [produtos, queryPesquisa, ordenacao])
 
     // Marca e desmarca produtos
     const toggleProdutoSelecionado = (produto) => {
@@ -109,13 +87,14 @@ export default function SelecaoProdutos(){
         <TopBar title={"Seleção de Produtos"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.divPrincipal}>
             <div className={styles.barraDeBusca}>
-                <IconInput onChange={filtrarPorNome} placeholder={"Pesquisa por nome"}/>
+                <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
                 <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"} onChange={ordenar}
+                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
+                    onChange={(v)=>setOrdenacao(v)}
                 />
             </div>
             <hr/>
-            {produtosVisiveis.map((produto) => (
+            {produtosVisiveis?.map((produto) => (
                     <Product
                         key={produto.item.id}
                         id={produto.item.id}
