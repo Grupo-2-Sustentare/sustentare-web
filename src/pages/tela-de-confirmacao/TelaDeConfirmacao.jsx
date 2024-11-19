@@ -32,7 +32,9 @@ export default function TelaDeConfirmacao({ }) {
     const navigate = useNavigate()
 
     const removendo = async () => {
-        console.log("aloooo")
+        //Adicionar validação de produto associado a categoria e unidade de medida
+        navigate("/delecao-negada")
+        // console.log("aloooo")
         if(categoria !== undefined){
             console.log("categoria")
             api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
@@ -71,7 +73,8 @@ export default function TelaDeConfirmacao({ }) {
             })
             .then(() => {
                 successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
-                navigate("/configuracoes-de-produtos")
+                // navigate("/configuracoes-de-produtos")
+                // navigate("/delecao-negada")
             })
             .catch((error) => {
                 console.error("Erro ao desativar produto ou remover item associado:", error);

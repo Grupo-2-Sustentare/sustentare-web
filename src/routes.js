@@ -37,6 +37,8 @@ import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
 
 import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
 
+import TelaParaNegarDelecao from "./pages/tela-para-negar-delecao/TelaParaNegarDelecao"
+
 function Rotas() {
     let rotaPadrao = null;
     if (process.env.REACT_APP_MODO_DEBUG === "1"){
@@ -79,6 +81,7 @@ function Rotas() {
                 <Route path={"/configuracoes"} element={<Configuracoes/>}/>
 
                 <Route path={"/tela-de-confirmacao"} element={<TelaDeConfirmacao/>}/>
+                <Route path={"/delecao-negada"} element={<TelaParaNegarDelecao/>}/>
 
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
             </Routes>
