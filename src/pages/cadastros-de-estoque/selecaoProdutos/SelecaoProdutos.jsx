@@ -24,7 +24,7 @@ export default function SelecaoProdutos(){
     // Produtos marcados como selecionados.
     const [produtosSelecionados, setProdutosSelecionados] = useState([]);
 
-    // Produtos exibidos para o usuário e a ordenação (evita recarregar o back-end ao aplicar filtros).
+    // Do módulo de busca e ordenação.
     const [produtosVisiveis, setProdutosVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
