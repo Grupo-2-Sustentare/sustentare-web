@@ -5,7 +5,7 @@ import IconInput from "../../components/IconInput/IconInput";
 import StrechList from "../../components/StrechList/StrechList";
 import api from "../../api";
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {errorToast} from "../../components/Toast/Toast";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../tools/ModuloBusca";
 
@@ -18,7 +18,6 @@ export default function HistoricoOperacoes() {
 
     // Estado para controlar o carregamento
     const [loading, setLoading] = useState(true);
-    // const logs = MOCK_LOGS
 
     // Do módulo de busca e ordenação.
     const [logsVisiveis, setLogsVisiveis] = useState([])
@@ -30,15 +29,18 @@ export default function HistoricoOperacoes() {
     }, [logs, queryPesquisa, ordenacao])
 
     const buscarLogs = () => {
-        let idUsuarioEspecifico = ""
-        if (usuarioEscolhido !== undefined){
-            idUsuarioEspecifico = "/" + usuarioEscolhido.id
-        }
+        let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" : idUsuarioEspecifico = "/" + usuarioEscolhido.id
 
         api.get(`/audit-logs${idUsuarioEspecifico}`).then((response) => {
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
-            setLogs(response.data);
-            setLoading(false);
+            let logs = response.data
+
+            for (let i in logs){
+                logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
+                logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
+            }
+
+            setLogs(logs);
         }).catch(() => {
             errorToast("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
         }).finally(() => setLoading(false))
@@ -55,7 +57,7 @@ export default function HistoricoOperacoes() {
     const obterImagemUsuario = (fkUsuario) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
         if(usuarioEncontrado === undefined || usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null){
-            return null
+            return "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
         }
         return usuarioEncontrado.imagem;
     };
@@ -65,7 +67,7 @@ export default function HistoricoOperacoes() {
         <div className={styles.historicaDeOperacoes}>
             <TopBar title={"Historico de operações"} showBackArrow={false} />
             <div className={styles.barraDeBusca}>
-                <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por ação"}/>
+                <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por usuário"}/>
                 <StrechList
                     showTitle={false} items={OPCOES_ORDENACAO.Log} hint={"Opções de ordenação"}
                     onChange={(v)=>setOrdenacao(v)}
@@ -75,14 +77,8 @@ export default function HistoricoOperacoes() {
             <div className={styles.principal}>
                 {logsVisiveis?.map((l) => (
                     <OperationLog
-                        key={l.id}
-                        title={l.titulo}
-                        operation={l.descricao}
-                        author={obterNomeUsuario(l.fkUsuario)}
-                        time={l.dataHora}
-                        adressImg={obterImagemUsuario(l.fkUsuario) ? `data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
-                        // adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
-                        // u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+                        key={l.id} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
+                        adressImg={l.imagemUsuario}
                     />)
                 )}
                 {(logsVisiveis.length === 0) && <div className={styles.mensagem}>Nenhum registro encontrado</div>}
