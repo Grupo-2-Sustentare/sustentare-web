@@ -10,12 +10,15 @@ const OPCOES_ORDENACAO = {
     "Log": ["Alfabética - Crescente", "Alfabética - Decrescente"]
 }
 
-function filtrar(produtos, query, tipoObjeto){
-    if (query === null || query.trim() === "") return produtos
+function filtrar(itens, query, tipoObjeto){
+    if (query === null || query.trim() === "") return itens
 
     switch (tipoObjeto){
         case EnumObjetosBusca.PRODUTO:
-            return produtos.filter(produto => produto.item.nome.toUpperCase().indexOf(query.toUpperCase()) !== -1)
+            return itens.filter(item => item.item.nome.toUpperCase().indexOf(query.toUpperCase()) !== -1)
+        case EnumObjetosBusca.LOG:
+            return itens.filter(item => item.descricao.toUpperCase().indexOf(query.toUpperCase()) !== -1)
+        default: throw new Error(`Nenhum método de pesquisa para objetos da classe "${tipoObjeto}"`)
     }
 }
 
@@ -31,7 +34,13 @@ function ordenar(itens, ordenacao, tipoObjeto){
             return [...itens].sort((a, b) => b.qtdProdutoTotal - a.qtdProdutoTotal)
         case "Produto: Quantidade - Decrescente":
             return [...itens].sort((a, b) => a.qtdProdutoTotal - b.qtdProdutoTotal)
-        default: throw new Error(`Ordenação "${ordenacao}" inválida.`)
+
+        case "Log: Alfabética - Crescente":
+            return [...itens].sort((a,b)=> a.descricao.localeCompare(b.descricao))
+        case "Log: Alfabética - Decrescente":
+            return [...itens].sort((a,b)=> b.descricao.localeCompare(a.descricao))
+
+        default: throw new Error(`Nenhum método de ordenação "${ordenacao}" para objetos da classe "${tipoObjeto}"`)
     }
 }
 

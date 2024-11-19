@@ -7,6 +7,7 @@ import api from "../../api";
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {errorToast} from "../../components/Toast/Toast";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../tools/ModuloBusca";
 
 export default function HistoricoOperacoes() {
     const location = useLocation();
@@ -23,6 +24,10 @@ export default function HistoricoOperacoes() {
     const [logsVisiveis, setLogsVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
+
+    useEffect(() => {
+        setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
+    }, [logs, queryPesquisa, ordenacao])
 
     const buscarLogs = () => {
         let idUsuarioEspecifico = ""
@@ -60,30 +65,27 @@ export default function HistoricoOperacoes() {
         <div className={styles.historicaDeOperacoes}>
             <TopBar title={"Historico de operações"} showBackArrow={false} />
             <div className={styles.barraDeBusca}>
-                <IconInput onChange={buscarLogs} placeholder={"Pesquisa por nome"} />
-                {/*<StrechList*/}
-                {/*    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}*/}
-                {/*/>*/}
+                <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por ação"}/>
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO.Log} hint={"Opções de ordenação"}
+                    onChange={(v)=>setOrdenacao(v)}
+                />
             </div>
             <hr></hr>
             <div className={styles.principal}>
-                {
-                    logs?.map((l) => (
-                        <OperationLog
-                            key={l.id}
-                            title={l.titulo}
-                            operation={l.descricao}
-                            author={obterNomeUsuario(l.fkUsuario)}
-                            time={l.dataHora}
-                            adressImg={obterImagemUsuario(l.fkUsuario) ? `data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
-                            // adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
-                            // u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
-                        />)
-                    )
-                }
-                {
-                    (logs.length === 0) && <div className={styles.mensagem}>Nenhum registro encontrado</div>
-                }
+                {logsVisiveis?.map((l) => (
+                    <OperationLog
+                        key={l.id}
+                        title={l.titulo}
+                        operation={l.descricao}
+                        author={obterNomeUsuario(l.fkUsuario)}
+                        time={l.dataHora}
+                        adressImg={obterImagemUsuario(l.fkUsuario) ? `data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
+                        // adressImg={`data:image/jpeg;base64,${obterImagemUsuario(l.fkUsuario)}`}
+                        // u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+                    />)
+                )}
+                {(logsVisiveis.length === 0) && <div className={styles.mensagem}>Nenhum registro encontrado</div>}
             </div>
         </div>
    </> )
