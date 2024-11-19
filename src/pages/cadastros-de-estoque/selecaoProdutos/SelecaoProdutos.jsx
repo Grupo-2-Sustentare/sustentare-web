@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import api from "../../../api";
 import {useEffect, useState} from "react";
 import { errorToast } from "../../../components/Toast/Toast";
-import {OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 
 export default function SelecaoProdutos(){
 
@@ -48,7 +48,7 @@ export default function SelecaoProdutos(){
     }, [produtosSelecionados]);
 
     useEffect(() => {
-        setProdutosVisiveis(ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao))
+        setProdutosVisiveis(ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao, EnumObjetosBusca.PRODUTO))
     }, [produtos, queryPesquisa, ordenacao])
 
     // Marca e desmarca produtos
