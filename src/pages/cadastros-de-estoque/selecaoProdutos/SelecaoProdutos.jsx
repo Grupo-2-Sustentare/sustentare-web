@@ -6,13 +6,9 @@ import TopBar from "../../../components/TopBar/TopBar";
 import Button from "../../../components/Button/Button";
 import {useNavigate} from "react-router-dom";
 import api from "../../../api";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import { errorToast } from "../../../components/Toast/Toast";
-import ordenacaoComPesquisa from "../../../tools/ModuloBusca";
-
-const OPCOES_ORDENACAO = [
-    "Alfabética - Crescente", "Alfabética - Decrescente", "Quantidade - Crescente", "Quantidade - Decrescente"
-]
+import {OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 
 export default function SelecaoProdutos(){
 

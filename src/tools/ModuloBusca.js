@@ -19,8 +19,13 @@ function ordenar(produtos, ordenacao){
     }
 }
 
-export default function ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao){
+function ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao){
     const filtrados = filtrar(produtos, queryPesquisa)
     return ordenar(filtrados, ordenacao)
 }
 
+const OPCOES_ORDENACAO = [
+    "Alfabética - Crescente", "Alfabética - Decrescente", "Quantidade - Crescente", "Quantidade - Decrescente"
+]
+
+export {ordenacaoComPesquisa, OPCOES_ORDENACAO}
