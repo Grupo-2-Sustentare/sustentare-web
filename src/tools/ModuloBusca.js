@@ -3,9 +3,12 @@ const EnumObjetosBusca = {
     LOG: "Log"
 }
 
-const OPCOES_ORDENACAO = [
-    "Alfabética - Crescente", "Alfabética - Decrescente", "Quantidade - Crescente", "Quantidade - Decrescente"
-]
+const OPCOES_ORDENACAO = {
+    "Produto": [
+        "Alfabética - Crescente", "Alfabética - Decrescente", "Quantidade - Crescente", "Quantidade - Decrescente"
+    ],
+    "Log": ["Alfabética - Crescente", "Alfabética - Decrescente"]
+}
 
 function filtrar(produtos, query, tipoObjeto){
     if (query === null || query.trim() === "") return produtos

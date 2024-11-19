@@ -85,7 +85,7 @@ export default function SelecaoProdutos(){
             <div className={styles.barraDeBusca}>
                 <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
                 <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
+                    showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
                     onChange={(v)=>setOrdenacao(v)}
                 />
             </div>
