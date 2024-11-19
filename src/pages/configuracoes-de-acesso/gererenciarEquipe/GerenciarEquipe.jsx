@@ -19,10 +19,11 @@ const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"
 
 export default function GerenciarEquipe(){
     const navigate = useNavigate()
-    const [usuarios, setUsuarios] = useState(() => {
-        const storedUsuarios = sessionStorage.getItem('usuarios');
-        return storedUsuarios ? JSON.parse(storedUsuarios) : [];
-      });      
+    // const [usuarios, setUsuarios] = useState(() => {
+    //     const storedUsuarios = sessionStorage.getItem('usuarios');
+    //     return storedUsuarios ? JSON.parse(storedUsuarios) : [];
+    //   });
+    const [usuarios, setUsuarios] = useState([]);    
     let btnsConfig = DEFAULT_BUTTON_CONFIG
     console.log(usuarios)
     let style = getComputedStyle(document.body)
@@ -40,20 +41,20 @@ export default function GerenciarEquipe(){
     btnsConfig.red.action = (infoUsuario) => navigate("/remover-colaborador", { state: { usuario: infoUsuario } });
 
 
-    // useEffect(() => {
-    //     const fetchUsuarios = async () => {
-    //         try {
-    //             const response = await api.get('/usuarios');
-    //             setUsuarios(response.data);
-    //             console.log(response.data);
-    //             sessionStorage.setItem('usuarios', JSON.stringify(response.data));
-    //         } catch (error) {
-    //             console.error("Erro ao buscar usuários:", error);
-    //         }
-    //     };
+     useEffect(() => {
+         fetchUsuarios(); 
+     }, []); 
 
-    //     fetchUsuarios(); // Chama a função para buscar usuários
-    // }, []); 
+     const fetchUsuarios = async () => {
+        try {
+            const response = await api.get('/usuarios');
+            setUsuarios(response.data);
+            console.log(response.data);
+            sessionStorage.setItem('usuarios', JSON.stringify(response.data));
+        } catch (error) {
+            console.error("Erro ao buscar usuários:", error);
+        }
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
