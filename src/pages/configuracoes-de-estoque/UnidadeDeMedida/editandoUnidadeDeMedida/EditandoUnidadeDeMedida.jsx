@@ -31,8 +31,17 @@ export default function ConfigurationMenu({}) {
   };
 
   const handleConversaoChange = (e) => {
-   const value = e.target.value; // Extrai o valor do input
-   setConversaoPadrao(value); // Atualiza diretamente
+    let value = e.target.value; // Extrai o valor do input
+    
+    // Substitui vírgulas por pontos para garantir o formato numérico esperado
+    value = value.replace(",", ".");
+    
+    // Verifica se o valor resultante é numérico antes de atualizar o estado
+    if (!isNaN(value)) {
+        setConversaoPadrao(value); // Atualiza diretamente
+    } else {
+        errorToast("Insira um valor numérico válido.");
+    }
  };
 
  useEffect(() => {
