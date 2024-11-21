@@ -114,7 +114,7 @@ const EditarUsuario = () => {
             sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
             adicionandoUsuarioNaSessionStorage(response.data);
             sessionStorage.setItem("responsavel", JSON.stringify(response.data));
-            navigate("/configuracoes-de-acesso");
+            navigate("/menu-inicial");
         } catch {
             errorToast("Ocorreu um erro ao tentar realizar o cadastro, por favor, tente novamente.");
         }
@@ -134,7 +134,7 @@ const EditarUsuario = () => {
 
     return (
         <>
-            <TopBar title={"Editar Perfil"} showBackArrow={true} backNavigationPath={"/configuracoes-de-acesso"} />
+            <TopBar title={"Editar Perfil"} showBackArrow={true} backNavigationPath={"/menu-inicial"} />
             <div className={styles.divPrincipal}>
                 <ImageUploader onImageSelect={handleImageChange} />
                 <TextInput label={"Nome:"} value={nome} onChange={(e) => handleTextInputChange(e, setNome)} />
