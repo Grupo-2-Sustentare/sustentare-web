@@ -38,6 +38,7 @@ import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
 import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
 
 import TelaParaNegarDelecao from "./pages/tela-para-negar-delecao/TelaParaNegarDelecao"
+import EditarUsuario from "./pages/editarUsuario/EditarUsuario"
 
 function Rotas() {
     let rotaPadrao = null;
@@ -84,6 +85,7 @@ function Rotas() {
                 <Route path={"/delecao-negada"} element={<TelaParaNegarDelecao/>}/>
 
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
+                <Route path={"/editar-usuario"} element={<EditarUsuario/>}/>
             </Routes>
         </BrowserRouter>
         )

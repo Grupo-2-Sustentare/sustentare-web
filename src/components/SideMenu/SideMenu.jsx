@@ -23,6 +23,7 @@ const SideMenu = ({ userName, userImage }) => {
                 <MenuItem icon={"clock-rotate-left"} title="Histórico de operações" onClick={() => navigate("/historico-de-operacoes")}/>
                 <MenuItem icon={"wrench"} title="Alterar definições" onClick={() => navigate("/configuracoes-de-estoque")}/>
                 <MenuItem icon={"users-gear"} title="Gerenciar equipes" onClick={() => navigate("/configuracoes-de-acesso")}/>
+                <MenuItem icon={"user"} title="Editar usuário" onClick={() => navigate("/editar-usuario")}/>
                 {/*<MenuItem icon={"circle-check"} title="Realizar Fechamento" onClick={() => navigate("/menu-inicial")}/>*/}
                 <MenuItem icon={"gear"} title="Configurações" onClick={() => navigate("/configuracoes")}/>
 
