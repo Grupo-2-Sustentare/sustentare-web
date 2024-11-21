@@ -26,7 +26,7 @@ const Login = () => {
 
         console.log(nome)
         console.log(senha)
-             const response = api.post(`/usuarios/login`, objetoAdicionado).then((response) => {
+             const response = api.post(`/proxy-java-api/usuarios/login`, objetoAdicionado).then((response) => {
                  toast.success("Novo Card criado com sucesso!");
                  sessionStorage.setItem("responsavel", JSON.stringify(response.data))
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
@@ -52,7 +52,7 @@ const Login = () => {
 
     const fetchUsuarios = async () => {
         try {
-            const response = await api.get('/usuarios');
+            const response = await api.get('/proxy-java-api/usuarios');
             setUsuarios(response.data);
             console.log(response.data);
             sessionStorage.setItem('usuarios', JSON.stringify(response.data));

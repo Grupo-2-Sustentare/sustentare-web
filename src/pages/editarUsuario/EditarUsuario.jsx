@@ -109,7 +109,7 @@ const EditarUsuario = () => {
         const objetoAdicionado = { nome, email, senha, imagem };
 
         try {
-            const response = await api.patch(`/usuarios/${idResponsavel}?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
+            const response = await api.patch(`/proxy-java-api/usuarios/${idResponsavel}?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
             successToast("configuracoes-de-acesso realizado com sucesso!");
             sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
             adicionandoUsuarioNaSessionStorage(response.data);
@@ -142,7 +142,6 @@ const EditarUsuario = () => {
                 <TextInput label={"Email:"} value={email} onChange={(e) => handleTextInputChange(e, setEmail)} />
                 <TextInput label={"Senha:"} value={senha} type="password" onChange={(e) => handleTextInputChange(e, setSenha)} />
                 <div className={styles.divAdministrador}>
-                    <p>Administrador:</p>
                 </div>
             </div>
             <div className={styles.divButton}>
