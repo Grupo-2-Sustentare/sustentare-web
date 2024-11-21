@@ -36,7 +36,7 @@ const NegarDelecao = () => {
                         ))}
                         {itensAssociados.length > 6}
                         {itensRestantes > 0 && (
-                            <span>...mais {itensRestantes} produto{itensRestantes > 1 ? "s" : ""}</span>
+                            <span>...e mais {itensRestantes} produto{itensRestantes > 1 ? "s" : ""}</span>
                         )}
                     </div>
                     <div className={styles.instrucoes}>
