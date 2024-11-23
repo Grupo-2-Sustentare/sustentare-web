@@ -148,7 +148,7 @@ export default function NovoMovimento({ }) {
                     return <Product
                         key={i}
                         id={p.item.id}
-                        addressImg={p.urlImagem}
+                        addressImg={p.imageUrl}
                         name={p.item.nome}
                         quantity={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}
                         buttonsConfig={{

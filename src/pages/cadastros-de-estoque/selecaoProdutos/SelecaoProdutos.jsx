@@ -146,6 +146,7 @@ export default function SelecaoProdutos(){
             </div> */}
             {/* <div className={styles.containerProdutos}> */}
             {/* <hr></hr> */}
+            {produtos.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
             {produtos.map((produto) => (
                     <Product
                         key={produto.item.id}

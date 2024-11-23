@@ -100,7 +100,7 @@ const ConfiguracoesProdutos = () => {
                 <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
             </div>
             <div className={styles.divPrincipal}>
-                
+                {produtos.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
                 {produtos.map( (produto) => {
                     return <Product
                         name={produto.item.nome}
