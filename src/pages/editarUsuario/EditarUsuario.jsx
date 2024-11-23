@@ -24,7 +24,7 @@ const EditarUsuario = () => {
     const acessoResponsavel = responsavel ? responsavel.acesso : null;
 
     const [nome, setNome] = useState("");
-    const [senha, setSenha] = useState("");
+    const [senha, setSenha] = useState(sessionStorage.getItem("senhaAtual"));
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);

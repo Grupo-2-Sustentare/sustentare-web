@@ -32,6 +32,7 @@ const Login = () => {
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage
                  sessionStorage.setItem("nome_usuario", nome)
                  successToast("Login feito com sucesso");
+                 sessionStorage.setItem("senhaAtual", senha)
                  navigate("/menu-inicial")
                  fetchUsuarios()
              }).catch((error) => {
