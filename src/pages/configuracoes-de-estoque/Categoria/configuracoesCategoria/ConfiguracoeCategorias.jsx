@@ -9,7 +9,7 @@ import IconInput from "../../../../components/IconInput/IconInput";
 import Product from "../../../../components/ProductItem/Product";
 import {errorToast} from "../../../../components/Toast/Toast";
 import StrechList from "../../../../components/StrechList/StrechList";
-import {OPCOES_ORDENACAO} from "../../../../tools/ModuloBusca";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
@@ -28,19 +28,15 @@ const ConfiguracoesCategorias = () => {
             });
     }, []);
 
+    useEffect(() => {
+        setCategoriasVisiveis(ordenacaoComPesquisa(categorias, queryPesquisa, ordenacao, EnumObjetosBusca.CATEGORIA))
+    }, [categorias, queryPesquisa, ordenacao])
+
     // Função para salvar a categoria na sessionStorage e navegar para a página de edição
     const handleEdit = (categoria) => {
         sessionStorage.setItem("categoria_selecionada", JSON.stringify(categoria)); // Salva a categoria na sessionStorage
         navigate("/editando-categoria"); // Redireciona para a página de edição
     };
-
-    const BUTTONS_CONFIG = {
-        yellow: {icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(categoria),},
-        red: {
-            icon: "fa-solid fa-trash", text: "Remover",
-            action: () => navigate("/tela-de-confirmacao", { state: { categoria: categoria } }),
-        }
-    }
 
     return (
         <>
@@ -49,15 +45,21 @@ const ConfiguracoesCategorias = () => {
                 <div className={styles.barraDeBusca}>
                     <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
                     <StrechList
-                        showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
+                        showTitle={false} items={OPCOES_ORDENACAO.Categoria} hint={"Opções de ordenação"}
                         onChange={(v) => setOrdenacao(v)}
                     />
                 </div><hr/>
                 <div className={styles.principal}>
-                    {categorias?.map((categoria) => (
+                    {categoriasVisiveis?.map((categoria) => (
                         <Product
                             key={categoria.id} name={categoria.nome} showImageOrIcon={false}
-                            buttonsConfig={BUTTONS_CONFIG}
+                            buttonsConfig={{
+                                yellow: {icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(categoria),},
+                                red: {
+                                    icon: "fa-solid fa-trash", text: "Remover",
+                                    action: () => navigate("/tela-de-confirmacao", {state: {categoria: categoria}})
+                                }
+                            }}
                         />
                     ))}
                 </div>
