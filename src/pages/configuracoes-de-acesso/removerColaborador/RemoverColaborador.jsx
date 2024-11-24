@@ -23,7 +23,7 @@ function RemoverColaborador() {
 
     const deletarUsuario = async () => {
         try {
-            await api.delete(`/usuarios/${usuario.id}?${new URLSearchParams({ idResponsavel })}`);
+            await api.delete(`/proxy-java-api/usuarios/${usuario.id}?${new URLSearchParams({ idResponsavel })}`);
             removendoUsuarioDaSessionStorage()
             successToast("Usuário removido");
         } catch (error) {

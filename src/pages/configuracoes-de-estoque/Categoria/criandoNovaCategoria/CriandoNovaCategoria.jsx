@@ -19,7 +19,7 @@ export default function CriandoCategoria({ }) {
    // Função para buscar categorias existentes
    async function buscarCategorias() {
       try {
-         const response = await api.get(`/categorias`); // Faz a requisição GET para listar categorias
+         const response = await api.get(`/proxy-java-api/categorias`); // Faz a requisição GET para listar categorias
          setCategoriasExistentes(response.data); // Atualiza o estado com as categorias obtidas
       } catch (error) {
          console.error("Erro ao buscar categorias:", error);
@@ -50,7 +50,7 @@ export default function CriandoCategoria({ }) {
 
       try {
          // Fazendo a requisição POST para criar a categoria
-         const response = await api.post(`/categorias?idResponsavel=${idResponsavel}`, {
+         const response = await api.post(`/proxy-java-api/categorias?idResponsavel=${idResponsavel}`, {
             nome: nomeCategoriaTrimmed, // Envia o nome da categoria sem espaços extras
             ativo: 1
          });

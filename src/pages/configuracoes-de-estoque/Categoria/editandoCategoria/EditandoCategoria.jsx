@@ -33,7 +33,7 @@ export default function EditandoCategoria({ }) {
       const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
       const idResponsavel = responsavel ? responsavel.id : null;
 
-      api.put(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`, { nome: categoria.nome, ativo: categoria.ativo})
+      api.put(`/proxy-java-api/categorias/${categoria.id}?idResponsavel=${idResponsavel}`, { nome: categoria.nome, ativo: categoria.ativo})
          .then((response) => {
             successToast("Categoria editada com sucesso!"); // Exibe a mensagem de sucesso
             const toastDuration = 1000;

@@ -42,7 +42,7 @@ export default function HistoricoOperacoes() {
 
     const buscarLogTodosUsuario = () => {
 
-        api.get(`/audit-logs`).then((response) => {
+        api.get(`/proxy-java-api/audit-logs`).then((response) => {
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
             setLogsTeste(response.data);
             setLoading(false);
@@ -54,7 +54,7 @@ export default function HistoricoOperacoes() {
 
     const buscarLogUsuarioEspecifico = () => {
 
-        api.get(`/audit-logs/${usuarioEscolhido.id}`).then((response) => {
+        api.get(`/proxy-java-api/audit-logs/${usuarioEscolhido.id}`).then((response) => {
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
             setLogsTeste(response.data);
             setLoading(false);

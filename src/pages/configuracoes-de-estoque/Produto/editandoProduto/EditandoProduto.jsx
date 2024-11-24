@@ -110,7 +110,6 @@ const EditandoProduto = () => {
         }
     }, [isChecked]);
 
-    const API_BASE_URL = "http://localhost:8080";
     const salvarEdicao = async () => {
         try {
             // Usa o ID atual da unidade de medida e da categoria se o usuário não selecionou uma nova
@@ -127,7 +126,7 @@ const EditandoProduto = () => {
                 ativo: true
             };
 
-            const itemResponse = await fetch(`${API_BASE_URL}/itens/${produtoSelecionado.item.id}?unidadeMedidaId=${unidadeMedidaId}&categoriaItemId=${categoriaItemId}&idResponsavel=${idResponsavel}`, {
+            const itemResponse = await fetch(`/proxy-java-api/itens/${produtoSelecionado.item.id}?unidadeMedidaId=${unidadeMedidaId}&categoriaItemId=${categoriaItemId}&idResponsavel=${idResponsavel}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

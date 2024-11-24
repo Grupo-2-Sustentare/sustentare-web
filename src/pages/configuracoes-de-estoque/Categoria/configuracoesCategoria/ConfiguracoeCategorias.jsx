@@ -14,7 +14,7 @@ const ConfiguracoesCategorias = () => {
     const [categorias, setCategorias] = useState([]); // Estado para armazenar as categorias carregadas da API
 
     useEffect(() => {
-        api.get("/categorias")
+        api.get("/proxy-java-api/categorias")
             .then((response) => {
                 setCategorias(response.data); // Armazena os dados da API no estado
             })

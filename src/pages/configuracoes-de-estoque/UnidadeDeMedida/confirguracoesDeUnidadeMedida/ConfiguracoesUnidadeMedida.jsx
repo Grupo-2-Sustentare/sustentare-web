@@ -54,7 +54,7 @@ const ConfiguracoesUnidadeMedida = () => {
             const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
             const idResponsavel = responsavel ? responsavel.id : null;
 
-            api.delete(`/unidades-medida/${unidadeMedida.id}?idResponsavel=${idResponsavel}`)
+            api.delete(`/proxy-java-api/unidades-medida/${unidadeMedida.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
                     successToast(`Unidade "${unidadeMedida.nome}" desativada com sucesso!`);
                     

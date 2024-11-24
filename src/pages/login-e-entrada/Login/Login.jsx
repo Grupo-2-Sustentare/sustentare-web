@@ -26,7 +26,7 @@ const Login = () => {
 
         console.log(nome)
         console.log(senha)
-             const response = api.post(`/proxy-java-api/usuarios/login`, objetoAdicionado).then((response) => {
+             const response = api.post(`/proxy-java-api/proxy-java-api/usuarios/login`, objetoAdicionado).then((response) => {
                  toast.success("Novo Card criado com sucesso!");
                  sessionStorage.setItem("responsavel", JSON.stringify(response.data))
                  sessionStorage.setItem("editado", JSON.stringify(objetoAdicionado)); // Armazena os dados na sessionStorage

@@ -39,7 +39,7 @@ export default function ConfigurationMenu({}) {
    // Função para buscar as unidades de medida
    const fetchUnidadesMedida = async () => {
      try {
-       const response = await api.get("/unidades-medida"); // Ajuste a rota da API conforme necessário
+       const response = await api.get("/proxy-java-api/unidades-medida"); // Ajuste a rota da API conforme necessário
        const unidades = response.data;
 
        // Extrair categorias únicas

@@ -95,7 +95,7 @@ const AdicionandoColaborador = () => {
 
         try {
             if (acessoResponsavel == 1) {
-                const response = await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
+                const response = await api.post(`/proxy-java-api/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
                 successToast("configuracoes-de-acesso realizado com sucesso!");
                 sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
                 adicionandoUsuarioNaSessionStorage(response.data); 

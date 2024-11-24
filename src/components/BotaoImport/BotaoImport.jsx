@@ -46,7 +46,7 @@ const ImportTxtButton = () => {
     formData.append('file', file);
     formData.append('idResponsavel',idResponsavel);
 
-    fetch('http://localhost:8080/itens/importarTxt', {
+    fetch('/proxy-java-api/itens/importarTxt', {
       method: 'POST',
       body: formData
     })

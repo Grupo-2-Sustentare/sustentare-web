@@ -41,7 +41,7 @@ const ConfiguracoesProdutos = () => {
     useEffect(() => {
         const carregarProdutos = async () => {
             try {
-                const response = await api.get("/produtos");
+                const response = await api.get("/proxy-java-api/produtos");
                 const produtos = response.data;
     
                 const produtosComImagens = await Promise.all(

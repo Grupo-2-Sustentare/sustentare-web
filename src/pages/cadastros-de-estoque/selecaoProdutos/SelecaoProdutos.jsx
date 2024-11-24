@@ -20,7 +20,7 @@ export default function SelecaoProdutos(){
     const [produtosSelecionados, setProdutosSelecionados] = useState([]);
 
     useEffect(() => {
-        api.get("/produtos")
+        api.get("/proxy-java-api/produtos")
             .then((response) => {
                 setProdutos(response.data); // Armazena os dados da API no estado
             })

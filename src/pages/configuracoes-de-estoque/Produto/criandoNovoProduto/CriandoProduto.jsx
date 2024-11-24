@@ -118,7 +118,7 @@ const CriandoProduto = () => {
         };
     
         // Primeiro, cria o item
-        api.post(`/itens?unidadeMedidaId=${itemUM.id}&categoriaItemId=${itemC.id}&idResponsavel=${idResponsavel}`, item)
+        api.post(`/proxy-java-api/itens?unidadeMedidaId=${itemUM.id}&categoriaItemId=${itemC.id}&idResponsavel=${idResponsavel}`, item)
             .then((response) => {
                 itemId = response.data.id;
                 // console.log(response.data.id)
@@ -128,7 +128,7 @@ const CriandoProduto = () => {
                 // setTimeout(() => {
                 //     navigate("/configuracoes-de-produtos");
                 // }, 1000);
-                api.post(`/produtos?idResponsavel=${idResponsavel}&fkItem=${itemId}`, produto)
+                api.post(`/proxy-java-api/produtos?idResponsavel=${idResponsavel}&fkItem=${itemId}`, produto)
                 .then((response) => {
                     console.log(response)
                 })

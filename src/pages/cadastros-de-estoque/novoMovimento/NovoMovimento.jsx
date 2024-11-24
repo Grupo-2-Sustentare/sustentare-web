@@ -116,7 +116,7 @@ export default function NovoMovimento({ }) {
                     }
                 };
     
-                await api.post(`http://localhost:8080/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
+                await api.post(`/proxy-java-api/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
             }
             successToast("Movimentação concluída com sucesso.");
             sessionStorage.removeItem("movement")
