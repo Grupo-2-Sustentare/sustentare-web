@@ -42,6 +42,28 @@ export default function SelecaoProdutos(){
             });
     }, []);
 
+     useEffect(() => {
+        const carregarProdutos = async () => {
+            try {
+                const response = await api.get("/produtos");
+                const produtos = response.data;
+
+                const produtosComImagens = await Promise.all(
+                    produtos.map(async (produto) => {
+                        const imageUrl = await carregarImagemAwsS3(produto.item.id);
+                        return { ...produto, imageUrl };
+                    })
+                );
+
+                setProdutos(produtosComImagens);
+            } catch (error) {
+                console.error("Erro ao carregar produtos ou imagens:", error);
+            }
+        };
+
+        carregarProdutos();
+    }, []);
+
     //Ao mudar os produtos selecionados, atualiza sua variável no session storage.
     useEffect(() => {
         sessionStorage.setItem("produtosSelecionados", JSON.stringify(produtosSelecionados));
@@ -77,6 +99,17 @@ export default function SelecaoProdutos(){
         sessionStorage.setItem("movement", JSON.stringify(movement));
         navigate("/cadastros-de-estoque");
     }
+
+    async function carregarImagemAwsS3 (idUsuario)  {
+        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
+            .then(() => {
+                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
+            })
+            .catch(() => {
+                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
+            });
+    };
+
 
     return(
     <>

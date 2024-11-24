@@ -1,0 +1,58 @@
+.divFiltroEBusca {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    padding: 8px;
+}
+
+.divPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    height: 634px;
+    padding: 8px 16px 8px 16px;
+    overflow-y: scroll;
+}
+
+.divBotao {
+    display: flex;
+    width: 100%;
+    height: 113px;
+    justify-content: center;
+    align-items: center;
+    border-top: var(--borda-branca);
+    position: relative;
+    background-color: var(--gradiente);
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 8px;
+}
+
+.instrucoes {
+    background-color: var(--carvao);
+    padding: 10px;
+    border: var(--borda-branca);
+    border-radius: 12px;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    >span {
+        margin-top: 10px;
+        text-decoration: underline;
+        text-decoration-color: white;
+        text-decoration-style: dashed;
+    }
+}

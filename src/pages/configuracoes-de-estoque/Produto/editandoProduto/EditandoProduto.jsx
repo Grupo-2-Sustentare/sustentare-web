@@ -13,6 +13,7 @@ import { errorToast, successToast } from "../../../../components/Toast/Toast";
 
 const EditandoProduto = () => {
     const navigate = useNavigate();
+    const [imagem, setImagem] = useState(null);
     sessionStorage.paginaRequisicao = "/editando-produto"
     const responsavelString = sessionStorage.getItem("responsavel");
     const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
@@ -115,11 +116,14 @@ const EditandoProduto = () => {
             // Usa o ID atual da unidade de medida e da categoria se o usuário não selecionou uma nova
             const unidadeMedidaId = itemUM?.id || produtoSelecionado.item.unidade_medida.id;
             const categoriaItemId = itemC?.id || produtoSelecionado.item.categoria.id;
-
+            console.log(unidadeMedidaId)
+            console.log(categoriaItemId)
+            console.log(idResponsavel)
             const itemUpdate = {
                 nome,
                 perecivel: isChecked,
                 dias_vencimento: diasVencimento,
+                imagem,
                 ativo: true
             };
 
@@ -143,6 +147,11 @@ const EditandoProduto = () => {
                     sessionStorage.removeItem("produto_selecionado");
                     navigate("/configuracoes-de-produtos");
                 }, toastDuration);
+                const toastDurationImagem = 2000 
+                setTimeout(() => {
+                    successToast("Pode levar alguns instantes para atualizar a imagem");
+                }, toastDurationImagem);
+                
             }
 
             //     // Atualiza o produto somente se a atualização do item for bem-sucedida
@@ -179,13 +188,28 @@ const EditandoProduto = () => {
         }
     };
 
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(",")[1]);
+            reader.onerror = (error) => reject(error);
+        });
+    }
+
+    const handleImageChange = async (file) => {
+        if (file) {
+            const base64Image = await toBase64(file);
+            setImagem(base64Image);
+        }
+    };
 
     return (
         <div>
             <TopBar title={"Editando Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"} />
             <div className={styles.divPrincipal}>
                 <div className={styles.editarImagem}>
-                    <ImageUploader />
+                    <ImageUploader onImageSelect={handleImageChange}/>
                 </div>
                 <TextInput
                     label={"Nome: "}
