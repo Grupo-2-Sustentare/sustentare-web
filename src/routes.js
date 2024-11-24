@@ -19,7 +19,7 @@ import RemoverColaborador from "./pages/configuracoes-de-acesso/removerColaborad
 
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 
-import ConfiguracoesProdutos from "./pages/configuracoes-de-estoque/Produto/configuracoesDeProdutos/configuracoesDeProdutos";
+import ConfiguracoesProdutos from "./pages/configuracoes-de-estoque/Produto/configuracoesDeProdutos/ConfiguracoesDeProdutos";
 import CriandoProduto from "./pages/configuracoes-de-estoque/Produto/criandoNovoProduto/CriandoProduto"
 import CategoriaProduto from "./pages/configuracoes-de-estoque/Produto/categoriaProduto/CategoriaProduto"
 import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/Produto/unidadeDeMedidaProduto/UnidadeMedidaProduto";
