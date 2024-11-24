@@ -10,13 +10,9 @@ import Product from "../../../../components/ProductItem/Product";
 import { errorToast, successToast } from "../../../../components/Toast/Toast";
 import StrechList from "../../../../components/StrechList/StrechList";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
+import {UNIT_ICONS} from "../../../../tools/TiposUnidadeMedida";
 
 const ConfiguracoesUnidadeMedida = () => {
-    const UNIT_ICONS = {
-        "VOLUME": "fa-solid fa-cube", "MASSA": "fa-solid fa-hippo", "GENÉRICA": "fa-solid fa-circle",
-        "PADRAO": "fa-solid fa-question"
-    }
-
     const navigate = useNavigate();
     const [unidades, setUnidades] = useState([]);
     const [unidadesVisiveis, setUnidadesVisiveis] = useState([])
@@ -79,8 +75,7 @@ const ConfiguracoesUnidadeMedida = () => {
                 })}
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar nova unidade de medida"
-                        onClick={() => navigate("/criando-unidade-medida")}/>
+                <Button insideText="Cadastrar nova unidade de medida" onClick={() => navigate("/criando-unidade-medida")}/>
             </div>
         </>
     );
