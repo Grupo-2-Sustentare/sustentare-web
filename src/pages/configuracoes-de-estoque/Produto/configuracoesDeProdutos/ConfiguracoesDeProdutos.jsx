@@ -1,7 +1,6 @@
 import styles from "../configuracoesDeProdutos/ConfiguracoesDeProdutos.module.css";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import StreachList from "../../../../components/StrechList/StrechList";
 import Button from "../../../../components/Button/Button";
 import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
@@ -9,11 +8,18 @@ import api from "../../../../api";
 import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
 import {errorToast, successToast} from "../../../../components/Toast/Toast";
 import axios from "axios";
+import StrechList from "../../../../components/StrechList/StrechList";
+import {OPCOES_ORDENACAO} from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
-  
+
+    // Do módulo de busca e ordenação.
+    const [produtosVisiveis, setProdutosVisiveis] = useState([])
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
+
     async function carregarImagemAwsS3 (idUsuario)  {
         return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
             .then(() => {
@@ -55,35 +61,41 @@ const ConfiguracoesProdutos = () => {
 
     return (
         <>
-            <div className={styles.divTopBar}>
-                <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
+            <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
+                    onChange={(v) => setOrdenacao(v)}
+                />
             </div>
+            <hr/>
             <div className={styles.divPrincipal}>
                 {produtos.length === 0 ? <p>Carregando...</p> : <p></p>}
-                {produtos.map( (produto) => {
-                    return <Product
-                        name={produto.item.nome}
-                        quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
-                        showCheckbox={false}
-                        addressImg={produto.imageUrl}
-                        buttonsConfig={{
-                            yellow: {
-                                icon: "fa-solid fa-pen",
-                                text: "Editar",
-                                action: () => handleEdit(produto),
-                            },
-                            red: {
-                                icon: "fa-solid fa-trash",
-                                text: "Remover",
-                                action: () => navigate("/tela-de-confirmacao", { state: { produto: produto } }),
-                            }
-                        }}
-                    />
-                }
+                {produtos.map((produto) => {
+                        return <Product
+                            name={produto.item.nome}
+                            quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
+                            showCheckbox={false}
+                            addressImg={produto.imageUrl}
+                            buttonsConfig={{
+                                yellow: {
+                                    icon: "fa-solid fa-pen",
+                                    text: "Editar",
+                                    action: () => handleEdit(produto),
+                                },
+                                red: {
+                                    icon: "fa-solid fa-trash",
+                                    text: "Remover",
+                                    action: () => navigate("/tela-de-confirmacao", {state: {produto: produto}}),
+                                }
+                            }}
+                        />
+                    }
                 )}
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar novo produto" onClick={()=>navigate("/criando-produto")} />
+                <Button insideText="Cadastrar novo produto" onClick={() => navigate("/criando-produto")}/>
             </div>
         </>
     );

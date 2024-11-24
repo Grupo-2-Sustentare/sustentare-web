@@ -25,3 +25,11 @@
     position: relative;
     background-color: var(--gradiente);
 }
+
+.barraDeBusca{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 8px;
+    gap: 8px;
+}
