@@ -1,10 +1,6 @@
 import styles from "./categoriaConsumo.module.css"
 import TopBar from "../../../components/TopBar/TopBar";
-import Product from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
-import MeasurementUnitInput from "../../../components/MeasumentTextInput/MeasurementUnitInput";
-import Switch from "../../../components/Switch/Switch";
-import RedirectionList from "../../../components/RedirectionList/RedirectionList";
 import ListItem from "../../../components/ListItem/ListItem";
 
 export default function CategoriaConsumo(){
@@ -26,8 +22,10 @@ export default function CategoriaConsumo(){
         <TopBar title={"Categoria do consumo"} showBackArrow={true} backNavigationPath={"/quantidade-movimento"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
-            {/* <Product name={p.nome} addressImg={p.urlImagem} quantity={`${p.quantidade} ${p.unidade}`}/> */}
-            <ListItem adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.item.nome} subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}  fullBorderRadius={true}/>
+            <ListItem
+                adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.item.nome}
+                subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`} fullBorderRadius={true}
+            />
         </div>
         <div className={styles.principal}>
             {itensLista.map(item=>{
