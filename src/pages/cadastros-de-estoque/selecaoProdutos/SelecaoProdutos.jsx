@@ -109,8 +109,7 @@ export default function SelecaoProdutos(){
                     showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
                     onChange={(v)=>setOrdenacao(v)}
                 />
-            </div>
-            <hr/>
+            </div><hr/>
             {carregando && (<img src={loading} alt={"Carregando..."}/>)}
             {produtosVisiveis?.map((produto) => (
                     <Product

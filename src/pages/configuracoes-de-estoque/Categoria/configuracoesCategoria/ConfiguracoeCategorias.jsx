@@ -8,6 +8,8 @@ import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
 import Product from "../../../../components/ProductItem/Product";
 import {errorToast} from "../../../../components/Toast/Toast";
+import StrechList from "../../../../components/StrechList/StrechList";
+import {OPCOES_ORDENACAO} from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
@@ -44,14 +46,18 @@ const ConfiguracoesCategorias = () => {
         <>
             <TopBar title={"configurações de categorias"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
-                <div className={styles.divFiltroEBusca}>
-                    <IconInput />
-                    <StreachList showTitle={false} titulo=" " />
+                <div className={styles.barraDeBusca}>
+                    <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
+                    <StrechList
+                        showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
+                        onChange={(v) => setOrdenacao(v)}
+                    />
                 </div><hr/>
                 <div className={styles.principal}>
                     {categorias?.map((categoria) => (
                         <Product
-                            key={categoria.id} name={categoria.nome} showImageOrIcon={false} buttonsConfig={BUTTONS_CONFIG}
+                            key={categoria.id} name={categoria.nome} showImageOrIcon={false}
+                            buttonsConfig={BUTTONS_CONFIG}
                         />
                     ))}
                 </div>
