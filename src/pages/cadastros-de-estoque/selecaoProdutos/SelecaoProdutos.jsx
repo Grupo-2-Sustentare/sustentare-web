@@ -51,6 +51,7 @@ export default function SelecaoProdutos(){
                     const imageUrl = await carregarImagemAwsS3(produto.item.id);
                     return {...produto, imageUrl};
                 }))
+                console.log(produtos)
                 setProdutos(produtos)
             })
             .catch((error) => {
@@ -110,7 +111,7 @@ export default function SelecaoProdutos(){
                     <Product
                         key={produto.item.id}
                         id={produto.item.id}
-                        addressImg={produto.urlImagem}
+                        addressImg={produto.imageUrl}
                         name={produto.item.nome}
                         quantity={`${produto.qtdProdutoTotal} ${produto.item.unidade_medida.nome}`}
                         checkboxVariant={true}
