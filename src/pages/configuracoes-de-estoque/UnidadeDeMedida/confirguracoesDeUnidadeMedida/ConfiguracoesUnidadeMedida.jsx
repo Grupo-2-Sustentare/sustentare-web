@@ -8,6 +8,8 @@ import IconInput from "../../../../components/IconInput/IconInput";
 import api from "../../../../api";
 import Product from "../../../../components/ProductItem/Product";
 import { errorToast, successToast } from "../../../../components/Toast/Toast";
+import StrechList from "../../../../components/StrechList/StrechList";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesUnidadeMedida = () => {
     const UNIT_ICONS = {
@@ -17,6 +19,9 @@ const ConfiguracoesUnidadeMedida = () => {
 
     const navigate = useNavigate();
     const [unidades, setUnidades] = useState([]);
+    const [unidadesVisiveis, setUnidadesVisiveis] = useState([])
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
 
     const location = useLocation();
     const unidadeMedidaRemovida = location.state?.unidadeMedidaRemovida;
@@ -40,21 +45,33 @@ const ConfiguracoesUnidadeMedida = () => {
         navigate("/editando-unidade-de-medida"); // Redireciona para a página de edição
     };
 
+    useEffect(() => {
+        setUnidadesVisiveis(ordenacaoComPesquisa(unidades, queryPesquisa, ordenacao, EnumObjetosBusca.UNIDADE_DE_MEDIDA))
+    }, [unidades, queryPesquisa, ordenacao])
+
     return (
         <>
-            <TopBar title={"configurações de Unidade de Medida"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
+            <TopBar title={"configurações de Unidade de Medida"} showBackArrow={true}
+                    backNavigationPath={"/configuracoes-de-estoque"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por usuário"}/>
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO["Unidade de medida"]} hint={"Opções de ordenação"}
+                    onChange={(v) => setOrdenacao(v)}
+                />
+            </div><hr/>
             <div className={styles.divPrincipal}>
-                {unidades.map(u => {
+                {unidadesVisiveis?.map(u => {
                     return (
                         <Product
                             key={u.id} addressImg={false} name={u.nome} showCheckbox={false}
                             icon={UNIT_ICONS[u.categoria.toUpperCase()]}
-                            quantity={[`Categoria: ${u.categoria}`, <br />, `Abreviação: ${u.simbolo}`]}
+                            quantity={[`Categoria: ${u.categoria}`, <br/>, `Abreviação: ${u.simbolo}`]}
                             buttonsConfig={{
                                 yellow: {icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(u)},
                                 red: {
                                     icon: "fa-solid fa-trash", text: "Remover",
-                                    action: () => navigate("/tela-de-confirmacao", { state: { unidadeDeMedida: u } }),
+                                    action: () => navigate("/tela-de-confirmacao", {state: {unidadeDeMedida: u}}),
                                 }
                             }}
                         />
@@ -62,7 +79,8 @@ const ConfiguracoesUnidadeMedida = () => {
                 })}
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar nova unidade de medida" onClick={()=>navigate("/criando-unidade-medida")}/>
+                <Button insideText="Cadastrar nova unidade de medida"
+                        onClick={() => navigate("/criando-unidade-medida")}/>
             </div>
         </>
     );
