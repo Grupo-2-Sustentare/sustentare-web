@@ -32,6 +32,14 @@ const ConfiguracoesCategorias = () => {
         navigate("/editando-categoria"); // Redireciona para a página de edição
     };
 
+    const BUTTONS_CONFIG = {
+        yellow: {icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(categoria),},
+        red: {
+            icon: "fa-solid fa-trash", text: "Remover",
+            action: () => navigate("/tela-de-confirmacao", { state: { categoria: categoria } }),
+        }
+    }
+
     return (
         <>
             <TopBar title={"configurações de categorias"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
@@ -39,27 +47,11 @@ const ConfiguracoesCategorias = () => {
                 <div className={styles.divFiltroEBusca}>
                     <IconInput />
                     <StreachList showTitle={false} titulo=" " />
-                </div>
-                <hr></hr>
+                </div><hr/>
                 <div className={styles.principal}>
                     {categorias?.map((categoria) => (
-                        // <Product key={categoria.id} name={categoria.nome} showImageOrIcon={false} />
                         <Product
-                            key={categoria.id}
-                            name={categoria.nome}
-                            showImageOrIcon={false}
-                            buttonsConfig={{
-                                yellow: {
-                                    icon: "fa-solid fa-pen",
-                                    text: "Editar",
-                                    action: () => handleEdit(categoria),
-                                },
-                                red: {
-                                    icon: "fa-solid fa-trash",
-                                    text: "Remover",
-                                    action: () => navigate("/tela-de-confirmacao", { state: { categoria: categoria } }),
-                                }
-                            }}
+                            key={categoria.id} name={categoria.nome} showImageOrIcon={false} buttonsConfig={BUTTONS_CONFIG}
                         />
                     ))}
                 </div>
