@@ -9,6 +9,7 @@ import api from "../../../api";
 import {useEffect, useState} from "react";
 import { errorToast } from "../../../components/Toast/Toast";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
+import axios from "axios";
 
 export default function SelecaoProdutos(){
 
@@ -25,6 +26,16 @@ export default function SelecaoProdutos(){
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
 
+    async function carregarImagemAwsS3 (idUsuario)  {
+        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
+            .then(() => {
+                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
+            })
+            .catch(() => {
+                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
+            });
+    }
+
     // Carrega os produtos selecionados anteriomente & busca produtos do back-end.
     useEffect(() => {
         const movement = JSON.parse(sessionStorage.getItem("movement"));
@@ -34,34 +45,17 @@ export default function SelecaoProdutos(){
         }
 
         api.get("/produtos")
-            .then((response) => {
-                setProdutos(response.data); // Armazena os dados da API no estado
+            .then(async (res) => {
+                const produtosBrutos = res.data
+                const produtos = await Promise.all(produtosBrutos.map(async produto => {
+                    const imageUrl = await carregarImagemAwsS3(produto.item.id);
+                    return {...produto, imageUrl};
+                }))
+                setProdutos(produtos)
             })
             .catch((error) => {
                 console.error("Erro ao buscar produtos:", error); // Trata erros
             });
-    }, []);
-
-     useEffect(() => {
-        const carregarProdutos = async () => {
-            try {
-                const response = await api.get("/produtos");
-                const produtos = response.data;
-
-                const produtosComImagens = await Promise.all(
-                    produtos.map(async (produto) => {
-                        const imageUrl = await carregarImagemAwsS3(produto.item.id);
-                        return { ...produto, imageUrl };
-                    })
-                );
-
-                setProdutos(produtosComImagens);
-            } catch (error) {
-                console.error("Erro ao carregar produtos ou imagens:", error);
-            }
-        };
-
-        carregarProdutos();
     }, []);
 
     //Ao mudar os produtos selecionados, atualiza sua variável no session storage.
@@ -99,17 +93,6 @@ export default function SelecaoProdutos(){
         sessionStorage.setItem("movement", JSON.stringify(movement));
         navigate("/cadastros-de-estoque");
     }
-
-    async function carregarImagemAwsS3 (idUsuario)  {
-        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
-            .then(() => {
-                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
-            })
-            .catch(() => {
-                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
-            });
-    };
-
 
     return(
     <>
