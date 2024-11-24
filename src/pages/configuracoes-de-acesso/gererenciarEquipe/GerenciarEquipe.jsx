@@ -6,10 +6,12 @@ import {useNavigate} from "react-router-dom";
 import api from "../../../api";
 import React, { useEffect, useState } from 'react';
 import {errorToast} from "../../../components/Toast/Toast";
+import IconInput from "../../../components/IconInput/IconInput";
+import StrechList from "../../../components/StrechList/StrechList";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 
 export default function GerenciarEquipe(){
     const navigate = useNavigate()
-    const [usuarios, setUsuarios] = useState([]);
 
     let style = getComputedStyle(document.body)
     let gunmetal = style.getPropertyValue("--gunmetal")
@@ -25,6 +27,10 @@ export default function GerenciarEquipe(){
     btnsConfig.yellow.action = (infoUsuario)=>navigate("/historico-de-operacoes", { state: { usuario: infoUsuario } })
     btnsConfig.red.action = (infoUsuario) => navigate("/remover-colaborador", { state: { usuario: infoUsuario } });
 
+    const [usuarios, setUsuarios] = useState([]);
+    const [usuariosVisiveis, setUsuariosVisiveis] = useState([]);
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
 
      useEffect(() => {
              api.get('/usuarios').then((res) => {
@@ -34,7 +40,7 @@ export default function GerenciarEquipe(){
                  errorToast("Erro ao buscar usuários. Contate o suporte.")
                  console.error("Erro ao buscar usuários:", error);
              })
-         }
+         }, []
      )
 
     useEffect(() => {
@@ -51,22 +57,35 @@ export default function GerenciarEquipe(){
         return () => clearInterval(interval);
       }, []);
 
+    useEffect(() => {
+        setUsuariosVisiveis(ordenacaoComPesquisa(usuarios, queryPesquisa, ordenacao, EnumObjetosBusca.USUARIO))
+    }, [usuarios, queryPesquisa, ordenacao])
+
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
+                <StrechList
+                    showTitle={false} items={OPCOES_ORDENACAO.Usuario} hint={"Opções de ordenação"}
+                    onChange={(v) => setOrdenacao(v)}
+                />
+            </div><hr/>
             <div className={styles.equipe}>
                 {usuarios.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
-                {usuarios?.map(u => {
-                        return <Product
-                        name={u.nome} quantity={"Usuário(a)"} fullBorderRadius={true} buttonsConfig={btnsConfig} infoUsuario={u}
+                {usuariosVisiveis?.map((u, i) => {
+                    return <Product
+                        name={u.nome} quantity={"Usuário(a)"} fullBorderRadius={true} buttonsConfig={btnsConfig}
+                        infoUsuario={u} key={i}
                         addressImg={
-                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"
+                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
                         }
                     />
                 })}
-            </div><hr/>
+            </div>
+            <hr/>
             <div className={styles.containerBotao}>
-                <Button insideText={"Adicionar colaborador"} onClick={()=>navigate("/adicionando-colaborador")}/>
+                <Button insideText={"Adicionar colaborador"} onClick={() => navigate("/adicionando-colaborador")}/>
             </div>
         </div>
     )

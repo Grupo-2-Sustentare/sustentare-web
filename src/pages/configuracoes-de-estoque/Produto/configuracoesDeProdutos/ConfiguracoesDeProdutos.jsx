@@ -72,8 +72,7 @@ const ConfiguracoesProdutos = () => {
                     showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
                     onChange={(v) => setOrdenacao(v)}
                 />
-            </div>
-            <hr/>
+            </div><hr/>
             <div className={styles.divPrincipal}>
                 {produtos.length === 0 ? <p>Carregando...</p> : <p></p>}
                 {produtosVisiveis?.map((produto) => {

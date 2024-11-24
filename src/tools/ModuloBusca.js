@@ -1,5 +1,5 @@
 const EnumObjetosBusca = {
-    PRODUTO: "Produto", LOG: "Log", CATEGORIA: "Categoria"
+    PRODUTO: "Produto", LOG: "Log", CATEGORIA: "Categoria", USUARIO: "Usuario"
 }
 
 const OPCOES_ORDENACAO = {
@@ -7,7 +7,8 @@ const OPCOES_ORDENACAO = {
         "Alfabética - Crescente", "Alfabética - Decrescente", "Quantidade - Crescente", "Quantidade - Decrescente"
     ],
     "Log": ["Ação - Crescente", "Ação - Decrescente", "Usuário - Crescente", "Usuário - Decrescente"],
-    "Categoria": ["Alfabética - Crescente", "Alfabética - Decrescente"]
+    "Categoria": ["Alfabética - Crescente", "Alfabética - Decrescente"],
+    "Usuario": ["Alfabética - Crescente", "Alfabética - Decrescente"]
 }
 
 function filtrar(itens, query, tipoObjeto){
@@ -48,6 +49,11 @@ function ordenar(itens, ordenacao, tipoObjeto){
         case "Categoria: Alfabética - Crescente":
             return [...itens].sort((a, b) => a.nome.localeCompare(b.nome))
         case "Categoria: Alfabética - Decrescente":
+            return [...itens].sort((a, b) => b.nome.localeCompare(a.nome))
+
+        case "Usuario: Alfabética - Crescente":
+            return [...itens].sort((a, b) => a.nome.localeCompare(b.nome))
+        case "Usuario: Alfabética - Decrescente":
             return [...itens].sort((a, b) => b.nome.localeCompare(a.nome))
 
         default: throw new Error(`Nenhum método de ordenação "${ordenacao}" para objetos da classe "${tipoObjeto}"`)

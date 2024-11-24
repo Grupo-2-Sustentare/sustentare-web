@@ -35,7 +35,7 @@ import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/UnidadeDeM
 import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
 import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
 import TelaParaNegarDelecao from "./pages/tela-para-negar-delecao/TelaParaNegarDelecao"
-import EditarPerfil from "./pages/editarPerfil/EditarPerfil";
+import EditarPerfil from "./pages/editar-perfil/EditarPerfil";
 
 function Rotas() {
     let rotaPadrao = null;
