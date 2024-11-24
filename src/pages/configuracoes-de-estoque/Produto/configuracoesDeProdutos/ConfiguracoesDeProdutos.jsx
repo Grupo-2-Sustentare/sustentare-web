@@ -6,10 +6,10 @@ import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
 import api from "../../../../api";
 import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
-import {errorToast, successToast} from "../../../../components/Toast/Toast";
+import {errorToast} from "../../../../components/Toast/Toast";
 import axios from "axios";
 import StrechList from "../../../../components/StrechList/StrechList";
-import {OPCOES_ORDENACAO} from "../../../../tools/ModuloBusca";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
@@ -59,6 +59,10 @@ const ConfiguracoesProdutos = () => {
     actionProduto.yellow.text = "Editar"
     actionProduto.yellow.action = () => { navigate("/editando-produto") }
 
+    useEffect(() => {
+        setProdutosVisiveis(ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao, EnumObjetosBusca.PRODUTO))
+    }, [produtos, queryPesquisa, ordenacao])
+
     return (
         <>
             <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"}/>
@@ -72,7 +76,7 @@ const ConfiguracoesProdutos = () => {
             <hr/>
             <div className={styles.divPrincipal}>
                 {produtos.length === 0 ? <p>Carregando...</p> : <p></p>}
-                {produtos.map((produto) => {
+                {produtosVisiveis?.map((produto) => {
                         return <Product
                             name={produto.item.nome}
                             quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
