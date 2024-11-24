@@ -35,12 +35,13 @@ const Login = () => {
                  sessionStorage.setItem("senhaAtual", senha)
                  navigate("/menu-inicial")
                  fetchUsuarios()
-             }).catch((error) => {
-                if(error.response.status === 401){
-                    errorToast("Nome ou senha incorreto");
-                }else{
-                    toast.error("Ocorreu um erro ao tentar realizar o login-e-entrada, por favor, tente novamente.");
+             }).catch((err) => {
+                 if (err.response === undefined){
+                    errorToast(`Erro desconhecido no servidor. \nContate o suporte.`)
+                    return
                 }
+                err.response.status === 401 ?
+                    errorToast("Nome ou senha incorreto") : errorToast(`Erro desconhecido. \nContate o suporte.`)
              })
     };
 

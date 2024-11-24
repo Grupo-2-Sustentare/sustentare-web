@@ -6,95 +6,69 @@ import TopBar from "../../../components/TopBar/TopBar";
 import Button from "../../../components/Button/Button";
 import {useNavigate} from "react-router-dom";
 import api from "../../../api";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import { errorToast } from "../../../components/Toast/Toast";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 import axios from "axios";
-
-const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
-const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
 
 export default function SelecaoProdutos(){
 
     const navigate = useNavigate()
 
+    // Todos os produtos vindos back-end.
     const [produtos, setProdutos] = useState([]);
+
+    // Produtos marcados como selecionados.
     const [produtosSelecionados, setProdutosSelecionados] = useState([]);
 
-    useEffect(() => {
-        const carregarProdutos = async () => {
-            try {
-                const response = await api.get("/produtos");
-                const produtos = response.data;
-    
-                const produtosComImagens = await Promise.all(
-                    produtos.map(async (produto) => {
-                        const imageUrl = await carregarImagemAwsS3(produto.item.id);
-                        return { ...produto, imageUrl };
-                    })
-                );
-    
-                setProdutos(produtosComImagens);
-            } catch (error) {
-                console.error("Erro ao carregar produtos ou imagens:", error);
-            }
-        };
-    
-        carregarProdutos();
-    }, []);
+    // Do módulo de busca e ordenação.
+    const [produtosVisiveis, setProdutosVisiveis] = useState([])
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
 
+    async function carregarImagemAwsS3 (idUsuario)  {
+        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
+            .then(() => {
+                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
+            })
+            .catch(() => {
+                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
+            });
+    }
 
-    // function buscarProdutos(e){
-    //     let query = e.target.value.toUpperCase()
-
-    //     if (query.empty){
-    //         setProdutos(mock_produtos)
-    //         return
-    //     }
-
-    //     let produtosFiltrados = []
-    //     for (let i in mock_produtos){
-    //         if (mock_produtos[i].nome.toUpperCase().indexOf(query) !== -1){
-    //             produtosFiltrados.push(mock_produtos[i])
-    //         }
-    //     }
-    //     setProdutos(produtosFiltrados)
-    // }
-
-    // function ordenar(){
-    //     let produtosOrdenados = produtos
-    //     produtosOrdenados.sort() // TODO Não funciona - arrumar
-    //     setProdutos(produtosOrdenados)
-    // }
-
-    // function adicionarProdutos(){
-    //     // Colocar toast de alerta caso nenhum produto tenha sido selecionado.
-
-    //     let movement = JSON.parse(sessionStorage.getItem("movement"))
-
-    //     if (movement.products.length === 0){
-    //         movement.products.push(
-    //             {"urlImagem": MOCK_URL + "sobrecoxa.jpg", "nome": "Sobrecoxa", "quantidade": 1, "unidade": "kilograma"},
-    //             {"urlImagem": MOCK_URL + "coca300.jpeg", "nome": "Coca 300", "quantidade": 1, "unidade": "unidade"},
-    //             {"urlImagem": undefined, "nome": "Guaraná Jesus", "quantidade": 1, "unidade": "unidade"}
-    //         )
-    //     }
-
-    //     sessionStorage.setItem("movement", JSON.stringify(movement))
-    //     navigate("/cadastros-de-estoque")
-    // }
-
+    // Carrega os produtos selecionados anteriomente & busca produtos do back-end.
     useEffect(() => {
         const movement = JSON.parse(sessionStorage.getItem("movement"));
         if (movement && movement.products) {
             setProdutosSelecionados(movement.products);
             sessionStorage.setItem("produtosSelecionados", JSON.stringify(movement.products));
         }
+
+        api.get("/produtos")
+            .then(async (res) => {
+                const produtosBrutos = res.data
+                const produtos = await Promise.all(produtosBrutos.map(async produto => {
+                    const imageUrl = await carregarImagemAwsS3(produto.item.id);
+                    return {...produto, imageUrl};
+                }))
+                console.log(produtos)
+                setProdutos(produtos)
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar produtos:", error); // Trata erros
+            });
     }, []);
-    
+
+    //Ao mudar os produtos selecionados, atualiza sua variável no session storage.
     useEffect(() => {
         sessionStorage.setItem("produtosSelecionados", JSON.stringify(produtosSelecionados));
     }, [produtosSelecionados]);
 
+    useEffect(() => {
+        setProdutosVisiveis(ordenacaoComPesquisa(produtos, queryPesquisa, ordenacao, EnumObjetosBusca.PRODUTO))
+    }, [produtos, queryPesquisa, ordenacao])
+
+    // Marca e desmarca produtos
     const toggleProdutoSelecionado = (produto) => {
         setProdutosSelecionados((prevSelecionados) => {
             if (prevSelecionados.some((p) => p.item.id === produto.item.id)) {
@@ -107,7 +81,8 @@ export default function SelecaoProdutos(){
         });
     };
 
-    function adicionarProdutos() {
+    // Salva as alterações feitas e volta à tela do movimento.
+    function finalizarSelecao() {
         if (produtosSelecionados.length === 0) {
             errorToast("Nenhum produto selecionado.");
             return;
@@ -120,34 +95,19 @@ export default function SelecaoProdutos(){
         navigate("/cadastros-de-estoque");
     }
 
-    async function carregarImagemAwsS3 (idUsuario)  {
-        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
-            .then(() => {
-                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
-            })
-            .catch(() => {
-                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
-            });
-    };
-
-
     return(
     <>
         <TopBar title={"Seleção de Produtos"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.divPrincipal}>
-            {/* <div className={styles.barraDeBusca}>
-                <IconInput 
-                // onChange={buscarProdutos} 
-                placeholder={"Pesquisa por nome"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
                 <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
-                    // onChange={ordenar}
+                    showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
+                    onChange={(v)=>setOrdenacao(v)}
                 />
-            </div> */}
-            {/* <div className={styles.containerProdutos}> */}
-            {/* <hr></hr> */}
-            {produtos.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
-            {produtos.map((produto) => (
+            </div>
+            <hr/>
+            {produtosVisiveis?.map((produto) => (
                     <Product
                         key={produto.item.id}
                         id={produto.item.id}
@@ -159,12 +119,10 @@ export default function SelecaoProdutos(){
                         onChange={() => toggleProdutoSelecionado(produto)}
                     />
                 ))}
-                
-            {/* </div> */}
         </div>
-            <div className={styles.containerBotao}>
-                <Button insideText={"Confirmar seleção"} onClick={adicionarProdutos}/>
-            </div>
+        <div className={styles.containerBotao}>
+            <Button insideText={"Confirmar seleção"} onClick={finalizarSelecao}/>
+        </div>
     </>
 )
 }
