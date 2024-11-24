@@ -32,13 +32,10 @@ import EditandoCategoria from "./pages/configuracoes-de-estoque/Categoria/editan
 import ConfiguracoesUnidadeMedida from "./pages/configuracoes-de-estoque/UnidadeDeMedida/confirguracoesDeUnidadeMedida/ConfiguracoesUnidadeMedida"
 import CriandoUnidadeMedida from "./pages/configuracoes-de-estoque/UnidadeDeMedida/criandoUnidadeMedida/CriandoUnidadeMedida"
 import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/UnidadeDeMedida/editandoUnidadeDeMedida/EditandoUnidadeDeMedida"
-
 import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
-
 import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
-
 import TelaParaNegarDelecao from "./pages/tela-para-negar-delecao/TelaParaNegarDelecao"
-import EditarPerfil from "./pages/configuracoes-de-acesso/editarUsuario/EditarColaborador"
+import EditarPerfil from "./pages/editarPerfil/EditarPerfil";
 
 function Rotas() {
     let rotaPadrao = null;
