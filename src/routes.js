@@ -38,7 +38,7 @@ import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
 import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
 
 import TelaParaNegarDelecao from "./pages/tela-para-negar-delecao/TelaParaNegarDelecao"
-import EditarUsuario from "./pages/editarUsuario/EditarUsuario"
+import EditarPerfil from "./pages/configuracoes-de-acesso/editarUsuario/EditarColaborador"
 
 function Rotas() {
     let rotaPadrao = null;
@@ -76,16 +76,15 @@ function Rotas() {
                     <Route path={"/adicionando-colaborador"} element={<AdicionandoColaborador/>} />
                     <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
 
-                
-                <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
 
+                <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
+                <Route path={"/editar-perfil"} element={<EditarPerfil/>}/>
                 <Route path={"/configuracoes"} element={<Configuracoes/>}/>
 
                 <Route path={"/tela-de-confirmacao"} element={<TelaDeConfirmacao/>}/>
                 <Route path={"/delecao-negada"} element={<TelaParaNegarDelecao/>}/>
 
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
-                <Route path={"/editar-usuario"} element={<EditarUsuario/>}/>
             </Routes>
         </BrowserRouter>
         )
