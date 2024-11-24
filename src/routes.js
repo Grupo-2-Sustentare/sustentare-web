@@ -19,7 +19,7 @@ import RemoverColaborador from "./pages/configuracoes-de-acesso/removerColaborad
 
 import ConfigurationMenu from "./pages/configuracoes-de-estoque/ConfigurationMenu/ConfigurationMenu";
 
-import ConfiguracoesProdutos from "./pages/configuracoes-de-estoque/Produto/configuracoesDeProdutos/configuracoesDeProdutos";
+import ConfiguracoesProdutos from "./pages/configuracoes-de-estoque/Produto/configuracoesDeProdutos/ConfiguracoesDeProdutos";
 import CriandoProduto from "./pages/configuracoes-de-estoque/Produto/criandoNovoProduto/CriandoProduto"
 import CategoriaProduto from "./pages/configuracoes-de-estoque/Produto/categoriaProduto/CategoriaProduto"
 import UnidadeMedidaProduto from "./pages/configuracoes-de-estoque/Produto/unidadeDeMedidaProduto/UnidadeMedidaProduto";
@@ -32,13 +32,10 @@ import EditandoCategoria from "./pages/configuracoes-de-estoque/Categoria/editan
 import ConfiguracoesUnidadeMedida from "./pages/configuracoes-de-estoque/UnidadeDeMedida/confirguracoesDeUnidadeMedida/ConfiguracoesUnidadeMedida"
 import CriandoUnidadeMedida from "./pages/configuracoes-de-estoque/UnidadeDeMedida/criandoUnidadeMedida/CriandoUnidadeMedida"
 import EditandoUnidadeDeMedida from "./pages/configuracoes-de-estoque/UnidadeDeMedida/editandoUnidadeDeMedida/EditandoUnidadeDeMedida"
-
 import HistoricoOperacoes from "./pages/historico-operacoes/HistoricoOperacoes";
-
 import TelaDeConfirmacao from "./pages/tela-de-confirmacao/TelaDeConfirmacao"
-
 import TelaParaNegarDelecao from "./pages/tela-para-negar-delecao/TelaParaNegarDelecao"
-import EditarUsuario from "./pages/editarUsuario/EditarUsuario"
+import EditarPerfil from "./pages/editar-perfil/EditarPerfil";
 
 function Rotas() {
     let rotaPadrao = null;
@@ -76,16 +73,15 @@ function Rotas() {
                     <Route path={"/adicionando-colaborador"} element={<AdicionandoColaborador/>} />
                     <Route path={"/remover-colaborador"} element={<RemoverColaborador/>}/>
 
-                
-                <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
 
+                <Route path={"/historico-de-operacoes"} element={<HistoricoOperacoes/>}/>
+                <Route path={"/editar-perfil"} element={<EditarPerfil/>}/>
                 <Route path={"/configuracoes"} element={<Configuracoes/>}/>
 
                 <Route path={"/tela-de-confirmacao"} element={<TelaDeConfirmacao/>}/>
                 <Route path={"/delecao-negada"} element={<TelaParaNegarDelecao/>}/>
 
                 <Route path={"/teste"} element={<ExibirComponentes/>} />
-                <Route path={"/editar-usuario"} element={<EditarUsuario/>}/>
             </Routes>
         </BrowserRouter>
         )

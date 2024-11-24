@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import api from "../../api";
-import styles from "./EditarUsuario.module.css"
+import styles from "./EditarPerfil.module.css"
 import TextInput from "../../components/TextInput/TextInput";
 import Button from "../../components/Button/Button";
 import Checkbox from "../../components/Checkbox/Checkbox";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { errorToast, successToast } from "../../components/Toast/Toast";
 
 
-const EditarUsuario = () => {
+const EditarPerfil = () => {
     const navigate = useNavigate();
 
 
@@ -152,4 +152,4 @@ const EditarUsuario = () => {
     );
 };
 
-export default EditarUsuario;
+export default EditarPerfil;

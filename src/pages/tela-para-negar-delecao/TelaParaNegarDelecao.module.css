@@ -1,11 +1,3 @@
-.divFiltroEBusca {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-    padding: 8px;
-}
-
 .divPrincipal {
     display: flex;
     flex-direction: column;

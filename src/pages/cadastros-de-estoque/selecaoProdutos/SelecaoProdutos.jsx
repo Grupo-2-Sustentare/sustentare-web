@@ -10,10 +10,13 @@ import {useEffect, useState} from "react";
 import { errorToast } from "../../../components/Toast/Toast";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 import axios from "axios";
+import loading from "../../../loading.gif"
 
 export default function SelecaoProdutos(){
 
     const navigate = useNavigate()
+
+    const [carregando, setCarregando] = useState(true)
 
     // Todos os produtos vindos back-end.
     const [produtos, setProdutos] = useState([]);
@@ -56,7 +59,8 @@ export default function SelecaoProdutos(){
             })
             .catch((error) => {
                 console.error("Erro ao buscar produtos:", error); // Trata erros
-            });
+            })
+            .finally(() => setCarregando(false));
     }, []);
 
     //Ao mudar os produtos selecionados, atualiza sua variável no session storage.
@@ -105,8 +109,8 @@ export default function SelecaoProdutos(){
                     showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
                     onChange={(v)=>setOrdenacao(v)}
                 />
-            </div>
-            <hr/>
+            </div><hr/>
+            {carregando && (<img src={loading} alt={"Carregando..."}/>)}
             {produtosVisiveis?.map((produto) => (
                     <Product
                         key={produto.item.id}

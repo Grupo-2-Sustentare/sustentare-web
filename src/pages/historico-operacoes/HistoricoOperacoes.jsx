@@ -72,8 +72,7 @@ export default function HistoricoOperacoes() {
                     showTitle={false} items={OPCOES_ORDENACAO.Log} hint={"Opções de ordenação"}
                     onChange={(v)=>setOrdenacao(v)}
                 />
-            </div>
-            <hr></hr>
+            </div><hr/>
             <div className={styles.principal}>
                 {logsVisiveis?.map((l) => (
                     <OperationLog
