@@ -9,8 +9,8 @@ import api from "../../../../api";
 import Product from "../../../../components/ProductItem/Product";
 import { errorToast, successToast } from "../../../../components/Toast/Toast";
 import StrechList from "../../../../components/StrechList/StrechList";
-import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
-import {UNIT_ICONS} from "../../../../tools/TiposUnidadeMedida";
+import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../../tools/ModuloBusca";
+import { UNIT_ICONS } from "../../../../tools/TiposUnidadeMedida";
 
 const ConfiguracoesUnidadeMedida = () => {
     const navigate = useNavigate();
@@ -23,17 +23,17 @@ const ConfiguracoesUnidadeMedida = () => {
     const unidadeMedidaRemovida = location.state?.unidadeMedidaRemovida;
 
     useEffect(() => {
-        if(unidadeMedidaRemovida != undefined){
+        if (unidadeMedidaRemovida != undefined) {
             setUnidades((prevUnidades) =>
                 prevUnidades.filter((uni) => uni.id !== unidadeMedidaRemovida.id)
             );
         }
 
         api.get('/unidades-medida').then((res) => setUnidades(res.data))
-            .catch((err)=>{
+            .catch((err) => {
                 errorToast("Erro ao buscas unidades de medida. Contate o suporte.")
                 console.error("Erro ao buscar unidades de medida:", err);
-        })
+            })
     }, []);
 
     const handleEdit = (unidadeMedida) => {
@@ -48,34 +48,36 @@ const ConfiguracoesUnidadeMedida = () => {
     return (
         <>
             <TopBar title={"configurações de Unidade de Medida"} showBackArrow={true}
-                    backNavigationPath={"/configuracoes-de-estoque"}/>
-            <div className={styles.barraDeBusca}>
-                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por usuário"}/>
-                <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO["Unidade de medida"]} hint={"Opções de ordenação"}
-                    onChange={(v) => setOrdenacao(v)}
-                />
-            </div><hr/>
+                backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
-                {unidadesVisiveis?.map(u => {
-                    return (
-                        <Product
-                            key={u.id} addressImg={false} name={u.nome} showCheckbox={false}
-                            icon={UNIT_ICONS[u.categoria.toUpperCase()]}
-                            quantity={[`Categoria: ${u.categoria}`, <br/>, `Abreviação: ${u.simbolo}`]}
-                            buttonsConfig={{
-                                yellow: {icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(u)},
-                                red: {
-                                    icon: "fa-solid fa-trash", text: "Remover",
-                                    action: () => navigate("/tela-de-confirmacao", {state: {unidadeDeMedida: u}}),
-                                }
-                            }}
-                        />
-                    );
-                })}
+                <div className={styles.barraDeBusca}>
+                    <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por usuário"} />
+                    <StrechList
+                        showTitle={false} items={OPCOES_ORDENACAO["Unidade de medida"]} hint={"Opções de ordenação"}
+                        onChange={(v) => setOrdenacao(v)}
+                    />
+                </div><hr />
+                <div className={styles.principal}>
+                    {unidadesVisiveis?.map(u => {
+                        return (
+                            <Product
+                                key={u.id} addressImg={false} name={u.nome} showCheckbox={false}
+                                icon={UNIT_ICONS[u.categoria.toUpperCase()]}
+                                quantity={[`Categoria: ${u.categoria}`, <br />, `Abreviação: ${u.simbolo}`]}
+                                buttonsConfig={{
+                                    yellow: { icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(u) },
+                                    red: {
+                                        icon: "fa-solid fa-trash", text: "Remover",
+                                        action: () => navigate("/tela-de-confirmacao", { state: { unidadeDeMedida: u } }),
+                                    }
+                                }}
+                            />
+                        );
+                    })}
+                </div>
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar nova unidade de medida" onClick={() => navigate("/criando-unidade-medida")}/>
+                <Button insideText="Cadastrar nova unidade de medida" onClick={() => navigate("/criando-unidade-medida")} />
             </div>
         </>
     );
