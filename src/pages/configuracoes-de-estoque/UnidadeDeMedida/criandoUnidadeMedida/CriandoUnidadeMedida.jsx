@@ -138,7 +138,7 @@ const CriandoUnidadeMedida = () => {
                 />
                 <StreachList
                     title="Categoria:"
-                    items={["Massa", "Volume", "Quantidade genérica"]}
+                    items={["Massa", "Volume", "Genérica"]}
                     onChange={handleStreachListChange} // Atualiza o estado ao selecionar
                 />
                 <div className={styles.divMeasumentTextInput}>
