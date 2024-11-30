@@ -23,18 +23,24 @@ export default function HistoricoOperacoes() {
     const [logsVisiveis, setLogsVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
-
+ 
     useEffect(() => {
         setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
+ 
     }, [logs, queryPesquisa, ordenacao])
 
     const buscarLogs = () => {
-        let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" : idUsuarioEspecifico = "/" + usuarioEscolhido.id
+        let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" :  "/" + usuarioEscolhido.id
 
         api.get(`/audit-logs${idUsuarioEspecifico}`).then((response) => {
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
+            if (response.status === 204) {
+                return
+              }
             let logs = response.data
-
+            console.log("=================")
+            console.log(response)
+            console.log("=================")
             for (let i in logs){
                 logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
                 logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
