@@ -97,9 +97,8 @@ export default function TelaDeConfirmacao({ }) {
                     return api.delete(`/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
                 })
                 .then(() => {
-                    successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
-                    // navigate("/configuracoes-de-produtos")
-                    // navigate("/delecao-negada")
+                    // successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
+                    navigate("/configuracoes-de-produtos")
                 })
                 .catch((error) => {
                     console.error("Erro ao desativar produto ou remover item associado:", error);

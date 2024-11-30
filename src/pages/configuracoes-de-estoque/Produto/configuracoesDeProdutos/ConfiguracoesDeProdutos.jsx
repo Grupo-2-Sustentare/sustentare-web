@@ -14,6 +14,14 @@ import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
+    sessionStorage.removeItem('paginaRequisicao')
+    sessionStorage.removeItem('selectedUnidadeMedida')
+    sessionStorage.removeItem('selectedCategoria')
+    sessionStorage.removeItem('nome')
+    sessionStorage.removeItem('diasVencimento')
+    sessionStorage.removeItem('perecivel')
+    sessionStorage.removeItem('produto_selecionado')
+    sessionStorage.removeItem('qtdMinItem');
 
     // Do módulo de busca e ordenação.
     const [produtosVisiveis, setProdutosVisiveis] = useState([])
@@ -31,7 +39,6 @@ const ConfiguracoesProdutos = () => {
     }
 
     useEffect(() => {
-        sessionStorage.clear();
         api.get("/produtos").then(async (res) => {
             const produtosComImagens = await Promise.all(
                 res.data?.map(async (prod) => {
@@ -100,7 +107,18 @@ const ConfiguracoesProdutos = () => {
                 </div>
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar novo produto" onClick={() => navigate("/criando-produto")} />
+                <Button
+                    insideText="Cadastrar novo produto"
+                    onClick={() => {
+                        // sessionStorage.setItem("selectedCategoria", "null");
+                        // sessionStorage.setItem("selectedUnidadeMedida", "null");
+                        const nome = sessionStorage.getItem("nome"); // Verifica o valor de 'nome' no sessionStorage
+                        if (nome && nome.trim() !== "") { // Remove apenas se não estiver vazio ou composto por espaços
+                            sessionStorage.removeItem("nome");
+                        }
+                        navigate("/criando-produto"); // Navega para a página de criar produto
+                    }}
+                />
             </div>
         </>
     );
