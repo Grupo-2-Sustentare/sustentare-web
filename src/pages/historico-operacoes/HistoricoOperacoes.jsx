@@ -38,9 +38,6 @@ export default function HistoricoOperacoes() {
                 return
               }
             let logs = response.data
-            console.log("=================")
-            console.log(response)
-            console.log("=================")
             for (let i in logs){
                 logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
                 logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
@@ -48,7 +45,7 @@ export default function HistoricoOperacoes() {
 
             setLogs(logs);
         }).catch(() => {
-            errorToast("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+            errorToast("Erro ao tentar realizar buscar as informacoes dos logs. Contate o suporte.");
         }).finally(() => setLoading(false))
     };
     useEffect(() => buscarLogs(), []);
@@ -80,9 +77,9 @@ export default function HistoricoOperacoes() {
                 />
             </div><hr/>
             <div className={styles.principal}>
-                {logsVisiveis?.map((l) => (
+                {logsVisiveis?.map((l, i) => (
                     <OperationLog
-                        key={l.id} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
+                        key={i} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
                         adressImg={l.imagemUsuario}
                     />)
                 )}
