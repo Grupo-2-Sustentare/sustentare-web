@@ -149,7 +149,7 @@ export function QuantidadeMovimento() {
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
             {/* <Product name={p.nome} addressImg={p.urlImagem} quantity={  `${p.quantidade} ${p.unidade}`}/> */}
-            <ListItem adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.item.nome} subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`} fullBorderRadius={true} />
+            <ListItem adressImg={p.imageUrl} heading={p.item.nome} subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`} fullBorderRadius={true} />
         </div>
         <div className={styles.principal}>
             <div className={styles.inicioPrincipal}>
