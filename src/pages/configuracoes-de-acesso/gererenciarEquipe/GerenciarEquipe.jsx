@@ -9,9 +9,11 @@ import {errorToast} from "../../../components/Toast/Toast";
 import IconInput from "../../../components/IconInput/IconInput";
 import StrechList from "../../../components/StrechList/StrechList";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
+import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
 
 export default function GerenciarEquipe(){
     const navigate = useNavigate()
+    const [carregando, setCarregando] = useState(true)
 
     let style = getComputedStyle(document.body)
     let gunmetal = style.getPropertyValue("--gunmetal")
@@ -39,7 +41,7 @@ export default function GerenciarEquipe(){
              }).catch((error) => {
                  errorToast("Erro ao buscar usuários. Contate o suporte.")
                  console.error("Erro ao buscar usuários:", error);
-             })
+             }).finally(()=>setCarregando(false))
          }, []
      )
 
@@ -72,7 +74,7 @@ export default function GerenciarEquipe(){
                 />
             </div><hr/>
             <div className={styles.equipe}>
-                {usuarios.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
+                <LoadingIcon carregando={carregando}/>
                 {usuariosVisiveis?.map((u, i) => {
                     return <Product
                         name={u.nome} quantity={"Usuário(a)"} fullBorderRadius={true} buttonsConfig={btnsConfig}
