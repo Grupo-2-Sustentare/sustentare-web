@@ -16,7 +16,7 @@ const Login = () => {
             sessionStorage.setItem("responsavel", JSON.stringify(res.data))
             sessionStorage.setItem("nome_usuario", nome)
             sessionStorage.setItem("senhaAtual", senha)
-            sessionStorage.setItem("icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1")
+            sessionStorage.setItem("icone_usuario", null)
 
             successToast("Login feito com sucesso");
             navigate("/menu-inicial")
