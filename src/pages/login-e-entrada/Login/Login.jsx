@@ -4,7 +4,7 @@ import React, { useState } from "react"; // Importa React e o hook useState para
 import Button from "../../../components/Button/Button";
 import TextInput from "../../../components/TextInput/TextInput";
 import api from "../../../api";
-import { errorToast, successToast } from "../../../components/Toast/Toast";
+import {alertToast, errorToast, successToast} from "../../../components/Toast/Toast";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,6 +12,7 @@ const Login = () => {
     const [senha, setSenha] = useState("");
 
     const handleSave = () => {
+        alertToast("Validando informações...")
         api.post(`/proxy-java-api/usuarios/login`, {nome, senha}).then((res) => {
             sessionStorage.setItem("responsavel", JSON.stringify(res.data))
             sessionStorage.setItem("nome_usuario", nome)
