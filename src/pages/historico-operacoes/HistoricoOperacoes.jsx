@@ -8,16 +8,16 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {errorToast} from "../../components/Toast/Toast";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../tools/ModuloBusca";
+import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 
 export default function HistoricoOperacoes() {
     const location = useLocation();
+    const [carregando, setCarregando] = useState(true)
+
     const usuarioEscolhido = location.state?.usuario;
 
     // Estado para armazenar logs
     const [logs, setLogs] = useState([]);
-
-    // Estado para controlar o carregamento
-    const [loading, setLoading] = useState(true);
 
     // Do módulo de busca e ordenação.
     const [logsVisiveis, setLogsVisiveis] = useState([])
@@ -46,7 +46,7 @@ export default function HistoricoOperacoes() {
             setLogs(logs);
         }).catch(() => {
             errorToast("Erro ao tentar realizar buscar as informacoes dos logs. Contate o suporte.");
-        }).finally(() => setLoading(false))
+        }).finally(() => setCarregando(false))
     };
     useEffect(() => buscarLogs(), []);
 
@@ -77,6 +77,7 @@ export default function HistoricoOperacoes() {
                 />
             </div><hr/>
             <div className={styles.principal}>
+                <LoadingIcon carregando={carregando}/>
                 {logsVisiveis?.map((l, i) => (
                     <OperationLog
                         key={i} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
