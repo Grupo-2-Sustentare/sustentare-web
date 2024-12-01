@@ -33,7 +33,7 @@ export default function GerenciarEquipe(){
     const [ordenacao, setOrdenacao] = useState(null)
 
      useEffect(() => {
-             api.get('/usuarios').then((res) => {
+             api.get('/proxy-java-api/usuarios').then((res) => {
                  setUsuarios(res.data);
                  sessionStorage.setItem('usuarios', JSON.stringify(res.data));
              }).catch((error) => {

@@ -19,7 +19,7 @@ export default function ConfigurationMenu({ }) {
     const [ordenacao, setOrdenacao] = useState(null)
 
     useEffect(() => {
-        api.get('/unidades-medida').then((res) => setUnidades(res.data))
+        api.get('/proxy-java-api/unidades-medida').then((res) => setUnidades(res.data))
             .catch((error)=>{
                 errorToast("Erro ao buscar unidade de medida. Contate o suporte.")
                 console.error("Erro ao buscar unidades de medida:", error);

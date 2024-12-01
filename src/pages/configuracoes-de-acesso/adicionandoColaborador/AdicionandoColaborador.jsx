@@ -41,7 +41,7 @@ const AdicionandoColaborador = () => {
 
     // const fetchUsuarioAdicionado = async () => {
     //     try {
-    //         const response = await api.get('/usuarios/usuario-ultimo-id');
+    //         const response = await api.get('/proxy-java-api/usuarios/usuario-ultimo-id');
     //         setNovoUsuario(response.data);
     //         console.log("----------------")
     //         console.log(response.data)

@@ -29,7 +29,7 @@ const ConfiguracoesUnidadeMedida = () => {
             );
         }
 
-        api.get('/unidades-medida').then((res) => setUnidades(res.data))
+        api.get('/proxy-java-api/unidades-medida').then((res) => setUnidades(res.data))
             .catch((err) => {
                 errorToast("Erro ao buscas unidades de medida. Contate o suporte.")
                 console.error("Erro ao buscar unidades de medida:", err);
