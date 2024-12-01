@@ -111,6 +111,9 @@ const EditarPerfil = () => {
         try {
             const response = await api.patch(`/usuarios/${idResponsavel}?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
             successToast("configuracoes-de-acesso realizado com sucesso!");
+            if (imagem != undefined) {
+                successToast("Pode levar alguns segundos até carregar a imagem");
+            }
             sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
             adicionandoUsuarioNaSessionStorage(response.data);
             sessionStorage.setItem("responsavel", JSON.stringify(response.data));
