@@ -26,7 +26,7 @@ const CriandoUnidadeMedida = () => {
     // Função para buscar unidades existentes
     async function buscarUnidades() {
         try {
-            const response = await api.get(`/unidades-medida`); // Faz a requisição GET para listar as unidades
+            const response = await api.get(`/proxy-java-api/unidades-medida`); // Faz a requisição GET para listar as unidades
             setUnidadesExistentes(response.data); // Atualiza o estado com as unidades obtidas
         } catch (error) {
             console.error("Erro ao buscar unidades de medida:", error);
@@ -81,7 +81,7 @@ const CriandoUnidadeMedida = () => {
 
         try {
             // Fazendo a requisição POST para criar a unidade de medida
-            const response = await api.post(`/unidades-medida?idResponsavel=${idResponsavel}`, {
+            const response = await api.post(`/proxy-java-api/unidades-medida?idResponsavel=${idResponsavel}`, {
                 nome: nomeUnidadeTrimmed,
                 simbolo: simboloUnidadeTrimmed,
                 categoria: categoriaUnidade,

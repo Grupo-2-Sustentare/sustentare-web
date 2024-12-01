@@ -9,7 +9,7 @@ const DownloadButton = () => {
   const idResponsavel = responsavel ? responsavel.id : null;
 
   const downloadTxt = () => {
-    fetch(`http://localhost:8080/interacoes-estoque/csv/${idResponsavel}`) // Alterando a URL para o endpoint correto
+    fetch(`/proxy-java-api/interacoes-estoque/csv/${idResponsavel}`) // Alterando a URL para o endpoint correto
       .then(response => {
         if (response.ok) {
           successToast("Arquivo csv exportado com sucesso");

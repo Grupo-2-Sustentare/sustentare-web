@@ -19,7 +19,7 @@ export default function CategoriaProduto({ }) {
     const [ordenacao, setOrdenacao] = useState(null)
     
    useEffect(() => {
-      api.get("/categorias").then((res) => setCategorias(res.data))
+      api.get("/proxy-java-api/categorias").then((res) => setCategorias(res.data))
          .catch((err) => {
              errorToast("Erro ao buscar categorias. Contare o suporte.")
             console.error("Erro ao buscar categorias:", err);

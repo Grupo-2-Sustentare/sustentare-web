@@ -31,7 +31,7 @@ const EditarPerfil = () => {
 
 
     useEffect(() => {
-        api.get(`/usuarios/${idResponsavel}`)
+        api.get(`/proxy-java-api/usuarios/${idResponsavel}`)
             .then((response) => {
                 setNome(response.data.nome);
                 setEmail(response.data.email);
@@ -109,7 +109,7 @@ const EditarPerfil = () => {
         const objetoAdicionado = { nome, email, senha, imagem };
 
         try {
-            const response = await api.patch(`/usuarios/${idResponsavel}?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
+            const response = await api.patch(`/proxy-java-api/usuarios/${idResponsavel}?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
             successToast("configuracoes-de-acesso realizado com sucesso!");
             if (imagem != undefined) {
                 successToast("Pode levar alguns segundos até carregar a imagem");
