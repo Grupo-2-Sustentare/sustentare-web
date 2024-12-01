@@ -3,17 +3,22 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-}
 
-label{
-    font-size: 1em;
-}
+    label{
+        font-size: 1em;
+    }
 
-select{
-    background-color: var(--gunmetal);
-    border: var(--borda-branca);
-    box-shadow: var(--sombra-in-escura);
-    border-radius: 8px;
-    padding: 8px;
-    width: 100%;
+    span{
+        background-color: var(--gunmetal);
+        border: var(--borda-branca);
+        box-shadow: var(--sombra-in-escura);
+        border-radius: 8px;
+        padding: 8px;
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
