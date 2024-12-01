@@ -130,7 +130,7 @@ export default function SelecaoProdutos() {
 
             // Navega para a próxima página
             navigate("/cadastros-de-estoque");
-        }, 2000); // 2000 milissegundos = 2 segundos
+        }, 500);
     }
 
 
