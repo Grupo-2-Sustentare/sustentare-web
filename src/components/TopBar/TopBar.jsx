@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './topBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SideMenu from '../SideMenu/SideMenu';
 import {useNavigate} from "react-router-dom";
+import {alertToast} from "../Toast/Toast";
 
 export default function TopBar({ title, showBackArrow, backNavigationPath }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -39,6 +40,13 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
 
   const userName = sessionStorage.getItem("nome_usuario")
   const userImage = sessionStorage.getItem("icone_usuario")
+
+  useEffect(() => {
+    if (userName === null) {
+      alertToast("Sessão expirada.")
+      navigate("/")
+    }
+  }, []);
 
   return (
     <>
