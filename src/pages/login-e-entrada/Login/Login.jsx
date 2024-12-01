@@ -19,7 +19,7 @@ const Login = () => {
             sessionStorage.setItem("senhaAtual", senha)
             sessionStorage.setItem("icone_usuario", null)
 
-            successToast("Login feito com sucesso");
+            successToast("Sucesso!");
             navigate("/menu-inicial")
         }).catch((err) => {
             if (err.response === undefined){
