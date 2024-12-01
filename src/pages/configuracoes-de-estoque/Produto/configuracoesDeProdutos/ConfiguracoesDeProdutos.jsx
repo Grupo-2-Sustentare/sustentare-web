@@ -39,7 +39,7 @@ const ConfiguracoesProdutos = () => {
     }
 
     useEffect(() => {
-        api.get("/produtos").then(async (res) => {
+        api.get("/proxy-java-api/produtos").then(async (res) => {
             const produtosComImagens = await Promise.all(
                 res.data?.map(async (prod) => {
                     const imageUrl = await carregarImagemAwsS3(prod.item.id);

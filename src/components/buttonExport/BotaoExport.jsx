@@ -4,7 +4,7 @@ import { errorToast, successToast } from "../../components/Toast/Toast";
 
 const DownloadButton = () => {
   const downloadTxt = () => {
-    fetch('http://localhost:8080/itens/exportarTxt') // Alterando a URL para o endpoint correto
+    fetch('/proxy-java-api/itens/exportarTxt') // Alterando a URL para o endpoint correto
       .then(response => {
         if (response.ok) {
           successToast("Arquivo txt exportado com sucesso");

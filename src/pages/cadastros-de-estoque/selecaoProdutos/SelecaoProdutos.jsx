@@ -47,7 +47,7 @@ export default function SelecaoProdutos() {
             sessionStorage.setItem("produtosSelecionados", JSON.stringify(movement.products));
         }
 
-        api.get("/produtos")
+        api.get("/proxy-java-api/produtos")
             .then(async (res) => {
                 const produtosBrutos = res.data
                 const produtos = await Promise.all(produtosBrutos.map(async produto => {
