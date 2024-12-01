@@ -21,7 +21,7 @@ const ConfiguracoesCategorias = () => {
     const [ordenacao, setOrdenacao] = useState(null)
 
     useEffect(() => {
-        api.get("/categorias").then((res) => setCategorias(res.data))
+        api.get("/proxy-java-api/categorias").then((res) => setCategorias(res.data))
             .catch((err) => {
                 errorToast("Erro ao buscar categorias.")
                 console.log("Erro ao buscar categorias:", err);
@@ -40,7 +40,8 @@ const ConfiguracoesCategorias = () => {
 
     return (
         <>
-            <TopBar title={"configurações de categorias"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
+            <TopBar title={"configurações de categorias"} showBackArrow={true} 
+                backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
                 <div className={styles.barraDeBusca}>
                     <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>

@@ -12,7 +12,7 @@ const Login = () => {
     const [senha, setSenha] = useState("");
 
     const handleSave = () => {
-        api.post(`/usuarios/login`, {nome, senha}).then((res) => {
+        api.post(`/proxy-java-api/usuarios/login`, {nome, senha}).then((res) => {
             sessionStorage.setItem("responsavel", JSON.stringify(res.data))
             sessionStorage.setItem("nome_usuario", nome)
             sessionStorage.setItem("senhaAtual", senha)

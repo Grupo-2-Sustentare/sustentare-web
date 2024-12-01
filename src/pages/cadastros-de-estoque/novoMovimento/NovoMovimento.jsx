@@ -116,7 +116,7 @@ export default function NovoMovimento({ }) {
                     }
                 };
     
-                await api.post(`http://localhost:8080/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
+                await api.post(`/proxy-java-api/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
             }
             successToast("Movimentação concluída com sucesso.");
             sessionStorage.removeItem("movement")
@@ -125,6 +125,7 @@ export default function NovoMovimento({ }) {
             sessionStorage.removeItem("preco")
             sessionStorage.removeItem("qtdMovimento")
             sessionStorage.removeItem("isUltimaHora")
+            sessionStorage.removeItem("productBeingEdited")
     
             setTimeout(() => navigate("/menu-inicial"), 2000)
         } catch (error) {
@@ -172,7 +173,7 @@ export default function NovoMovimento({ }) {
                     insideText={"Adicionar produto"}
                     onClick={() => navigate("/selecao-produtos")}
                 />
-                <Button insideText={"Concluir entrada"} onClick={finalizar} />
+                <Button insideText={"Concluir movimento"} onClick={finalizar} />
             </div>
         </>
     )

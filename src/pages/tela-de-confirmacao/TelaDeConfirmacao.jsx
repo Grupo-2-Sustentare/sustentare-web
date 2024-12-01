@@ -36,7 +36,7 @@ export default function TelaDeConfirmacao({ }) {
         // console.log("aloooo")
         if (categoria !== undefined) {
             console.log("categoria")
-            api.delete(`/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
+            api.delete(`/proxy-java-api/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
                     successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
                     navigate("/configuracoes-de-categorias", { state: { categoriaRemovida: categoria } })
@@ -62,7 +62,7 @@ export default function TelaDeConfirmacao({ }) {
 
         if (unidadeDeMedida !== undefined) {
             console.log("unidade de medida")
-            api.delete(`/unidades-medida/${unidadeDeMedida.id}?idResponsavel=${idResponsavel}`)
+            api.delete(`/proxy-java-api/unidades-medida/${unidadeDeMedida.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
                     successToast(`Unidade "${unidadeDeMedida.nome}" desativada com sucesso!`);
                     navigate("/configuracoes-de-unidade-medida", { state: { unidadeMedidaRemovida: unidadeDeMedida } })
@@ -89,17 +89,16 @@ export default function TelaDeConfirmacao({ }) {
         if (produto !== undefined) {
             // fullBorderRadius=true;
             console.log("entrou")
-            api.delete(`/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
+            api.delete(`/proxy-java-api/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
                 .then((response) => {
                     successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
 
                     // Após a remoção do produto, remove o item associado
-                    return api.delete(`/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
+                    return api.delete(`/proxy-java-api/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
                 })
                 .then(() => {
-                    successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
-                    // navigate("/configuracoes-de-produtos")
-                    // navigate("/delecao-negada")
+                    // successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
+                    navigate("/configuracoes-de-produtos")
                 })
                 .catch((error) => {
                     console.error("Erro ao desativar produto ou remover item associado:", error);

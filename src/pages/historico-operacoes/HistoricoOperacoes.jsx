@@ -32,7 +32,7 @@ export default function HistoricoOperacoes() {
     const buscarLogs = () => {
         let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" :  "/" + usuarioEscolhido.id
 
-        api.get(`/audit-logs${idUsuarioEspecifico}`).then((response) => {
+        api.get(`/proxy-java-api/audit-logs${idUsuarioEspecifico}`).then((response) => {
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
             if (response.status === 204) {
                 return

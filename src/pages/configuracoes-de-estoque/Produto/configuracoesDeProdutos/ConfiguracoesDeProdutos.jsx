@@ -6,21 +6,29 @@ import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
 import api from "../../../../api";
 import Product, { DEFAULT_BUTTON_CONFIG } from "../../../../components/ProductItem/Product";
-import {errorToast} from "../../../../components/Toast/Toast";
+import { errorToast } from "../../../../components/Toast/Toast";
 import axios from "axios";
 import StrechList from "../../../../components/StrechList/StrechList";
-import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
+import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
+    sessionStorage.removeItem('paginaRequisicao')
+    sessionStorage.removeItem('selectedUnidadeMedida')
+    sessionStorage.removeItem('selectedCategoria')
+    sessionStorage.removeItem('nome')
+    sessionStorage.removeItem('diasVencimento')
+    sessionStorage.removeItem('perecivel')
+    sessionStorage.removeItem('produto_selecionado')
+    sessionStorage.removeItem('qtdMinItem');
 
     // Do módulo de busca e ordenação.
     const [produtosVisiveis, setProdutosVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
 
-    async function carregarImagemAwsS3 (idUsuario)  {
+    async function carregarImagemAwsS3(idUsuario) {
         return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
             .then(() => {
                 return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
@@ -31,19 +39,18 @@ const ConfiguracoesProdutos = () => {
     }
 
     useEffect(() => {
-        sessionStorage.clear();
-         api.get("/produtos").then(async (res) => {
-             const produtosComImagens = await Promise.all(
-                 res.data?.map(async (prod) => {
-                     const imageUrl = await carregarImagemAwsS3(prod.item.id);
-                     return {...prod, imageUrl};
-                 })
-             );
-             setProdutos(produtosComImagens);
-         }).catch((err) => {
-             errorToast("Erro ao carregar produtos.")
-             console.log(err)
-         });
+        api.get("/proxy-java-api/produtos").then(async (res) => {
+            const produtosComImagens = await Promise.all(
+                res.data?.map(async (prod) => {
+                    const imageUrl = await carregarImagemAwsS3(prod.item.id);
+                    return { ...prod, imageUrl };
+                })
+            );
+            setProdutos(produtosComImagens);
+        }).catch((err) => {
+            errorToast("Erro ao carregar produtos.")
+            console.log(err)
+        });
     }, []);
 
     // Função para salvar a categoria na sessionStorage e navegar para a página de edição
@@ -65,17 +72,18 @@ const ConfiguracoesProdutos = () => {
 
     return (
         <>
-            <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"}/>
-            <div className={styles.barraDeBusca}>
-                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
-                <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
-                    onChange={(v) => setOrdenacao(v)}
-                />
-            </div><hr/>
+            <TopBar title={"configurações de produtos"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
-                {produtos.length === 0 ? <p>Carregando...</p> : <p></p>}
-                {produtosVisiveis?.map((produto) => {
+                <div className={styles.barraDeBusca}>
+                    <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"} />
+                    <StrechList
+                        showTitle={false} items={OPCOES_ORDENACAO.Produto} hint={"Opções de ordenação"}
+                        onChange={(v) => setOrdenacao(v)}
+                    />
+                </div><hr />
+                <div className={styles.principal}>
+                    {produtos.length === 0 ? <p>Carregando...</p> : <p></p>}
+                    {produtosVisiveis?.map((produto) => {
                         return <Product
                             name={produto.item.nome}
                             quantity={produto.qtdProdutoTotal + " " + produto.item.unidade_medida.nome}
@@ -90,15 +98,27 @@ const ConfiguracoesProdutos = () => {
                                 red: {
                                     icon: "fa-solid fa-trash",
                                     text: "Remover",
-                                    action: () => navigate("/tela-de-confirmacao", {state: {produto: produto}}),
+                                    action: () => navigate("/tela-de-confirmacao", { state: { produto: produto } }),
                                 }
                             }}
                         />
                     }
-                )}
+                    )}
+                </div>
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar novo produto" onClick={() => navigate("/criando-produto")}/>
+                <Button
+                    insideText="Cadastrar novo produto"
+                    onClick={() => {
+                        // sessionStorage.setItem("selectedCategoria", "null");
+                        // sessionStorage.setItem("selectedUnidadeMedida", "null");
+                        const nome = sessionStorage.getItem("nome"); // Verifica o valor de 'nome' no sessionStorage
+                        if (nome && nome.trim() !== "") { // Remove apenas se não estiver vazio ou composto por espaços
+                            sessionStorage.removeItem("nome");
+                        }
+                        navigate("/criando-produto"); // Navega para a página de criar produto
+                    }}
+                />
             </div>
         </>
     );

@@ -17,7 +17,7 @@ const CriandoProduto = () => {
     const navigate = useNavigate()
     sessionStorage.paginaRequisicao = "/criando-produto"
     const responsavelString = sessionStorage.getItem("responsavel");
-    const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
     const idResponsavel = responsavel ? responsavel.id : null;
     const [imagem, setImagem] = useState(null);
 
@@ -54,11 +54,15 @@ const CriandoProduto = () => {
     const [qtdProduto, setQtdProduto] = useState(0);
     const [qtdProdutoTotal, setQtdProdutoTotal] = useState(0);
     const [qtdMedida, setQtdMedida] = useState(0);
-
+    
     const [nome, setNome] = useState(sessionStorage.getItem("nome") || "");
     const [diasVencimento, setDiasVencimento] = useState(sessionStorage.getItem("diasVencimento") || "");
+    const [qtdMinItem, setQtdMinItem] = useState(0.0);
     const [isChecked, setIsChecked] = useState(
         JSON.parse(sessionStorage.getItem("perecivel")) || false
+    );
+    const [isCheckedQtd, setIsCheckedQtd] = useState(
+        JSON.parse(sessionStorage.getItem("qtdMinItem")) || false
     );
 
     // Sincroniza os valores com sessionStorage apenas quando mudam
@@ -74,6 +78,10 @@ const CriandoProduto = () => {
         sessionStorage.setItem("perecivel", isChecked);
     }, [isChecked]);
 
+    useEffect(() => {
+        sessionStorage.setItem("qtdMinItem", isCheckedQtd);
+    }, [isCheckedQtd]);
+
     // Atualiza sessionStorage ao alterar os campos
     const handleNomeChange = (e) => {
         setNome(e.target.value);
@@ -85,17 +93,39 @@ const CriandoProduto = () => {
         sessionStorage.setItem("diasVencimento", e.target.value);
     };
 
+    const handleQtdMinItemChange = (e) => {
+        const rawValue = e.target.value;
+        const formattedValue = rawValue.replace(",", "."); // Substitui vírgula por ponto
+        const numericValue = parseFloat(formattedValue); // Converte para número
+    
+        if (!isNaN(numericValue)) {
+            setQtdMinItem(numericValue);
+            sessionStorage.setItem("qtdMinItem", numericValue);
+        } else {
+            setQtdMinItem(0.0); // Define um valor padrão em caso de erro
+            sessionStorage.setItem("qtdMinItem", 0.0);
+        }
+    };
+
     const handleCheckboxChange = (novoValor) => {
         setIsChecked(novoValor === 1);
         sessionStorage.setItem("perecivel", novoValor === 1);
-    
+
+    };
+
+    const handleCheckboxChangeQtd = (novoValor) => {
+        setIsCheckedQtd(novoValor === 1);
+        sessionStorage.setItem("qtdMinItem", novoValor === 1);
     };
 
     useEffect(() => {
         if (!isChecked) {
             setDiasVencimento(null);
         }
-    }, [isChecked]);
+        if(!isCheckedQtd){
+            setQtdMinItem(0.0)
+        }
+    }, [isChecked, isCheckedQtd]);
 
     var itemId = 0;
 
@@ -105,10 +135,11 @@ const CriandoProduto = () => {
             nome,
             perecivel: isChecked,
             dias_vencimento: diasVencimento,
+            qtd_min_item: parseFloat(qtdMinItem), // Certifica-se de que seja double
             imagem: imagem,
             ativo: true
         };
-    
+
         const produto = {
             preco: preco,
             qtdProduto: qtdProduto,
@@ -116,9 +147,9 @@ const CriandoProduto = () => {
             qtdMedida: qtdMedida,
             ativo: true
         };
-    
+
         // Primeiro, cria o item
-        api.post(`/itens?unidadeMedidaId=${itemUM.id}&categoriaItemId=${itemC.id}&idResponsavel=${idResponsavel}`, item)
+        api.post(`/proxy-java-api/itens?unidadeMedidaId=${itemUM.id}&categoriaItemId=${itemC.id}&idResponsavel=${idResponsavel}`, item)
             .then((response) => {
                 itemId = response.data.id;
                 // console.log(response.data.id)
@@ -128,24 +159,24 @@ const CriandoProduto = () => {
                 // setTimeout(() => {
                 //     navigate("/configuracoes-de-produtos");
                 // }, 1000);
-                api.post(`/produtos?idResponsavel=${idResponsavel}&fkItem=${itemId}`, produto)
-                .then((response) => {
-                    console.log(response)
-                })
-                .then(() => {
-                    successToast("Produto criado com sucesso");
-                    const toastDurationImagem = 2000 
-                    setTimeout(() => {
-                        successToast("Pode levar alguns instantes para atualizar a imagem");
-                    }, toastDurationImagem);
-                    setTimeout(() => {
-                        navigate("/configuracoes-de-produtos");
-                    }, 1000);
-                })
-                .catch((error) => {
-                    console.error("Erro ao criar o produto:", error);
-                    // Adicione um toast de erro ou outra lógica de tratamento de erros aqui
-                });
+                api.post(`/proxy-java-api/produtos?idResponsavel=${idResponsavel}&fkItem=${itemId}`, produto)
+                    .then((response) => {
+                        console.log(response)
+                    })
+                    .then(() => {
+                        successToast("Produto criado com sucesso");
+                        const toastDurationImagem = 2000
+                        setTimeout(() => {
+                            successToast("Pode levar alguns instantes para atualizar a imagem");
+                        }, toastDurationImagem);
+                        setTimeout(() => {
+                            navigate("/configuracoes-de-produtos");
+                        }, 1000);
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao criar o produto:", error);
+                        // Adicione um toast de erro ou outra lógica de tratamento de erros aqui
+                    });
             })
             .catch((error) => {
                 console.error("Erro ao criar o produto:", error);
@@ -174,12 +205,12 @@ const CriandoProduto = () => {
         <div>
             <TopBar title={"Criando Novo Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"} />
             <div className={styles.divPrincipal}>
-                <ImageUploader onImageSelect={handleImageChange}/>
+                <ImageUploader onImageSelect={handleImageChange} />
                 <div className={styles.TextInput}>
-                    <TextInput 
-                    label="Nome:" 
-                    value={nome}
-                    onChange={handleNomeChange}
+                    <TextInput
+                        label="Nome:"
+                        value={nome}
+                        onChange={handleNomeChange}
                     />
                 </div>
                 <div className={styles.TextInput}>
@@ -196,19 +227,38 @@ const CriandoProduto = () => {
                     />
                 </div>
 
-                <div className={styles.divPerecivel}>
+                <div className={styles.divCheck}>
                     <p>Perecível</p>
                     <Checkbox ticadaPorPadrao={isChecked ? 1 : 0} onChange={handleCheckboxChange} />
                 </div>
 
                 {isChecked && (
-                <MeasurementUnitInput
-                    measurementUnit={"dias para vencer"}
-                    type={Number}
-                    value={diasVencimento}
-                    onChange={handleDiasVencimentoChange}
-                />
-            )}
+                    <MeasurementUnitInput
+                        measurementUnit={"dias para vencer"}
+                        type={Number}
+                        value={diasVencimento}
+                        onChange={handleDiasVencimentoChange}
+                    />
+                )}
+
+                <div className={styles.divCheckQtd}>
+                    <p>Adicionar quantidade mínima</p>
+                    <Checkbox ticadaPorPadrao={isCheckedQtd ? 1 : 0} onChange={handleCheckboxChangeQtd} />
+                </div>
+
+                {isCheckedQtd && (
+                    <MeasurementUnitInput
+                        // measurementUnit={"no mín"}
+                        // type={Number}
+                        // value={qtdMinItem}
+                        // onChange={handleDiasVencimentoChange}
+                        measurementUnit={"no mín"}
+                        placeholder={0.0}
+                        type={"text"} // Use "text" para permitir entradas com vírgula
+                        value={qtdMinItem}
+                        onChange={handleQtdMinItemChange}
+                    />
+                )}
             </div>
             <div className={styles.divBotao}>
                 <Button insideText={"Salvar novo produto"} onClick={Salvar} />

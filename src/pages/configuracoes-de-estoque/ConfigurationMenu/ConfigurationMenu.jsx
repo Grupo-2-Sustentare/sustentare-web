@@ -13,7 +13,7 @@ export default function ConfigurationMenu({ }) {
 
      const fetchProdutos = () => {
           try {
-               const response = api.get(`/produtos`);
+               const response = api.get(`/proxy-java-api/produtos`);
                setProdutos(response.data)
                console.log(produtos)
           } catch {

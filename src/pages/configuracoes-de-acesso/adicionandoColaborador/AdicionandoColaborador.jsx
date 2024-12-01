@@ -41,7 +41,7 @@ const AdicionandoColaborador = () => {
 
     // const fetchUsuarioAdicionado = async () => {
     //     try {
-    //         const response = await api.get('/usuarios/usuario-ultimo-id');
+    //         const response = await api.get('/proxy-java-api/usuarios/usuario-ultimo-id');
     //         setNovoUsuario(response.data);
     //         console.log("----------------")
     //         console.log(response.data)
@@ -95,7 +95,7 @@ const AdicionandoColaborador = () => {
 
         try {
             if (acessoResponsavel == 1) {
-                const response = await api.post(`/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
+                const response = await api.post(`/proxy-java-api/usuarios?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
                 successToast("configuracoes-de-acesso realizado com sucesso!");
                 sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
                 adicionandoUsuarioNaSessionStorage(response.data); 
