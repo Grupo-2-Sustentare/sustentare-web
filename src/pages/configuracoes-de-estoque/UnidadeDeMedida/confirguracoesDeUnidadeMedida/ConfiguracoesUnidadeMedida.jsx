@@ -11,9 +11,12 @@ import { errorToast, successToast } from "../../../../components/Toast/Toast";
 import StrechList from "../../../../components/StrechList/StrechList";
 import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../../tools/ModuloBusca";
 import { UNIT_ICONS } from "../../../../tools/TiposUnidadeMedida";
+import LoadingIcon from "../../../../components/LoadingIcon/LoadingIcon";
 
 const ConfiguracoesUnidadeMedida = () => {
     const navigate = useNavigate();
+    const [carregando, setCarregando] = useState(true);
+
     const [unidades, setUnidades] = useState([]);
     const [unidadesVisiveis, setUnidadesVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
@@ -33,7 +36,7 @@ const ConfiguracoesUnidadeMedida = () => {
             .catch((err) => {
                 errorToast("Erro ao buscas unidades de medida. Contate o suporte.")
                 console.error("Erro ao buscar unidades de medida:", err);
-            })
+            }).finally(()=>setCarregando(false));
     }, []);
 
     const handleEdit = (unidadeMedida) => {
@@ -58,6 +61,7 @@ const ConfiguracoesUnidadeMedida = () => {
                     />
                 </div><hr />
                 <div className={styles.principal}>
+                    <LoadingIcon carregando={carregando}/>
                     {unidadesVisiveis?.map(u => {
                         return (
                             <Product
