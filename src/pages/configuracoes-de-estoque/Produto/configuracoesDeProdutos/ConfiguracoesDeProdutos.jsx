@@ -10,10 +10,12 @@ import { errorToast } from "../../../../components/Toast/Toast";
 import axios from "axios";
 import StrechList from "../../../../components/StrechList/StrechList";
 import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../../tools/ModuloBusca";
+import LoadingIcon from "../../../../components/LoadingIcon/LoadingIcon";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
+    const [carregando, setCarregando] = useState(true);
     sessionStorage.removeItem('paginaRequisicao')
     sessionStorage.removeItem('selectedUnidadeMedida')
     sessionStorage.removeItem('selectedCategoria')
@@ -50,7 +52,7 @@ const ConfiguracoesProdutos = () => {
         }).catch((err) => {
             errorToast("Erro ao carregar produtos.")
             console.log(err)
-        });
+        }).finally(()=>setCarregando(false));
     }, []);
 
     // Função para salvar a categoria na sessionStorage e navegar para a página de edição
@@ -82,7 +84,7 @@ const ConfiguracoesProdutos = () => {
                     />
                 </div><hr />
                 <div className={styles.principal}>
-                    {produtos.length === 0 ? <p>Carregando...</p> : <p></p>}
+                    <LoadingIcon carregando={carregando}/>
                     {produtosVisiveis?.map((produto) => {
                         return <Product
                             name={produto.item.nome}

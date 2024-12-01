@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from "../MenuItem/MenuItem.jsx"
 import style from './sideMenu.module.css';
 import {useNavigate} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const SideMenu = ({ userName, userImage }) => {
     const navigate = useNavigate();
@@ -30,9 +31,13 @@ const SideMenu = ({ userName, userImage }) => {
                 </div>
                 <div className={style.sidebarFooter}>
                     <div className={style.userInfo}>
+                        <img className={style.userImage} src={userImage} alt={"Perfil"}/>
                         <span className={style.userName}>{userName.toUpperCase()}</span>
-                        <span className={style.logoutButton} onClick={()=>logout()}>Sair</span>
                     </div>
+                    <span className={style.logoutButton} onClick={()=>logout()}>
+                        <FontAwesomeIcon icon={'right-from-bracket'}/>
+                        <p>Sair</p>
+                    </span>
                 </div>
             </div>
         </div>

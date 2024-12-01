@@ -4,7 +4,7 @@ import React, { useState } from "react"; // Importa React e o hook useState para
 import Button from "../../../components/Button/Button";
 import TextInput from "../../../components/TextInput/TextInput";
 import api from "../../../api";
-import { errorToast, successToast } from "../../../components/Toast/Toast";
+import {alertToast, errorToast, successToast} from "../../../components/Toast/Toast";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,13 +12,14 @@ const Login = () => {
     const [senha, setSenha] = useState("");
 
     const handleSave = () => {
+        alertToast("Validando informações...")
         api.post(`/proxy-java-api/usuarios/login`, {nome, senha}).then((res) => {
             sessionStorage.setItem("responsavel", JSON.stringify(res.data))
             sessionStorage.setItem("nome_usuario", nome)
             sessionStorage.setItem("senhaAtual", senha)
-            sessionStorage.setItem("icone_usuario", "https://i0.wp.com/ochin.com.br/wp-content/uploads/2023/04/1.jpg?fit=1024%2C974&ssl=1")
+            sessionStorage.setItem("icone_usuario", null)
 
-            successToast("Login feito com sucesso");
+            successToast("Sucesso!");
             navigate("/menu-inicial")
         }).catch((err) => {
             if (err.response === undefined){

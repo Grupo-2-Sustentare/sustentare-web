@@ -13,7 +13,7 @@
     color: var(--gunmetal);
 }
 
-.success{background-color: var(--toast-verde);}
-.alert {background-color: var(--toast-amarelo);}
-.error {background-color: var(--toast-vermelho);}
+.success{background: var(--toast-verde) !important;}
+.alert {background-color: var(--toast-amarelo) !important;}
+.error {background-color: var(--toast-vermelho) !important;}
 .error > span {color: var(--white);}

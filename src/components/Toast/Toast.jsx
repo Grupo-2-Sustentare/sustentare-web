@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './toast.module.css';
 import {toast} from "react-hot-toast";
 

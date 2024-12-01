@@ -10,12 +10,11 @@ import { useEffect, useState } from "react";
 import { errorToast } from "../../../components/Toast/Toast";
 import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../tools/ModuloBusca";
 import axios from "axios";
-import loading from "../../../loading.gif"
+import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
 
 export default function SelecaoProdutos() {
 
     const navigate = useNavigate()
-
     const [carregando, setCarregando] = useState(true)
 
     // Todos os produtos vindos back-end.
@@ -145,7 +144,7 @@ export default function SelecaoProdutos() {
                         onChange={(v) => setOrdenacao(v)}
                     />
                 </div><hr />
-                {carregando && (<img src={loading} alt={"Carregando..."} />)}
+                <LoadingIcon carregando={carregando} />
                 {produtosVisiveis?.map((produto) => (
                     <Product
                         key={produto.item.id}

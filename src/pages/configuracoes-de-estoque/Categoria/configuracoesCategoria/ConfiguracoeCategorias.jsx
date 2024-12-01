@@ -10,10 +10,12 @@ import Product from "../../../../components/ProductItem/Product";
 import {errorToast} from "../../../../components/Toast/Toast";
 import StrechList from "../../../../components/StrechList/StrechList";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
+import LoadingIcon from "../../../../components/LoadingIcon/LoadingIcon";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
     const [categorias, setCategorias] = useState([]);
+    const [carregando, setCarregando] = useState(true)
 
     // Do módulo de busca e ordenação.
     const [categoriasVisiveis, setCategoriasVisiveis] = useState([])
@@ -25,7 +27,7 @@ const ConfiguracoesCategorias = () => {
             .catch((err) => {
                 errorToast("Erro ao buscar categorias.")
                 console.log("Erro ao buscar categorias:", err);
-            });
+            }).finally(() => setCarregando(false));;
     }, []);
 
     useEffect(() => {
@@ -51,6 +53,7 @@ const ConfiguracoesCategorias = () => {
                     />
                 </div><hr/>
                 <div className={styles.principal}>
+                    <LoadingIcon carregando={carregando}/>
                     {categoriasVisiveis?.map((categoria) => (
                         <Product
                             key={categoria.id} name={categoria.nome} showImageOrIcon={false}
