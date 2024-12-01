@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import api from "../../api";
-import styles from "./EditarUsuario.module.css"
+import styles from "./EditarPerfil.module.css"
 import TextInput from "../../components/TextInput/TextInput";
 import Button from "../../components/Button/Button";
 import Checkbox from "../../components/Checkbox/Checkbox";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { errorToast, successToast } from "../../components/Toast/Toast";
 
 
-const EditarUsuario = () => {
+const EditarPerfil = () => {
     const navigate = useNavigate();
 
 
@@ -24,7 +24,7 @@ const EditarUsuario = () => {
     const acessoResponsavel = responsavel ? responsavel.acesso : null;
 
     const [nome, setNome] = useState("");
-    const [senha, setSenha] = useState("");
+    const [senha, setSenha] = useState(sessionStorage.getItem("senhaAtual"));
     const [email, setEmail] = useState("");
     const [acesso, setAcesso] = useState(0);
     const [imagem, setImagem] = useState(null);
@@ -111,6 +111,9 @@ const EditarUsuario = () => {
         try {
             const response = await api.patch(`/proxy-java-api/proxy-java-api/usuarios/${idResponsavel}?${new URLSearchParams({ idResponsavel })}`, objetoAdicionado);
             successToast("configuracoes-de-acesso realizado com sucesso!");
+            if (imagem != undefined) {
+                successToast("Pode levar alguns segundos até carregar a imagem");
+            }
             sessionStorage.setItem("Usuario cadastrado", JSON.stringify(objetoAdicionado));
             adicionandoUsuarioNaSessionStorage(response.data);
             sessionStorage.setItem("responsavel", JSON.stringify(response.data));
@@ -151,4 +154,4 @@ const EditarUsuario = () => {
     );
 };
 
-export default EditarUsuario;
+export default EditarPerfil;

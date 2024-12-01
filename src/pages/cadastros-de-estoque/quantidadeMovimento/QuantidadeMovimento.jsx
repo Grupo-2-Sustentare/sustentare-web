@@ -21,7 +21,7 @@ export function QuantidadeMovimento() {
 
     // Recupera a quantidade de saída armazenada (se existir)
 
-    const [quantidade, setQuantidade] = useState(sessionStorage.getItem("quantidade") || "0");
+    const [quantidade, setQuantidade] = useState(sessionStorage.getItem("quantidade") || "0.0");
     const [preco, setPreco] = useState("0");
     const [categoriaConsumo, setCategoriaConsumo] = useState(p.categoriaConsumo || "Selecione...");
     const [isUltimaHora, setIsUltimaHora] = useState(false);
@@ -33,7 +33,7 @@ export function QuantidadeMovimento() {
         const storedUltimaHora = sessionStorage.getItem("isUltimaHora");
 
         if (storedQuantidade) {
-            setQuantidade(storedQuantidade);  // Atualiza o estado com o valor do sessionStorage
+            setQuantidade(parseFloat(storedQuantidade)); // Converte de string para número ao carregar
         }
         if (storedPreco) {
             setPreco(storedPreco);  // Atualiza o estado com o valor do sessionStorage
@@ -45,18 +45,18 @@ export function QuantidadeMovimento() {
 
     useEffect(() => {
         // Atualiza o sessionStorage sempre que os valores mudarem
-        sessionStorage.setItem("quantidade", quantidade);
+        sessionStorage.setItem("quantidade", quantidade.toString()); // Armazena como string
         sessionStorage.setItem("preco", preco);
         sessionStorage.setItem("isUltimaHora", isUltimaHora.toString());
     }, [quantidade, preco, isUltimaHora]);
 
     const handleQuantidadeChange = (e) => {
-        const novaQuantidade = e.target.value;
-        // Verifique se o valor é um número inteiro positivo ou negativo (completo)
-        if (/^\d*$/.test(novaQuantidade)) {
-            setQuantidade(novaQuantidade);
+        const novaQuantidade = e.target.value.replace(',', '.'); // Substitui vírgulas por pontos
+        // Verifique se o valor é um número decimal válido
+        if (/^\d*\.?\d*$/.test(novaQuantidade)) {
+            setQuantidade(parseFloat(novaQuantidade || 0));
         } else {
-            errorToast("Por favor, insira uma quantidade inteira.");
+            errorToast("Por favor, insira uma quantidade válida.");
         }
     };
 
@@ -72,18 +72,13 @@ export function QuantidadeMovimento() {
     };
 
     async function salvarEdicao() {
-        // Validação adicional para quantidade como um número inteiro
-        if (!Number.isInteger(Number(quantidade))) {
-            errorToast("A quantidade deve ser um número inteiro.");
-            return;
-        }
 
         // Validações de entrada
         if (!ehSaida) {
-            if (!quantidade || parseFloat(quantidade) <= 0) {
-                errorToast("Por favor, insira uma quantidade válida para a entrada.");
+            if (isNaN(quantidade) || quantidade <= 0) {
+                errorToast(ehSaida ? "Por favor, insira uma quantidade válida para a saída." : "Por favor, insira uma quantidade válida para a entrada.");
                 return;
-            }
+            }            
 
             if (!isUltimaHora && (!preco || parseFloat(preco) <= 0)) {
                 errorToast("Por favor, insira um preço válido para a entrada.");
@@ -110,7 +105,7 @@ export function QuantidadeMovimento() {
         produtoBeingEdited = {
             ...produtoBeingEdited,
             preco: !ehSaida ? parseFloat(preco.replace(',', '.')) : 0,
-            qtdProduto: Math.round(quantidade),
+            qtdProduto: quantidade,
             quantidadeMovimento: ehSaida ? `-${quantidade}` : `+${quantidade}`,
             categoriaInteracao: ehSaida ? categoriaConsumo : (isUltimaHora ? "Compra de última hora" : "Entrada")
         };
@@ -163,13 +158,13 @@ export function QuantidadeMovimento() {
             {ehSaida &&
                 (<>
                     <RedirectionList title={"Categoria do consumo"} hint={categoriaConsumo} redirectUrl={"/categoria-consumo"} onChange={setCategoriaConsumo} />
-                    <MeasurementUnitInput label={"Quantidade saída: "} measurementUnit={p.item.unidade_medida.nome} placeholder={"0"} type={Number} value={quantidade} onChange={handleQuantidadeChange} />
+                    <MeasurementUnitInput label={"Quantidade saída: "} measurementUnit={p.item.unidade_medida.nome} placeholder={"0.0"} type={Number} value={quantidade} onChange={handleQuantidadeChange} />
                 </>
                 )
             }
             {!ehSaida &&
                 (<>
-                    <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} placeholder={"0"} value={quantidade} onChange={handleQuantidadeChange} />
+                    <MeasurementUnitInput label={"Quantidade entrada: "} measurementUnit={p.unidade} placeholder={"0.0"} value={quantidade} onChange={handleQuantidadeChange} />
                     <MeasurementUnitInput label={"Preço (unitário): "} measurementUnit={"R$"} placeholder={"0,0"} value={preco} onChange={handlePrecoChange} />
                     <Switch
                         initialState={false}

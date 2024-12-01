@@ -1,60 +1,47 @@
 import styles from "./gerenciarEquipe.module.css"
-import IconInput from "../../../components/IconInput/IconInput";
-import StrechList from "../../../components/StrechList/StrechList";
 import TopBar from "../../../components/TopBar/TopBar";
 import Button from "../../../components/Button/Button";
 import Product, {DEFAULT_BUTTON_CONFIG} from "../../../components/ProductItem/Product";
 import {useNavigate} from "react-router-dom";
 import api from "../../../api";
 import React, { useEffect, useState } from 'react';
-
-
-const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/usuarios/"
-const OPCOES_ORDENACAO = ["Alfabética - Crescente", "Alfabética - Decrescente"]
-// const MOCK_USUARIOS = [
-//     {"urlImagem": MOCK_URL + "1.png", "nome": "Antônio"},
-//     {"urlImagem": MOCK_URL + "2.jpeg", "nome": "Ingrid"},
-//     {"urlImagem": MOCK_URL + "3.jpeg", "nome": "Sílvio"}
-// ]
+import {errorToast} from "../../../components/Toast/Toast";
+import IconInput from "../../../components/IconInput/IconInput";
+import StrechList from "../../../components/StrechList/StrechList";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 
 export default function GerenciarEquipe(){
     const navigate = useNavigate()
-    // const [usuarios, setUsuarios] = useState(() => {
-    //     const storedUsuarios = sessionStorage.getItem('usuarios');
-    //     return storedUsuarios ? JSON.parse(storedUsuarios) : [];
-    //   });
-    const [usuarios, setUsuarios] = useState([]);    
-    let btnsConfig = DEFAULT_BUTTON_CONFIG
-    console.log(usuarios)
+
     let style = getComputedStyle(document.body)
     let gunmetal = style.getPropertyValue("--gunmetal")
     let white = style.getPropertyValue("--white")
     let borda = style.getPropertyValue("--borda-branca")
     let sombra = style.getPropertyValue("--sombra-vermelha")
 
+    let btnsConfig = DEFAULT_BUTTON_CONFIG
     btnsConfig.yellow.style = {backgroundColor: gunmetal, color: white, border: borda, boxShadow: sombra}
     btnsConfig.yellow.icon = "clock-rotate-left"
     btnsConfig.yellow.iconFillInvert = true
     btnsConfig.yellow.text = "Visualizar histórico"
     btnsConfig.yellow.action = (infoUsuario)=>navigate("/historico-de-operacoes", { state: { usuario: infoUsuario } })
-
     btnsConfig.red.action = (infoUsuario) => navigate("/remover-colaborador", { state: { usuario: infoUsuario } });
 
+    const [usuarios, setUsuarios] = useState([]);
+    const [usuariosVisiveis, setUsuariosVisiveis] = useState([]);
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
 
      useEffect(() => {
-         fetchUsuarios(); 
-     }, []); 
-
-     const fetchUsuarios = async () => {
-        try {
-            const response = await api.get('/usuarios');
-            setUsuarios(response.data);
-            console.log(response.data);
-            sessionStorage.setItem('usuarios', JSON.stringify(response.data));
-        } catch (error) {
-            console.error("Erro ao buscar usuários:", error);
-        }
-    };
+             api.get('/usuarios').then((res) => {
+                 setUsuarios(res.data);
+                 sessionStorage.setItem('usuarios', JSON.stringify(res.data));
+             }).catch((error) => {
+                 errorToast("Erro ao buscar usuários. Contate o suporte.")
+                 console.error("Erro ao buscar usuários:", error);
+             })
+         }, []
+     )
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -70,29 +57,35 @@ export default function GerenciarEquipe(){
         return () => clearInterval(interval);
       }, []);
 
+    useEffect(() => {
+        setUsuariosVisiveis(ordenacaoComPesquisa(usuarios, queryPesquisa, ordenacao, EnumObjetosBusca.USUARIO))
+    }, [usuarios, queryPesquisa, ordenacao])
+
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
-            {/* <div className={styles.barraDeBusca}>
-                <IconInput placeholder={"Pesquisa por nome"}/>
+            <div className={styles.barraDeBusca}>
+                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
                 <StrechList
-                    showTitle={false} items={OPCOES_ORDENACAO} hint={"Opções de ordenação"}
+                    showTitle={false} items={OPCOES_ORDENACAO.Usuario} hint={"Opções de ordenação"}
+                    onChange={(v) => setOrdenacao(v)}
                 />
-            </div>
-            <hr></hr> */}
+            </div><hr/>
             <div className={styles.equipe}>
                 {usuarios.length === 0 ? <p>Carregando usuarios...</p> : <p></p>}
-                {usuarios.map(u => {
-                        return <Product
-                        name={u.nome} quantity={"Usuário(a)"} addressImg={u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=User"}
-                        fullBorderRadius={true} buttonsConfig={btnsConfig} infoUsuario={u}
+                {usuariosVisiveis?.map((u, i) => {
+                    return <Product
+                        name={u.nome} quantity={"Usuário(a)"} fullBorderRadius={true} buttonsConfig={btnsConfig}
+                        infoUsuario={u} key={i}
+                        addressImg={
+                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
+                        }
                     />
                 })}
-
             </div>
-            <hr></hr>
+            <hr/>
             <div className={styles.containerBotao}>
-                <Button insideText={"Adicionar colaborador"} onClick={()=>navigate("/adicionando-colaborador")}/>
+                <Button insideText={"Adicionar colaborador"} onClick={() => navigate("/adicionando-colaborador")}/>
             </div>
         </div>
     )

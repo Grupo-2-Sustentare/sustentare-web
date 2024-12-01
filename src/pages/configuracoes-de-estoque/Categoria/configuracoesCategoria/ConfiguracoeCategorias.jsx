@@ -7,87 +7,58 @@ import Button from "../../../../components/Button/Button";
 import TopBar from "../../../../components/TopBar/TopBar";
 import IconInput from "../../../../components/IconInput/IconInput";
 import Product from "../../../../components/ProductItem/Product";
-import { successToast } from "../../../../components/Toast/Toast";
+import {errorToast} from "../../../../components/Toast/Toast";
+import StrechList from "../../../../components/StrechList/StrechList";
+import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../../tools/ModuloBusca";
 
 const ConfiguracoesCategorias = () => {
     const navigate = useNavigate();
-    const [categorias, setCategorias] = useState([]); // Estado para armazenar as categorias carregadas da API
+    const [categorias, setCategorias] = useState([]);
+
+    // Do módulo de busca e ordenação.
+    const [categoriasVisiveis, setCategoriasVisiveis] = useState([])
+    const [queryPesquisa, setQueryPesquisa] = useState(null)
+    const [ordenacao, setOrdenacao] = useState(null)
 
     useEffect(() => {
-        api.get("/proxy-java-api/categorias")
-            .then((response) => {
-                setCategorias(response.data); // Armazena os dados da API no estado
-            })
-            .catch((error) => {
-                console.error("Erro ao buscar categorias:", error); // Trata erros
+        api.get("/proxy-java-api/categorias").then((res) => setCategorias(res.data))
+            .catch((err) => {
+                errorToast("Erro ao buscar categorias.")
+                console.log("Erro ao buscar categorias:", err);
             });
     }, []);
 
-    // const categoriaLista = [
-    //     "Sobremesa encomenda", "Bebidas",
-    //     "Self-service", "Descartaveis"
-    // ]
-
-    const handleSave = () => {
-        navigate("/criando-nova-categoria");
-    };
+    useEffect(() => {
+        setCategoriasVisiveis(ordenacaoComPesquisa(categorias, queryPesquisa, ordenacao, EnumObjetosBusca.CATEGORIA))
+    }, [categorias, queryPesquisa, ordenacao])
 
     // Função para salvar a categoria na sessionStorage e navegar para a página de edição
     const handleEdit = (categoria) => {
         sessionStorage.setItem("categoria_selecionada", JSON.stringify(categoria)); // Salva a categoria na sessionStorage
         navigate("/editando-categoria"); // Redireciona para a página de edição
     };
-    
-    const handleRemove = (categoria) => {
-        const confirmRemove = window.confirm(`Você realmente deseja desativar a categoria "${categoria.nome}"?`);
-
-        if (confirmRemove) {
-            
-            const responsavelString = sessionStorage.getItem("responsavel");
-            const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
-            const idResponsavel = responsavel ? responsavel.id : null;
-
-
-        }
-    };
-
-    // var actionCategoria = DEFAULT_BUTTON_CONFIG
-    // actionCategoria.yellow.style = {}
-    // actionCategoria.yellow.icon = "fa-solid fa-pen"
-    // actionCategoria.yellow.iconFillInvert = false
-    // actionCategoria.yellow.text = "Editar"
-    // actioCategoria.yellow.action = ()=>{navigate("/editando-categoria")}
 
     return (
         <>
-            <TopBar title={"configurações de categorias"} showBackArrow={true} backNavigationPath={"/configuracoes-de-estoque"} />
+            <TopBar title={"configurações de categorias"} showBackArrow={true} 
+                backNavigationPath={"/configuracoes-de-estoque"} />
             <div className={styles.divPrincipal}>
-                {/* <div className={styles.divFiltroEBusca}>
-                    <IconInput />
-                    <StreachList showTitle={false} titulo=" " />
-                </div>
-                <hr></hr> */}
+                <div className={styles.barraDeBusca}>
+                    <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por nome"}/>
+                    <StrechList
+                        showTitle={false} items={OPCOES_ORDENACAO.Categoria} hint={"Opções de ordenação"}
+                        onChange={(v) => setOrdenacao(v)}
+                    />
+                </div><hr/>
                 <div className={styles.principal}>
-                    {/* {categoriaLista.map(categoria=>{
-                        return <Product name={categoria} showImageOrIcon={false}/>
-                      })} */}
-
-                    {categorias.map((categoria) => (
-                        // <Product key={categoria.id} name={categoria.nome} showImageOrIcon={false} />
+                    {categoriasVisiveis?.map((categoria) => (
                         <Product
-                            key={categoria.id}
-                            name={categoria.nome}
-                            showImageOrIcon={false}
+                            key={categoria.id} name={categoria.nome} showImageOrIcon={false}
                             buttonsConfig={{
-                                yellow: {
-                                    icon: "fa-solid fa-pen",
-                                    text: "Editar",
-                                    action: () => handleEdit(categoria),
-                                },
+                                yellow: {icon: "fa-solid fa-pen", text: "Editar", action: () => handleEdit(categoria),},
                                 red: {
-                                    icon: "fa-solid fa-trash",
-                                    text: "Remover",
-                                    action: () => navigate("/tela-de-confirmacao", { state: { categoria: categoria } }),
+                                    icon: "fa-solid fa-trash", text: "Remover",
+                                    action: () => navigate("/tela-de-confirmacao", {state: {categoria: categoria}})
                                 }
                             }}
                         />
@@ -95,7 +66,7 @@ const ConfiguracoesCategorias = () => {
                 </div>
             </div>
             <div className={styles.divBotao}>
-                <Button insideText="Cadastrar nova categoria" onClick={handleSave} />
+                <Button insideText="Cadastrar nova categoria" onClick={()=>navigate("/criando-nova-categoria")} />
             </div>
         </>
     );

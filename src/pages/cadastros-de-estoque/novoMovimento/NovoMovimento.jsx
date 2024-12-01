@@ -125,6 +125,7 @@ export default function NovoMovimento({ }) {
             sessionStorage.removeItem("preco")
             sessionStorage.removeItem("qtdMovimento")
             sessionStorage.removeItem("isUltimaHora")
+            sessionStorage.removeItem("productBeingEdited")
     
             setTimeout(() => navigate("/menu-inicial"), 2000)
         } catch (error) {
@@ -148,7 +149,7 @@ export default function NovoMovimento({ }) {
                     return <Product
                         key={i}
                         id={p.item.id}
-                        addressImg={p.urlImagem}
+                        addressImg={p.imageUrl}
                         name={p.item.nome}
                         quantity={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}
                         buttonsConfig={{
@@ -172,7 +173,7 @@ export default function NovoMovimento({ }) {
                     insideText={"Adicionar produto"}
                     onClick={() => navigate("/selecao-produtos")}
                 />
-                <Button insideText={"Concluir entrada"} onClick={finalizar} />
+                <Button insideText={"Concluir movimento"} onClick={finalizar} />
             </div>
         </>
     )

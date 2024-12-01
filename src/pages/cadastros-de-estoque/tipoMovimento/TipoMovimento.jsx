@@ -21,7 +21,7 @@ export default function TipoMovimento(){
         <TopBar title={"Tipo de movimento"} showBackArrow={true} backNavigationPath={"/cadastros-de-estoque"}/>
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
-            <ListItem adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.item.nome} subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}  fullBorderRadius={true}/>
+            <ListItem adressImg={p.imageUrl} heading={p.item.nome} subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`}  fullBorderRadius={true}/>
         </div>
         <div className={styles.principal}>
             <p>Qual tipo de movimento você deseja realizar?</p>

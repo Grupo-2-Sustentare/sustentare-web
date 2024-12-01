@@ -1,18 +1,18 @@
-.divFiltroEBusca{
+.barraDeBusca{
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 8px 0px 0px 0px;
+    padding: 8px 0 8px 0;
     gap: 8px;
 }
 .divPrincipal{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 16px;
+    gap: 8px;
     width: 100%;
     height: 634px;
-    padding: 8px 16px 16px 16px;
+    padding: 4px 16px;
     overflow-y: scroll;
 }
 .divBotao{
@@ -24,4 +24,13 @@
     border-top: var(--borda-branca);
     position: relative;
     background-color: var(--gradiente);
+}
+
+.principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0px 0 8px 0;
 }

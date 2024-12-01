@@ -16,7 +16,7 @@ const EditandoProduto = () => {
     const [imagem, setImagem] = useState(null);
     sessionStorage.paginaRequisicao = "/editando-produto"
     const responsavelString = sessionStorage.getItem("responsavel");
-    const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
     const idResponsavel = responsavel ? responsavel.id : null;
 
     const defaultItem = {
@@ -72,12 +72,15 @@ const EditandoProduto = () => {
 
     const [nome, setNome] = useState(sessionStorage.getItem("nome") || produtoSelecionado.item?.nome || "");
     const [diasVencimento, setDiasVencimento] = useState(sessionStorage.getItem("diasVencimento") || produtoSelecionado.item?.dias_vencimento || "");
+    const [qtdMinItem, setQtdMinItem] = useState(produtoSelecionado.item.qtd_min_item);
     const [isChecked, setIsChecked] = useState(JSON.parse(sessionStorage.getItem("perecivel")) ?? !!produtoSelecionado?.item?.perecivel);
+    const [isCheckedQtd, setIsCheckedQtd] = useState(qtdMinItem > 0);
+
 
     // Sincroniza os valores com sessionStorage apenas quando mudam
-    useEffect(() => {
-        sessionStorage.setItem("nome", nome);
-    }, [nome]);
+    // useEffect(() => {
+    //     sessionStorage.setItem("nome", nome);
+    // }, [nome]);
 
     useEffect(() => {
         sessionStorage.setItem("diasVencimento", diasVencimento);
@@ -86,6 +89,10 @@ const EditandoProduto = () => {
     useEffect(() => {
         sessionStorage.setItem("perecivel", isChecked);
     }, [isChecked]);
+
+    useEffect(() => {
+        sessionStorage.setItem("qtdMinItem", isCheckedQtd);
+    }, [isCheckedQtd]);
 
     // Atualiza sessionStorage ao alterar os campos
     const handleNomeChange = (e) => {
@@ -98,17 +105,47 @@ const EditandoProduto = () => {
         sessionStorage.setItem("diasVencimento", e.target.value);
     };
 
+    const handleQtdMinItemChange = (e) => {
+        const rawValue = e.target.value;
+        const formattedValue = rawValue.replace(",", "."); // Substitui vírgula por ponto
+        const numericValue = parseFloat(formattedValue); // Converte para número
+    
+        if (!isNaN(numericValue)) {
+            setQtdMinItem(numericValue);
+            sessionStorage.setItem("qtdMinItem", numericValue);
+        } else {
+            setQtdMinItem(0.0); // Define um valor padrão em caso de erro
+            sessionStorage.setItem("qtdMinItem", 0.0);
+        }
+    };
+
     const handleCheckboxChange = (novoValor) => {
         setIsChecked(novoValor === 1);
         sessionStorage.setItem("perecivel", novoValor === 1);
-    
+
+    };
+
+    const handleCheckboxChangeQtd = (novoValor) => {
+        setIsCheckedQtd(novoValor === 1);
+        sessionStorage.setItem("qtdMinItem", novoValor === 1);
+
     };
 
     useEffect(() => {
         if (!isChecked) {
             setDiasVencimento(null);
         }
-    }, [isChecked]);
+        if (!isCheckedQtd) {
+            setQtdMinItem(0.0);
+        }
+    }, [isChecked, isCheckedQtd]);
+    
+    useEffect(() => {
+        if (qtdMinItem > 0) {
+            setIsCheckedQtd(true);
+            sessionStorage.setItem("qtdMinItem", true);
+        }
+    }, [qtdMinItem]);
 
     const salvarEdicao = async () => {
         try {
@@ -122,6 +159,7 @@ const EditandoProduto = () => {
                 nome,
                 perecivel: isChecked,
                 dias_vencimento: diasVencimento,
+                qtd_min_item: parseFloat(qtdMinItem),
                 imagem,
                 ativo: true
             };
@@ -138,7 +176,7 @@ const EditandoProduto = () => {
                 errorToast("Erro ao atualizar Produto");
                 throw new Error('Falha na atualização do item');
                 return;
-            } 
+            }
             else {
                 successToast("Produto editado com sucesso");
                 const toastDuration = 1000;
@@ -146,11 +184,11 @@ const EditandoProduto = () => {
                     sessionStorage.removeItem("produto_selecionado");
                     navigate("/configuracoes-de-produtos");
                 }, toastDuration);
-                const toastDurationImagem = 2000 
+                const toastDurationImagem = 2000
                 setTimeout(() => {
                     successToast("Pode levar alguns instantes para atualizar a imagem");
                 }, toastDurationImagem);
-                
+
             }
 
             //     // Atualiza o produto somente se a atualização do item for bem-sucedida
@@ -208,7 +246,7 @@ const EditandoProduto = () => {
             <TopBar title={"Editando Produto"} showBackArrow={true} backNavigationPath={"/configuracoes-de-produtos"} />
             <div className={styles.divPrincipal}>
                 <div className={styles.editarImagem}>
-                    <ImageUploader onImageSelect={handleImageChange}/>
+                    <ImageUploader onImageSelect={handleImageChange} />
                 </div>
                 <TextInput
                     label={"Nome: "}
@@ -223,19 +261,34 @@ const EditandoProduto = () => {
                 <RedirectionList
                     title={"Unidade de medida"} value={itemUM.id} hint={itemUM.nome} redirectUrl={"/unidade-de-medida-do-produto"}
                 />
-                <div className={styles.divPerecivel}>
+                <div className={styles.divCheck}>
                     <span>Perecível: </span>
                     <Checkbox ticadaPorPadrao={isChecked ? 1 : 0} onChange={handleCheckboxChange} />
                 </div>
                 {isChecked && (
-                <MeasurementUnitInput
-                    measurementUnit={"dias para vencer"}
-                    placeholder={produtoSelecionado.item.dias_vencimento}
-                    type={Number}
-                    value={diasVencimento}
-                    onChange={handleDiasVencimentoChange}
-                />
-            )}
+                    <MeasurementUnitInput
+                        measurementUnit={"dias para vencer"}
+                        placeholder={produtoSelecionado.item.dias_vencimento}
+                        type={Number}
+                        value={diasVencimento}
+                        onChange={handleDiasVencimentoChange}
+                    />
+                )}
+
+                <div className={styles.divCheckQtd}>
+                    <p>Adicionar quantidade mínima</p>
+                    <Checkbox ticadaPorPadrao={isCheckedQtd ? 1 : 0} onChange={handleCheckboxChangeQtd} />
+                </div>
+
+                {isCheckedQtd && (
+                    <MeasurementUnitInput
+                        measurementUnit={"no mín"}
+                        placeholder={produtoSelecionado.item.qtd_min_item}
+                        type={Number}
+                        value={qtdMinItem}
+                        onChange={handleQtdMinItemChange}
+                    />
+                )}
             </div>
             <div className={styles.divBotao}>
                 <Button insideText={"Salvar edição"} onClick={salvarEdicao} />

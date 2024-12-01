@@ -20,63 +20,90 @@ export default function TelaDeConfirmacao({ }) {
     var icon
 
 
-    const responsavelString = sessionStorage.getItem("responsavel"); 
-    const responsavel = responsavelString ? JSON.parse(responsavelString) : null; 
+    const responsavelString = sessionStorage.getItem("responsavel");
+    const responsavel = responsavelString ? JSON.parse(responsavelString) : null;
     const idResponsavel = responsavel ? responsavel.id : null;
 
     const location = useLocation();
     const categoria = location.state?.categoria;
     const unidadeDeMedida = location.state?.unidadeDeMedida;
     const produto = location.state?.produto;
-    
+
     const navigate = useNavigate()
 
     const removendo = async () => {
-        console.log("aloooo")
-        if(categoria !== undefined){
+        //Adicionar validação de produto associado a categoria e unidade de medida
+        // console.log("aloooo")
+        if (categoria !== undefined) {
             console.log("categoria")
             api.delete(`/proxy-java-api/categorias/${categoria.id}?idResponsavel=${idResponsavel}`)
-            .then((response) => {
-                successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
-                navigate("/configuracoes-de-categorias", { state: { categoriaRemovida: categoria } })
-            })
-            .catch((error) => {
-                console.error("Erro ao desativar categoria:", error);
-                alert("Ocorreu um erro ao tentar desativar a categoria.");
-            });
+                .then((response) => {
+                    successToast(`Categoria "${categoria.nome}" desativada com sucesso!`);
+                    navigate("/configuracoes-de-categorias", { state: { categoriaRemovida: categoria } })
+                })
+                .catch((error) => {
+                    // Verifica se o erro é de status 400
+                    if (error.response && error.response.status === 400) {
+                        const itensAssociados = error.response.data; // Certifique-se de que "data" contém o array esperado
+                        const oQueQuerDeletar = categoria.nome
+                        navigate("/delecao-negada", {
+                            state: {
+                                itensAssociados: itensAssociados, // Passa o array corretamente
+                                oQueQuerDeletar: oQueQuerDeletar,
+                                tipoRecurso: "categoria", // Ou "unidade de medida"
+                            },
+                        });
+                    } else {
+                        console.error("Erro ao desativar categoria:", error);
+                        errorToast("Ocorreu um erro ao tentar desativar a categoria.");
+                    }
+                });
         }
-    
-        if(unidadeDeMedida !== undefined){
+
+        if (unidadeDeMedida !== undefined) {
             console.log("unidade de medida")
             api.delete(`/proxy-java-api/unidades-medida/${unidadeDeMedida.id}?idResponsavel=${idResponsavel}`)
-            .then((response) => {
-                successToast(`Unidade "${unidadeDeMedida.nome}" desativada com sucesso!`);
-                navigate("/configuracoes-de-unidade-medida", { state: { unidadeMedidaRemovida: unidadeDeMedida } })
-            })
-            .catch((error) => {
-                console.error("Erro ao desativar unidade de medida:", error);
-                errorToast("Ocorreu um erro ao tentar desativar a unidade de medida.");
-            });
+                .then((response) => {
+                    successToast(`Unidade "${unidadeDeMedida.nome}" desativada com sucesso!`);
+                    navigate("/configuracoes-de-unidade-medida", { state: { unidadeMedidaRemovida: unidadeDeMedida } })
+                })
+                .catch((error) => {
+                    // Verifica se o erro é de status 400
+                    if (error.response && error.response.status === 400) {
+                        const itensAssociados = error.response.data; // Certifique-se de que "data" contém o array esperado
+                        const oQueQuerDeletar = unidadeDeMedida.nome
+                        navigate("/delecao-negada", {
+                            state: {
+                                itensAssociados: itensAssociados,
+                                oQueQuerDeletar: oQueQuerDeletar,
+                                tipoRecurso: "unidade de medida"
+                            },
+                        });
+                    } else {
+                        console.error("Erro ao desativar unidade de medida:", error);
+                        errorToast("Ocorreu um erro ao tentar desativar a unidade de medida.");
+                    }
+                });
         }
         console.log("está aqui")
-        if(produto !== undefined){
+        if (produto !== undefined) {
             // fullBorderRadius=true;
             console.log("entrou")
             api.delete(`/proxy-java-api/produtos/${produto.id}?idResponsavel=${idResponsavel}`)
-            .then((response) => {
-                successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
+                .then((response) => {
+                    successToast(`Produto "${produto.item.nome}" desativado com sucesso!`);
 
-                // Após a remoção do produto, remove o item associado
-                return api.delete(`/proxy-java-api/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
-            })
-            .then(() => {
-                successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
-                navigate("/configuracoes-de-produtos")
-            })
-            .catch((error) => {
-                console.error("Erro ao desativar produto ou remover item associado:", error);
-                alert("Ocorreu um erro ao tentar desativar o produto ou remover o item associado.");
-            });
+                    // Após a remoção do produto, remove o item associado
+                    return api.delete(`/itens/${produto.item.id}?idResponsavel=${idResponsavel}`);
+                })
+                .then(() => {
+                    // successToast(`Item associado ao produto "${produto.item.nome}" removido com sucesso!`);
+                    navigate("/configuracoes-de-produtos")
+                })
+                .catch((error) => {
+                    console.error("Erro ao desativar produto ou remover item associado:", error);
+                    alert("Ocorreu um erro ao tentar desativar o produto ou remover o item associado.");
+                });
         }
     }
 
@@ -93,62 +120,62 @@ export default function TelaDeConfirmacao({ }) {
         }
     };
 
-   
-        if(categoria !== undefined){
-            tituloTopBar = "Removendo Categoria"
-            heading = categoria.nome
-            adressImg = undefined
-            icon = undefined
-            mensagemConfirmacao = "A seguinte categoria será deletada: "
-            subheading = " "
-        }
-    
-        if(unidadeDeMedida !== undefined){
-            tituloTopBar = "Removendo Unidade de Medida"
-            heading = unidadeDeMedida.nome
-            adressImg = undefined
-            icon = getIconByCategory(unidadeDeMedida.categoria)
-            mensagemConfirmacao = "A seguinte unidade de medida será deletada: "
-            subheading = " "
+
+    if (categoria !== undefined) {
+        tituloTopBar = "Removendo Categoria"
+        heading = categoria.nome
+        adressImg = undefined
+        icon = undefined
+        mensagemConfirmacao = "A seguinte categoria será deletada: "
+        subheading = " "
+    }
+
+    if (unidadeDeMedida !== undefined) {
+        tituloTopBar = "Removendo Unidade de Medida"
+        heading = unidadeDeMedida.nome
+        adressImg = undefined
+        icon = getIconByCategory(unidadeDeMedida.categoria)
+        mensagemConfirmacao = "A seguinte unidade de medida será deletada: "
+        subheading = " "
+    }
+
+    if (produto !== undefined) {
+        tituloTopBar = "Removendo Produto"
+        heading = produto.item.nome
+        adressImg = produto.imagem ? `data:image/jpeg;base64,${produto.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Produto"
+        icon = undefined
+        mensagemConfirmacao = "O seguinte produto será deletada: "
+        subheading = " "
+        sessionStorage.removeItem("movement")
+        sessionStorage.removeItem("produtosSelecionados")
+        sessionStorage.removeItem("productCheckedStates")
+        sessionStorage.removeItem("preco")
+        sessionStorage.removeItem("qtdMovimento")
+        sessionStorage.removeItem("isUltimaHora")
+    }
+
+
+    const cancelar = () => {
+        if (categoria !== undefined) {
+            navigate("/configuracoes-de-categorias")
         }
 
-        if(produto !== undefined){
-            tituloTopBar = "Removendo Produto"
-            heading = produto.item.nome
-            adressImg = produto.imagem ? `data:image/jpeg;base64,${produto.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Produto"
-            icon = undefined
-            mensagemConfirmacao = "O seguinte produto será deletada: "
-            subheading = " "
-            sessionStorage.removeItem("movement")
-            sessionStorage.removeItem("produtosSelecionados")
-            sessionStorage.removeItem("productCheckedStates")
-            sessionStorage.removeItem("preco")
-            sessionStorage.removeItem("qtdMovimento")
-            sessionStorage.removeItem("isUltimaHora")
+        if (unidadeDeMedida !== undefined) {
+            navigate("/configuracoes-de-unidade-medida")
         }
 
-
-        const cancelar = () => {
-            if(categoria !== undefined){
-                navigate("/configuracoes-de-categorias")
-            }
-        
-            if(unidadeDeMedida !== undefined){
-                navigate("/configuracoes-de-unidade-medida")
-            }
-    
-            if(produto !== undefined){
-                navigate("/configuracoes-de-produtos")
-            }
-        };
+        if (produto !== undefined) {
+            navigate("/configuracoes-de-produtos")
+        }
+    };
 
     return (
         <>
             <div>
-                <TopBar 
-                title={tituloTopBar} 
-                showBackArrow={false} 
-                backNavigationPath={backNavigationPath}
+                <TopBar
+                    title={tituloTopBar}
+                    showBackArrow={false}
+                    backNavigationPath={backNavigationPath}
                 />
             </div>
             <div className={style.inicioMeioTela}>
@@ -161,7 +188,7 @@ export default function TelaDeConfirmacao({ }) {
                         subheading={subheading}
                         adressImg={adressImg}
                         icon={icon}
-                        // onClick={() => selectListItem(categoria)}
+                    // onClick={() => selectListItem(categoria)}
                     />
                 </div>
 
