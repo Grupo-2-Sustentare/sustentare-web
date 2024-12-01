@@ -63,6 +63,11 @@ export default function GerenciarEquipe(){
         setUsuariosVisiveis(ordenacaoComPesquisa(usuarios, queryPesquisa, ordenacao, EnumObjetosBusca.USUARIO))
     }, [usuarios, queryPesquisa, ordenacao])
 
+    const pegarImg = (nome)=> {
+        let img = "https://placehold.co/400/F5FBEF/22333B?text="
+        return img + nome.substring(0, 1)
+    }
+
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
@@ -80,7 +85,7 @@ export default function GerenciarEquipe(){
                         name={u.nome} quantity={"Usuário(a)"} fullBorderRadius={true} buttonsConfig={btnsConfig}
                         infoUsuario={u} key={i}
                         addressImg={
-                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
+                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : pegarImg(u.nome)
                         }
                     />
                 })}
