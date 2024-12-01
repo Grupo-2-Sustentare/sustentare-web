@@ -39,12 +39,20 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
   }
 
   const userName = sessionStorage.getItem("nome_usuario")
-  const userImage = sessionStorage.getItem("icone_usuario")
+  const pegarImg = (nome)=>{
+    let img = "https://placehold.co/400/F5FBEF/22333B?text="
+    return img + nome.substring(0, 1)
+  }
+  const [userImage, setUserImagem] = useState(pegarImg(userName))
 
   useEffect(() => {
     if (userName === null) {
       alertToast("Sessão expirada.")
       navigate("/")
+    }
+    const sessionStorageImg = sessionStorage.getItem("icone_usuario")
+    if (sessionStorageImg !== null && sessionStorageImg !== undefined && sessionStorageImg !== "null") {
+      setUserImagem(sessionStorageImg)
     }
   }, []);
 
