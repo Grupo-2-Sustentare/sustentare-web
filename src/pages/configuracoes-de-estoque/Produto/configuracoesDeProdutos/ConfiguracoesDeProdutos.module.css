@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 8px 0 8px 0;
+    padding: 8px 0 0px 0;
     gap: 8px;
 }
 .divPrincipal{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 16px;
     width: 100%;
     height: 634px;
     padding: 4px 16px;

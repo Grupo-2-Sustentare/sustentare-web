@@ -144,19 +144,21 @@ export default function SelecaoProdutos() {
                         onChange={(v) => setOrdenacao(v)}
                     />
                 </div><hr />
-                <LoadingIcon carregando={carregando} />
-                {produtosVisiveis?.map((produto) => (
-                    <Product
-                        key={produto.item.id}
-                        id={produto.item.id}
-                        addressImg={produto.imageUrl}
-                        name={produto.item.nome}
-                        quantity={`${produto.qtdProdutoTotal} ${produto.item.unidade_medida.nome}`}
-                        checkboxVariant={true}
-                        checked={produtosSelecionados.some((p) => p.id === produto.id)}
-                        onChange={() => toggleProdutoSelecionado(produto)}
-                    />
-                ))}
+                <div className={styles.containerProdutos}>
+                    <LoadingIcon carregando={carregando} />
+                    {produtosVisiveis?.map((produto) => (
+                        <Product
+                            key={produto.item.id}
+                            id={produto.item.id}
+                            addressImg={produto.imageUrl}
+                            name={produto.item.nome}
+                            quantity={`${produto.qtdProdutoTotal} ${produto.item.unidade_medida.nome}`}
+                            checkboxVariant={true}
+                            checked={produtosSelecionados.some((p) => p.id === produto.id)}
+                            onChange={() => toggleProdutoSelecionado(produto)}
+                        />
+                    ))}
+                </div>
             </div>
             <div className={styles.containerBotao}>
                 <Button insideText={"Confirmar seleção"} onClick={finalizarSelecao} />
