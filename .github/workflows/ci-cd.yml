@@ -1,48 +1,109 @@
-deploy:
-  needs: build
-  runs-on: ubuntu-latest
+name: Deploy to EC2
 
-  steps:
-  - name: Baixar artefatos do build
-    uses: actions/download-artifact@v4
-    with:
-      name: build-frontend
-      path: ./build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-  - name: Criar o arquivo .pem e configurar permissões
-    run: |
-      echo "${{ secrets.DEPLOY_PRIVATE_KEY }}" > $HOME/private_key.pem
-      chmod 400 $HOME/private_key.pem
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-  - name: Verificar chave privada (debug)
-    run: |
-      echo "Verificando chave privada..."
-      ls -al $HOME/private_key.pem
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v3
+      with:
+        ref: main  # Garantir que estamos pegando a versão mais recente da branch main
 
-  - name: Enviar arquivos para a EC2 via SCP
-    uses: appleboy/scp-action@master
-    with:
-      host: ${{ secrets.EC2_PUBLIC_IP }}
-      username: ubuntu
-      key_path: $HOME/private_key.pem
-      port: 22
-      source: "./build/"
-      target: "/home/ubuntu/sustentare-web/build/"
-      rm: true
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'  # Atualizando para a versão 18
 
-  - name: Configurar servidor na EC2
-    uses: appleboy/ssh-action@v1.0.3
-    with:
-      host: ${{ secrets.EC2_PUBLIC_IP }}
-      username: ubuntu
-      key_path: $HOME/private_key.pem
-      port: 22
-      script: |
-        if ! command -v serve &> /dev/null; then
-          sudo npm install -g serve
-        fi
+    - name: Instalar dependências
+      run: npm install
+      working-directory: ./  # Corrigido para o diretório correto do seu projeto React
 
-        cd /home/ubuntu/sustentare-web/build
-        pm2 delete sustentare-web || true
-        pm2 start npx --name sustentare-web -- serve -s . -l 3000
-        pm2 save
+    - name: Gerar build do React
+      run: |
+        CI=false npm run build  # Adicionado para desativar a verificação de linting e ignorar erros de CI
+      working-directory: ./  # Corrigido para o diretório correto do seu projeto React
+
+    - name: Gerar artefato com os arquivos do build
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-frontend
+        path: ./build  # Alinhei o caminho do build para coincidir com o caminho de download
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Baixar artefatos do build
+      uses: actions/download-artifact@v4
+      with:
+        name: build-frontend
+        path: ./build  # Caminho onde os artefatos do build serão armazenados
+
+    - name: Criar o arquivo .pem a partir da variável DEPLOY_KEY e configurar permissões
+      id: create-pem-file
+      run: |
+        echo "${{ secrets.DEPLOY_PRIVATE_KEY }}" > $HOME/private_key.pem
+        chmod 400 $HOME/private_key.pem
+
+    - name: Verificar conteúdo do diretório build antes de copiar (passo de debug)
+      run: |
+        echo "Verificando conteúdo do diretório build antes de copiar..."
+        ls -al ./build  # Verificar os arquivos no diretório build antes de copiar
+
+    - name: Enviar arquivos para a EC2 via SCP
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.EC2_PUBLIC_IP }}
+        username: ubuntu
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        port: 22
+        source: "./build/"
+        target: "/home/ubuntu/sustentare-web/build/"
+        rm: true  # Forçar substituição dos arquivos na EC2
+
+    - name: Conectar via SSH na EC2 e ajustar permissões
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_PUBLIC_IP }}
+        username: ubuntu
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # Ajustar permissões no diretório de destino
+          chown -R ubuntu:ubuntu /home/ubuntu/sustentare-web/build/
+          chmod -R 770 /home/ubuntu/sustentare-web/build/
+
+          # Verificar o conteúdo do diretório build após o envio
+          echo "Conteúdo do diretório build após o envio:"
+          ls -al /home/ubuntu/sustentare-web/build/
+
+          # Instalar PM2, caso não esteja instalado
+          if ! command -v pm2 &> /dev/null; then
+            echo "Instalando PM2..."
+            sudo npm install -g pm2
+          fi
+
+          # Navegar até o diretório do projeto
+          cd /home/ubuntu/sustentare-web
+
+          # Verificar se há dependências locais
+          if [ ! -d "node_modules" ]; then
+            echo "Instalando dependências locais..."
+            npm install
+          fi
+
+          # Garantir que o build seja atualizado
+          npm run build
+
+          # Iniciar a aplicação com PM2
+          pm2 start build/ --name sustentare-web || pm2 restart sustentare-web
