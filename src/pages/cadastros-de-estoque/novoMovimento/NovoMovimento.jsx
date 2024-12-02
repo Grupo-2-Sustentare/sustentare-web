@@ -97,16 +97,30 @@ export default function NovoMovimento({ }) {
             errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
             return
         }
-    
+
+        const carregarData = () => {
+            const agora = new Date();
+
+            const year = agora.getFullYear();
+            const month = String(agora.getMonth() + 1).padStart(2, '0');
+            const day = String(agora.getDate()).padStart(2, '0');
+
+            const hours = String(agora.getHours()).padStart(2, '0');
+            const minutes = String(agora.getMinutes()).padStart(2, '0');
+            const seconds = String(agora.getSeconds()).padStart(2, '0');
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }  // Formato "YYYY-MM-DD HH:MM:SS"
+
         const movementData = JSON.parse(sessionStorage.getItem("movement"));
         const { products } = movementData;
-    
+
         try {
             for (const produto of products) {
                 const payload = {
                     interacaoEstoqueCriacaoDTO: {
                         categoriaInteracao: produto.categoriaInteracao,
-                        dataHora: new Date().toISOString().replace('T', ' ').substring(0, 19)  // Formato "YYYY-MM-DD HH:MM:SS"
+                        dataHora: carregarData()
                     },
                     produtoCriacaoDTO: {
                         preco: produto.preco,
