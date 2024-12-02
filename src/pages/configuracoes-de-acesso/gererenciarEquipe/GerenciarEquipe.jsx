@@ -45,19 +45,19 @@ export default function GerenciarEquipe(){
          }, []
      )
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-          const storedData = sessionStorage.getItem('usuarios');
-          const reloadDone = sessionStorage.getItem('reloadDone');
-
-          if (storedData && !reloadDone) {
-            window.location.reload();
-            sessionStorage.setItem('reloadDone', 'true'); 
-          }
-        }, 2500);
-    
-        return () => clearInterval(interval);
-      }, []);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //       const storedData = sessionStorage.getItem('usuarios');
+    //       const reloadDone = sessionStorage.getItem('reloadDone');
+    //
+    //       if (storedData && !reloadDone) {
+    //         window.location.reload();
+    //         sessionStorage.setItem('reloadDone', 'true');
+    //       }
+    //     }, 2500);
+    //
+    //     return () => clearInterval(interval);
+    //   }, []);
 
     useEffect(() => {
         setUsuariosVisiveis(ordenacaoComPesquisa(usuarios, queryPesquisa, ordenacao, EnumObjetosBusca.USUARIO))
