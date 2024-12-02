@@ -116,7 +116,7 @@ export default function ConfigurationMenu({}) {
      console.log("Enviando dados:", unidadeAtualizada);
  
      const response = await api.put(
-       `/unidades-medida/${unidadeSelecionada.id}?idResponsavel=${idResponsavel}`,
+       `/proxy-java-api/unidades-medida/${unidadeSelecionada.id}?idResponsavel=${idResponsavel}`,
        unidadeAtualizada
      );
  
