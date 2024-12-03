@@ -6,9 +6,13 @@ import {useNavigate} from "react-router-dom";
 import {alertToast} from "../Toast/Toast";
 
 export default function TopBar({ title, showBackArrow, backNavigationPath }) {
-  const [isMenuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate()
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [nomeUsuario, setNomeUsuario] = useState("");
   const [imagem, setImagem] = useState("");
+
+  let icon;
+  let onClickHandler;
 
   const handleMenuClick = () => {
     if (!showBackArrow) {
@@ -23,13 +27,6 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
     }
   };
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
-  let icon;
-  let onClickHandler;
-
   if (showBackArrow) {
     icon = "fa-solid fa-arrow-left";
     onClickHandler = handleBackArrowClick;
@@ -38,29 +35,32 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
     onClickHandler = handleMenuClick;
   }
 
-  const userName = sessionStorage.getItem("nome_usuario")
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   const pegarImg = (nome)=>{
+    if (nome === null) return
     let img = "https://placehold.co/400/F5FBEF/22333B?text="
     return img + nome.substring(0, 1)
   }
-  const [userImage, setUserImagem] = useState(pegarImg(userName))
 
   useEffect(() => {
-    if (userName === null) {
+    const userName = sessionStorage.getItem("nome_usuario")
+    setNomeUsuario(userName)
+
+    if (userName === null || userName === "null") {
       alertToast("Sessão expirada.")
       navigate("/")
     }
-    const sessionStorageImg = sessionStorage.getItem("icone_usuario")
-    if (sessionStorageImg !== null && sessionStorageImg !== undefined && sessionStorageImg !== "null") {
-      setUserImagem(sessionStorageImg)
+
+    const sessionStorageImg = sessionStorage.getItem("imagem_responsavel")
+    if (sessionStorageImg === null || sessionStorageImg === undefined || sessionStorageImg === "null") {
+      setImagem(pegarImg(userName))
+    } else {
+      setImagem(sessionStorageImg)
     }
 
-    const responsavelString = sessionStorage.getItem('imagem_responsavel');
-    if (responsavelString) {
-      setImagem(responsavelString)
-    }else{
-      
-    }
   }, []);
 
   return (
@@ -75,7 +75,7 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
       </div>
       {!showBackArrow && isMenuOpen && (
         <div>
-          <SideMenu userName={userName} userImage={imagem ? `data:image/jpeg;base64,${imagem}` : userImage} />
+          <SideMenu userName={nomeUsuario} userImage={imagem} />
           <div className={styles.overlay} onClick={closeMenu}></div>
         </div>
       )}

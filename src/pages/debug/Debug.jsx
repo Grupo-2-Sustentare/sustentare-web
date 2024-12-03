@@ -31,7 +31,6 @@ const IMG_CHOCOLATE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqh
 
 export default function Debug(){
     sessionStorage.setItem("nome_usuario", "Antônio")
-    sessionStorage.setItem("icone_usuario", ICON_USUARIO)
 
     const [produtos, setProdutos] = useState([
         {nome: "Feijão", imagem: IMG_FEIJAO},

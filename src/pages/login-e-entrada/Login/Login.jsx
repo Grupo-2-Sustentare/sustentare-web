@@ -17,7 +17,6 @@ const Login = () => {
             sessionStorage.setItem("responsavel", JSON.stringify(res.data))
             sessionStorage.setItem("nome_usuario", nome)
             sessionStorage.setItem("senhaAtual", senha)
-            sessionStorage.setItem("icone_usuario", null)
             buscarInfoResp()
             successToast("Sucesso!");
             navigate("/menu-inicial")
