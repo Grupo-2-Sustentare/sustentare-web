@@ -10,6 +10,7 @@ import IconInput from "../../../components/IconInput/IconInput";
 import StrechList from "../../../components/StrechList/StrechList";
 import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../../tools/ModuloBusca";
 import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
+import pegarImagemPorNome from "../../../tools/ImageHelper";
 
 export default function GerenciarEquipe(){
     const navigate = useNavigate()
@@ -63,11 +64,6 @@ export default function GerenciarEquipe(){
         setUsuariosVisiveis(ordenacaoComPesquisa(usuarios, queryPesquisa, ordenacao, EnumObjetosBusca.USUARIO))
     }, [usuarios, queryPesquisa, ordenacao])
 
-    const pegarImg = (nome)=> {
-        let img = "https://placehold.co/400/F5FBEF/22333B?text="
-        return img + nome.substring(0, 1)
-    }
-
     return(
         <div className={styles.gerenciarEquipe}>
             <TopBar title={"Gerenciar equipe"}/>
@@ -85,7 +81,7 @@ export default function GerenciarEquipe(){
                         name={u.nome} quantity={"Usuário(a)"} fullBorderRadius={true} buttonsConfig={btnsConfig}
                         infoUsuario={u} key={i}
                         addressImg={
-                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : pegarImg(u.nome)
+                            u.imagem ? `data:image/jpeg;base64,${u.imagem}` : pegarImagemPorNome(u.nome)
                         }
                     />
                 })}
