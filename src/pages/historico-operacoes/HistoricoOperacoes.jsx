@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { errorToast } from "../../components/Toast/Toast";
 import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../tools/ModuloBusca";
 import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
+import pegarImagemPorNome from "../../tools/ImageHelper";
 
 export default function HistoricoOperacoes() {
     const location = useLocation();
@@ -31,20 +32,21 @@ export default function HistoricoOperacoes() {
 
     const buscarUsuarios = async() => {
         return api.get('/proxy-java-api/usuarios').then((res) => {
-            // setUsuarios(res.data);
-            console.log(res.data)
+            if (res.data === undefined || res.data.length === 0){
+                throw new Error("Usuários vazios.")
+            }
             return res.data
         }).catch((error) => {
+            console.log(error);
             errorToast("Erro ao buscar usuários. Contate o suporte.")
-            console.error("Erro ao buscar usuários:", error);
         })
     }
 
     const buscarLogs = (usuarios) => {
         let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" : "/" + usuarioEscolhido.id
+        if (usuarios === undefined) return
 
         api.get(`/proxy-java-api/audit-logs${idUsuarioEspecifico}`).then((response) => {
-            console.log(usuarios)
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
             if (response.status === 204) {
                 return
@@ -73,8 +75,11 @@ export default function HistoricoOperacoes() {
 
     const obterImagemUsuario = (fkUsuario, usuarios) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
-        if (usuarioEncontrado === undefined || usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null) {
-            return "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
+        if (usuarioEncontrado === undefined) {
+            return pegarImagemPorNome("?")
+        }
+        if (usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null){
+            return pegarImagemPorNome(usuarioEncontrado.nome)
         }
         return usuarioEncontrado.imagem;
     };
