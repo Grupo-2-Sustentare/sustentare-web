@@ -1,12 +1,14 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+const DEBUG = false
+
 module.exports = function(app) {
     app.use(
         '/proxy-java-api',
         createProxyMiddleware({
             //10.0.0.164
             //'http://10.0.0.164:8080'
-            target: 'http://localhost:80',
+            target: DEBUG ? 'http://localhost:80' : 'http://10.0.0.164:80/',
             changeOrigin: true,
             pathRewrite: { '^/proxy-java-api': '' },
         })
