@@ -8,7 +8,7 @@ import {alertToast} from "../Toast/Toast";
 export default function TopBar({ title, showBackArrow, backNavigationPath }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate()
-
+  const [imagem, setImagem] = useState("");
 
   const handleMenuClick = () => {
     if (!showBackArrow) {
@@ -54,6 +54,13 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
     if (sessionStorageImg !== null && sessionStorageImg !== undefined && sessionStorageImg !== "null") {
       setUserImagem(sessionStorageImg)
     }
+
+    const responsavelString = sessionStorage.getItem('imagem_responsavel');
+    if (responsavelString) {
+      setImagem(responsavelString)
+    }else{
+      
+    }
   }, []);
 
   return (
@@ -68,7 +75,7 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
       </div>
       {!showBackArrow && isMenuOpen && (
         <div>
-          <SideMenu userName={userName} userImage={userImage} />
+          <SideMenu userName={userName} userImage={imagem ? `data:image/jpeg;base64,${imagem}` : userImage} />
           <div className={styles.overlay} onClick={closeMenu}></div>
         </div>
       )}
