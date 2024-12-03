@@ -11,6 +11,7 @@ import { errorToast } from "../../../components/Toast/Toast";
 import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../tools/ModuloBusca";
 import axios from "axios";
 import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
+import {URL_S3} from "../../../tools/ImageHelper";
 
 export default function SelecaoProdutos() {
 
@@ -28,13 +29,10 @@ export default function SelecaoProdutos() {
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
 
-    async function carregarImagemAwsS3(idUsuario) {
-        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
-            .then(() => {
-                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
-            })
+    async function carregarImagemAwsS3(nomeItem, idUsuario) {
+        return axios.get(URL_S3 + idUsuario).then(() => {return URL_S3 + idUsuario})
             .catch(() => {
-                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
+                return `https://placehold.co/400/F5FBEF/22333B?text=${nomeItem}`;
             });
     }
 
@@ -50,7 +48,7 @@ export default function SelecaoProdutos() {
             .then(async (res) => {
                 const produtosBrutos = res.data
                 const produtos = await Promise.all(produtosBrutos.map(async produto => {
-                    const imageUrl = await carregarImagemAwsS3(produto.item.id);
+                    const imageUrl = await carregarImagemAwsS3(produto.item.nome, produto.item.id);
                     return { ...produto, imageUrl };
                 }))
                 console.log(produtos)

@@ -11,6 +11,7 @@ import axios from "axios";
 import StrechList from "../../../../components/StrechList/StrechList";
 import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../../../tools/ModuloBusca";
 import LoadingIcon from "../../../../components/LoadingIcon/LoadingIcon";
+import {URL_S3} from "../../../../tools/ImageHelper";
 
 const ConfiguracoesProdutos = () => {
     const navigate = useNavigate();
@@ -30,21 +31,17 @@ const ConfiguracoesProdutos = () => {
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
 
-    async function carregarImagemAwsS3(idUsuario) {
-        return axios.get(`https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`)
-            .then(() => {
-                return `https://teste-sustentare.s3.us-east-1.amazonaws.com//itens/imagens/${idUsuario}`;
-            })
-            .catch(() => {
-                return `https://placehold.co/400/F5FBEF/22333B?text=Produto`;
-            });
+    async function carregarImagemAwsS3(nomeItem, idUsuario) {
+        return axios.get(URL_S3 + idUsuario,{headers: {"Priority": "u=0, i"}})
+            .then(() => {return URL_S3 + idUsuario;})
+            .catch(() => {return `https://placehold.co/400/F5FBEF/22333B?text=${nomeItem}`;});
     }
 
     useEffect(() => {
         api.get("/proxy-java-api/produtos").then(async (res) => {
             const produtosComImagens = await Promise.all(
                 res.data?.map(async (prod) => {
-                    const imageUrl = await carregarImagemAwsS3(prod.item.id);
+                    const imageUrl = await carregarImagemAwsS3(prod.item.nome, prod.item.id);
                     return { ...prod, imageUrl };
                 })
             );
