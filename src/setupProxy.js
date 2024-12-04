@@ -1,41 +1,43 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-// Defina como true para ambiente local, ou false para ambiente em nuvem.
+// Define como true para ambiente local ou false para ambiente em nuvem
 const DEBUG = false;
 
-// Função que configura o proxy
+// Função para configurar os proxies
 module.exports = function (app) {
-    // Verifica se a variável DEBUG está definida corretamente
-    const targetUrl = DEBUG ? 'http://localhost:9000' : 'http://10.0.3.149:9000/';
-
-    console.log(`Configuração de proxy ativa. Target: ${targetUrl}`);
+    // Configuração para a Java API
+    const javaApiTarget = DEBUG ? 'http://localhost:9000' : 'http://10.0.3.149:9000/';
+    console.log(`Configuração de proxy para Java API ativa. Target: ${javaApiTarget}`);
 
     app.use(
         '/java-api',
         createProxyMiddleware({
-            target: targetUrl,
+            target: javaApiTarget,
             changeOrigin: true,
+            pathRewrite: { '^/java-api': '' }, // Remove o prefixo da URL ao repassar para o backend
             onError: (err, req, res) => {
-                console.error('Erro no Proxy:', err.message);
+                console.error('Erro no Proxy (Java API):', err.message);
                 res.writeHead(500, {
                     'Content-Type': 'text/plain',
                 });
-                res.end('Algo deu errado no proxy.');
+                res.end('Erro ao processar a solicitação no proxy Java API.');
             },
             onProxyReq: (proxyReq, req, res) => {
-                console.log(`Proxying request - Path: ${req.path}, Method: ${req.method}`);
+                console.log(`[Java API] Requisição: ${req.method} ${req.path}`);
             },
             onProxyRes: (proxyRes, req, res) => {
-                console.log(`Response recebido do proxy - Status: ${proxyRes.statusCode}`);
+                console.log(`[Java API] Resposta do Proxy: ${proxyRes.statusCode}`);
             },
         })
     );
 
-        // app.use(
+    /*
+    // app.use(
     //     '/lambda-services',
     //     createProxyMiddleware({
     //         target: 'https://pk0cpzwo89.execute-api.us-east-1.amazonaws.com',
     //         changeOrigin: true,
     //     })
-    // );
+    // )
+    */
 };
