@@ -20,10 +20,10 @@ module.exports = function (app) {
                 res.writeHead(500, {
                     'Content-Type': 'text/plain',
                 });
-                res.end('Erro ao processar a solicitação no proxy Java API.');
+                res.end('Erro ao processar a solicitação no proxy Java API');
             },
             onProxyReq: (proxyReq, req, res) => {
-                console.log(`[Java API] Requisição: ${req.method} ${req.path}`);
+                console.log(`[Java API] Requisição.: ${req.method} ${req.path}`);
             },
             onProxyRes: (proxyRes, req, res) => {
                 console.log(`[Java API] Resposta do Proxy: ${proxyRes.statusCode}`);
