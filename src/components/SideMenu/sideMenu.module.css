@@ -60,6 +60,7 @@
         height: 60px;
         border-radius: 100%;
         border: 1px solid var(--white);
+        object-fit: cover;
     }
     .userName {
         font-size: 1.1em;
