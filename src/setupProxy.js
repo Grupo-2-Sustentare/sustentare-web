@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-// Defina como true para ambiente local, ou false para ambiente em nuvem
+// Defina como true para ambiente local, ou false para ambiente em nuvem.
 const DEBUG = false;
 
 // Função que configura o proxy
