@@ -58,7 +58,7 @@ export default function TopBar({ title, showBackArrow, backNavigationPath }) {
     if (sessionStorageImg === null || sessionStorageImg === undefined || sessionStorageImg === "null") {
       setImagem(pegarImg(userName))
     } else {
-      setImagem(sessionStorageImg)
+      setImagem("data:image/jpeg;base64," + sessionStorageImg)
     }
 
   }, []);
