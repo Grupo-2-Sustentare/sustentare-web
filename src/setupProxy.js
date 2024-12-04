@@ -6,7 +6,7 @@ const DEBUG = false;
 // Função que configura o proxy
 module.exports = function (app) {
     // Verifica se a variável DEBUG está definida corretamente
-    const targetUrl = DEBUG ? 'http://localhost:9000' : 'http://10.0.3.149:9000/';
+    const targetUrl = DEBUG ? 'http://localhost:9000' : 'http://10.0.3.131:9000/';
 
     console.log(`Configuração de proxy ativa. Target: ${targetUrl}`);
 
