@@ -15,6 +15,7 @@ module.exports = function (app) {
         createProxyMiddleware({
             target: targetUrl,
             changeOrigin: true,
+            pathRewrite: { '^/java-api': '' }, // Remove o prefixo da URL ao repassar para o backend
             onError: (err, req, res) => {
                 console.error('Erro no Proxy:', err.message);
                 res.writeHead(500, {
@@ -31,11 +32,14 @@ module.exports = function (app) {
         })
     );
 
-        // app.use(
-    //     '/lambda-services',
-    //     createProxyMiddleware({
-    //         target: 'https://pk0cpzwo89.execute-api.us-east-1.amazonaws.com',
-    //         changeOrigin: true,
-    //     })
-    // );
+    // Comentado: caso precise de outro proxy
+    /*
+    app.use(
+        '/lambda-services',
+        createProxyMiddleware({
+            target: 'https://pk0cpzwo89.execute-api.us-east-1.amazonaws.com',
+            changeOrigin: true,
+        })
+    );
+    */
 };
