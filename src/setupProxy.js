@@ -11,7 +11,7 @@ module.exports = function (app) {
     console.log(`Configuração de proxy ativa. Target: ${targetUrl}`);
 
     app.use(
-        '/java-api',
+        '/proxy-java-api',
         createProxyMiddleware({
             target: targetUrl,
             changeOrigin: true,
