@@ -81,7 +81,7 @@ export default function HistoricoOperacoes() {
         if (usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null){
             return pegarImagemPorNome(usuarioEncontrado.nome)
         }
-        return usuarioEncontrado.imagem;
+        return "data:image/jpeg;base64," + usuarioEncontrado.imagem;
     };
 
 
