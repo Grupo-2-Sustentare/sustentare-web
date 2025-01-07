@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { errorToast, successToast } from "../../../components/Toast/Toast";
 import api from "../../../api";
+import {HttpStatusCode} from "axios";
 
 // const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
@@ -114,24 +115,36 @@ export default function NovoMovimento({ }) {
 
         const movementData = JSON.parse(sessionStorage.getItem("movement"));
         const { products } = movementData;
+        let houveramErros = false;
 
-        try {
-            for (const produto of products) {
-                const payload = {
-                    interacaoEstoqueCriacaoDTO: {
-                        categoriaInteracao: produto.categoriaInteracao,
-                        dataHora: carregarData()
-                    },
-                    produtoCriacaoDTO: {
-                        preco: produto.preco,
-                        qtdProduto: produto.qtdProduto,
-                        qtdMedida: produto.qtdMedida || 0,
-                        ativo: true
-                    }
-                };
+        for (const produto of products) {
+            const payload = {
+                interacaoEstoqueCriacaoDTO: {
+                    categoriaInteracao: produto.categoriaInteracao,
+                    dataHora: carregarData()
+                },
+                produtoCriacaoDTO: {
+                    preco: produto.preco,
+                    qtdProduto: produto.qtdProduto,
+                    qtdMedida: produto.qtdMedida || 0,
+                    ativo: true
+                }
+            };
     
-                await api.post(`/proxy-java-api/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
-            }
+            await api.post(
+                `/proxy-java-api/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`,
+                payload
+            ).then(() => removerProdutoNovoMovimento(produto)).catch((err)=>{
+                if(err.response.status === 403){
+                    errorToast(`Não é possível retirar unidades de ${produto.item.nome}, já que o estoque desse produto está zerado.`)
+                } else{
+                    console.error("Erro ao finalizar a movimentação: " + err)
+                }
+                houveramErros = true
+            });
+        }
+
+        if (!houveramErros){
             successToast("Movimentação concluída com sucesso.");
             sessionStorage.removeItem("movement")
             sessionStorage.removeItem("produtosSelecionados")
@@ -140,11 +153,7 @@ export default function NovoMovimento({ }) {
             sessionStorage.removeItem("qtdMovimento")
             sessionStorage.removeItem("isUltimaHora")
             sessionStorage.removeItem("productBeingEdited")
-    
             setTimeout(() => navigate("/menu-inicial"), 2000)
-        } catch (error) {
-            console.error("Erro ao concluir movimentação:", error);
-            errorToast("Erro ao concluir movimentação. Tente novamente.");
         }
     }
     
