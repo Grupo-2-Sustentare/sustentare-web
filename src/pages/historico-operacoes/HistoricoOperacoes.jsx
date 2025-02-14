@@ -6,8 +6,8 @@ import StrechList from "../../components/StrechList/StrechList";
 import api from "../../api";
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import {errorToast} from "../../components/Toast/Toast";
-import {EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa} from "../../tools/ModuloBusca";
+import { errorToast } from "../../components/Toast/Toast";
+import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../tools/ModuloBusca";
 
 export default function HistoricoOperacoes() {
     const location = useLocation();
@@ -23,32 +23,48 @@ export default function HistoricoOperacoes() {
     const [logsVisiveis, setLogsVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
- 
+
     useEffect(() => {
-        setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
- 
+        console.log(logs)
+        let resultado = ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG)
+
+        if (resultado.length === 0 && logs.length > 0) {
+            resultado = logs;
+        }
+    
+        setLogsVisiveis(resultado);
+        // setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
     }, [logs, queryPesquisa, ordenacao])
 
     const buscarLogs = () => {
-        let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" :  "/" + usuarioEscolhido.id
+        let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" : "/" + usuarioEscolhido.id
 
         api.get(`/proxy-java-api/audit-logs${idUsuarioEspecifico}`).then((response) => {
+            // console.log(JSON.stringify(response.data))
+            // alert(JSON.stringify(response.data))
             sessionStorage.setItem("audit_view_logs", JSON.stringify(response.data))
             if (response.status === 204) {
                 return
-              }
+            }
             let logs = response.data
             console.log("=================")
-            console.log(response)
-            console.log("=================")
-            for (let i in logs){
-                logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
-                logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
-            }
+            console.log(logs)
+            console.log("+++++++++++++")
 
+             // Arrumar para pegar nome corretamente
+             
+            // for (let i in logs) {
+            //     console.log(logs[i].fkUsuario)
+            // console.log("************")
+
+            //     logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
+            //     logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
+            // }
+            console.log("************")
+            console.log(logs)
             setLogs(logs);
         }).catch(() => {
-            errorToast("Ocorreu um erro ao tentar realizar buscar as informacoes dos logs.");
+            errorToast("Ocorreu um erro ao tentar buscar as informacoes dos logs.");
         }).finally(() => setLoading(false))
     };
     useEffect(() => buscarLogs(), []);
@@ -62,25 +78,24 @@ export default function HistoricoOperacoes() {
 
     const obterImagemUsuario = (fkUsuario) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
-        if(usuarioEncontrado === undefined || usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null){
+        if (usuarioEncontrado === undefined || usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null) {
             return "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
         }
         return usuarioEncontrado.imagem;
     };
 
-
     return (<>
         <div className={styles.historicaDeOperacoes}>
             <TopBar title={"Historico de operações"} showBackArrow={false} />
             <div className={styles.barraDeBusca}>
-                <IconInput onChange={(v)=>setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por usuário"}/>
+                <IconInput onChange={(v) => setQueryPesquisa(v.target.value)} placeholder={"Pesquisa por usuário"} />
                 <StrechList
                     showTitle={false} items={OPCOES_ORDENACAO.Log} hint={"Opções de ordenação"}
-                    onChange={(v)=>setOrdenacao(v)}
+                    onChange={(v) => setOrdenacao(v)}
                 />
-            </div><hr/>
+            </div><hr />
             <div className={styles.principal}>
-                {logsVisiveis?.map((l) => (
+                {logs?.map((l) => (
                     <OperationLog
                         key={l.id} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
                         adressImg={l.imagemUsuario}
@@ -89,5 +104,5 @@ export default function HistoricoOperacoes() {
                 {(logsVisiveis.length === 0) && <div className={styles.mensagem}>Nenhum registro encontrado</div>}
             </div>
         </div>
-   </> )
+    </>)
 }
