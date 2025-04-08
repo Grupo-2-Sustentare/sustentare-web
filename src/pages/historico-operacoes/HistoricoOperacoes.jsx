@@ -25,13 +25,30 @@ export default function HistoricoOperacoes() {
     const [ordenacao, setOrdenacao] = useState(null)
 
     useEffect(() => {
+        // Buscar todos os usuários e salvar no sessionStorage
+        api.get("/proxy-java-api/usuarios")
+            .then((response) => {
+                if (response.status === 200) {
+                    sessionStorage.setItem("usuarios", JSON.stringify(response.data));
+                }
+            })
+            .catch(() => {
+                errorToast("Erro ao buscar usuários.");
+            });
+    
+        // Buscar os logs de operações
+        buscarLogs();
+    }, []);
+    
+
+    useEffect(() => {
         console.log(logs)
         let resultado = ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG)
 
         if (resultado.length === 0 && logs.length > 0) {
             resultado = logs;
         }
-    
+
         setLogsVisiveis(resultado);
         // setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
     }, [logs, queryPesquisa, ordenacao])
@@ -51,16 +68,19 @@ export default function HistoricoOperacoes() {
             console.log(logs)
             console.log("+++++++++++++")
 
-             // Arrumar para pegar nome corretamente
-             
-            // for (let i in logs) {
-            //     console.log(logs[i].fkUsuario)
-            // console.log("************")
+            // Arrumar para pegar nome corretamente
 
-            //     logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
-            //     logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
-            // }
-            console.log("************")
+            for (let i in logs) {
+                console.log(logs[i].fkUsuario)
+                console.log("************")
+
+                logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
+                console.log(logs[i].nomeUsuario)
+                logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
+            }
+
+            // Até aqui precisa ser arrumado para buscar nome do usuário corretamente
+            // console.log("************")
             console.log(logs)
             setLogs(logs);
         }).catch(() => {
@@ -69,7 +89,7 @@ export default function HistoricoOperacoes() {
     };
     useEffect(() => buscarLogs(), []);
 
-    const usuarios = JSON.parse(sessionStorage.getItem('usuarios'));
+    const usuarios = JSON.parse(sessionStorage.getItem('usuarios')) || [];
 
     const obterNomeUsuario = (fkUsuario) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
@@ -78,11 +98,12 @@ export default function HistoricoOperacoes() {
 
     const obterImagemUsuario = (fkUsuario) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
-        if (usuarioEncontrado === undefined || usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null) {
-            return "https://placehold.co/400/F5FBEF/22333B?text=Usuário"
+        if (!usuarioEncontrado?.imagem) {
+            return "https://placehold.co/400/F5FBEF/22333B?text=Usuário";
         }
         return usuarioEncontrado.imagem;
     };
+
 
     return (<>
         <div className={styles.historicaDeOperacoes}>
@@ -95,7 +116,8 @@ export default function HistoricoOperacoes() {
                 />
             </div><hr />
             <div className={styles.principal}>
-                {logs?.map((l) => (
+                {logsVisiveis?.map((l) => (
+
                     <OperationLog
                         key={l.id} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
                         adressImg={l.imagemUsuario}
