@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { errorToast, successToast } from "../../../components/Toast/Toast";
 import api from "../../../api";
+import {HttpStatusCode} from "axios";
 
 // const MOCK_URL = "https://raw.githubusercontent.com/Grupo-2-Sustentare/sustentare-web/main/src/assets/images/items/"
 
@@ -97,27 +98,53 @@ export default function NovoMovimento({ }) {
             errorToast("Não é possível registrar uma movimentação sem produtos selecionados!")
             return
         }
-    
+
+        const carregarData = () => {
+            const agora = new Date();
+
+            const year = agora.getFullYear();
+            const month = String(agora.getMonth() + 1).padStart(2, '0');
+            const day = String(agora.getDate()).padStart(2, '0');
+
+            const hours = String(agora.getHours()).padStart(2, '0');
+            const minutes = String(agora.getMinutes()).padStart(2, '0');
+            const seconds = String(agora.getSeconds()).padStart(2, '0');
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }  // Formato "YYYY-MM-DD HH:MM:SS"
+
         const movementData = JSON.parse(sessionStorage.getItem("movement"));
         const { products } = movementData;
+        let houveramErros = false;
+
+        for (const produto of products) {
+            const payload = {
+                interacaoEstoqueCriacaoDTO: {
+                    categoriaInteracao: produto.categoriaInteracao,
+                    dataHora: carregarData()
+                },
+                produtoCriacaoDTO: {
+                    preco: produto.preco,
+                    qtdProduto: produto.qtdProduto,
+                    qtdMedida: produto.qtdMedida || 0,
+                    ativo: true
+                }
+            };
     
-        try {
-            for (const produto of products) {
-                const payload = {
-                    interacaoEstoqueCriacaoDTO: {
-                        categoriaInteracao: produto.categoriaInteracao,
-                        dataHora: new Date().toISOString().replace('T', ' ').substring(0, 19)  // Formato "YYYY-MM-DD HH:MM:SS"
-                    },
-                    produtoCriacaoDTO: {
-                        preco: produto.preco,
-                        qtdProduto: produto.qtdProduto,
-                        qtdMedida: produto.qtdMedida || 0,
-                        ativo: true
-                    }
-                };
-    
-                await api.post(`/proxy-java-api/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`, payload);
-            }
+            await api.post(
+                `/proxy-java-api/interacoes-estoque?fkItem=${produto.item.id}&idResponsavel=${idResponsavel}`,
+                payload
+            ).then(() => removerProdutoNovoMovimento(produto)).catch((err)=>{
+                if(err.response.status === 403){
+                    errorToast(`Não é possível retirar unidades de ${produto.item.nome}, já que o estoque desse produto está zerado.`)
+                } else{
+                    console.error("Erro ao finalizar a movimentação: " + err)
+                }
+                houveramErros = true
+            });
+        }
+
+        if (!houveramErros){
             successToast("Movimentação concluída com sucesso.");
             sessionStorage.removeItem("movement")
             sessionStorage.removeItem("produtosSelecionados")
@@ -126,11 +153,7 @@ export default function NovoMovimento({ }) {
             sessionStorage.removeItem("qtdMovimento")
             sessionStorage.removeItem("isUltimaHora")
             sessionStorage.removeItem("productBeingEdited")
-    
             setTimeout(() => navigate("/menu-inicial"), 2000)
-        } catch (error) {
-            console.error("Erro ao concluir movimentação:", error);
-            errorToast("Erro ao concluir movimentação. Tente novamente.");
         }
     }
     

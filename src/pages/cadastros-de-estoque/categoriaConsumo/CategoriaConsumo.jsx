@@ -23,7 +23,7 @@ export default function CategoriaConsumo(){
         <div className={styles.cabecalho}>
             <p>Você selecionou</p>
             <ListItem
-                adressImg={"https://placehold.co/400/F5FBEF/22333B?text=Produto"} heading={p.item.nome}
+                adressImg={p.imageUrl} heading={p.item.nome}
                 subheading={`${p.quantidadeMovimento} ${p.item.unidade_medida.nome}`} fullBorderRadius={true}
             />
         </div>

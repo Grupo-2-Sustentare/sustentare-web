@@ -6,25 +6,29 @@ import StrechList from "../../components/StrechList/StrechList";
 import api from "../../api";
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { errorToast } from "../../components/Toast/Toast";
-import { EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa } from "../../tools/ModuloBusca";
+import {  errorToast  } from "../../components/Toast/Toast";
+import {  EnumObjetosBusca, OPCOES_ORDENACAO, ordenacaoComPesquisa  } from "../../tools/ModuloBusca";
+import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
+import pegarImagemPorNome from "../../tools/ImageHelper";
 
 export default function HistoricoOperacoes() {
     const location = useLocation();
+    const [carregando, setCarregando] = useState(true)
+
     const usuarioEscolhido = location.state?.usuario;
 
     // Estado para armazenar logs
     const [logs, setLogs] = useState([]);
-
-    // Estado para controlar o carregamento
-    const [loading, setLoading] = useState(true);
 
     // Do módulo de busca e ordenação.
     const [logsVisiveis, setLogsVisiveis] = useState([])
     const [queryPesquisa, setQueryPesquisa] = useState(null)
     const [ordenacao, setOrdenacao] = useState(null)
 
+
     useEffect(() => {
+        setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
+
         // Buscar todos os usuários e salvar no sessionStorage
         api.get("/proxy-java-api/usuarios")
             .then((response) => {
@@ -53,8 +57,21 @@ export default function HistoricoOperacoes() {
         // setLogsVisiveis(ordenacaoComPesquisa(logs, queryPesquisa, ordenacao, EnumObjetosBusca.LOG))
     }, [logs, queryPesquisa, ordenacao])
 
-    const buscarLogs = () => {
+    const buscarUsuarios = async() => {
+        return api.get('/proxy-java-api/usuarios').then((res) => {
+            if (res.data === undefined || res.data.length === 0){
+                throw new Error("Usuários vazios.")
+            }
+            return res.data
+        }).catch((error) => {
+            console.log(error);
+            errorToast("Erro ao buscar usuários. Contate o suporte.")
+        })
+    }
+
+    const buscarLogs = (usuarios) => {
         let idUsuarioEspecifico = usuarioEscolhido === undefined ? "" : "/" + usuarioEscolhido.id
+        if (usuarios === undefined) return
 
         api.get(`/proxy-java-api/audit-logs${idUsuarioEspecifico}`).then((response) => {
             // console.log(JSON.stringify(response.data))
@@ -64,44 +81,39 @@ export default function HistoricoOperacoes() {
                 return
             }
             let logs = response.data
-            console.log("=================")
-            console.log(logs)
-            console.log("+++++++++++++")
-
-            // Arrumar para pegar nome corretamente
-
             for (let i in logs) {
-                console.log(logs[i].fkUsuario)
-                console.log("************")
-
-                logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario)
-                console.log(logs[i].nomeUsuario)
-                logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario)
+                logs[i].nomeUsuario = obterNomeUsuario(logs[i].fkUsuario, usuarios)
+                logs[i].imagemUsuario = obterImagemUsuario(logs[i].fkUsuario, usuarios)
             }
 
             // Até aqui precisa ser arrumado para buscar nome do usuário corretamente
             // console.log("************")
             console.log(logs)
             setLogs(logs);
-        }).catch(() => {
-            errorToast("Ocorreu um erro ao tentar buscar as informacoes dos logs.");
-        }).finally(() => setLoading(false))
+        }).catch((error) => {
+            console.log(error)
+            errorToast("Erro ao tentar realizar buscar as informacoes dos logs. Contate o suporte.");
+        }).finally(() => setCarregando(false))
     };
-    useEffect(() => buscarLogs(), []);
 
-    const usuarios = JSON.parse(sessionStorage.getItem('usuarios')) || [];
+    useEffect(() => {
+        buscarUsuarios().then((usuarios) => buscarLogs(usuarios))
+    }, []);
 
-    const obterNomeUsuario = (fkUsuario) => {
+    const obterNomeUsuario = (fkUsuario, usuarios) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
         return usuarioEncontrado ? usuarioEncontrado.nome : 'Usuário não encontrado';
     };
 
-    const obterImagemUsuario = (fkUsuario) => {
+    const obterImagemUsuario = (fkUsuario, usuarios) => {
         const usuarioEncontrado = usuarios.find(usuario => usuario.id === fkUsuario);
-        if (!usuarioEncontrado?.imagem) {
-            return "https://placehold.co/400/F5FBEF/22333B?text=Usuário";
+        if (usuarioEncontrado === undefined) {
+            return pegarImagemPorNome("?")
         }
-        return usuarioEncontrado.imagem;
+        if (usuarioEncontrado.imagem === undefined || usuarioEncontrado.imagem === null){
+            return pegarImagemPorNome(usuarioEncontrado.nome)
+        }
+        return "data:image/jpeg;base64," + usuarioEncontrado.imagem;
     };
 
 
@@ -116,14 +128,14 @@ export default function HistoricoOperacoes() {
                 />
             </div><hr />
             <div className={styles.principal}>
-                {logsVisiveis?.map((l) => (
-
+                <LoadingIcon carregando={carregando} />
+                {logsVisiveis?.map((l, i) => (
                     <OperationLog
-                        key={l.id} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
+                        key={i} title={l.titulo} operation={l.descricao} author={l.nomeUsuario} time={l.dataHora}
                         adressImg={l.imagemUsuario}
                     />)
                 )}
-                {(logsVisiveis.length === 0) && <div className={styles.mensagem}>Nenhum registro encontrado</div>}
+                {(logsVisiveis.length === 0 && !carregando) && <div className={styles.mensagem}>Nenhum registro encontrado</div>}
             </div>
         </div>
     </>)

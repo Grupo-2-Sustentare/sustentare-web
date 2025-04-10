@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './toast.module.css';
 import {toast} from "react-hot-toast";
 
@@ -30,7 +29,7 @@ function renderToast(text, variant){
             toast(component, TOAST_CONFIG)
             break
         case "error":
-            toast.error(component, TOAST_CONFIG)
+            toast(component, TOAST_CONFIG)
             break
     }
 }

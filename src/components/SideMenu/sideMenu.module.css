@@ -1,7 +1,6 @@
 .divSideBar{
     display: flex;
     flex-direction: row;
-    /* background-color: rgba(6, 6, 6, 0.392); */
     height: 100%;
     width: 500px;
     position: fixed;
@@ -16,9 +15,10 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    color: var(--branco);
+    color: var(--white);
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.508);
+    gap: 8px;
+    padding: 8px 0;
 
     /* transition-duration: 1s;
     transition-timing-function: ease-in; */
@@ -27,64 +27,65 @@
 .sidebarHeader {
     display: flex;
     width: 100%;
-    height: 10%;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-family: var(--fonte-artistica);
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
     /* Uma linha de destaque inferior, por exemplo */
-}
-
-.sidebarMenu {
-    flex-grow: 1;
 }
 
 .sidebarFooter {
     display: flex;
     width: 100%;
     justify-content: space-around;
-    padding: 8px 8px 10px 8px;
-    align-items: center;
-    /* border-top: 1px solid rgba(255, 255, 255, 0.2); */
+    gap: 16px;
+    padding: 4px 16px;
+    align-items: start;
     background-color:var(--carvao);
-    flex-direction: row;
-    align-items: center;
-}
-
-.userImage {
-    display: flex;
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    border: 1px solid var(--white);
+    flex-direction: column;
 }
 
 .userInfo {
     display: flex;
-    flex-direction: column;
-    text-align: start;
-    font-family: var(--fonte-destaque);
-    padding: 6px;
-}
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
 
-.userName {
-    font-size: 1.6em;
-    font-weight: 100px;
-    font-family: var(--fonte-destaque);
-    color: var(--branco);
+    .userImage {
+        display: flex;
+        flex-shrink: 0;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        border: 1px solid var(--white);
+        object-fit: cover;
+    }
+    .userName {
+        font-size: 1.1em;
+        font-family: var(--fonte-destaque), helvetica, sans-serif;
+        color: var(--white);
+        width: 100%;
+        overflow: hidden;
+        text-wrap: wrap;
+        text-overflow: ellipsis;
+    }
 }
 
 .logoutButton {
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
     background-color: transparent;
-    border: none;
-    font-size: 1.2em;
+    border: solid var(--white);
+    border-width: 0 0 1px 0;
+    font-weight: bold;
     cursor: pointer;
     padding: 0;
-    text-decoration: underline;
     filter: var(--sombra-vermelha-brilho);
+    line-height: 1.2em;
 }
 
 .logoutButton:hover {
