@@ -15,6 +15,7 @@ module.exports = function (app) {
         createProxyMiddleware({
             target: targetUrl,
             changeOrigin: true,
+            pathRewrite: { '^/proxy-java-api': '' },
             onError: (err, req, res) => {
                 console.error('Erro no Proxy:', err.message);
                 res.writeHead(500, {
